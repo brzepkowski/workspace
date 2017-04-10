@@ -1,0 +1,158 @@
+import java.io.*;
+import java.net.*;
+import java.util.ArrayList;
+
+/**
+ * Klasa SocketServer tworzy sserwer i umozliwia odbieranie pytan od klienta
+ * @author ubuntu
+ *
+ */
+class SocketServer {
+  public int numberOfPlayers = 0;
+  
+  ServerSocket server = null;
+  Socket client = null;
+  BufferedReader in = null;
+  PrintWriter out = null;
+  String line = "";
+  char OP;
+  int num;
+  
+  Thread threadOne;
+ 
+ 
+ 
+  
+  /**
+   * Konstruktor SocketServer tworzy port, na ktorym nasluchuje serwer
+   * @param port - numer portu
+   */
+  SocketServer(int port) {   
+    try {
+      server = new ServerSocket(port); 
+    } 
+    catch (IOException e) {
+      System.out.println("Could not listen on port: " + port); System.exit(-1);
+    }
+  }
+
+  /**
+   * metoda listenSocket umozliwia zaakceptowanie polaczenia z klientem i wyswietla odpowiednie komunikaty
+   */
+  public void listenSocket() {
+	  System.out.println("Uruchomiono serwer");
+	  while (true) {
+    try {
+      
+      client = server.accept();
+      numberOfPlayers++;
+      System.out.println("Nawiazano polaczenie");
+      System.out.println("Aktualna liczba podłączonych graczy: " + numberOfPlayers);
+      
+    } 
+    catch (IOException e) {
+      System.out.println("Accept failed: 4444"); System.exit(-1);
+    }
+    createThread();
+    
+    try {
+      in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+      out = new PrintWriter(client.getOutputStream(), true);
+      out.println(numberOfPlayers);
+    } 
+    catch (IOException e) {
+      System.out.println("Accept failed: 4444"); System.exit(-1);
+    }
+	  }
+   /* while(line != null) {
+      try {
+        line = in.readLine();
+        	
+       // System.out.println(line);
+        out.println("-> ("+line+")");
+      } 
+      catch (IOException e) {
+        System.out.println("Read failed"); System.exit(-1);
+      } 
+    }*/
+  }
+  
+ 
+
+  public void createThread() {
+	  if (numberOfPlayers == 1 ) {
+		    new Thread( new PlayerThread(this, client, "one")).start();
+	  }
+	  if (numberOfPlayers == 2 ) {
+		        new Thread( new PlayerThread(this, client, "two")).start();
+	  }
+	  if (numberOfPlayers == 3 ) {
+		    new Thread( new PlayerThread(this, client, "three")).start();
+	  }
+	  if (numberOfPlayers == 4 ) {
+		        new Thread( new PlayerThread(this, client, "four")).start();
+	  }
+	  if (numberOfPlayers == 5 ) {
+		    new Thread( new PlayerThread(this, client, "five")).start();
+	  }
+	  if (numberOfPlayers == 6 ) {
+		        new Thread( new PlayerThread(this, client, "six")).start();
+	  }
+	  if (numberOfPlayers > 6 ) {
+	        System.out.println("Podłączyło sie juz sześciu graczy");
+}
+	  
+	
+}
+
+protected void finalize() {
+    try {
+      in.close();
+      out.close();
+      client.close();
+      server.close();
+    } 
+    catch (IOException e) {
+      System.out.println("Could not close."); System.exit(-1);
+    }
+  }/*
+  // Bedzie mozna przerobic, zeby kazdy gracz wysyłał informacje o zmianach do wsystkich pozostałych graczy
+  //zeby mozliwe było ciagłe wyswietlanie informacji o wszystkich innych graczach, aktualnej stawce itp
+  
+  	public void Broadcast(String message) //metoda rozgloszeniowa odpowiedzialna za
+  //rozsylanie wiadomosci do wszystkich uzytkownikow
+  	{
+  		 //sprawdz ilu jest podlaczonych klientow
+          //i zapamietaj to w zmiennej pomocniczej
+  		while(numberOfPlayers.hasNext())//dopoki nie trafisz na ostatniego klienta probuj
+  		{
+  			try
+  			{
+  				PrintWriter Output = (PrintWriter) C_Ile.next();
+  				Output.println(message); //wyswietl wiadomosc u klienta
+  				Output.flush();//wyczysc bufory
+  			}//koniec bloku try
+  			catch (Exception E)
+  			{
+  				System.out.println("Cos poszlo nie tak!");
+  				E.printStackTrace();
+  				System.out.println("Blad: " + E.getMessage());
+  			}//koniec obslugi wyjatkow
+  		}//koniec while 
+  	}//koniec metody Broadcast
+*/
+  public static void main(String[] args) {
+	 int port = 0;
+	 
+	 try {
+		port = Integer.parseInt(args[0]);
+		
+	 }
+	 catch (NumberFormatException ex) {
+         System.out.println("Nieprawidlowa dana");
+	 }
+	 
+    SocketServer server = new SocketServer(port);
+    server.listenSocket();
+  }
+}

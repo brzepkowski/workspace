@@ -1,0 +1,74 @@
+V "GNAT Lib v2014"
+M P W=b
+A -gnatA
+P SS ZX
+
+RN
+RV NO_IO
+RV NO_SECONDARY_STACK
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV SPARK_05
+
+U test%b		test.adb		f8df1c94 NE OO SU
+W ada%s			ada.ads			ada.ali
+W ada.tags%s		a-tags.adb		a-tags.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W base64%s		base64.adb		base64.ali
+W system.img_uns%s	s-imguns.adb		s-imguns.ali
+W system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+W system.unsigned_types%s  s-unstyp.ads		s-unstyp.ali
+
+D ada.ads		20140406181354 3ffc8e18 ada%s
+D a-except.ads		20140406181356 43d57f8c ada.exceptions%s
+D a-finali.ads		20140406181359 69f99942 ada.finalization%s
+D a-ioexce.ads		20140406181358 e4a01f64 ada.io_exceptions%s
+D a-stream.ads		20140406181355 1a984740 ada.streams%s
+D a-tags.ads		20140406181357 dc4d0634 ada.tags%s
+D a-textio.ads		20140406181359 386df5d4 ada.text_io%s
+D a-unccon.ads		20140406181359 f9eb8f06 ada.unchecked_conversion%s
+D base64.ads		20151207165401 35dfdee9 base64%s
+D interfac.ads		20140406181359 69adb1b9 interfaces%s
+D i-cstrea.ads		20140406181357 febc86ed interfaces.c_streams%s
+D system.ads		20140406181356 bd760655 system%s
+D s-crtl.ads		20140406181356 2c012597 system.crtl%s
+D s-exctab.ads		20140406181354 54135002 system.exception_table%s
+D s-ficobl.ads		20140406181355 078245e4 system.file_control_block%s
+D s-finmas.ads		20140406181356 814daec4 system.finalization_masters%s
+D s-finroo.ads		20140406181359 4ff27390 system.finalization_root%s
+D s-imguns.ads		20140406181355 9ff43cf7 system.img_uns%s
+D s-parame.ads		20140406181358 06da98b2 system.parameters%s
+D s-pooglo.ads		20140406181357 542f33d0 system.pool_global%s
+D s-secsta.ads		20140406181359 86a2856d system.secondary_stack%s
+D s-soflin.ads		20140406181358 aa763b52 system.soft_links%s
+D s-stache.ads		20140406181355 a37c21ec system.stack_checking%s
+D s-stalib.ads		20140406181355 fa0a3617 system.standard_library%s
+D s-stoele.ads		20140406181357 2dc34a04 system.storage_elements%s
+D s-stoele.adb		20140406181355 ed88f8fb system.storage_elements%b
+D s-stopoo.ads		20140406181357 b16154c2 system.storage_pools%s
+D s-traent.ads		20140406181355 b5116092 system.traceback_entries%s
+D s-unstyp.ads		20140406181356 510692af system.unsigned_types%s
+D s-wchcon.ads		20140406181358 1b7d22d2 system.wch_con%s
+D test.adb		20151130132450 f56d37a9 test%b
+X 1 ada.ads
+16K9*Ada 19e8 31|1r6 8r4 10r7 12r4 14r4 16r7 18r4 20r4 22r7 24r4
+X 7 a-textio.ads
+49K13*Text_IO 471e16 31|1w10 8r8 10r11 12r8 14r8 16r11 18r8 20r8 22r11 24r8
+166U14*New_Line 31|12s16 18s16 24s16
+242U14*Put 31|8s16 10s19 14s16 16s19 20s16 22s19
+X 9 base64.ads
+3K9*Base64 23e11 31|2w6 5r9 6r9 10r23 13r10 16r23 19r10 22r23
+5M9*Octet 31|10r30 22r30
+7M9*Sextet 31|16r30
+9A9*Data_Type(5M9)<integer> 31|5r16
+11A9*Encoded_Data_Type(7M9)<integer> 31|6r16
+13V13*Encode{11A9} 31|13s17
+18V12*Decode{9A9} 31|19s17
+X 31 test.adb
+4U11*Test 4b11 25l5 25t9
+5a4 T1{9|9A9} 9r13 10r42 13r25 19m4 21r13 22r42
+6a4 T2{9|11A9} 13m4 15r13 16r43 19r25
+9i8 I{integer} 10r45
+15i8 I{integer} 16r46
+21i8 I{integer} 22r45
+

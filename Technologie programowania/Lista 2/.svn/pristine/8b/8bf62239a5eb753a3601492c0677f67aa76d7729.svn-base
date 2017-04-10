@@ -1,0 +1,226 @@
+import java.awt.Color;
+import java.awt.GridLayout;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.JToggleButton;
+import javax.swing.SwingUtilities;
+import javax.swing.border.TitledBorder;
+
+
+
+public class GamerGUI implements Runnable{
+
+	
+		
+		GamerGUI() {
+			JFrame frame = new JFrame();
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	        // Add a layout manager so that the button is not placed on top of the label
+	        frame.setLayout(null);
+	        frame.setSize(800,600);
+	        frame.setVisible(true);
+	        
+	        // Panel Of Gamer
+	        
+	        JPanel panelG = new JPanel();
+	        
+	        panelG.setSize(800, 250);
+	        panelG.setLocation(0, 350);
+	        panelG.setLayout(new GridLayout(2, 5));
+	        
+	        JToggleButton kart1= new JToggleButton ("Karta 1");
+	        JToggleButton kart2= new JToggleButton ("Karta 2");
+	        JToggleButton kart3= new JToggleButton ("Karta 3");
+	        JToggleButton kart4= new JToggleButton ("Karta 4");
+	        JLabel numberOfTokensTitle = new JLabel("Liczba żetonów:");
+	        JLabel numberOfTokens = new JLabel("...");
+	        JLabel gamerStatusTitle = new JLabel("Status gracza:");
+	        JLabel gamerStatus = new JLabel("...");
+	        
+	        panelG.add(gamerStatusTitle);
+	        panelG.add(gamerStatus);
+	        panelG.add(numberOfTokensTitle);
+	        panelG.add(numberOfTokens);
+	        panelG.add(kart1);
+	        panelG.add(kart2);
+	        panelG.add(kart3);
+	        panelG.add(kart4);
+	        
+	        panelG.setVisible(true);
+	        frame.add(panelG);
+	        
+	        // Panel of All Gamers
+	        
+	        JPanel allGamers = new JPanel();
+	        frame.add(allGamers);
+	        allGamers.setLocation(0, 0);
+	        allGamers.setSize(700, 300);
+	        allGamers.setLayout(new GridLayout(3, 2));
+	        
+	        // Panel of One Gamer
+	        
+	        JPanel gamer1 = new JPanel();
+	        createPanel (gamer1);
+	        allGamers.add(gamer1);
+	        
+	        JPanel gamer2 = new JPanel();
+	        createPanel (gamer2);
+	        allGamers.add(gamer2);
+	        
+	        JPanel gamer3 = new JPanel();
+	        createPanel (gamer3);
+	        allGamers.add(gamer3);
+	        
+	        JPanel gamer4 = new JPanel();
+	        createPanel (gamer4);
+	        allGamers.add(gamer4);
+	        
+	        JPanel gamer5 = new JPanel();
+	        createPanel (gamer5);
+	        allGamers.add(gamer5);
+	        
+	        JPanel gamer6 = new JPanel();
+	        createPanel (gamer6);
+	        allGamers.add(gamer6);
+	        
+	        // Auction Panel
+	        
+	        JPanel auction = new JPanel();
+	        
+	        JButton Check = new JButton("Check");
+	        JButton Rise = new JButton("Rise");
+	        JButton Bet = new JButton("Bet");
+	        JButton Call = new JButton("Call");
+	        JButton Fold = new JButton("Fold");
+	        JButton Allin = new JButton("All in");
+	        JLabel Auctions = new JLabel("Menu licytacji");
+	        JLabel Bid = new JLabel("Stawka:");
+	        JLabel BidValue = new JLabel("0");
+	        JLabel Offer = new JLabel("Twoja oferta:");
+	        JTextField YourOffer = new JTextField();
+	        
+	        auction.setLayout(null);
+            auction.setBackground(Color.RED);
+            
+            frame.add(auction);
+            
+            auction.add(Check);
+            auction.add(Rise);
+            auction.add(Bet);
+            auction.add(Call);
+            auction.add(Fold);
+            auction.add(Allin);
+            auction.add(Auctions);
+            auction.add(Bid);
+            auction.add(BidValue);
+            auction.add(Offer);
+            auction.add(YourOffer);
+        /*   
+            Check.addActionListener(this);
+            Rise.addActionListener(this);
+            Bet.addActionListener(this);
+            Call.addActionListener(this);
+            Fold.addActionListener(this);
+            Allin.addActionListener(this);
+           
+           */
+            auction.setBounds(650,0, 200,300);
+            Auctions.setBounds(15,20, 250, 20);
+            Bid.setBounds(15, 50, 55, 20);
+            BidValue.setBounds(75, 50, 120, 20);
+            Offer.setBounds(15, 80, 120, 20);
+            YourOffer.setBounds(15, 110, 80, 20);
+            Check.setBounds(15, 140, 90, 20);
+            Bet.setBounds(15, 170, 90, 20);
+            Call.setBounds(15, 200, 90, 20);
+            Fold.setBounds(15, 230, 90, 20);
+            Allin.setBounds(15, 260, 90, 20);
+           
+            
+        }
+       
+        public void onCheck()
+        {
+           
+     
+        }
+       
+        public void onRise()
+        {
+           
+        }
+       
+        public void onBet()
+        {
+           
+        }
+       
+        public void onCall()
+        {
+           
+        }
+       
+        public void onFold()
+        {
+           
+        }
+       
+        public void onAllin()
+        {
+           
+        }
+	        
+	        
+	               
+	        
+	        
+		
+		
+		public void createPanel (JPanel gamer) {
+			
+			TitledBorder title;
+			title = BorderFactory.createTitledBorder("");
+			gamer.setBorder(title);
+			
+			gamer.setLayout(new GridLayout(2, 2));
+			
+			JLabel gamerNumberTitle = new JLabel("Numer gracza:");
+			JLabel gamerNumber = new JLabel("...");
+			JLabel gamerNameTitle = new JLabel("Pseudonim:");
+			JLabel gamerName = new JLabel("...");
+			JLabel gamerTokensTitle = new JLabel("Liczba żetonów:");
+			JLabel gamerTokens = new JLabel("...");
+			JLabel gamerRoundTitle = new JLabel("Runda gracza:");
+			JLabel gamerRound = new JLabel("...");
+			
+			gamer.add(gamerNumberTitle);
+			gamer.add(gamerNumber);
+			gamer.add(gamerNameTitle);
+			gamer.add(gamerName);
+			gamer.add(gamerTokensTitle);
+			gamer.add(gamerTokens);
+			gamer.add(gamerRoundTitle);
+			gamer.add(gamerRound);
+			
+			gamer.setVisible(true);
+		}
+		
+		public static void main(String[] args) {
+	        GamerGUI gui = new GamerGUI();
+	        // Schedules the application to be run at the correct time in the event queue.
+	        SwingUtilities.invokeLater(gui);
+	    }
+
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			
+		}
+
+		
+}

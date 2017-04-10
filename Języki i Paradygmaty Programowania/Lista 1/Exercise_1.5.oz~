@@ -1,0 +1,27 @@
+declare
+fun {Swap Xs N Y}
+    case Xs of nil then nil
+    [] _|Xr then
+        if N==1 then Y|Xr
+        else {Swap Xr N-1 Y} end
+    end
+end
+
+proc {Permutacje L K}
+   X Y L1 L2
+in
+   if K==1 then {Browse L}
+   else
+      for I in 1..K do
+	 X = {List.nth L I}
+	 Y = {List.nth L K}
+	 L1 = {Swap L I Y}
+	 L2 = {Swap L1 K X}
+	 {Permutacje L2 K-1}
+      end
+   end
+end
+
+T = [1 2 3]
+
+{Permutacje T 3}

@@ -1,0 +1,68 @@
+V "GNAT Lib v2014"
+A -gnatA
+P ZX
+
+RN
+RV NO_IO
+RV NO_IMPLEMENTATION_PRAGMAS
+RV SPARK_05
+
+U beta%b		beta.adb		d93eba7c NE OO PK IL
+W ada%s			ada.ads			ada.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W interfaces%s		interfac.ads		interfac.ali
+W system.img_uns%s	s-imguns.adb		s-imguns.ali
+W system.unsigned_types%s  s-unstyp.ads		s-unstyp.ali
+
+U beta%s		beta.ads		4cd4c708 EE NE OO PK IL
+
+D ada.ads		20140406181354 3ffc8e18 ada%s
+D a-except.ads		20140406181356 43d57f8c ada.exceptions%s
+D a-finali.ads		20140406181359 69f99942 ada.finalization%s
+D a-ioexce.ads		20140406181358 e4a01f64 ada.io_exceptions%s
+D a-stream.ads		20140406181355 1a984740 ada.streams%s
+D a-tags.ads		20140406181357 dc4d0634 ada.tags%s
+D a-textio.ads		20140406181359 386df5d4 ada.text_io%s
+D a-unccon.ads		20140406181359 f9eb8f06 ada.unchecked_conversion%s
+D beta.ads		20151206204803 4cd4c708 beta%s
+D beta.adb		20151206213727 c42a3919 beta%b
+D interfac.ads		20140406181359 69adb1b9 interfaces%s
+D i-cstrea.ads		20140406181357 febc86ed interfaces.c_streams%s
+D system.ads		20140406181356 bd760655 system%s
+D s-crtl.ads		20140406181356 2c012597 system.crtl%s
+D s-exctab.ads		20140406181354 54135002 system.exception_table%s
+D s-ficobl.ads		20140406181355 078245e4 system.file_control_block%s
+D s-finmas.ads		20140406181356 814daec4 system.finalization_masters%s
+D s-finroo.ads		20140406181359 4ff27390 system.finalization_root%s
+D s-imguns.ads		20140406181355 9ff43cf7 system.img_uns%s
+D s-parame.ads		20140406181358 06da98b2 system.parameters%s
+D s-pooglo.ads		20140406181357 542f33d0 system.pool_global%s
+D s-soflin.ads		20140406181358 aa763b52 system.soft_links%s
+D s-stache.ads		20140406181355 a37c21ec system.stack_checking%s
+D s-stalib.ads		20140406181355 fa0a3617 system.standard_library%s
+D s-stoele.ads		20140406181357 2dc34a04 system.storage_elements%s
+D s-stoele.adb		20140406181355 ed88f8fb system.storage_elements%b
+D s-stopoo.ads		20140406181357 b16154c2 system.storage_pools%s
+D s-traent.ads		20140406181355 b5116092 system.traceback_entries%s
+D s-unstyp.ads		20140406181356 510692af system.unsigned_types%s
+D s-wchcon.ads		20140406181358 1b7d22d2 system.wch_con%s
+X 1 ada.ads
+16K9*Ada 19e8 10|1r6 1r23
+X 7 a-textio.ads
+49K13*Text_IO 471e16 10|1w10 1r27
+263U14*Put_Line 10|16s7
+X 9 beta.ads
+1K9*beta 12l5 12e9 10|5b14 22l5 22t9
+3M9*Octet 7r51 11r28 10|10r28
+5M9*Sextet 9r59 11r42 10|10r42 12r10 13r10 16r16
+7A9*Data_Type(3M9)<integer>
+9A9*Encoded_Data_Type(5M9)<integer>
+11V13*Encode{5M9} 11>21 10|10b13 20l5 20t11
+11m21 D{3M9} 10|10b21
+X 10 beta.adb
+7M9 Bit
+12m7 E{9|5M9} 15r12 18r11
+13m7 F{9|5M9} 15m7 16r29
+X 11 interfac.ads
+38K9*Interfaces 10|2w6 2r22 11|179e15
+

@@ -1,0 +1,65 @@
+// Otherwise capture ghost or generate new move
+						    else {
+						    	if (!ghosts.isEmpty()) {
+						    		smallestDistance = 18000;
+						    		target = -1;
+						    		buster = (int[]) myBusters.get(i);
+
+						    		for(int k = 0; k < ghosts.size(); k++) {
+						    			int[] ghost = (int[]) ghosts.get(k);
+						    			int distance = (int) Math.sqrt(Math.pow(buster[1] - ghost[1],2) + Math.pow(buster[2] - ghost[2],2));
+						    			if (distance < smallestDistance){
+						    				smallestDistance = distance;
+						    				target = k;
+										}
+						    		}
+								
+						    		int[] ghost = (int[]) ghosts.get(target);
+										
+									if (myCapturedGhosts < 3) {
+						    		    // Check if ghost is close enough to catch it
+						    		    if (smallestDistance <= 1760 && smallestDistance > 900 && ghost[4] <= 30) System.out.println("BUST " + ghost[0]);
+						    		    else if (smallestDistance <= 900 && ghost[4] <= 30) {
+						    		        int[] newMoves = generateMoves(buster[0], buster[1], buster[2]);
+							    
+					    		            System.out.println("MOVE " + newMoves[0] + " " + newMoves[1]);
+						    		    }    
+						    		    else if (smallestDistance > 1760 && ghost[4] <= 30) {
+						    		        System.out.println("MOVE " + ghost[1] + " " + ghost[2]);
+						    		    }
+						    		    else {
+						    		        int[] newMoves = generateMoves(buster[0], buster[1], buster[2]);
+							    
+					    		            System.out.println("MOVE " + newMoves[0] + " " + newMoves[1]);
+						    		    }
+									}
+									else {
+									    // Check if ghost is close enough to catch it
+						    		    if (smallestDistance <= 1760 && smallestDistance > 900) System.out.println("BUST " + ghost[0]);
+						    		    else if (smallestDistance <= 900) {
+						    		        int[] newMoves = generateMoves(buster[0], buster[1], buster[2]);
+							    
+					    		            System.out.println("MOVE " + newMoves[0] + " " + newMoves[1]);
+						    		    }    
+						    		    else {
+						    		        System.out.println("MOVE " + ghost[1] + " " + ghost[2]);
+						    		    }
+									}
+								}
+						    	// If no ghost is visible and buster can't STUN enemy buster generate new move
+						    	else {
+						    	    // ------------------ STEALING -------------------
+						    	    // If searching for ghosts left on the map is not promissing, go to the enemy base to steal their ghosts
+						            /*if (ghostCount - (2*myCapturedGhosts) - 4 <= 3) {
+							            // !!!!!!!!!!!!Do rozbudowania!!!!!!!!
+							            System.err.println("!!!!!!!!!! STEALING!!!!");
+                                        int[] newMoves = generateStealingPosition();
+							            System.out.println("MOVE " + newMoves[0] + " " + newMoves[1] + " STEAL!");
+						            }
+						            else {*/
+						    		    int[] newMoves = generateMoves(buster[0], buster[1], buster[2]);
+				    
+						    		    System.out.println("MOVE " + newMoves[0] + " " + newMoves[1]);
+								    //}
+								}
+						    }

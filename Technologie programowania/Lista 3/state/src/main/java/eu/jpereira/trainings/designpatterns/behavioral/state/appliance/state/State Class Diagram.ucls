@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.7" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" 
+    name="eu.jpereira.trainings.designpatterns.behavioral.state.appliance.state.StartedState" project="Lista 3" 
+    file="/Lista 3/state/src/main/java/eu/jpereira/trainings/designpatterns/behavioral/state/appliance/state/StartedState.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="169" width="290" x="864" y="64"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="2" language="java" 
+    name="eu.jpereira.trainings.designpatterns.behavioral.state.appliance.state.ApplianceState" project="Lista 3" 
+    file="/Lista 3/state/src/main/java/eu/jpereira/trainings/designpatterns/behavioral/state/appliance/state/ApplianceState.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="187" width="290" x="534" y="64"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="3" language="java" 
+    name="eu.jpereira.trainings.designpatterns.behavioral.state.appliance.state.StoppedState" project="Lista 3" 
+    file="/Lista 3/state/src/main/java/eu/jpereira/trainings/designpatterns/behavioral/state/appliance/state/StoppedState.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="169" width="290" x="1194" y="64"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="4" language="java" 
+    name="eu.jpereira.trainings.designpatterns.behavioral.state.appliance.state.ApplianceStateBehavior" 
+    project="Lista 3" 
+    file="/Lista 3/state/src/main/java/eu/jpereira/trainings/designpatterns/behavioral/state/appliance/state/ApplianceStateBehavior.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="151" width="290" x="1524" y="291"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="5" language="java" name="eu.jpereira.trainings.designpatterns.behavioral.state.appliance.state.OnState" 
+    project="Lista 3" 
+    file="/Lista 3/state/src/main/java/eu/jpereira/trainings/designpatterns/behavioral/state/appliance/state/OnState.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="169" width="290" x="1524" y="64"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="eu.jpereira.trainings.designpatterns.behavioral.state.appliance.state.UnknowState" 
+    project="Lista 3" 
+    file="/Lista 3/state/src/main/java/eu/jpereira/trainings/designpatterns/behavioral/state/appliance/state/UnknowState.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="169" width="290" x="1854" y="64"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="eu.jpereira.trainings.designpatterns.behavioral.state.appliance.state.OffState" 
+    project="Lista 3" 
+    file="/Lista 3/state/src/main/java/eu/jpereira/trainings/designpatterns/behavioral/state/appliance/state/OffState.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="169" width="290" x="2184" y="64"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <realization id="8">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="9">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="10">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="11">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="12">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

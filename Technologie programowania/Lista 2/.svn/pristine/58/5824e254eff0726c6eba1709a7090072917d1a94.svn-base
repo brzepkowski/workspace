@@ -1,0 +1,67 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
+
+
+public class Cards {
+
+	/**
+	 * array of cards = deck
+	 * clubs, diamonds, hearts, spades
+	 */
+	
+	// "1" instead of "10" to make every String the same length
+	static String[] deck = new String[]{"2c","3c","4c","5c","6c","7c","8c","9c","1c","jc","qc","kc","ac","2d","3d","4d","5d","6d","7d","8d","9d","1d","jd","qd","kd","ad","2h","3h","4h","5h","6h","7h","8h","9h","1h","jh","qh","kh","ah","2s","3s","4s","5s","6s","7s","8s","9s","1s","js","qs","ks","as"};
+	static int cardsInGame = 0;
+	
+	private static void sDeck (){
+		Collections.shuffle(Arrays.asList(deck));
+	}
+	
+	public static void shuffleDeck(){
+		sDeck();
+		System.out.println("The deck has been shuffled");
+	}
+	
+	private static String[] gCards(int howMany){
+		String[] orderedCards = new String[howMany];
+		ArrayList<String> lista = new ArrayList<>();
+		for(int i=deck.length-cardsInGame-1; i>deck.length-cardsInGame-howMany-1; i--){
+			lista.add(deck[i]);
+			deck[i]=null;
+		}
+		for (int i=0; i<lista.size(); i++){
+			orderedCards[i]=lista.get(i);
+		}
+		cardsInGame += howMany;
+		return orderedCards;
+		
+	}
+	
+	public static String[] getCards (int howMany){
+		if(howMany==1)
+			System.out.println("Returned "+ howMany+" card");
+		else
+			System.out.println("Returned "+ howMany+" cards");
+		System.out.println("");
+		return gCards(howMany);
+		
+	}
+	
+	private static void rCards (String[] returned){
+		String[] temp = new String[52];
+		for(int i=0; i<returned.length; i++)
+			temp[i]=returned[i];
+		int j=0;
+		for(int i=returned.length; i<52; i++,j++)
+			temp[i]=deck[j];
+		deck=temp;
+		temp=null;
+	}
+	
+	public static void returnCards(String[] returned){
+		rCards(returned);
+		System.out.println("Returned");
+	}
+}

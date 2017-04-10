@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Eurobank - Rekrutacja</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+  <!-- Custom Fonts -->
+  <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+	<div id="container">
+		<div id="header">
+			<%= render 'layouts/navbar' %>
+			<br><br><br>
+		</div>
+		<div id="body">
+			<%= yield %>
+		</div>
+		<div id="footer">
+		<%= render 'layouts/footer' %>
+		</div>
+	</div>
+
+</body>
+</html>

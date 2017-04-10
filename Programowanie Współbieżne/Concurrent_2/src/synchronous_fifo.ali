@@ -1,0 +1,30 @@
+V "GNAT Lib v4.8"
+P ZX
+
+RN
+RV SIMPLE_BARRIERS
+RV NO_PROTECTED_TYPES
+RV SPARK
+RV MAX_PROTECTED_ENTRIES=2
+
+U synchronous_fifo%b	synchronous_fifo.adb	c43fed61 NE OO PK GE
+
+U synchronous_fifo%s	synchronous_fifo.ads	32ada21e BN EE NE OO PK GE
+
+D synchronous_fifo.ads	20150515182204 32ada21e
+D synchronous_fifo.adb	20150515182159 f6924f7f
+D system.ads		20140416144300 bd760655
+X 1 synchronous_fifo.ads
+2+9 Element_Type 5r25 6r28 8r15 2|13r26 23r29
+3k9*Synchronous_Fifo 2z9 11l5 11e21 2|1b14 31l5 31t21
+4W19*Fifo 10l8 10e12 2|7b19 29l8 29t12
+5Y13 Push 5>18 2|13b13 17l11 17t15
+5*18 Item{2+9} 2|15r19
+6Y13 Pop 6<17 2|23b13 27l11 27t14
+6*17 Item{2+9} 2|25m10
+8*7 Value{2+9} 2|15m10 25r18
+9b7 Is_New{boolean} 2|13r49 16m10 23r48 26m10
+X 2 synchronous_fifo.adb
+13*19 Item{1|2+9}
+23*18 Item{1|2+9}
+

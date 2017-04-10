@@ -1,0 +1,171 @@
+import java.io.*;
+
+import java.net.*;
+import java.util.ArrayList;
+
+import javax.swing.text.html.HTMLDocument.Iterator;
+import java.util.*; /* import bibliotek narzedziowych */
+import java.net.*; /*import bibliotek odpowiedzialnych za komunikacje sieciowa */
+/**
+ * Klasa SocketServer tworzy sserwer i umozliwia odbieranie pytan od klienta
+ * @author ubuntu
+ *
+ */
+class SocketServer {
+  public int numberOfPlayers = 0;
+  
+  ArrayList<PrintWriter> C_OutStreams;
+  
+  ServerSocket server = null;
+  Socket client = null;
+  BufferedReader in = null;
+  PrintWriter out = null;
+  String line = ""; 
+  
+  /**
+   * Konstruktor SocketServer tworzy port, na ktorym nasluchuje serwer
+   * @param port - numer portu
+   */
+  SocketServer(int port) {   
+    try {
+      server = new ServerSocket(port); 
+    } 
+    catch (IOException e) {
+      System.out.println("Could not listen on port: " + port); System.exit(-1);
+    }
+  }
+  
+  
+  /**
+   * metoda listenSocket umozliwia zaakceptowanie polaczenia z klientem i wyswietla odpowiednie komunikaty
+   */
+  public void listenSocket() {
+	  System.out.println("Uruchomiono serwer");
+	  C_OutStreams = new ArrayList<PrintWriter>();
+	  while(true) {
+    try {
+      
+      client = server.accept();
+      numberOfPlayers++;
+      System.out.println("Nawiazano polaczenie");
+      System.out.println("Aktualna liczba podłączonych graczy: " + numberOfPlayers);
+      in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+      out = new PrintWriter(client.getOutputStream(), true);
+      C_OutStreams.add(out);
+      createThread(); // <---Tworzenie nowego watku || Jest w metodzie juz polecenie start()
+      out.println(numberOfPlayers);
+      
+      
+      /*
+      if (numberOfPlayers > 1 ) {
+    	  for (PrintWriter out : C_OutStreams) {
+				out.println("Wiadomość dla wszystkich");
+			}
+      }*/
+      
+      
+    } 
+    catch (IOException e) {
+      System.out.println("Accept failed: 4444"); System.exit(-1);
+    }
+	  }
+    //createThread();
+	  }
+   /* while(line != null) {
+      try {
+        line = in.readLine();
+        	
+       // System.out.println(line);
+        out.println("-> ("+line+")");
+      } 
+      catch (IOException e) {
+        System.out.println("Read failed"); System.exit(-1);
+      } 
+    }*/
+  
+  
+ 
+ 	public void Broadcast(String message) //metoda rozgloszeniowa odpowiedzialna za
+ //rozsylanie wiadomosci do wszystkich uzytkownikow
+ 	{
+ 		/*Iterator C_Ile = (Iterator) C_OutStreams.iterator(); 
+ 		 //sprawdz ilu jest podlaczonych klientow
+         //i zapamietaj to w zmiennej pomocniczej
+ 		while(((java.util.Iterator<PrintWriter>) C_Ile).hasNext())//dopoki nie trafisz na ostatniego klienta probuj
+ 		{
+ 			try
+ 			{
+ 				out =  C_Ile.next();
+ 				out.println(message); //wyswietl wiadomosc u klienta
+ 				out.flush();//wyczysc bufory
+ 			}//koniec bloku try*/
+ 		for (PrintWriter out : C_OutStreams) {
+ 			try {
+ 				out.println(message);
+ 			}
+ 			catch (Exception E)
+ 			{
+ 				System.out.println("Cos poszlo nie tak!");
+ 				E.printStackTrace();
+ 				System.out.println("Blad: " + E.getMessage());
+ 			}//koniec obslugi wyjatkow
+ 		}//koniec for
+ 	}//koniec metody Broadcast
+  
+ 
+
+  public void createThread() {
+	  if (numberOfPlayers == 1 ) {
+		    new Thread( new PlayerThread(this, client, "one")).start();
+		    new Thread( new ListeningThread(in, out)).start();
+	  }
+	  if (numberOfPlayers == 2 ) {
+		        new Thread( new PlayerThread(this, client, "two")).start();
+	  }
+	  if (numberOfPlayers == 3 ) {
+		    new Thread( new PlayerThread(this, client, "three")).start();
+	  }
+	  if (numberOfPlayers == 4 ) {
+		        new Thread( new PlayerThread(this, client, "four")).start();
+	  }
+	  if (numberOfPlayers == 5 ) {
+		    new Thread( new PlayerThread(this, client, "five")).start();
+	  }
+	  if (numberOfPlayers == 6 ) {
+		        new Thread( new PlayerThread(this, client, "six")).start();
+	  }
+	  if (numberOfPlayers > 6 ) {
+	        System.out.println("Podłączyło sie juz sześciu graczy");
+}
+	  
+	
+}
+
+protected void finalize() {
+    try {
+      in.close();
+      out.close();
+      client.close();
+      server.close();
+    } 
+    catch (IOException e) {
+      System.out.println("Could not close."); System.exit(-1);
+    }
+  }
+
+  public static void main(String[] args) {
+	 int port = 0;
+	 
+	 
+	 try {
+		port = Integer.parseInt(args[0]);
+		
+	 }
+	 catch (NumberFormatException ex) {
+         System.out.println("Nieprawidlowa dana");
+	 }
+	 
+    SocketServer server = new SocketServer(port);
+    server.listenSocket();
+  }
+}

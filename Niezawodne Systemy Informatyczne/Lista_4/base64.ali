@@ -1,0 +1,94 @@
+V "GNAT Lib v2014"
+A -gnatA
+P SS ZX
+
+RN
+RV NO_DIRECT_BOOLEAN_OPERATORS
+RV NO_IO
+RV NO_SECONDARY_STACK
+RV NO_IMPLEMENTATION_PRAGMAS
+RV SPARK_05
+
+U base64%b		base64.adb		1bdca033 NE OO PK IL
+W ada%s			ada.ads			ada.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+
+U base64%s		base64.ads		35dfdee9 EE NE OO PK
+
+D ada.ads		20140406181354 3ffc8e18 ada%s
+D a-except.ads		20140406181356 43d57f8c ada.exceptions%s
+D a-finali.ads		20140406181359 69f99942 ada.finalization%s
+D a-ioexce.ads		20140406181358 e4a01f64 ada.io_exceptions%s
+D a-stream.ads		20140406181355 1a984740 ada.streams%s
+D a-tags.ads		20140406181357 dc4d0634 ada.tags%s
+D a-textio.ads		20140406181359 386df5d4 ada.text_io%s
+D a-unccon.ads		20140406181359 f9eb8f06 ada.unchecked_conversion%s
+D base64.ads		20151207165401 35dfdee9 base64%s
+D base64.adb		20151207165328 166e8b0e base64%b
+D interfac.ads		20140406181359 69adb1b9 interfaces%s
+D i-cstrea.ads		20140406181357 febc86ed interfaces.c_streams%s
+D system.ads		20140406181356 bd760655 system%s
+D s-crtl.ads		20140406181356 2c012597 system.crtl%s
+D s-exctab.ads		20140406181354 54135002 system.exception_table%s
+D s-ficobl.ads		20140406181355 078245e4 system.file_control_block%s
+D s-finmas.ads		20140406181356 814daec4 system.finalization_masters%s
+D s-finroo.ads		20140406181359 4ff27390 system.finalization_root%s
+D s-parame.ads		20140406181358 06da98b2 system.parameters%s
+D s-pooglo.ads		20140406181357 542f33d0 system.pool_global%s
+D s-secsta.ads		20140406181359 86a2856d system.secondary_stack%s
+D s-soflin.ads		20140406181358 aa763b52 system.soft_links%s
+D s-stache.ads		20140406181355 a37c21ec system.stack_checking%s
+D s-stalib.ads		20140406181355 fa0a3617 system.standard_library%s
+D s-stoele.ads		20140406181357 2dc34a04 system.storage_elements%s
+D s-stoele.adb		20140406181355 ed88f8fb system.storage_elements%b
+D s-stopoo.ads		20140406181357 b16154c2 system.storage_pools%s
+D s-traent.ads		20140406181355 b5116092 system.traceback_entries%s
+D s-unstyp.ads		20140406181356 510692af system.unsigned_types%s
+D s-wchcon.ads		20140406181358 1b7d22d2 system.wch_con%s
+X 1 ada.ads
+16K9*Ada 19e8 10|1r6 1r23
+X 7 a-textio.ads
+49K13*Text_IO 471e16 10|1w10 1r27
+X 9 base64.ads
+3K9*Base64 23l5 23e11 10|4b14 140l5 140t11
+5M9*Octet 9r51 10|6r46 9r20 21r65 40r22 96r22 98r18
+7M9*Sextet 11r59 10|6r64 21r46 24r21 41r23 42r18 97r23
+9A9*Data_Type(5M9)<integer> 13r28 18r53 10|36r28 92r54 95r11
+11A9*Encoded_Data_Type(7M9)<integer> 13r46 18r27 10|36r46 39r11 92r28
+13V13*Encode{11A9} 13>21 16r14 16r67 21s60 10|36b13 89l8 89t14
+13a21 D{9A9} 15r15 15r38 16r42 16r84 10|36b21 38r30 49r22 56r26 69r26
+18V12*Decode{9A9} 16s60 18>20 21r14 21r67 10|92b13 137l8 137t14
+18a20 E{11A9} 20r15 20r38 21r42 21r84 10|92b21 94r30 108r27 118r27
+X 10 base64.adb
+6U14 Copy_Octet_To_Sextet 6b14 6=35 6=53 19l8 19t28 59s10 73s10
+6m35 O{9|5M9} 12r24
+6m53 S{9|7M9} 14m13 14r18
+8i7 I{integer} 11r13 12r33 14r27 16m10 16r15
+9m7 Zero_Octet{9|5M9} 12m10 13r13 17m10
+21U14 Copy_Sextet_To_Octet 21b14 21=35 21=54 34l8 34t28 111s10 121s10
+21m35 S{9|7M9} 27r25
+21m54 O{9|5M9} 29m13 29r18
+23i7 I{integer} 26r13 27r34 29r28 31m10 31r15
+24m7 Zero_Sextet{9|7M9} 27m10 28r13 32m10
+38i7 E_Length{integer} 39r33
+39a7 E{9|11A9} 62m10 80m13 87r14
+40m7 Buffer_Octet{9|5M9} 56m10 59m31 59r31 69m10 70m10 70r26 73m31 73r31
+41m7 Buffer_Sextet{9|7M9} 58m10 59m45 59r45 60m10 60r38 62r41
+42m7 Leavings{9|7M9} 60r27 72m10 73m45 73r45 76m10 76r22 80r44 81m13
+43i7 Count{integer} 49r13 56r28 62r12 69r28 78r13 80r15 84m10 84r19
+44i7 Power1{integer} 52m10 52r21 53r13 54m13 56r40
+45i7 Power2{integer} 65m10 65r21 66r13 67m13 69r40 70r44
+46i7 Power3{integer} 75m10 75r21 76r36
+47i7 Additional_Index{integer} 62r20 79m13 79r33 80r23
+94i7 D_Length{integer} 95r25
+95a7 D{9|9A9} 105r22 127m10 136r14
+96m7 Buffer_Octet{9|5M9} 110m10 111m46 111r46 126m10 126r26 127r22
+97m7 Buffer_Sextet{9|7M9} 108m10 111m31 111r31 118m10 121m31 121r31
+98m7 Leavings{9|5M9} 120m10 121m46 121r46 123m10 123r22 126r41
+99i7 Power1{integer} 106m10 106r21 108r41
+100i7 Power2{integer} 117m10 117r21 118r60
+101i7 Power3{integer}
+102i7 Count{integer} 105r13 108r29 118r29 127r12 128r13 132m10 132r19
+103i7 Additional_Index{integer} 118r37 129m13 129r33
+

@@ -1,0 +1,4 @@
+[
+{"file":"railway.ads","line":72,"col":16,"message":"warning: postcondition might fail, requires (Correct_Signals)","rule":"postcondition","severity":"error","tracefile":"railway.ads_72_16_postcondition.trace","entity":{"name":"Railway.Open_Route","file":"railway.ads","line":67}}
+,{"file":"railway.ads","line":79,"col":16,"message":"warning: postcondition might fail, requires (Correct_Signals)","rule":"postcondition","severity":"error","tracefile":"railway.ads_79_16_postcondition.trace","entity":{"name":"Railway.Move_Train","file":"railway.ads","line":74}}
+]

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  job_offer_id: 1
+  email: MyString
+  name: MyString
+  surname: MyString
+  country: MyString
+  city: MyString
+  phone: 9.99
+
+two:
+  job_offer_id: 1
+  email: MyString
+  name: MyString
+  surname: MyString
+  country: MyString
+  city: MyString
+  phone: 9.99

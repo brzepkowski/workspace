@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="ksiazka">
+    <xsd:complexType>
+      <xsd:sequence>
+	<xsd:element name="tytul" type="xsd:string"/>
+	<xsd:element name="lista_autorow">
+	  <xsd:complexType>
+	    <xsd:sequence>
+	      <xsd:element name="autor" type="xsd:string" minOccurs="1" maxOccurs="5"/>
+	    </xsd:sequece>
+	  </xsd:complexType>
+	</xsd:element>
+	<xsd:element name="wprowadzenie" type="xsd:string"/>
+	<xsd:element name="rozdzialy">
+	  <xsd:complexType>
+	    <xsd:sequence>
+	      <xsd:element name="rozdzial" minOccurs="1" maxOccurs="unbounded">
+		<xsd:complexType>
+		  <xsd:sequence>
+		    <xsd:element name="tytul_rozdzialu" type="xsd:string"/>
+		    <xsd:element name="numer_strony_poczatkowej" type="xsd:integer"/>
+		    <xsd:element name="sekcje">
+		      <xsd:complexType>
+		        <xsd:sequence>
+			  <xsd:element name="sekcja" minOccurs="1" maxOccurs="unbounded">
+			    <xsd:complexType>
+			      <xsd:sequence>
+				<xsd:element name="tytul_sekcji" type="xsd:string"/>
+				<xsd:element name="akapity">
+				  <xsd:complexType>
+				    <xsd:sequence>
+				      <xsd:element name="akapit" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+				    </xsd:sequence>
+				  </xsd:complexType>
+				</xsd:element>
+			      </xsd:sequence>
+			    </xsd:complexType>
+			  </xsd:element>
+			</xsd:sequence>
+		      </xsd:complexType>
+		    </xsd:element>
+		  </xsd:sequence>
+		</xsd:complexType>
+	      </xsd:element> 
+	    </xsd:sequence>
+	  </xsd:complexType>
+	</xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

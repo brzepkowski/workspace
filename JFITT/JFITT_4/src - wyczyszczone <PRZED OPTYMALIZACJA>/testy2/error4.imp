@@ -1,0 +1,7 @@
+[ Błąd w linii 3: nierozpoznany napis a1 ]
+DECLARE
+  a1 b
+IN
+  GET a1;
+  b := a1;
+END

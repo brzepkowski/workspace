@@ -1,0 +1,13 @@
+
+public class Table {
+	
+	public Table() {
+		System.out.println("Utworzono obiekt stół");
+		
+	}
+	
+	public void interpreter(String message) {
+		System.out.println("Interpreter obsłuzy message: " + message);
+	}
+
+}

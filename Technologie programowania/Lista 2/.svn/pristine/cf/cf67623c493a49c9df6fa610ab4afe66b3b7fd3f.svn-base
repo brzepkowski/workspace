@@ -1,0 +1,261 @@
+/**
+ * na start ka¿dej rundy ustawiamy zmienn¹ gotowoœci do licytacji i boolean inGame dla ka¿dego gracza na true
+switch dostaje string postaci Auction-PersonalNumber-Action-X-0-0
+robi split po "-" do tablicy
+wywo³uje odpowiednie metody ze wzglêdu na 2 element tablicy
+3 element tablicy to kwota, musi wyst¹piæ sprawdzenie czy gracz posiada tak¹ kwotê
+check - tylko jeœli ¿aden poprzedni gracz nie podbi³, postój bez utraty prawa do licytacji
+bet - postawienie pierwszej stawki po big blind
+raise - przebicie najwy¿szego zak³adu innego gracza, ten zak³ad staje siê maksymalnym
+call - wyrównanie do maksymalnego zak³adu (sprawdziæ czy ma tyle kasy, inaczej ten call bêdzie jako all-in)
+fold - rezygnacja, zmiana zmiennej gotowoœci do licytacji
+all-in - wejœcie wszystkim co siê ma, gotowoœæ do licytacji false, inGame true, przy zwyciêstwie dostanie od ka¿dego gracza tyle ile sam postawi³, chyba ¿e postawili mniej 
+
+boolean raised - przy jakimœ podbiciu stawki zmiana na true
+ * @author Maciej Ubas
+ *
+ */
+public class Auction {
+	private boolean[] canRaise;// says if player can take part in auction
+	private boolean[] inGame; // says if player is still in game
+	int[] playersMoney; //ammount of money each player has
+	private int[] moneyInGame; //amount of money each player put in game
+	private boolean[] finished;
+	private boolean someoneRaised = false;
+	private boolean firstAfterBB = true; // changed if after first person after
+											// big blind
+	int totalMoneyInGame = 0;
+	int highestBid = 0;
+	private SocketServer server;
+
+	Auction(SocketServer serv) {
+		this.server = serv;
+		canRaise = new boolean[SocketServer.limitOfPlayers]; // says if player
+																// can take part
+																// in auction
+		inGame = new boolean[SocketServer.limitOfPlayers]; // says if player is
+															// still in game
+		moneyInGame = new int[SocketServer.limitOfPlayers];
+		playersMoney = new int[SocketServer.limitOfPlayers];
+		finished = new boolean[SocketServer.limitOfPlayers];
+		for (int s = 0; s < canRaise.length; s++) {
+			canRaise[s] = true;
+			inGame[s] = true;
+			moneyInGame[s] = 0;
+			playersMoney[s]=SocketServer.tokens;
+			
+		}
+		int pNumber=0;
+		for(int i=0; i<canRaise.length; i++){
+			pNumber=i+1;
+			server.broadcast("Tokens-"+pNumber+"-"+SocketServer.tokens+"-0-0-0");
+		}
+		server.broadcast("Auction-"+Table.smallBlind+"-sb-"+SocketServer.smallBlindBet+"-0-0");
+		server.broadcast("Auction-"+Table.bigBlind+"-bb-"+SocketServer.bigBlindBet+"-0-0");
+		sb(Table.smallBlind-1, SocketServer.smallBlindBet);
+		bb(Table.bigBlind-1, SocketServer.bigBlindBet);
+	}
+
+
+	public boolean basicAuction(String str) {
+		String[] informations = str.split("-");
+		int playerNumber = Integer.parseInt(informations[1]);
+		int amount = Integer.parseInt(informations[3]);
+
+		switch (informations[2]) {
+		case ("sb"):
+			sb(playerNumber, amount);
+			break;
+
+		case ("bb"):
+			bb(playerNumber, amount);
+			break;
+
+		case ("check"):
+			check(playerNumber);
+			break;
+
+		case ("bet"):
+			bet(playerNumber, amount);
+			break;
+
+		case ("raise"):
+			raise(playerNumber, amount);
+			break;
+
+		case ("call"):
+			call(playerNumber);
+			finished[playerNumber-1]=true;
+			break;
+
+		case ("fold"):
+			fold(playerNumber);
+			finished[playerNumber-1]=true;
+			break;
+
+		case ("allin"):
+			allin(playerNumber);
+			finished[playerNumber-1]=true;
+			break;
+
+		default:
+			return false;
+		}
+
+		return false;
+	}
+
+	public boolean fold(int playerNumber){
+		inGame[playerNumber - 1] = false;
+		canRaise[playerNumber - 1] = false;
+		return true;
+	}
+	
+	public boolean sb(int playerNumber, int amount) {
+		if (playersMoney[playerNumber - 1] > amount) {
+			playersMoney[playerNumber - 1] = playersMoney[playerNumber - 1]
+					+ moneyInGame[playerNumber - 1] - amount;
+			moneyInGame[playerNumber - 1] = amount;
+			highestBid = amount;
+			server.broadcast("Tokens-"+playerNumber+"-"+playersMoney[playerNumber-1]+"-0-0-0");
+			server.broadcast("Auction-Highest-"+highestBid+"-0-0-0");
+			return true;
+		} else
+			allin(playerNumber);
+		return false;
+	}
+
+	public boolean bb(int playerNumber, int amount) {
+		if (playersMoney[playerNumber - 1] > amount) {
+			playersMoney[playerNumber - 1] = playersMoney[playerNumber - 1]
+					+ moneyInGame[playerNumber - 1] - amount;
+			moneyInGame[playerNumber - 1] = amount;
+			highestBid = amount;
+			server.broadcast("Tokens-"+playerNumber+"-"+playersMoney[playerNumber-1]+"-0-0-0");
+			server.broadcast("Auction-Highest-"+highestBid+"-0-0-0");
+			return true;
+		} else
+			allin(playerNumber);
+		return false;
+	}
+
+	public boolean check(int playerNumber) { // someone checked, nothing happened
+		if (someoneRaised || firstAfterBB==true)
+			return false;
+		finished[playerNumber-1]=true;
+		server.broadcast("Tokens-"+playerNumber+"-"+playersMoney[playerNumber-1]+"-0-0-0");
+		server.broadcast("Auction-Highest-"+highestBid+"-0-0-0");
+		return true;
+	}
+
+	public boolean allin(int playerNumber) {
+		if (inGame[playerNumber - 1]) {
+			moneyInGame[playerNumber - 1] = playersMoney[playerNumber - 1];
+			if(playersMoney[playerNumber - 1]>highestBid)
+				highestBid=playersMoney[playerNumber - 1];
+			canRaise[playerNumber - 1] = false;
+			server.broadcast("Tokens-"+playerNumber+"-"+playersMoney[playerNumber-1]+"-0-0-0");
+			server.broadcast("Auction-Highest-"+highestBid+"-0-0-0");
+			return true;
+		} else
+			return false;
+
+	}
+
+	public boolean bet(int playerNumber, int amount) { // bet available only
+														// after big blind, may
+														// be the same as big
+														// blind or higher, but
+														// still counts as bet
+		if (firstAfterBB && playersMoney[playerNumber - 1] > amount
+				&& inGame[playerNumber - 1] == true
+				&& canRaise[playerNumber - 1] == true) {
+			playersMoney[playerNumber - 1] = playersMoney[playerNumber - 1]
+					+ moneyInGame[playerNumber - 1] - amount;
+			moneyInGame[playerNumber - 1] = amount;
+			highestBid = amount;
+			firstAfterBB = false;
+			someoneRaised = true;
+			server.broadcast("Tokens-"+playerNumber+"-"+playersMoney[playerNumber-1]+"-0-0-0");
+			server.broadcast("Auction-Highest-"+highestBid+"-0-0-0");
+			return true;
+		} else
+			return false;
+	}
+
+	public boolean raise(int playerNumber, int amount) {
+		if (amount > highestBid && playersMoney[playerNumber - 1] > amount
+				&& inGame[playerNumber - 1] == true
+				&& canRaise[playerNumber - 1] == true) {
+			playersMoney[playerNumber - 1] = playersMoney[playerNumber - 1]
+					+ moneyInGame[playerNumber - 1] - amount;
+			moneyInGame[playerNumber - 1] = amount;
+			highestBid = amount;
+			someoneRaised = true;
+			server.broadcast("Tokens-"+playerNumber+"-"+playersMoney[playerNumber-1]+"-0-0-0");
+			server.broadcast("Auction-Highest-"+highestBid+"-0-0-0");
+			return true;
+		} else
+			return false;
+	}
+
+	public boolean call(int playerNumber) {
+		if (playersMoney[playerNumber - 1] > highestBid
+				&& inGame[playerNumber - 1] == true
+				&& canRaise[playerNumber - 1] == true) {
+			playersMoney[playerNumber - 1] = playersMoney[playerNumber - 1]
+					+ moneyInGame[playerNumber - 1] - highestBid;
+			moneyInGame[playerNumber - 1] = highestBid;
+			someoneRaised = false;
+			server.broadcast("Tokens-"+playerNumber+"-"+playersMoney[playerNumber-1]+"-0-0-0");
+			server.broadcast("Auction-Highest-"+highestBid+"-0-0-0");
+			return true;
+		} else
+			allin(playerNumber);
+		return false;
+	}
+
+	public boolean allFinished(){
+		int amount=0;
+		for(int i=0; i<finished.length; i++){
+			if(finished[i]==true)
+				amount++;
+		}
+		if(amount==finished.length){
+			for(int i=0; i<finished.length; i++)
+				finished[i]=false;
+			return true;
+		}
+		else
+			return false;
+	}
+	// dzia³a na tablicy zwracanej przez wy³onienie zwyciêzcy z GameLogic
+	//zwraca tablicê z aktualnymi pieniêdzmi
+	public int[] whoWon(int[] winners) {
+		int totalMoney = 0; // total ammount of money winners put in game
+
+		for (int s : moneyInGame) {
+			totalMoney += moneyInGame[s];
+		}
+
+		int[] percentPerWinner = new int[winners.length];
+
+		for (int w : winners) {
+			percentPerWinner[w] = moneyInGame[w] * 100 / totalMoney;
+		}
+		int[] moneyWonPerPlayer = new int[winners.length];
+		int allMoneyInGame = 0;
+		for(int a: moneyInGame)
+			allMoneyInGame+=moneyInGame[a];
+		for(int w : winners) {
+			moneyWonPerPlayer[w]=percentPerWinner[w]*allMoneyInGame;
+		}
+		for(int i=0; i<winners.length; i++){
+			playersMoney[winners[i]]+=moneyWonPerPlayer[i];
+		}
+
+		return winners;
+		
+	}
+
+}

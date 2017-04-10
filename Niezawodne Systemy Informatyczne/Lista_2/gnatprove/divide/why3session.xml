@@ -1,0 +1,905 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE why3session PUBLIC "-//Why3//proof session v2//EN" "http://why3.lri.fr/why3session.dtd">
+<why3session shape_version="4">
+ <prover
+  id="0"
+  name="Alt-Ergo for GNATprove"
+  version="0.95"/>
+ <file
+  name="../divide.mlw"
+  verified="true"
+  expanded="true">
+  <theory
+   name="Standard__short_short_integer"
+   locfile="../divide.mlw"
+   loclnum="2" loccnumb="7" loccnume="36"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__short_integer"
+   locfile="../divide.mlw"
+   loclnum="30" loccnumb="7" loccnume="30"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__integer"
+   locfile="../divide.mlw"
+   loclnum="58" loccnumb="7" loccnume="24"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__long_integer"
+   locfile="../divide.mlw"
+   loclnum="86" loccnumb="7" loccnume="29"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__long_long_integer"
+   locfile="../divide.mlw"
+   loclnum="114" loccnumb="7" loccnume="34"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__natural"
+   locfile="../divide.mlw"
+   loclnum="142" loccnumb="7" loccnume="24"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__positive"
+   locfile="../divide.mlw"
+   loclnum="170" loccnumb="7" loccnume="25"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__short_float"
+   locfile="../divide.mlw"
+   loclnum="198" loccnumb="7" loccnume="28"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__float"
+   locfile="../divide.mlw"
+   loclnum="227" loccnumb="7" loccnume="22"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__long_float"
+   locfile="../divide.mlw"
+   loclnum="256" loccnumb="7" loccnume="27"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__long_long_float"
+   locfile="../divide.mlw"
+   loclnum="285" loccnumb="7" loccnume="32"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__character"
+   locfile="../divide.mlw"
+   loclnum="313" loccnumb="7" loccnume="26"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__wide_character"
+   locfile="../divide.mlw"
+   loclnum="341" loccnumb="7" loccnume="31"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__wide_wide_character"
+   locfile="../divide.mlw"
+   loclnum="369" loccnumb="7" loccnume="36"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__string"
+   locfile="../divide.mlw"
+   loclnum="397" loccnumb="7" loccnume="23"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__wide_string"
+   locfile="../divide.mlw"
+   loclnum="429" loccnumb="7" loccnume="28"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__wide_wide_string"
+   locfile="../divide.mlw"
+   loclnum="455" loccnumb="7" loccnume="33"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__duration"
+   locfile="../divide.mlw"
+   loclnum="481" loccnumb="7" loccnume="25"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__integer_8"
+   locfile="../divide.mlw"
+   loclnum="514" loccnumb="7" loccnume="26"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__integer_16"
+   locfile="../divide.mlw"
+   loclnum="542" loccnumb="7" loccnume="27"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__integer_32"
+   locfile="../divide.mlw"
+   loclnum="570" loccnumb="7" loccnume="27"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__integer_64"
+   locfile="../divide.mlw"
+   loclnum="598" loccnumb="7" loccnume="27"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__universal_integer"
+   locfile="../divide.mlw"
+   loclnum="626" loccnumb="7" loccnume="34"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__universal_real"
+   locfile="../divide.mlw"
+   loclnum="654" loccnumb="7" loccnume="31"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Divide__x"
+   locfile="../divide.mlw"
+   loclnum="682" loccnumb="7" loccnume="16"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Divide__x__axiom"
+   locfile="../divide.mlw"
+   loclnum="694" loccnumb="7" loccnume="23"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Divide__y"
+   locfile="../divide.mlw"
+   loclnum="701" loccnumb="7" loccnume="16"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Divide__y__axiom"
+   locfile="../divide.mlw"
+   loclnum="713" loccnumb="7" loccnume="23"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Divide__q"
+   locfile="../divide.mlw"
+   loclnum="719" loccnumb="7" loccnume="16"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Divide__q__axiom"
+   locfile="../divide.mlw"
+   loclnum="733" loccnumb="7" loccnume="23"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Divide__r"
+   locfile="../divide.mlw"
+   loclnum="740" loccnumb="7" loccnume="16"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Divide__r__axiom"
+   locfile="../divide.mlw"
+   loclnum="754" loccnumb="7" loccnume="23"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Divide"
+   locfile="../divide.mlw"
+   loclnum="760" loccnumb="7" loccnume="13"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Divide__axiom"
+   locfile="../divide.mlw"
+   loclnum="776" loccnumb="7" loccnume="20"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Divide__L_1"
+   locfile="../divide.mlw"
+   loclnum="783" loccnumb="7" loccnume="18"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Divide__L_1__axiom"
+   locfile="../divide.mlw"
+   loclnum="791" loccnumb="7" loccnume="25"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__short_short_integer__axiom"
+   locfile="../divide.mlw"
+   loclnum="797" loccnumb="7" loccnume="43"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__short_integer__axiom"
+   locfile="../divide.mlw"
+   loclnum="804" loccnumb="7" loccnume="37"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__integer__axiom"
+   locfile="../divide.mlw"
+   loclnum="811" loccnumb="7" loccnume="31"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__long_integer__axiom"
+   locfile="../divide.mlw"
+   loclnum="818" loccnumb="7" loccnume="36"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__long_long_integer__axiom"
+   locfile="../divide.mlw"
+   loclnum="825" loccnumb="7" loccnume="41"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__natural__axiom"
+   locfile="../divide.mlw"
+   loclnum="832" loccnumb="7" loccnume="31"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__positive__axiom"
+   locfile="../divide.mlw"
+   loclnum="839" loccnumb="7" loccnume="32"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__short_float__axiom"
+   locfile="../divide.mlw"
+   loclnum="846" loccnumb="7" loccnume="35"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__float__axiom"
+   locfile="../divide.mlw"
+   loclnum="853" loccnumb="7" loccnume="29"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__long_float__axiom"
+   locfile="../divide.mlw"
+   loclnum="860" loccnumb="7" loccnume="34"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__long_long_float__axiom"
+   locfile="../divide.mlw"
+   loclnum="867" loccnumb="7" loccnume="39"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__character__axiom"
+   locfile="../divide.mlw"
+   loclnum="874" loccnumb="7" loccnume="33"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__wide_character__axiom"
+   locfile="../divide.mlw"
+   loclnum="881" loccnumb="7" loccnume="38"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__wide_wide_character__axiom"
+   locfile="../divide.mlw"
+   loclnum="888" loccnumb="7" loccnume="43"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__string__axiom"
+   locfile="../divide.mlw"
+   loclnum="895" loccnumb="7" loccnume="30"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__wide_string__axiom"
+   locfile="../divide.mlw"
+   loclnum="902" loccnumb="7" loccnume="35"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__wide_wide_string__axiom"
+   locfile="../divide.mlw"
+   loclnum="909" loccnumb="7" loccnume="40"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__duration__axiom"
+   locfile="../divide.mlw"
+   loclnum="916" loccnumb="7" loccnume="32"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__integer_8__axiom"
+   locfile="../divide.mlw"
+   loclnum="923" loccnumb="7" loccnume="33"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__integer_16__axiom"
+   locfile="../divide.mlw"
+   loclnum="930" loccnumb="7" loccnume="34"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__integer_32__axiom"
+   locfile="../divide.mlw"
+   loclnum="937" loccnumb="7" loccnume="34"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__integer_64__axiom"
+   locfile="../divide.mlw"
+   loclnum="944" loccnumb="7" loccnume="34"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__universal_integer__axiom"
+   locfile="../divide.mlw"
+   loclnum="951" loccnumb="7" loccnume="41"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__universal_real__axiom"
+   locfile="../divide.mlw"
+   loclnum="958" loccnumb="7" loccnume="38"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Divide__subprogram_def"
+   locfile="../divide.mlw"
+   loclnum="965" loccnumb="7" loccnume="29"
+   verified="true"
+   expanded="true">
+   <goal
+    name="WP_parameter def"
+    locfile="../divide.mlw"
+    loclnum="987" loccnumb="5" loccnume="8"
+    expl="VC for def"
+    sum="2557c329235bf0e2273428fccfe2d711"
+    proved="true"
+    expanded="true"
+    shape="ainfix &lt;=ato_intV22ainfix -ato_intayc1Aainfix &lt;=c0ato_intV22Aainfix =ato_intaxainfix +ainfix *ato_intV21ato_intayato_intV22Iainfix =V23V19Aainfix =V24V20Aainfix =V26V28Aainfix =V25V27Aiainfix =V19V5Aainfix =V20V6Aainfix =V5V17Aainfix =V6V18ainfix =V19V9Aainfix =V20V10Aainfix =V9V17Aainfix =V10V18ANainfix &gt;=ato_intV10ato_intayAainfix =ato_intaxainfix +ainfix *ato_intV9ato_intayato_intV10Aainfix =V8V2Aainfix =ato_intV2ainfix +ato_intV5c1Aainfix =V7V1Aainfix =ato_intV1ainfix -ato_intV6ato_intayOainfix =V19V15Aainfix =V20V16Aainfix =V28V30Aainfix =V27V29Aainfix =V15V9Aainfix =V16V10Aainfix =V9V13Aainfix =V10V14AfAainfix =ato_intaxainfix +ainfix *ato_intV9ato_intayato_intV10Aainfix =V8V2Aainfix =ato_intV2ainfix +ato_intV5c1Aainfix =V7V1Aainfix =ato_intV1ainfix -ato_intV6ato_intayainfix &gt;=ato_intV6ato_intayAainfix =V6axAainfix =V5V0Aainfix =ato_intV0c0Aain_rangeainfix +ainfix *ato_intV21ato_intayato_intV22Aain_rangeainfix *ato_intV21ato_intayIainfix =V23V19Aainfix =V24V20Aainfix =V26V28Aainfix =V25V27Aiainfix =V19V5Aainfix =V20V6Aainfix =V5V17Aainfix =V6V18ainfix =V19V9Aainfix =V20V10Aainfix =V9V17Aainfix =V10V18ANainfix &gt;=ato_intV10ato_intayAainfix =ato_intaxainfix +ainfix *ato_intV9ato_intayato_intV10Aainfix =V8V2Aainfix =ato_intV2ainfix +ato_intV5c1Aainfix =V7V1Aainfix =ato_intV1ainfix -ato_intV6ato_intayOainfix =V19V15Aainfix =V20V16Aainfix =V28V30Aainfix =V27V29Aainfix =V15V9Aainfix =V16V10Aainfix =V9V13Aainfix =V10V14AfAainfix =ato_intaxainfix +ainfix *ato_intV9ato_intayato_intV10Aainfix =V8V2Aainfix =ato_intV2ainfix +ato_intV5c1Aainfix =V7V1Aainfix =ato_intV1ainfix -ato_intV6ato_intayainfix &gt;=ato_intV6ato_intayAainfix =V6axAainfix =V5V0Aainfix =ato_intV0c0Aainfix =ato_intaxainfix +ainfix *ato_intV12ato_intayato_intV11Iainfix =V12V4Aainfix =ato_intV4ainfix +ato_intV9c1Aainfix =V11V3Aainfix =ato_intV3ainfix -ato_intV10ato_intayAainfix &gt;=ato_intV10ato_intayAain_rangeainfix +ato_intV9c1Iainfix =V11V3Aainfix =ato_intV3ainfix -ato_intV10ato_intayAain_rangeainfix -ato_intV10ato_intayIainfix &gt;=ato_intV10ato_intayAain_rangeainfix +ainfix *ato_intV9ato_intayato_intV10Aain_rangeainfix *ato_intV9ato_intayIainfix =ato_intaxainfix +ainfix *ato_intV9ato_intayato_intV10Aainfix =ato_intaxainfix +ainfix *ato_intV8ato_intayato_intV7Iainfix =V8V2Aainfix =ato_intV2ainfix +ato_intV5c1Aainfix =V7V1Aainfix =ato_intV1ainfix -ato_intV6ato_intayAain_rangeainfix +ato_intV5c1Iainfix =V7V1Aainfix =ato_intV1ainfix -ato_intV6ato_intayAain_rangeainfix -ato_intV6ato_intayIainfix &gt;=ato_intV6ato_intayIainfix =V6axIainfix =V5V0Aainfix =ato_intV0c0Lamk refV13Lamk refV14Lamk refV17Lamk refV18Lamk refV21Lamk refV22F">
+    <label
+     name="W:diverges:N"/>
+    <label
+     name="GP_Subp:divide.ads:3"/>
+    <label
+     name="GP_Pretty_Ada:DIVIDE"/>
+    <label
+     name="expl:VC for def"/>
+    <transf
+     name="path_split"
+     proved="true"
+     expanded="true">
+     <goal
+      name="WP_parameter def.1"
+      locfile="../divide.mlw"
+      loclnum="987" loccnumb="5" loccnume="8"
+      expl="1."
+      sum="ea3ba2cfad55bdb0200120e08c3265fa"
+      proved="true"
+      expanded="false"
+      shape="ain_rangeainfix -ato_intV6ato_intayIainfix &gt;=ato_intV6ato_intayIainfix =V6axIainfix =ato_intV0c0Aainfix =V5V0Lamk refV13Lamk refV14Lamk refV17Lamk refV18Lamk refV21Lamk refV22F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="GP_Subp:divide.ads:3"/>
+      <label
+       name="GP_Pretty_Ada:DIVIDE"/>
+      <label
+       name="expl:VC for def"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="valid" time="0.02"/>
+      </proof>
+     </goal>
+     <goal
+      name="WP_parameter def.2"
+      locfile="../divide.mlw"
+      loclnum="987" loccnumb="5" loccnume="8"
+      expl="2."
+      sum="1170422e4f106b161a0b47c9756a1c5e"
+      proved="true"
+      expanded="false"
+      shape="ain_rangeainfix +ato_intV5c1Iainfix =ato_intV1ainfix -ato_intV6ato_intayAainfix =V7V1Iainfix &gt;=ato_intV6ato_intayIainfix =V6axIainfix =ato_intV0c0Aainfix =V5V0Lamk refV13Lamk refV14Lamk refV17Lamk refV18Lamk refV21Lamk refV22F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="GP_Subp:divide.ads:3"/>
+      <label
+       name="GP_Pretty_Ada:DIVIDE"/>
+      <label
+       name="expl:VC for def"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="valid" time="0.02"/>
+      </proof>
+     </goal>
+     <goal
+      name="WP_parameter def.3"
+      locfile="../divide.mlw"
+      loclnum="987" loccnumb="5" loccnume="8"
+      expl="3. loop invariant init"
+      sum="85db23278153ace5fd38bf9066c17bea"
+      proved="true"
+      expanded="false"
+      shape="loop invariant initainfix =ato_intaxainfix +ainfix *ato_intV8ato_intayato_intV7Iainfix =ato_intV1ainfix -ato_intV6ato_intayAainfix =V7V1Aainfix =ato_intV2ainfix +ato_intV5c1Aainfix =V8V2Iainfix &gt;=ato_intV6ato_intayIainfix =V6axIainfix =ato_intV0c0Aainfix =V5V0Lamk refV13Lamk refV14Lamk refV17Lamk refV18Lamk refV21Lamk refV22F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="GP_Subp:divide.ads:3"/>
+      <label
+       name="GP_Pretty_Ada:DIVIDE"/>
+      <label
+       name="expl:VC for def"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="valid" time="0.02"/>
+      </proof>
+     </goal>
+     <goal
+      name="WP_parameter def.4"
+      locfile="../divide.mlw"
+      loclnum="987" loccnumb="5" loccnume="8"
+      expl="4."
+      sum="165ba0f76fe2ef217eb6d9cb40c900e9"
+      proved="true"
+      expanded="false"
+      shape="ain_rangeainfix *ato_intV9ato_intayIainfix =ato_intaxainfix +ainfix *ato_intV9ato_intayato_intV10Iainfix =ato_intV1ainfix -ato_intV6ato_intayAainfix =V7V1Aainfix =ato_intV2ainfix +ato_intV5c1Aainfix =V8V2Iainfix &gt;=ato_intV6ato_intayIainfix =V6axIainfix =ato_intV0c0Aainfix =V5V0Lamk refV13Lamk refV14Lamk refV17Lamk refV18Lamk refV21Lamk refV22F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="GP_Subp:divide.ads:3"/>
+      <label
+       name="GP_Pretty_Ada:DIVIDE"/>
+      <label
+       name="expl:VC for def"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="valid" time="0.05"/>
+      </proof>
+     </goal>
+     <goal
+      name="WP_parameter def.5"
+      locfile="../divide.mlw"
+      loclnum="987" loccnumb="5" loccnume="8"
+      expl="5."
+      sum="847b24914d5224d0792898e584f65cb8"
+      proved="true"
+      expanded="false"
+      shape="ain_rangeainfix +ainfix *ato_intV9ato_intayato_intV10Iainfix =ato_intaxainfix +ainfix *ato_intV9ato_intayato_intV10Iainfix =ato_intV1ainfix -ato_intV6ato_intayAainfix =V7V1Aainfix =ato_intV2ainfix +ato_intV5c1Aainfix =V8V2Iainfix &gt;=ato_intV6ato_intayIainfix =V6axIainfix =ato_intV0c0Aainfix =V5V0Lamk refV13Lamk refV14Lamk refV17Lamk refV18Lamk refV21Lamk refV22F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="GP_Subp:divide.ads:3"/>
+      <label
+       name="GP_Pretty_Ada:DIVIDE"/>
+      <label
+       name="expl:VC for def"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="valid" time="0.04"/>
+      </proof>
+     </goal>
+     <goal
+      name="WP_parameter def.6"
+      locfile="../divide.mlw"
+      loclnum="987" loccnumb="5" loccnume="8"
+      expl="6."
+      sum="730e8339ab55690158074b25454e9b82"
+      proved="true"
+      expanded="false"
+      shape="ain_rangeainfix -ato_intV10ato_intayIainfix &gt;=ato_intV10ato_intayIainfix =ato_intaxainfix +ainfix *ato_intV9ato_intayato_intV10Iainfix =ato_intV1ainfix -ato_intV6ato_intayAainfix =V7V1Aainfix =ato_intV2ainfix +ato_intV5c1Aainfix =V8V2Iainfix &gt;=ato_intV6ato_intayIainfix =V6axIainfix =ato_intV0c0Aainfix =V5V0Lamk refV13Lamk refV14Lamk refV17Lamk refV18Lamk refV21Lamk refV22F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="GP_Subp:divide.ads:3"/>
+      <label
+       name="GP_Pretty_Ada:DIVIDE"/>
+      <label
+       name="expl:VC for def"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="valid" time="0.04"/>
+      </proof>
+     </goal>
+     <goal
+      name="WP_parameter def.7"
+      locfile="../divide.mlw"
+      loclnum="987" loccnumb="5" loccnume="8"
+      expl="7."
+      sum="2f5e0b579d4a05034d27bd695d5550eb"
+      proved="true"
+      expanded="false"
+      shape="ain_rangeainfix +ato_intV9c1Iainfix =ato_intV3ainfix -ato_intV10ato_intayAainfix =V11V3Iainfix &gt;=ato_intV10ato_intayIainfix =ato_intaxainfix +ainfix *ato_intV9ato_intayato_intV10Iainfix =ato_intV1ainfix -ato_intV6ato_intayAainfix =V7V1Aainfix =ato_intV2ainfix +ato_intV5c1Aainfix =V8V2Iainfix &gt;=ato_intV6ato_intayIainfix =V6axIainfix =ato_intV0c0Aainfix =V5V0Lamk refV13Lamk refV14Lamk refV17Lamk refV18Lamk refV21Lamk refV22F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="GP_Subp:divide.ads:3"/>
+      <label
+       name="GP_Pretty_Ada:DIVIDE"/>
+      <label
+       name="expl:VC for def"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="valid" time="0.07"/>
+      </proof>
+     </goal>
+     <goal
+      name="WP_parameter def.8"
+      locfile="../divide.mlw"
+      loclnum="987" loccnumb="5" loccnume="8"
+      expl="8. loop invariant preservation"
+      sum="1a59331dd9b891d58f09fb862e9732fe"
+      proved="true"
+      expanded="false"
+      shape="loop invariant preservationainfix =ato_intaxainfix +ainfix *ato_intV12ato_intayato_intV11Iainfix &gt;=ato_intV10ato_intayAainfix =ato_intV3ainfix -ato_intV10ato_intayAainfix =V11V3Aainfix =ato_intV4ainfix +ato_intV9c1Aainfix =V12V4Iainfix =ato_intaxainfix +ainfix *ato_intV9ato_intayato_intV10Iainfix =ato_intV1ainfix -ato_intV6ato_intayAainfix =V7V1Aainfix =ato_intV2ainfix +ato_intV5c1Aainfix =V8V2Iainfix &gt;=ato_intV6ato_intayIainfix =V6axIainfix =ato_intV0c0Aainfix =V5V0Lamk refV13Lamk refV14Lamk refV17Lamk refV18Lamk refV21Lamk refV22F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="GP_Subp:divide.ads:3"/>
+      <label
+       name="GP_Pretty_Ada:DIVIDE"/>
+      <label
+       name="expl:VC for def"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="valid" time="0.05"/>
+      </proof>
+     </goal>
+     <goal
+      name="WP_parameter def.9"
+      locfile="../divide.mlw"
+      loclnum="987" loccnumb="5" loccnume="8"
+      expl="9."
+      sum="6ed7e4384584615d85556ce7cbbfcde9"
+      proved="true"
+      expanded="false"
+      shape="ain_rangeainfix *ato_intV21ato_intayIainfix =ato_intV0c0Aainfix =V5V0Aainfix =V6axAainfix =V6V18Aainfix =V5V17Aainfix =V20V6Aainfix =V19V5ANainfix &gt;=ato_intV6ato_intayAainfix =V25V27Aainfix =V26V28Aainfix =V24V20Aainfix =V23V19Lamk refV13Lamk refV14Lamk refV17Lamk refV18Lamk refV21Lamk refV22F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="GP_Subp:divide.ads:3"/>
+      <label
+       name="GP_Pretty_Ada:DIVIDE"/>
+      <label
+       name="expl:VC for def"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="valid" time="0.04"/>
+      </proof>
+     </goal>
+     <goal
+      name="WP_parameter def.10"
+      locfile="../divide.mlw"
+      loclnum="987" loccnumb="5" loccnume="8"
+      expl="10."
+      sum="ac082dcebb1096c0b9f1da7d98a9786e"
+      proved="true"
+      expanded="false"
+      shape="ain_rangeainfix *ato_intV21ato_intayIainfix =ato_intV0c0Aainfix =V5V0Aainfix =V6axAainfix =ato_intV1ainfix -ato_intV6ato_intayAainfix =V7V1Aainfix =ato_intV2ainfix +ato_intV5c1Aainfix =V8V2Aainfix =ato_intaxainfix +ainfix *ato_intV9ato_intayato_intV10ANainfix &gt;=ato_intV10ato_intayAainfix =V10V18Aainfix =V9V17Aainfix =V20V10Aainfix =V19V9Aainfix &gt;=ato_intV6ato_intayAainfix =V25V27Aainfix =V26V28Aainfix =V24V20Aainfix =V23V19Lamk refV13Lamk refV14Lamk refV17Lamk refV18Lamk refV21Lamk refV22F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="GP_Subp:divide.ads:3"/>
+      <label
+       name="GP_Pretty_Ada:DIVIDE"/>
+      <label
+       name="expl:VC for def"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="valid" time="0.10"/>
+      </proof>
+     </goal>
+     <goal
+      name="WP_parameter def.11"
+      locfile="../divide.mlw"
+      loclnum="987" loccnumb="5" loccnume="8"
+      expl="11."
+      sum="70fd626f2aedbc22e8508b1c5f52f82a"
+      proved="true"
+      expanded="false"
+      shape="ain_rangeainfix *ato_intV21ato_intayIainfix =ato_intV0c0Aainfix =V5V0Aainfix =V6axAainfix =ato_intV1ainfix -ato_intV6ato_intayAainfix =V7V1Aainfix =ato_intV2ainfix +ato_intV5c1Aainfix =V8V2Aainfix =ato_intaxainfix +ainfix *ato_intV9ato_intayato_intV10AfAainfix =V10V14Aainfix =V9V13Aainfix =V16V10Aainfix =V15V9Aainfix =V27V29Aainfix =V28V30Aainfix =V20V16Aainfix =V19V15Aainfix &gt;=ato_intV6ato_intayAainfix =V25V27Aainfix =V26V28Aainfix =V24V20Aainfix =V23V19Lamk refV13Lamk refV14Lamk refV17Lamk refV18Lamk refV21Lamk refV22F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="GP_Subp:divide.ads:3"/>
+      <label
+       name="GP_Pretty_Ada:DIVIDE"/>
+      <label
+       name="expl:VC for def"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="valid" time="0.02"/>
+      </proof>
+     </goal>
+     <goal
+      name="WP_parameter def.12"
+      locfile="../divide.mlw"
+      loclnum="987" loccnumb="5" loccnume="8"
+      expl="12."
+      sum="0edd9de0edddb9dec90cbe1991942d4c"
+      proved="true"
+      expanded="false"
+      shape="ain_rangeainfix +ainfix *ato_intV21ato_intayato_intV22Iainfix =ato_intV0c0Aainfix =V5V0Aainfix =V6axAainfix =V6V18Aainfix =V5V17Aainfix =V20V6Aainfix =V19V5ANainfix &gt;=ato_intV6ato_intayAainfix =V25V27Aainfix =V26V28Aainfix =V24V20Aainfix =V23V19Lamk refV13Lamk refV14Lamk refV17Lamk refV18Lamk refV21Lamk refV22F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="GP_Subp:divide.ads:3"/>
+      <label
+       name="GP_Pretty_Ada:DIVIDE"/>
+      <label
+       name="expl:VC for def"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="valid" time="0.04"/>
+      </proof>
+     </goal>
+     <goal
+      name="WP_parameter def.13"
+      locfile="../divide.mlw"
+      loclnum="987" loccnumb="5" loccnume="8"
+      expl="13."
+      sum="813bbd4cc435db27d17b0b44b154c867"
+      proved="true"
+      expanded="false"
+      shape="ain_rangeainfix +ainfix *ato_intV21ato_intayato_intV22Iainfix =ato_intV0c0Aainfix =V5V0Aainfix =V6axAainfix =ato_intV1ainfix -ato_intV6ato_intayAainfix =V7V1Aainfix =ato_intV2ainfix +ato_intV5c1Aainfix =V8V2Aainfix =ato_intaxainfix +ainfix *ato_intV9ato_intayato_intV10ANainfix &gt;=ato_intV10ato_intayAainfix =V10V18Aainfix =V9V17Aainfix =V20V10Aainfix =V19V9Aainfix &gt;=ato_intV6ato_intayAainfix =V25V27Aainfix =V26V28Aainfix =V24V20Aainfix =V23V19Lamk refV13Lamk refV14Lamk refV17Lamk refV18Lamk refV21Lamk refV22F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="GP_Subp:divide.ads:3"/>
+      <label
+       name="GP_Pretty_Ada:DIVIDE"/>
+      <label
+       name="expl:VC for def"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="valid" time="0.12"/>
+      </proof>
+     </goal>
+     <goal
+      name="WP_parameter def.14"
+      locfile="../divide.mlw"
+      loclnum="987" loccnumb="5" loccnume="8"
+      expl="14."
+      sum="b1b69caf28d36bed7e8fdb2fc8006b74"
+      proved="true"
+      expanded="false"
+      shape="ain_rangeainfix +ainfix *ato_intV21ato_intayato_intV22Iainfix =ato_intV0c0Aainfix =V5V0Aainfix =V6axAainfix =ato_intV1ainfix -ato_intV6ato_intayAainfix =V7V1Aainfix =ato_intV2ainfix +ato_intV5c1Aainfix =V8V2Aainfix =ato_intaxainfix +ainfix *ato_intV9ato_intayato_intV10AfAainfix =V10V14Aainfix =V9V13Aainfix =V16V10Aainfix =V15V9Aainfix =V27V29Aainfix =V28V30Aainfix =V20V16Aainfix =V19V15Aainfix &gt;=ato_intV6ato_intayAainfix =V25V27Aainfix =V26V28Aainfix =V24V20Aainfix =V23V19Lamk refV13Lamk refV14Lamk refV17Lamk refV18Lamk refV21Lamk refV22F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="GP_Subp:divide.ads:3"/>
+      <label
+       name="GP_Pretty_Ada:DIVIDE"/>
+      <label
+       name="expl:VC for def"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="valid" time="0.03"/>
+      </proof>
+     </goal>
+     <goal
+      name="WP_parameter def.15"
+      locfile="../divide.mlw"
+      loclnum="987" loccnumb="5" loccnume="8"
+      expl="15."
+      sum="f7f891b3ccacda0c4746acc184942526"
+      proved="true"
+      expanded="false"
+      shape="ainfix &lt;=ato_intV22ainfix -ato_intayc1Aainfix &lt;=c0ato_intV22Aainfix =ato_intaxainfix +ainfix *ato_intV21ato_intayato_intV22Iainfix =ato_intV0c0Aainfix =V5V0Aainfix =V6axAainfix =V6V18Aainfix =V5V17Aainfix =V20V6Aainfix =V19V5ANainfix &gt;=ato_intV6ato_intayAainfix =V25V27Aainfix =V26V28Aainfix =V24V20Aainfix =V23V19Lamk refV13Lamk refV14Lamk refV17Lamk refV18Lamk refV21Lamk refV22F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="GP_Subp:divide.ads:3"/>
+      <label
+       name="GP_Pretty_Ada:DIVIDE"/>
+      <label
+       name="expl:VC for def"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="valid" time="0.04"/>
+      </proof>
+     </goal>
+     <goal
+      name="WP_parameter def.16"
+      locfile="../divide.mlw"
+      loclnum="987" loccnumb="5" loccnume="8"
+      expl="16."
+      sum="9e7799c019e9c7b2c7fe4b9387b5f623"
+      proved="true"
+      expanded="false"
+      shape="ainfix &lt;=ato_intV22ainfix -ato_intayc1Aainfix &lt;=c0ato_intV22Aainfix =ato_intaxainfix +ainfix *ato_intV21ato_intayato_intV22Iainfix =ato_intV0c0Aainfix =V5V0Aainfix =V6axAainfix =ato_intV1ainfix -ato_intV6ato_intayAainfix =V7V1Aainfix =ato_intV2ainfix +ato_intV5c1Aainfix =V8V2Aainfix =ato_intaxainfix +ainfix *ato_intV9ato_intayato_intV10ANainfix &gt;=ato_intV10ato_intayAainfix =V10V18Aainfix =V9V17Aainfix =V20V10Aainfix =V19V9Aainfix &gt;=ato_intV6ato_intayAainfix =V25V27Aainfix =V26V28Aainfix =V24V20Aainfix =V23V19Lamk refV13Lamk refV14Lamk refV17Lamk refV18Lamk refV21Lamk refV22F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="GP_Subp:divide.ads:3"/>
+      <label
+       name="GP_Pretty_Ada:DIVIDE"/>
+      <label
+       name="expl:VC for def"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="valid" time="0.13"/>
+      </proof>
+     </goal>
+     <goal
+      name="WP_parameter def.17"
+      locfile="../divide.mlw"
+      loclnum="987" loccnumb="5" loccnume="8"
+      expl="17."
+      sum="fc17b9bb862d7ce8333afbaee424ee08"
+      proved="true"
+      expanded="false"
+      shape="ainfix &lt;=ato_intV22ainfix -ato_intayc1Aainfix &lt;=c0ato_intV22Aainfix =ato_intaxainfix +ainfix *ato_intV21ato_intayato_intV22Iainfix =ato_intV0c0Aainfix =V5V0Aainfix =V6axAainfix =ato_intV1ainfix -ato_intV6ato_intayAainfix =V7V1Aainfix =ato_intV2ainfix +ato_intV5c1Aainfix =V8V2Aainfix =ato_intaxainfix +ainfix *ato_intV9ato_intayato_intV10AfAainfix =V10V14Aainfix =V9V13Aainfix =V16V10Aainfix =V15V9Aainfix =V27V29Aainfix =V28V30Aainfix =V20V16Aainfix =V19V15Aainfix &gt;=ato_intV6ato_intayAainfix =V25V27Aainfix =V26V28Aainfix =V24V20Aainfix =V23V19Lamk refV13Lamk refV14Lamk refV17Lamk refV18Lamk refV21Lamk refV22F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="GP_Subp:divide.ads:3"/>
+      <label
+       name="GP_Pretty_Ada:DIVIDE"/>
+      <label
+       name="expl:VC for def"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="valid" time="0.02"/>
+      </proof>
+     </goal>
+    </transf>
+   </goal>
+  </theory>
+ </file>
+</why3session>

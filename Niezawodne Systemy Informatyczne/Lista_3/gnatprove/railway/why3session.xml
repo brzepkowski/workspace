@@ -1,0 +1,1931 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE why3session PUBLIC "-//Why3//proof session v2//EN" "http://why3.lri.fr/why3session.dtd">
+<why3session shape_version="4">
+ <prover
+  id="0"
+  name="Alt-Ergo for GNATprove"
+  version="0.95"/>
+ <file
+  name="../railway.mlw"
+  verified="false"
+  expanded="true">
+  <theory
+   name="Standard__short_short_integer"
+   locfile="../railway.mlw"
+   loclnum="2" loccnumb="7" loccnume="36"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__short_integer"
+   locfile="../railway.mlw"
+   loclnum="30" loccnumb="7" loccnume="30"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__integer"
+   locfile="../railway.mlw"
+   loclnum="58" loccnumb="7" loccnume="24"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__long_integer"
+   locfile="../railway.mlw"
+   loclnum="86" loccnumb="7" loccnume="29"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__long_long_integer"
+   locfile="../railway.mlw"
+   loclnum="114" loccnumb="7" loccnume="34"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__natural"
+   locfile="../railway.mlw"
+   loclnum="142" loccnumb="7" loccnume="24"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__positive"
+   locfile="../railway.mlw"
+   loclnum="170" loccnumb="7" loccnume="25"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__short_float"
+   locfile="../railway.mlw"
+   loclnum="198" loccnumb="7" loccnume="28"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__float"
+   locfile="../railway.mlw"
+   loclnum="227" loccnumb="7" loccnume="22"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__long_float"
+   locfile="../railway.mlw"
+   loclnum="256" loccnumb="7" loccnume="27"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__long_long_float"
+   locfile="../railway.mlw"
+   loclnum="285" loccnumb="7" loccnume="32"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__character"
+   locfile="../railway.mlw"
+   loclnum="313" loccnumb="7" loccnume="26"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__wide_character"
+   locfile="../railway.mlw"
+   loclnum="341" loccnumb="7" loccnume="31"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__wide_wide_character"
+   locfile="../railway.mlw"
+   loclnum="369" loccnumb="7" loccnume="36"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__string"
+   locfile="../railway.mlw"
+   loclnum="397" loccnumb="7" loccnume="23"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__wide_string"
+   locfile="../railway.mlw"
+   loclnum="429" loccnumb="7" loccnume="28"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__wide_wide_string"
+   locfile="../railway.mlw"
+   loclnum="455" loccnumb="7" loccnume="33"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__duration"
+   locfile="../railway.mlw"
+   loclnum="481" loccnumb="7" loccnume="25"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__integer_8"
+   locfile="../railway.mlw"
+   loclnum="514" loccnumb="7" loccnume="26"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__integer_16"
+   locfile="../railway.mlw"
+   loclnum="542" loccnumb="7" loccnume="27"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__integer_32"
+   locfile="../railway.mlw"
+   loclnum="570" loccnumb="7" loccnume="27"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__integer_64"
+   locfile="../railway.mlw"
+   loclnum="598" loccnumb="7" loccnume="27"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__universal_integer"
+   locfile="../railway.mlw"
+   loclnum="626" loccnumb="7" loccnume="34"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__universal_real"
+   locfile="../railway.mlw"
+   loclnum="654" loccnumb="7" loccnume="31"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Railway__one_signal_state"
+   locfile="../railway.mlw"
+   loclnum="682" loccnumb="7" loccnume="32"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Railway__route_type"
+   locfile="../railway.mlw"
+   loclnum="710" loccnumb="7" loccnume="26"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Railway__one_segment_state"
+   locfile="../railway.mlw"
+   loclnum="738" loccnumb="7" loccnume="33"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Railway__segment_state_type"
+   locfile="../railway.mlw"
+   loclnum="766" loccnumb="7" loccnume="34"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Railway__signal_state_type"
+   locfile="../railway.mlw"
+   loclnum="820" loccnumb="7" loccnume="33"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Railway__open_route__route"
+   locfile="../railway.mlw"
+   loclnum="884" loccnumb="7" loccnume="33"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Railway__open_route__route__axiom"
+   locfile="../railway.mlw"
+   loclnum="896" loccnumb="7" loccnume="40"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Railway__move_train__route"
+   locfile="../railway.mlw"
+   loclnum="903" loccnumb="7" loccnume="33"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Railway__move_train__route__axiom"
+   locfile="../railway.mlw"
+   loclnum="915" loccnumb="7" loccnume="40"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Railway__segment_state"
+   locfile="../railway.mlw"
+   loclnum="921" loccnumb="7" loccnume="29"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Railway__segment_state__axiom"
+   locfile="../railway.mlw"
+   loclnum="935" loccnumb="7" loccnume="36"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Railway__signal_state"
+   locfile="../railway.mlw"
+   loclnum="942" loccnumb="7" loccnume="28"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Railway__signal_state__axiom"
+   locfile="../railway.mlw"
+   loclnum="956" loccnumb="7" loccnume="35"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Railway__open_route__success"
+   locfile="../railway.mlw"
+   loclnum="963" loccnumb="7" loccnume="35"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Railway__open_route__success__axiom"
+   locfile="../railway.mlw"
+   loclnum="977" loccnumb="7" loccnume="42"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Railway__move_train__success"
+   locfile="../railway.mlw"
+   loclnum="984" loccnumb="7" loccnume="35"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Railway__move_train__success__axiom"
+   locfile="../railway.mlw"
+   loclnum="998" loccnumb="7" loccnume="42"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Railway__correct_signals"
+   locfile="../railway.mlw"
+   loclnum="1004" loccnumb="7" loccnume="31"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Railway__correct_signals__axiom"
+   locfile="../railway.mlw"
+   loclnum="1026" loccnumb="7" loccnume="38"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Railway__correct_segments"
+   locfile="../railway.mlw"
+   loclnum="1055" loccnumb="7" loccnume="32"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Railway__correct_segments__axiom"
+   locfile="../railway.mlw"
+   loclnum="1077" loccnumb="7" loccnume="39"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Railway__open_route"
+   locfile="../railway.mlw"
+   loclnum="1106" loccnumb="7" loccnume="26"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Railway__open_route__axiom"
+   locfile="../railway.mlw"
+   loclnum="1137" loccnumb="7" loccnume="33"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Railway__move_train"
+   locfile="../railway.mlw"
+   loclnum="1144" loccnumb="7" loccnume="26"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Railway__move_train__axiom"
+   locfile="../railway.mlw"
+   loclnum="1175" loccnumb="7" loccnume="33"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__short_short_integer__axiom"
+   locfile="../railway.mlw"
+   loclnum="1181" loccnumb="7" loccnume="43"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__short_integer__axiom"
+   locfile="../railway.mlw"
+   loclnum="1188" loccnumb="7" loccnume="37"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__integer__axiom"
+   locfile="../railway.mlw"
+   loclnum="1195" loccnumb="7" loccnume="31"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__long_integer__axiom"
+   locfile="../railway.mlw"
+   loclnum="1202" loccnumb="7" loccnume="36"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__long_long_integer__axiom"
+   locfile="../railway.mlw"
+   loclnum="1209" loccnumb="7" loccnume="41"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__natural__axiom"
+   locfile="../railway.mlw"
+   loclnum="1216" loccnumb="7" loccnume="31"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__positive__axiom"
+   locfile="../railway.mlw"
+   loclnum="1223" loccnumb="7" loccnume="32"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__short_float__axiom"
+   locfile="../railway.mlw"
+   loclnum="1230" loccnumb="7" loccnume="35"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__float__axiom"
+   locfile="../railway.mlw"
+   loclnum="1237" loccnumb="7" loccnume="29"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__long_float__axiom"
+   locfile="../railway.mlw"
+   loclnum="1244" loccnumb="7" loccnume="34"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__long_long_float__axiom"
+   locfile="../railway.mlw"
+   loclnum="1251" loccnumb="7" loccnume="39"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__character__axiom"
+   locfile="../railway.mlw"
+   loclnum="1258" loccnumb="7" loccnume="33"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__wide_character__axiom"
+   locfile="../railway.mlw"
+   loclnum="1265" loccnumb="7" loccnume="38"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__wide_wide_character__axiom"
+   locfile="../railway.mlw"
+   loclnum="1272" loccnumb="7" loccnume="43"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__string__axiom"
+   locfile="../railway.mlw"
+   loclnum="1279" loccnumb="7" loccnume="30"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__wide_string__axiom"
+   locfile="../railway.mlw"
+   loclnum="1286" loccnumb="7" loccnume="35"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__wide_wide_string__axiom"
+   locfile="../railway.mlw"
+   loclnum="1293" loccnumb="7" loccnume="40"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__duration__axiom"
+   locfile="../railway.mlw"
+   loclnum="1300" loccnumb="7" loccnume="32"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__integer_8__axiom"
+   locfile="../railway.mlw"
+   loclnum="1307" loccnumb="7" loccnume="33"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__integer_16__axiom"
+   locfile="../railway.mlw"
+   loclnum="1314" loccnumb="7" loccnume="34"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__integer_32__axiom"
+   locfile="../railway.mlw"
+   loclnum="1321" loccnumb="7" loccnume="34"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__integer_64__axiom"
+   locfile="../railway.mlw"
+   loclnum="1328" loccnumb="7" loccnume="34"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__universal_integer__axiom"
+   locfile="../railway.mlw"
+   loclnum="1335" loccnumb="7" loccnume="41"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__universal_real__axiom"
+   locfile="../railway.mlw"
+   loclnum="1342" loccnumb="7" loccnume="38"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Railway__one_signal_state__axiom"
+   locfile="../railway.mlw"
+   loclnum="1349" loccnumb="7" loccnume="39"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Railway__route_type__axiom"
+   locfile="../railway.mlw"
+   loclnum="1356" loccnumb="7" loccnume="33"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Railway__one_segment_state__axiom"
+   locfile="../railway.mlw"
+   loclnum="1363" loccnumb="7" loccnume="40"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Railway__segment_state_type__axiom"
+   locfile="../railway.mlw"
+   loclnum="1370" loccnumb="7" loccnume="41"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Railway__signal_state_type__axiom"
+   locfile="../railway.mlw"
+   loclnum="1377" loccnumb="7" loccnume="40"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Railway__package_def"
+   locfile="../railway.mlw"
+   loclnum="1384" loccnumb="7" loccnume="27"
+   verified="true"
+   expanded="true">
+   <goal
+    name="WP_parameter def"
+    locfile="../railway.mlw"
+    loclnum="1401" loccnumb="5" loccnume="8"
+    expl="VC for def"
+    sum="62b387c2270eb67520b6d5d846442ac8"
+    proved="true"
+    expanded="true"
+    shape="t">
+    <label
+     name="W:diverges:N"/>
+    <label
+     name="GP_Subp:railway.ads:1"/>
+    <label
+     name="GP_Pretty_Ada:Railway"/>
+    <label
+     name="expl:VC for def"/>
+    <transf
+     name="path_split"
+     proved="true"
+     expanded="true">
+    </transf>
+   </goal>
+  </theory>
+  <theory
+   name="Railway__correct_signals__subprogram_def"
+   locfile="../railway.mlw"
+   loclnum="1413" loccnumb="7" loccnume="47"
+   verified="true"
+   expanded="true">
+   <goal
+    name="WP_parameter def"
+    locfile="../railway.mlw"
+    loclnum="1434" loccnumb="5" loccnume="8"
+    expl="VC for def"
+    sum="7e3a05fa9080a134980fee69ba4816e2"
+    proved="true"
+    expanded="true"
+    shape="t">
+    <label
+     name="W:diverges:N"/>
+    <label
+     name="expl:VC for def"/>
+    <label
+     name="GP_Subp:railway.ads:39"/>
+    <label
+     name="GP_Pretty_Ada:Railway.Correct_Signals"/>
+    <transf
+     name="path_split"
+     proved="true"
+     expanded="true">
+    </transf>
+   </goal>
+  </theory>
+  <theory
+   name="Railway__correct_segments__subprogram_def"
+   locfile="../railway.mlw"
+   loclnum="1465" loccnumb="7" loccnume="48"
+   verified="true"
+   expanded="true">
+   <goal
+    name="WP_parameter def"
+    locfile="../railway.mlw"
+    loclnum="1486" loccnumb="5" loccnume="8"
+    expl="VC for def"
+    sum="7e3a05fa9080a134980fee69ba4816e2"
+    proved="true"
+    expanded="true"
+    shape="t">
+    <label
+     name="W:diverges:N"/>
+    <label
+     name="expl:VC for def"/>
+    <label
+     name="GP_Subp:railway.ads:55"/>
+    <label
+     name="GP_Pretty_Ada:Railway.Correct_Segments"/>
+    <transf
+     name="path_split"
+     proved="true"
+     expanded="true">
+    </transf>
+   </goal>
+  </theory>
+  <theory
+   name="Railway__open_route__subprogram_def"
+   locfile="../railway.mlw"
+   loclnum="1517" loccnumb="7" loccnume="42"
+   verified="false"
+   expanded="true">
+   <goal
+    name="WP_parameter def"
+    locfile="../railway.mlw"
+    loclnum="1550" loccnumb="5" loccnume="8"
+    expl="VC for def"
+    sum="17a5746affc0c79ec60baa3cb953fc12"
+    proved="false"
+    expanded="true"
+    shape="ainfix =acorrect_segmentsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueAainfix =acorrect_signalsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueIainfix =V153V87Aainfix =V152V86Aainfix =V151V85Aainfix =V157V91Aainfix =V156V90Aainfix =V155V89Aainfix =V154V88Aainfix =V158V92Aainfix =V145V87Aainfix =V144V86Aainfix =V143V85Aainfix =V149V91Aainfix =V148V90Aainfix =V147V89Aainfix =V146V88Aainfix =V150V92Aiainfix =V170V168Aainfix =V169V165Aainfix =V92V96Aiainfix =V168V167Aainfix =V96V100Aiainfix =V167V166Aainfix =V100V111Aiainfix =V166V164Aainfix =V165V163Aainfix =V111V122Aiainfix =V164V162Aainfix =V163V159Aainfix =V122V126Aiainfix =V162V161Aainfix =V126V130Aiainfix =V161V160Aainfix =V130V141Aiainfix =V77V136Aainfix =V76V135Aainfix =V75V134Aainfix =V159V171Aainfix =V141V142Aainfix =V2V136Aainfix =V1V135Aainfix =V0V134Aainfix =V6V140Aainfix =V5V139Aainfix =V4V138Aainfix =V3V137Aainfix =V141V142Aainfix =V142aof_intc0ainfix =V141aof_intc1Aainfix =V159amk signal_state_typeV71V72V73V74Aainfix =V6V74Aainfix =V70V73Aainfix =V4V72Aainfix =V3V71Aainfix =ato_intV70c1Aainfix =V160amk segment_state_typeV67V68V69Aainfix =V66V69Aainfix =V132V68Aainfix =V131V67Aainfix =ato_intV66c3Aainfix =amk segment_state_typeV131V132V133amk segment_state_typeV63V64V65Aainfix =V2V65Aainfix =V62V64Aainfix =V0V63Aainfix =ato_intV62c2ainfix =ato_intV2c5Aainfix =ato_intV1c0Aainfix =ato_intaroutec1ainfix =V159V171Aainfix =V6V140Aainfix =V5V139Aainfix =V4V138Aainfix =V3V137Aainfix =V130aof_intc1Aainfix =V161amk segment_state_typeV59V60V61Aainfix =V58V61Aainfix =V1V60Aainfix =V0V59Aainfix =ato_intV58c4ainfix =ato_intV2c5Aainfix =ato_intaroutec6ainfix =V159V171Aainfix =V6V140Aainfix =V5V139Aainfix =V4V138Aainfix =V3V137Aainfix =V126aof_intc1Aainfix =V162amk segment_state_typeV55V56V57Aainfix =V54V57Aainfix =V1V56Aainfix =V0V55Aainfix =ato_intV54c2ainfix =ato_intV2c0Aainfix =ato_intaroutec5ainfix =V122aof_intc1Aainfix =V163amk signal_state_typeV50V51V52V53Aainfix =V49V53Aainfix =V5V52Aainfix =V4V51Aainfix =V3V50Aainfix =ato_intV49c1Aainfix =V164amk segment_state_typeV46V47V48Aainfix =V114V48Aainfix =V45V47Aainfix =V112V46Aainfix =ato_intV45c4Aainfix =amk segment_state_typeV112V113V114amk segment_state_typeV42V43V44Aainfix =V41V44Aainfix =V1V43Aainfix =V0V42Aainfix =ato_intV41c1ainfix =ato_intV1c5Aainfix =ato_intV2c0Aainfix =ato_intaroutec2ainfix =V111aof_intc1Aainfix =V165amk signal_state_typeV37V38V39V40Aainfix =V6V40Aainfix =V5V39Aainfix =V36V38Aainfix =V3V37Aainfix =ato_intV36c1Aainfix =V166amk segment_state_typeV33V34V35Aainfix =V103V35Aainfix =V102V34Aainfix =V32V33Aainfix =ato_intV32c4Aainfix =amk segment_state_typeV101V102V103amk segment_state_typeV29V30V31Aainfix =V2V31Aainfix =V28V30Aainfix =V0V29Aainfix =ato_intV28c1ainfix =ato_intV0c5Aainfix =ato_intV1c0Aainfix =ato_intaroutec3ainfix =V165V171Aainfix =V6V110Aainfix =V5V109Aainfix =V4V108Aainfix =V3V107Aainfix =V100aof_intc1Aainfix =V167amk segment_state_typeV25V26V27Aainfix =V2V27Aainfix =V1V26Aainfix =V24V25Aainfix =ato_intV24c3ainfix =ato_intV0c5Aainfix =ato_intaroutec4ainfix =V165V171Aainfix =V6V110Aainfix =V5V109Aainfix =V4V108Aainfix =V3V107Aainfix =V96aof_intc1Aainfix =V168amk segment_state_typeV21V22V23Aainfix =V2V23Aainfix =V1V22Aainfix =V20V21Aainfix =ato_intV20c1ainfix =ato_intV0c0Aainfix =ato_intaroutec7ainfix =V92aof_intc1Aainfix =V169amk signal_state_typeV16V17V18V19Aainfix =V6V19Aainfix =V5V18Aainfix =V4V17Aainfix =V15V16Aainfix =ato_intV15c1Aainfix =V170amk segment_state_typeV12V13V14Aainfix =V84V14Aainfix =V11V13Aainfix =V82V12Aainfix =ato_intV11c3Aainfix =amk segment_state_typeV82V83V84amk segment_state_typeV8V9V10Aainfix =V2V10Aainfix =V1V9Aainfix =V7V8Aainfix =ato_intV7c2ainfix =ato_intV1c5Aainfix =ato_intV0c0Aainfix =ato_intaroutec0Lamk signal_state_typeV78V79V80V81Lamk segment_state_typeV85V86V87Lamk signal_state_typeV88V89V90V91Lamk segment_state_typeV93V94V95Lamk segment_state_typeV97V98V99Lamk segment_state_typeV104V105V106Lamk signal_state_typeV107V108V109V110Lamk segment_state_typeV115V116V117Lamk signal_state_typeV118V119V120V121Lamk segment_state_typeV123V124V125Lamk segment_state_typeV127V128V129Lamk segment_state_typeV134V135V136Lamk signal_state_typeV137V138V139V140F">
+    <label
+     name="W:diverges:N"/>
+    <label
+     name="expl:VC for def"/>
+    <label
+     name="GP_Subp:railway.ads:67"/>
+    <label
+     name="GP_Pretty_Ada:Railway.Open_Route"/>
+    <transf
+     name="path_split"
+     proved="false"
+     expanded="true">
+     <goal
+      name="WP_parameter def.1"
+      locfile="../railway.mlw"
+      loclnum="1550" loccnumb="5" loccnume="8"
+      expl="1."
+      sum="f4cffd1272f93d353a6523d9b60b30b6"
+      proved="false"
+      expanded="false"
+      shape="ainfix =acorrect_segmentsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueAainfix =acorrect_signalsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueIainfix =V142aof_intc0Aainfix =V141V142Aainfix =V3V137Aainfix =V4V138Aainfix =V5V139Aainfix =V6V140Aainfix =V0V134Aainfix =V1V135Aainfix =V2V136Aainfix =V141V142Aainfix =V159V171Aainfix =V75V134Aainfix =V76V135Aainfix =V77V136ANainfix =ato_intV2c5Aainfix =ato_intV1c0Aainfix =ato_intaroutec1Aainfix =V130V141Aainfix =V161V160ANainfix =ato_intV2c5Aainfix =ato_intaroutec6Aainfix =V126V130Aainfix =V162V161ANainfix =ato_intV2c0Aainfix =ato_intaroutec5Aainfix =V122V126Aainfix =V163V159Aainfix =V164V162ANainfix =ato_intV1c5Aainfix =ato_intV2c0Aainfix =ato_intaroutec2Aainfix =V111V122Aainfix =V165V163Aainfix =V166V164ANainfix =ato_intV0c5Aainfix =ato_intV1c0Aainfix =ato_intaroutec3Aainfix =V100V111Aainfix =V167V166ANainfix =ato_intV0c5Aainfix =ato_intaroutec4Aainfix =V96V100Aainfix =V168V167ANainfix =ato_intV0c0Aainfix =ato_intaroutec7Aainfix =V92V96Aainfix =V169V165Aainfix =V170V168ANainfix =ato_intV1c5Aainfix =ato_intV0c0Aainfix =ato_intaroutec0Aainfix =V150V92Aainfix =V146V88Aainfix =V147V89Aainfix =V148V90Aainfix =V149V91Aainfix =V143V85Aainfix =V144V86Aainfix =V145V87Aainfix =V158V92Aainfix =V154V88Aainfix =V155V89Aainfix =V156V90Aainfix =V157V91Aainfix =V151V85Aainfix =V152V86Aainfix =V153V87Lamk signal_state_typeV78V79V80V81Lamk segment_state_typeV85V86V87Lamk signal_state_typeV88V89V90V91Lamk segment_state_typeV93V94V95Lamk segment_state_typeV97V98V99Lamk segment_state_typeV104V105V106Lamk signal_state_typeV107V108V109V110Lamk segment_state_typeV115V116V117Lamk signal_state_typeV118V119V120V121Lamk segment_state_typeV123V124V125Lamk segment_state_typeV127V128V129Lamk segment_state_typeV134V135V136Lamk signal_state_typeV137V138V139V140F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="expl:VC for def"/>
+      <label
+       name="GP_Subp:railway.ads:67"/>
+      <label
+       name="GP_Pretty_Ada:Railway.Open_Route"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="timeout" time="0.99"/>
+      </proof>
+      <transf
+       name="split_conj"
+       proved="false"
+       expanded="true">
+       <goal
+        name="WP_parameter def.1.1"
+        locfile="../railway.mlw"
+        loclnum="1550" loccnumb="5" loccnume="8"
+        expl="1."
+        sum="af79601e3b6e4dc440a789b0fb32d723"
+        proved="false"
+        expanded="false"
+        shape="ainfix =acorrect_signalsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueIainfix =V142aof_intc0Aainfix =V141V142Aainfix =V3V137Aainfix =V4V138Aainfix =V5V139Aainfix =V6V140Aainfix =V0V134Aainfix =V1V135Aainfix =V2V136Aainfix =V141V142Aainfix =V159V171Aainfix =V75V134Aainfix =V76V135Aainfix =V77V136ANainfix =ato_intV2c5Aainfix =ato_intV1c0Aainfix =ato_intaroutec1Aainfix =V130V141Aainfix =V161V160ANainfix =ato_intV2c5Aainfix =ato_intaroutec6Aainfix =V126V130Aainfix =V162V161ANainfix =ato_intV2c0Aainfix =ato_intaroutec5Aainfix =V122V126Aainfix =V163V159Aainfix =V164V162ANainfix =ato_intV1c5Aainfix =ato_intV2c0Aainfix =ato_intaroutec2Aainfix =V111V122Aainfix =V165V163Aainfix =V166V164ANainfix =ato_intV0c5Aainfix =ato_intV1c0Aainfix =ato_intaroutec3Aainfix =V100V111Aainfix =V167V166ANainfix =ato_intV0c5Aainfix =ato_intaroutec4Aainfix =V96V100Aainfix =V168V167ANainfix =ato_intV0c0Aainfix =ato_intaroutec7Aainfix =V92V96Aainfix =V169V165Aainfix =V170V168ANainfix =ato_intV1c5Aainfix =ato_intV0c0Aainfix =ato_intaroutec0Aainfix =V150V92Aainfix =V146V88Aainfix =V147V89Aainfix =V148V90Aainfix =V149V91Aainfix =V143V85Aainfix =V144V86Aainfix =V145V87Aainfix =V158V92Aainfix =V154V88Aainfix =V155V89Aainfix =V156V90Aainfix =V157V91Aainfix =V151V85Aainfix =V152V86Aainfix =V153V87Lamk signal_state_typeV78V79V80V81Lamk segment_state_typeV85V86V87Lamk signal_state_typeV88V89V90V91Lamk segment_state_typeV93V94V95Lamk segment_state_typeV97V98V99Lamk segment_state_typeV104V105V106Lamk signal_state_typeV107V108V109V110Lamk segment_state_typeV115V116V117Lamk signal_state_typeV118V119V120V121Lamk segment_state_typeV123V124V125Lamk segment_state_typeV127V128V129Lamk segment_state_typeV134V135V136Lamk signal_state_typeV137V138V139V140F">
+        <label
+         name="W:diverges:N"/>
+        <label
+         name="expl:VC for def"/>
+        <label
+         name="GP_Subp:railway.ads:67"/>
+        <label
+         name="GP_Pretty_Ada:Railway.Open_Route"/>
+        <proof
+         prover="0"
+         timelimit="1"
+         memlimit="0"
+         obsolete="false"
+         archived="false">
+         <result status="timeout" time="0.98"/>
+        </proof>
+       </goal>
+       <goal
+        name="WP_parameter def.1.2"
+        locfile="../railway.mlw"
+        loclnum="1550" loccnumb="5" loccnume="8"
+        expl="2."
+        sum="8d935e3a9b5a83547dd7536b4c9b8a53"
+        proved="false"
+        expanded="false"
+        shape="ainfix =acorrect_segmentsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueIainfix =V142aof_intc0Aainfix =V141V142Aainfix =V3V137Aainfix =V4V138Aainfix =V5V139Aainfix =V6V140Aainfix =V0V134Aainfix =V1V135Aainfix =V2V136Aainfix =V141V142Aainfix =V159V171Aainfix =V75V134Aainfix =V76V135Aainfix =V77V136ANainfix =ato_intV2c5Aainfix =ato_intV1c0Aainfix =ato_intaroutec1Aainfix =V130V141Aainfix =V161V160ANainfix =ato_intV2c5Aainfix =ato_intaroutec6Aainfix =V126V130Aainfix =V162V161ANainfix =ato_intV2c0Aainfix =ato_intaroutec5Aainfix =V122V126Aainfix =V163V159Aainfix =V164V162ANainfix =ato_intV1c5Aainfix =ato_intV2c0Aainfix =ato_intaroutec2Aainfix =V111V122Aainfix =V165V163Aainfix =V166V164ANainfix =ato_intV0c5Aainfix =ato_intV1c0Aainfix =ato_intaroutec3Aainfix =V100V111Aainfix =V167V166ANainfix =ato_intV0c5Aainfix =ato_intaroutec4Aainfix =V96V100Aainfix =V168V167ANainfix =ato_intV0c0Aainfix =ato_intaroutec7Aainfix =V92V96Aainfix =V169V165Aainfix =V170V168ANainfix =ato_intV1c5Aainfix =ato_intV0c0Aainfix =ato_intaroutec0Aainfix =V150V92Aainfix =V146V88Aainfix =V147V89Aainfix =V148V90Aainfix =V149V91Aainfix =V143V85Aainfix =V144V86Aainfix =V145V87Aainfix =V158V92Aainfix =V154V88Aainfix =V155V89Aainfix =V156V90Aainfix =V157V91Aainfix =V151V85Aainfix =V152V86Aainfix =V153V87Lamk signal_state_typeV78V79V80V81Lamk segment_state_typeV85V86V87Lamk signal_state_typeV88V89V90V91Lamk segment_state_typeV93V94V95Lamk segment_state_typeV97V98V99Lamk segment_state_typeV104V105V106Lamk signal_state_typeV107V108V109V110Lamk segment_state_typeV115V116V117Lamk signal_state_typeV118V119V120V121Lamk segment_state_typeV123V124V125Lamk segment_state_typeV127V128V129Lamk segment_state_typeV134V135V136Lamk signal_state_typeV137V138V139V140F">
+        <label
+         name="W:diverges:N"/>
+        <label
+         name="expl:VC for def"/>
+        <label
+         name="GP_Subp:railway.ads:67"/>
+        <label
+         name="GP_Pretty_Ada:Railway.Open_Route"/>
+       </goal>
+      </transf>
+     </goal>
+     <goal
+      name="WP_parameter def.2"
+      locfile="../railway.mlw"
+      loclnum="1550" loccnumb="5" loccnume="8"
+      expl="2."
+      sum="b8a1e52ccf0270f4eb4d39c29bb75125"
+      proved="false"
+      expanded="false"
+      shape="ainfix =acorrect_segmentsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueAainfix =acorrect_signalsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueIainfix =ato_intV62c2Aainfix =V0V63Aainfix =V62V64Aainfix =V2V65Aainfix =amk segment_state_typeV131V132V133amk segment_state_typeV63V64V65Aainfix =ato_intV66c3Aainfix =V131V67Aainfix =V132V68Aainfix =V66V69Aainfix =V160amk segment_state_typeV67V68V69Aainfix =ato_intV70c1Aainfix =V3V71Aainfix =V4V72Aainfix =V70V73Aainfix =V6V74Aainfix =V159amk signal_state_typeV71V72V73V74Aainfix =V141aof_intc1Aainfix =ato_intV2c5Aainfix =ato_intV1c0Aainfix =ato_intaroutec1Aainfix =V130V141Aainfix =V161V160ANainfix =ato_intV2c5Aainfix =ato_intaroutec6Aainfix =V126V130Aainfix =V162V161ANainfix =ato_intV2c0Aainfix =ato_intaroutec5Aainfix =V122V126Aainfix =V163V159Aainfix =V164V162ANainfix =ato_intV1c5Aainfix =ato_intV2c0Aainfix =ato_intaroutec2Aainfix =V111V122Aainfix =V165V163Aainfix =V166V164ANainfix =ato_intV0c5Aainfix =ato_intV1c0Aainfix =ato_intaroutec3Aainfix =V100V111Aainfix =V167V166ANainfix =ato_intV0c5Aainfix =ato_intaroutec4Aainfix =V96V100Aainfix =V168V167ANainfix =ato_intV0c0Aainfix =ato_intaroutec7Aainfix =V92V96Aainfix =V169V165Aainfix =V170V168ANainfix =ato_intV1c5Aainfix =ato_intV0c0Aainfix =ato_intaroutec0Aainfix =V150V92Aainfix =V146V88Aainfix =V147V89Aainfix =V148V90Aainfix =V149V91Aainfix =V143V85Aainfix =V144V86Aainfix =V145V87Aainfix =V158V92Aainfix =V154V88Aainfix =V155V89Aainfix =V156V90Aainfix =V157V91Aainfix =V151V85Aainfix =V152V86Aainfix =V153V87Lamk signal_state_typeV78V79V80V81Lamk segment_state_typeV85V86V87Lamk signal_state_typeV88V89V90V91Lamk segment_state_typeV93V94V95Lamk segment_state_typeV97V98V99Lamk segment_state_typeV104V105V106Lamk signal_state_typeV107V108V109V110Lamk segment_state_typeV115V116V117Lamk signal_state_typeV118V119V120V121Lamk segment_state_typeV123V124V125Lamk segment_state_typeV127V128V129Lamk segment_state_typeV134V135V136Lamk signal_state_typeV137V138V139V140F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="expl:VC for def"/>
+      <label
+       name="GP_Subp:railway.ads:67"/>
+      <label
+       name="GP_Pretty_Ada:Railway.Open_Route"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="timeout" time="0.99"/>
+      </proof>
+      <transf
+       name="split_conj"
+       proved="false"
+       expanded="true">
+       <goal
+        name="WP_parameter def.2.1"
+        locfile="../railway.mlw"
+        loclnum="1550" loccnumb="5" loccnume="8"
+        expl="1."
+        sum="24241e26c8406bd69e531c3ee154d89a"
+        proved="false"
+        expanded="false"
+        shape="ainfix =acorrect_signalsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueIainfix =ato_intV62c2Aainfix =V0V63Aainfix =V62V64Aainfix =V2V65Aainfix =amk segment_state_typeV131V132V133amk segment_state_typeV63V64V65Aainfix =ato_intV66c3Aainfix =V131V67Aainfix =V132V68Aainfix =V66V69Aainfix =V160amk segment_state_typeV67V68V69Aainfix =ato_intV70c1Aainfix =V3V71Aainfix =V4V72Aainfix =V70V73Aainfix =V6V74Aainfix =V159amk signal_state_typeV71V72V73V74Aainfix =V141aof_intc1Aainfix =ato_intV2c5Aainfix =ato_intV1c0Aainfix =ato_intaroutec1Aainfix =V130V141Aainfix =V161V160ANainfix =ato_intV2c5Aainfix =ato_intaroutec6Aainfix =V126V130Aainfix =V162V161ANainfix =ato_intV2c0Aainfix =ato_intaroutec5Aainfix =V122V126Aainfix =V163V159Aainfix =V164V162ANainfix =ato_intV1c5Aainfix =ato_intV2c0Aainfix =ato_intaroutec2Aainfix =V111V122Aainfix =V165V163Aainfix =V166V164ANainfix =ato_intV0c5Aainfix =ato_intV1c0Aainfix =ato_intaroutec3Aainfix =V100V111Aainfix =V167V166ANainfix =ato_intV0c5Aainfix =ato_intaroutec4Aainfix =V96V100Aainfix =V168V167ANainfix =ato_intV0c0Aainfix =ato_intaroutec7Aainfix =V92V96Aainfix =V169V165Aainfix =V170V168ANainfix =ato_intV1c5Aainfix =ato_intV0c0Aainfix =ato_intaroutec0Aainfix =V150V92Aainfix =V146V88Aainfix =V147V89Aainfix =V148V90Aainfix =V149V91Aainfix =V143V85Aainfix =V144V86Aainfix =V145V87Aainfix =V158V92Aainfix =V154V88Aainfix =V155V89Aainfix =V156V90Aainfix =V157V91Aainfix =V151V85Aainfix =V152V86Aainfix =V153V87Lamk signal_state_typeV78V79V80V81Lamk segment_state_typeV85V86V87Lamk signal_state_typeV88V89V90V91Lamk segment_state_typeV93V94V95Lamk segment_state_typeV97V98V99Lamk segment_state_typeV104V105V106Lamk signal_state_typeV107V108V109V110Lamk segment_state_typeV115V116V117Lamk signal_state_typeV118V119V120V121Lamk segment_state_typeV123V124V125Lamk segment_state_typeV127V128V129Lamk segment_state_typeV134V135V136Lamk signal_state_typeV137V138V139V140F">
+        <label
+         name="W:diverges:N"/>
+        <label
+         name="expl:VC for def"/>
+        <label
+         name="GP_Subp:railway.ads:67"/>
+        <label
+         name="GP_Pretty_Ada:Railway.Open_Route"/>
+       </goal>
+       <goal
+        name="WP_parameter def.2.2"
+        locfile="../railway.mlw"
+        loclnum="1550" loccnumb="5" loccnume="8"
+        expl="2."
+        sum="83329a805e402c6c85acaadbe938a79d"
+        proved="false"
+        expanded="false"
+        shape="ainfix =acorrect_segmentsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueIainfix =ato_intV62c2Aainfix =V0V63Aainfix =V62V64Aainfix =V2V65Aainfix =amk segment_state_typeV131V132V133amk segment_state_typeV63V64V65Aainfix =ato_intV66c3Aainfix =V131V67Aainfix =V132V68Aainfix =V66V69Aainfix =V160amk segment_state_typeV67V68V69Aainfix =ato_intV70c1Aainfix =V3V71Aainfix =V4V72Aainfix =V70V73Aainfix =V6V74Aainfix =V159amk signal_state_typeV71V72V73V74Aainfix =V141aof_intc1Aainfix =ato_intV2c5Aainfix =ato_intV1c0Aainfix =ato_intaroutec1Aainfix =V130V141Aainfix =V161V160ANainfix =ato_intV2c5Aainfix =ato_intaroutec6Aainfix =V126V130Aainfix =V162V161ANainfix =ato_intV2c0Aainfix =ato_intaroutec5Aainfix =V122V126Aainfix =V163V159Aainfix =V164V162ANainfix =ato_intV1c5Aainfix =ato_intV2c0Aainfix =ato_intaroutec2Aainfix =V111V122Aainfix =V165V163Aainfix =V166V164ANainfix =ato_intV0c5Aainfix =ato_intV1c0Aainfix =ato_intaroutec3Aainfix =V100V111Aainfix =V167V166ANainfix =ato_intV0c5Aainfix =ato_intaroutec4Aainfix =V96V100Aainfix =V168V167ANainfix =ato_intV0c0Aainfix =ato_intaroutec7Aainfix =V92V96Aainfix =V169V165Aainfix =V170V168ANainfix =ato_intV1c5Aainfix =ato_intV0c0Aainfix =ato_intaroutec0Aainfix =V150V92Aainfix =V146V88Aainfix =V147V89Aainfix =V148V90Aainfix =V149V91Aainfix =V143V85Aainfix =V144V86Aainfix =V145V87Aainfix =V158V92Aainfix =V154V88Aainfix =V155V89Aainfix =V156V90Aainfix =V157V91Aainfix =V151V85Aainfix =V152V86Aainfix =V153V87Lamk signal_state_typeV78V79V80V81Lamk segment_state_typeV85V86V87Lamk signal_state_typeV88V89V90V91Lamk segment_state_typeV93V94V95Lamk segment_state_typeV97V98V99Lamk segment_state_typeV104V105V106Lamk signal_state_typeV107V108V109V110Lamk segment_state_typeV115V116V117Lamk signal_state_typeV118V119V120V121Lamk segment_state_typeV123V124V125Lamk segment_state_typeV127V128V129Lamk segment_state_typeV134V135V136Lamk signal_state_typeV137V138V139V140F">
+        <label
+         name="W:diverges:N"/>
+        <label
+         name="expl:VC for def"/>
+        <label
+         name="GP_Subp:railway.ads:67"/>
+        <label
+         name="GP_Pretty_Ada:Railway.Open_Route"/>
+       </goal>
+      </transf>
+     </goal>
+     <goal
+      name="WP_parameter def.3"
+      locfile="../railway.mlw"
+      loclnum="1550" loccnumb="5" loccnume="8"
+      expl="3."
+      sum="1348bf63b2932afc74a3bc7ddbcb9586"
+      proved="false"
+      expanded="false"
+      shape="ainfix =acorrect_segmentsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueAainfix =acorrect_signalsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueIainfix =ato_intV58c4Aainfix =V0V59Aainfix =V1V60Aainfix =V58V61Aainfix =V161amk segment_state_typeV59V60V61Aainfix =V130aof_intc1Aainfix =V3V137Aainfix =V4V138Aainfix =V5V139Aainfix =V6V140Aainfix =V159V171Aainfix =ato_intV2c5Aainfix =ato_intaroutec6Aainfix =V126V130Aainfix =V162V161ANainfix =ato_intV2c0Aainfix =ato_intaroutec5Aainfix =V122V126Aainfix =V163V159Aainfix =V164V162ANainfix =ato_intV1c5Aainfix =ato_intV2c0Aainfix =ato_intaroutec2Aainfix =V111V122Aainfix =V165V163Aainfix =V166V164ANainfix =ato_intV0c5Aainfix =ato_intV1c0Aainfix =ato_intaroutec3Aainfix =V100V111Aainfix =V167V166ANainfix =ato_intV0c5Aainfix =ato_intaroutec4Aainfix =V96V100Aainfix =V168V167ANainfix =ato_intV0c0Aainfix =ato_intaroutec7Aainfix =V92V96Aainfix =V169V165Aainfix =V170V168ANainfix =ato_intV1c5Aainfix =ato_intV0c0Aainfix =ato_intaroutec0Aainfix =V150V92Aainfix =V146V88Aainfix =V147V89Aainfix =V148V90Aainfix =V149V91Aainfix =V143V85Aainfix =V144V86Aainfix =V145V87Aainfix =V158V92Aainfix =V154V88Aainfix =V155V89Aainfix =V156V90Aainfix =V157V91Aainfix =V151V85Aainfix =V152V86Aainfix =V153V87Lamk signal_state_typeV78V79V80V81Lamk segment_state_typeV85V86V87Lamk signal_state_typeV88V89V90V91Lamk segment_state_typeV93V94V95Lamk segment_state_typeV97V98V99Lamk segment_state_typeV104V105V106Lamk signal_state_typeV107V108V109V110Lamk segment_state_typeV115V116V117Lamk signal_state_typeV118V119V120V121Lamk segment_state_typeV123V124V125Lamk segment_state_typeV127V128V129Lamk segment_state_typeV134V135V136Lamk signal_state_typeV137V138V139V140F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="expl:VC for def"/>
+      <label
+       name="GP_Subp:railway.ads:67"/>
+      <label
+       name="GP_Pretty_Ada:Railway.Open_Route"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="timeout" time="0.99"/>
+      </proof>
+      <transf
+       name="split_conj"
+       proved="false"
+       expanded="true">
+       <goal
+        name="WP_parameter def.3.1"
+        locfile="../railway.mlw"
+        loclnum="1550" loccnumb="5" loccnume="8"
+        expl="1."
+        sum="23b040a5b9c35de2772c0dd4227cab98"
+        proved="false"
+        expanded="false"
+        shape="ainfix =acorrect_signalsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueIainfix =ato_intV58c4Aainfix =V0V59Aainfix =V1V60Aainfix =V58V61Aainfix =V161amk segment_state_typeV59V60V61Aainfix =V130aof_intc1Aainfix =V3V137Aainfix =V4V138Aainfix =V5V139Aainfix =V6V140Aainfix =V159V171Aainfix =ato_intV2c5Aainfix =ato_intaroutec6Aainfix =V126V130Aainfix =V162V161ANainfix =ato_intV2c0Aainfix =ato_intaroutec5Aainfix =V122V126Aainfix =V163V159Aainfix =V164V162ANainfix =ato_intV1c5Aainfix =ato_intV2c0Aainfix =ato_intaroutec2Aainfix =V111V122Aainfix =V165V163Aainfix =V166V164ANainfix =ato_intV0c5Aainfix =ato_intV1c0Aainfix =ato_intaroutec3Aainfix =V100V111Aainfix =V167V166ANainfix =ato_intV0c5Aainfix =ato_intaroutec4Aainfix =V96V100Aainfix =V168V167ANainfix =ato_intV0c0Aainfix =ato_intaroutec7Aainfix =V92V96Aainfix =V169V165Aainfix =V170V168ANainfix =ato_intV1c5Aainfix =ato_intV0c0Aainfix =ato_intaroutec0Aainfix =V150V92Aainfix =V146V88Aainfix =V147V89Aainfix =V148V90Aainfix =V149V91Aainfix =V143V85Aainfix =V144V86Aainfix =V145V87Aainfix =V158V92Aainfix =V154V88Aainfix =V155V89Aainfix =V156V90Aainfix =V157V91Aainfix =V151V85Aainfix =V152V86Aainfix =V153V87Lamk signal_state_typeV78V79V80V81Lamk segment_state_typeV85V86V87Lamk signal_state_typeV88V89V90V91Lamk segment_state_typeV93V94V95Lamk segment_state_typeV97V98V99Lamk segment_state_typeV104V105V106Lamk signal_state_typeV107V108V109V110Lamk segment_state_typeV115V116V117Lamk signal_state_typeV118V119V120V121Lamk segment_state_typeV123V124V125Lamk segment_state_typeV127V128V129Lamk segment_state_typeV134V135V136Lamk signal_state_typeV137V138V139V140F">
+        <label
+         name="W:diverges:N"/>
+        <label
+         name="expl:VC for def"/>
+        <label
+         name="GP_Subp:railway.ads:67"/>
+        <label
+         name="GP_Pretty_Ada:Railway.Open_Route"/>
+       </goal>
+       <goal
+        name="WP_parameter def.3.2"
+        locfile="../railway.mlw"
+        loclnum="1550" loccnumb="5" loccnume="8"
+        expl="2."
+        sum="dcc970b44da69556c6cee61bf5fe90de"
+        proved="false"
+        expanded="false"
+        shape="ainfix =acorrect_segmentsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueIainfix =ato_intV58c4Aainfix =V0V59Aainfix =V1V60Aainfix =V58V61Aainfix =V161amk segment_state_typeV59V60V61Aainfix =V130aof_intc1Aainfix =V3V137Aainfix =V4V138Aainfix =V5V139Aainfix =V6V140Aainfix =V159V171Aainfix =ato_intV2c5Aainfix =ato_intaroutec6Aainfix =V126V130Aainfix =V162V161ANainfix =ato_intV2c0Aainfix =ato_intaroutec5Aainfix =V122V126Aainfix =V163V159Aainfix =V164V162ANainfix =ato_intV1c5Aainfix =ato_intV2c0Aainfix =ato_intaroutec2Aainfix =V111V122Aainfix =V165V163Aainfix =V166V164ANainfix =ato_intV0c5Aainfix =ato_intV1c0Aainfix =ato_intaroutec3Aainfix =V100V111Aainfix =V167V166ANainfix =ato_intV0c5Aainfix =ato_intaroutec4Aainfix =V96V100Aainfix =V168V167ANainfix =ato_intV0c0Aainfix =ato_intaroutec7Aainfix =V92V96Aainfix =V169V165Aainfix =V170V168ANainfix =ato_intV1c5Aainfix =ato_intV0c0Aainfix =ato_intaroutec0Aainfix =V150V92Aainfix =V146V88Aainfix =V147V89Aainfix =V148V90Aainfix =V149V91Aainfix =V143V85Aainfix =V144V86Aainfix =V145V87Aainfix =V158V92Aainfix =V154V88Aainfix =V155V89Aainfix =V156V90Aainfix =V157V91Aainfix =V151V85Aainfix =V152V86Aainfix =V153V87Lamk signal_state_typeV78V79V80V81Lamk segment_state_typeV85V86V87Lamk signal_state_typeV88V89V90V91Lamk segment_state_typeV93V94V95Lamk segment_state_typeV97V98V99Lamk segment_state_typeV104V105V106Lamk signal_state_typeV107V108V109V110Lamk segment_state_typeV115V116V117Lamk signal_state_typeV118V119V120V121Lamk segment_state_typeV123V124V125Lamk segment_state_typeV127V128V129Lamk segment_state_typeV134V135V136Lamk signal_state_typeV137V138V139V140F">
+        <label
+         name="W:diverges:N"/>
+        <label
+         name="expl:VC for def"/>
+        <label
+         name="GP_Subp:railway.ads:67"/>
+        <label
+         name="GP_Pretty_Ada:Railway.Open_Route"/>
+       </goal>
+      </transf>
+     </goal>
+     <goal
+      name="WP_parameter def.4"
+      locfile="../railway.mlw"
+      loclnum="1550" loccnumb="5" loccnume="8"
+      expl="4."
+      sum="187ba69afd810c83bb2a532ebdffa0e5"
+      proved="false"
+      expanded="false"
+      shape="ainfix =acorrect_segmentsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueAainfix =acorrect_signalsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueIainfix =ato_intV54c2Aainfix =V0V55Aainfix =V1V56Aainfix =V54V57Aainfix =V162amk segment_state_typeV55V56V57Aainfix =V126aof_intc1Aainfix =V3V137Aainfix =V4V138Aainfix =V5V139Aainfix =V6V140Aainfix =V159V171Aainfix =ato_intV2c0Aainfix =ato_intaroutec5Aainfix =V122V126Aainfix =V163V159Aainfix =V164V162ANainfix =ato_intV1c5Aainfix =ato_intV2c0Aainfix =ato_intaroutec2Aainfix =V111V122Aainfix =V165V163Aainfix =V166V164ANainfix =ato_intV0c5Aainfix =ato_intV1c0Aainfix =ato_intaroutec3Aainfix =V100V111Aainfix =V167V166ANainfix =ato_intV0c5Aainfix =ato_intaroutec4Aainfix =V96V100Aainfix =V168V167ANainfix =ato_intV0c0Aainfix =ato_intaroutec7Aainfix =V92V96Aainfix =V169V165Aainfix =V170V168ANainfix =ato_intV1c5Aainfix =ato_intV0c0Aainfix =ato_intaroutec0Aainfix =V150V92Aainfix =V146V88Aainfix =V147V89Aainfix =V148V90Aainfix =V149V91Aainfix =V143V85Aainfix =V144V86Aainfix =V145V87Aainfix =V158V92Aainfix =V154V88Aainfix =V155V89Aainfix =V156V90Aainfix =V157V91Aainfix =V151V85Aainfix =V152V86Aainfix =V153V87Lamk signal_state_typeV78V79V80V81Lamk segment_state_typeV85V86V87Lamk signal_state_typeV88V89V90V91Lamk segment_state_typeV93V94V95Lamk segment_state_typeV97V98V99Lamk segment_state_typeV104V105V106Lamk signal_state_typeV107V108V109V110Lamk segment_state_typeV115V116V117Lamk signal_state_typeV118V119V120V121Lamk segment_state_typeV123V124V125Lamk segment_state_typeV127V128V129Lamk segment_state_typeV134V135V136Lamk signal_state_typeV137V138V139V140F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="expl:VC for def"/>
+      <label
+       name="GP_Subp:railway.ads:67"/>
+      <label
+       name="GP_Pretty_Ada:Railway.Open_Route"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="timeout" time="1.00"/>
+      </proof>
+      <transf
+       name="split_conj"
+       proved="false"
+       expanded="true">
+       <goal
+        name="WP_parameter def.4.1"
+        locfile="../railway.mlw"
+        loclnum="1550" loccnumb="5" loccnume="8"
+        expl="1."
+        sum="62f14ac2479176cc4e9b5d0920503bda"
+        proved="false"
+        expanded="false"
+        shape="ainfix =acorrect_signalsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueIainfix =ato_intV54c2Aainfix =V0V55Aainfix =V1V56Aainfix =V54V57Aainfix =V162amk segment_state_typeV55V56V57Aainfix =V126aof_intc1Aainfix =V3V137Aainfix =V4V138Aainfix =V5V139Aainfix =V6V140Aainfix =V159V171Aainfix =ato_intV2c0Aainfix =ato_intaroutec5Aainfix =V122V126Aainfix =V163V159Aainfix =V164V162ANainfix =ato_intV1c5Aainfix =ato_intV2c0Aainfix =ato_intaroutec2Aainfix =V111V122Aainfix =V165V163Aainfix =V166V164ANainfix =ato_intV0c5Aainfix =ato_intV1c0Aainfix =ato_intaroutec3Aainfix =V100V111Aainfix =V167V166ANainfix =ato_intV0c5Aainfix =ato_intaroutec4Aainfix =V96V100Aainfix =V168V167ANainfix =ato_intV0c0Aainfix =ato_intaroutec7Aainfix =V92V96Aainfix =V169V165Aainfix =V170V168ANainfix =ato_intV1c5Aainfix =ato_intV0c0Aainfix =ato_intaroutec0Aainfix =V150V92Aainfix =V146V88Aainfix =V147V89Aainfix =V148V90Aainfix =V149V91Aainfix =V143V85Aainfix =V144V86Aainfix =V145V87Aainfix =V158V92Aainfix =V154V88Aainfix =V155V89Aainfix =V156V90Aainfix =V157V91Aainfix =V151V85Aainfix =V152V86Aainfix =V153V87Lamk signal_state_typeV78V79V80V81Lamk segment_state_typeV85V86V87Lamk signal_state_typeV88V89V90V91Lamk segment_state_typeV93V94V95Lamk segment_state_typeV97V98V99Lamk segment_state_typeV104V105V106Lamk signal_state_typeV107V108V109V110Lamk segment_state_typeV115V116V117Lamk signal_state_typeV118V119V120V121Lamk segment_state_typeV123V124V125Lamk segment_state_typeV127V128V129Lamk segment_state_typeV134V135V136Lamk signal_state_typeV137V138V139V140F">
+        <label
+         name="W:diverges:N"/>
+        <label
+         name="expl:VC for def"/>
+        <label
+         name="GP_Subp:railway.ads:67"/>
+        <label
+         name="GP_Pretty_Ada:Railway.Open_Route"/>
+       </goal>
+       <goal
+        name="WP_parameter def.4.2"
+        locfile="../railway.mlw"
+        loclnum="1550" loccnumb="5" loccnume="8"
+        expl="2."
+        sum="921801d36db34714920c99a18fb956e9"
+        proved="false"
+        expanded="false"
+        shape="ainfix =acorrect_segmentsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueIainfix =ato_intV54c2Aainfix =V0V55Aainfix =V1V56Aainfix =V54V57Aainfix =V162amk segment_state_typeV55V56V57Aainfix =V126aof_intc1Aainfix =V3V137Aainfix =V4V138Aainfix =V5V139Aainfix =V6V140Aainfix =V159V171Aainfix =ato_intV2c0Aainfix =ato_intaroutec5Aainfix =V122V126Aainfix =V163V159Aainfix =V164V162ANainfix =ato_intV1c5Aainfix =ato_intV2c0Aainfix =ato_intaroutec2Aainfix =V111V122Aainfix =V165V163Aainfix =V166V164ANainfix =ato_intV0c5Aainfix =ato_intV1c0Aainfix =ato_intaroutec3Aainfix =V100V111Aainfix =V167V166ANainfix =ato_intV0c5Aainfix =ato_intaroutec4Aainfix =V96V100Aainfix =V168V167ANainfix =ato_intV0c0Aainfix =ato_intaroutec7Aainfix =V92V96Aainfix =V169V165Aainfix =V170V168ANainfix =ato_intV1c5Aainfix =ato_intV0c0Aainfix =ato_intaroutec0Aainfix =V150V92Aainfix =V146V88Aainfix =V147V89Aainfix =V148V90Aainfix =V149V91Aainfix =V143V85Aainfix =V144V86Aainfix =V145V87Aainfix =V158V92Aainfix =V154V88Aainfix =V155V89Aainfix =V156V90Aainfix =V157V91Aainfix =V151V85Aainfix =V152V86Aainfix =V153V87Lamk signal_state_typeV78V79V80V81Lamk segment_state_typeV85V86V87Lamk signal_state_typeV88V89V90V91Lamk segment_state_typeV93V94V95Lamk segment_state_typeV97V98V99Lamk segment_state_typeV104V105V106Lamk signal_state_typeV107V108V109V110Lamk segment_state_typeV115V116V117Lamk signal_state_typeV118V119V120V121Lamk segment_state_typeV123V124V125Lamk segment_state_typeV127V128V129Lamk segment_state_typeV134V135V136Lamk signal_state_typeV137V138V139V140F">
+        <label
+         name="W:diverges:N"/>
+        <label
+         name="expl:VC for def"/>
+        <label
+         name="GP_Subp:railway.ads:67"/>
+        <label
+         name="GP_Pretty_Ada:Railway.Open_Route"/>
+       </goal>
+      </transf>
+     </goal>
+     <goal
+      name="WP_parameter def.5"
+      locfile="../railway.mlw"
+      loclnum="1550" loccnumb="5" loccnume="8"
+      expl="5."
+      sum="e7480d15d6020f3db2d8af33c4990e51"
+      proved="false"
+      expanded="false"
+      shape="ainfix =acorrect_segmentsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueAainfix =acorrect_signalsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueIainfix =ato_intV41c1Aainfix =V0V42Aainfix =V1V43Aainfix =V41V44Aainfix =amk segment_state_typeV112V113V114amk segment_state_typeV42V43V44Aainfix =ato_intV45c4Aainfix =V112V46Aainfix =V45V47Aainfix =V114V48Aainfix =V164amk segment_state_typeV46V47V48Aainfix =ato_intV49c1Aainfix =V3V50Aainfix =V4V51Aainfix =V5V52Aainfix =V49V53Aainfix =V163amk signal_state_typeV50V51V52V53Aainfix =V122aof_intc1Aainfix =ato_intV1c5Aainfix =ato_intV2c0Aainfix =ato_intaroutec2Aainfix =V111V122Aainfix =V165V163Aainfix =V166V164ANainfix =ato_intV0c5Aainfix =ato_intV1c0Aainfix =ato_intaroutec3Aainfix =V100V111Aainfix =V167V166ANainfix =ato_intV0c5Aainfix =ato_intaroutec4Aainfix =V96V100Aainfix =V168V167ANainfix =ato_intV0c0Aainfix =ato_intaroutec7Aainfix =V92V96Aainfix =V169V165Aainfix =V170V168ANainfix =ato_intV1c5Aainfix =ato_intV0c0Aainfix =ato_intaroutec0Aainfix =V150V92Aainfix =V146V88Aainfix =V147V89Aainfix =V148V90Aainfix =V149V91Aainfix =V143V85Aainfix =V144V86Aainfix =V145V87Aainfix =V158V92Aainfix =V154V88Aainfix =V155V89Aainfix =V156V90Aainfix =V157V91Aainfix =V151V85Aainfix =V152V86Aainfix =V153V87Lamk signal_state_typeV78V79V80V81Lamk segment_state_typeV85V86V87Lamk signal_state_typeV88V89V90V91Lamk segment_state_typeV93V94V95Lamk segment_state_typeV97V98V99Lamk segment_state_typeV104V105V106Lamk signal_state_typeV107V108V109V110Lamk segment_state_typeV115V116V117Lamk signal_state_typeV118V119V120V121Lamk segment_state_typeV123V124V125Lamk segment_state_typeV127V128V129Lamk segment_state_typeV134V135V136Lamk signal_state_typeV137V138V139V140F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="expl:VC for def"/>
+      <label
+       name="GP_Subp:railway.ads:67"/>
+      <label
+       name="GP_Pretty_Ada:Railway.Open_Route"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="timeout" time="0.99"/>
+      </proof>
+      <transf
+       name="split_conj"
+       proved="false"
+       expanded="true">
+       <goal
+        name="WP_parameter def.5.1"
+        locfile="../railway.mlw"
+        loclnum="1550" loccnumb="5" loccnume="8"
+        expl="1."
+        sum="eb61da37e7a094a8235fb194bd0c2445"
+        proved="false"
+        expanded="false"
+        shape="ainfix =acorrect_signalsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueIainfix =ato_intV41c1Aainfix =V0V42Aainfix =V1V43Aainfix =V41V44Aainfix =amk segment_state_typeV112V113V114amk segment_state_typeV42V43V44Aainfix =ato_intV45c4Aainfix =V112V46Aainfix =V45V47Aainfix =V114V48Aainfix =V164amk segment_state_typeV46V47V48Aainfix =ato_intV49c1Aainfix =V3V50Aainfix =V4V51Aainfix =V5V52Aainfix =V49V53Aainfix =V163amk signal_state_typeV50V51V52V53Aainfix =V122aof_intc1Aainfix =ato_intV1c5Aainfix =ato_intV2c0Aainfix =ato_intaroutec2Aainfix =V111V122Aainfix =V165V163Aainfix =V166V164ANainfix =ato_intV0c5Aainfix =ato_intV1c0Aainfix =ato_intaroutec3Aainfix =V100V111Aainfix =V167V166ANainfix =ato_intV0c5Aainfix =ato_intaroutec4Aainfix =V96V100Aainfix =V168V167ANainfix =ato_intV0c0Aainfix =ato_intaroutec7Aainfix =V92V96Aainfix =V169V165Aainfix =V170V168ANainfix =ato_intV1c5Aainfix =ato_intV0c0Aainfix =ato_intaroutec0Aainfix =V150V92Aainfix =V146V88Aainfix =V147V89Aainfix =V148V90Aainfix =V149V91Aainfix =V143V85Aainfix =V144V86Aainfix =V145V87Aainfix =V158V92Aainfix =V154V88Aainfix =V155V89Aainfix =V156V90Aainfix =V157V91Aainfix =V151V85Aainfix =V152V86Aainfix =V153V87Lamk signal_state_typeV78V79V80V81Lamk segment_state_typeV85V86V87Lamk signal_state_typeV88V89V90V91Lamk segment_state_typeV93V94V95Lamk segment_state_typeV97V98V99Lamk segment_state_typeV104V105V106Lamk signal_state_typeV107V108V109V110Lamk segment_state_typeV115V116V117Lamk signal_state_typeV118V119V120V121Lamk segment_state_typeV123V124V125Lamk segment_state_typeV127V128V129Lamk segment_state_typeV134V135V136Lamk signal_state_typeV137V138V139V140F">
+        <label
+         name="W:diverges:N"/>
+        <label
+         name="expl:VC for def"/>
+        <label
+         name="GP_Subp:railway.ads:67"/>
+        <label
+         name="GP_Pretty_Ada:Railway.Open_Route"/>
+       </goal>
+       <goal
+        name="WP_parameter def.5.2"
+        locfile="../railway.mlw"
+        loclnum="1550" loccnumb="5" loccnume="8"
+        expl="2."
+        sum="77550f2dd0bbce49fc79491cbe23719e"
+        proved="false"
+        expanded="false"
+        shape="ainfix =acorrect_segmentsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueIainfix =ato_intV41c1Aainfix =V0V42Aainfix =V1V43Aainfix =V41V44Aainfix =amk segment_state_typeV112V113V114amk segment_state_typeV42V43V44Aainfix =ato_intV45c4Aainfix =V112V46Aainfix =V45V47Aainfix =V114V48Aainfix =V164amk segment_state_typeV46V47V48Aainfix =ato_intV49c1Aainfix =V3V50Aainfix =V4V51Aainfix =V5V52Aainfix =V49V53Aainfix =V163amk signal_state_typeV50V51V52V53Aainfix =V122aof_intc1Aainfix =ato_intV1c5Aainfix =ato_intV2c0Aainfix =ato_intaroutec2Aainfix =V111V122Aainfix =V165V163Aainfix =V166V164ANainfix =ato_intV0c5Aainfix =ato_intV1c0Aainfix =ato_intaroutec3Aainfix =V100V111Aainfix =V167V166ANainfix =ato_intV0c5Aainfix =ato_intaroutec4Aainfix =V96V100Aainfix =V168V167ANainfix =ato_intV0c0Aainfix =ato_intaroutec7Aainfix =V92V96Aainfix =V169V165Aainfix =V170V168ANainfix =ato_intV1c5Aainfix =ato_intV0c0Aainfix =ato_intaroutec0Aainfix =V150V92Aainfix =V146V88Aainfix =V147V89Aainfix =V148V90Aainfix =V149V91Aainfix =V143V85Aainfix =V144V86Aainfix =V145V87Aainfix =V158V92Aainfix =V154V88Aainfix =V155V89Aainfix =V156V90Aainfix =V157V91Aainfix =V151V85Aainfix =V152V86Aainfix =V153V87Lamk signal_state_typeV78V79V80V81Lamk segment_state_typeV85V86V87Lamk signal_state_typeV88V89V90V91Lamk segment_state_typeV93V94V95Lamk segment_state_typeV97V98V99Lamk segment_state_typeV104V105V106Lamk signal_state_typeV107V108V109V110Lamk segment_state_typeV115V116V117Lamk signal_state_typeV118V119V120V121Lamk segment_state_typeV123V124V125Lamk segment_state_typeV127V128V129Lamk segment_state_typeV134V135V136Lamk signal_state_typeV137V138V139V140F">
+        <label
+         name="W:diverges:N"/>
+        <label
+         name="expl:VC for def"/>
+        <label
+         name="GP_Subp:railway.ads:67"/>
+        <label
+         name="GP_Pretty_Ada:Railway.Open_Route"/>
+       </goal>
+      </transf>
+     </goal>
+     <goal
+      name="WP_parameter def.6"
+      locfile="../railway.mlw"
+      loclnum="1550" loccnumb="5" loccnume="8"
+      expl="6."
+      sum="74991a8b21d27015074e71a51668e89e"
+      proved="false"
+      expanded="false"
+      shape="ainfix =acorrect_segmentsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueAainfix =acorrect_signalsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueIainfix =ato_intV28c1Aainfix =V0V29Aainfix =V28V30Aainfix =V2V31Aainfix =amk segment_state_typeV101V102V103amk segment_state_typeV29V30V31Aainfix =ato_intV32c4Aainfix =V32V33Aainfix =V102V34Aainfix =V103V35Aainfix =V166amk segment_state_typeV33V34V35Aainfix =ato_intV36c1Aainfix =V3V37Aainfix =V36V38Aainfix =V5V39Aainfix =V6V40Aainfix =V165amk signal_state_typeV37V38V39V40Aainfix =V111aof_intc1Aainfix =ato_intV0c5Aainfix =ato_intV1c0Aainfix =ato_intaroutec3Aainfix =V100V111Aainfix =V167V166ANainfix =ato_intV0c5Aainfix =ato_intaroutec4Aainfix =V96V100Aainfix =V168V167ANainfix =ato_intV0c0Aainfix =ato_intaroutec7Aainfix =V92V96Aainfix =V169V165Aainfix =V170V168ANainfix =ato_intV1c5Aainfix =ato_intV0c0Aainfix =ato_intaroutec0Aainfix =V150V92Aainfix =V146V88Aainfix =V147V89Aainfix =V148V90Aainfix =V149V91Aainfix =V143V85Aainfix =V144V86Aainfix =V145V87Aainfix =V158V92Aainfix =V154V88Aainfix =V155V89Aainfix =V156V90Aainfix =V157V91Aainfix =V151V85Aainfix =V152V86Aainfix =V153V87Lamk signal_state_typeV78V79V80V81Lamk segment_state_typeV85V86V87Lamk signal_state_typeV88V89V90V91Lamk segment_state_typeV93V94V95Lamk segment_state_typeV97V98V99Lamk segment_state_typeV104V105V106Lamk signal_state_typeV107V108V109V110Lamk segment_state_typeV115V116V117Lamk signal_state_typeV118V119V120V121Lamk segment_state_typeV123V124V125Lamk segment_state_typeV127V128V129Lamk segment_state_typeV134V135V136Lamk signal_state_typeV137V138V139V140F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="expl:VC for def"/>
+      <label
+       name="GP_Subp:railway.ads:67"/>
+      <label
+       name="GP_Pretty_Ada:Railway.Open_Route"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="timeout" time="0.99"/>
+      </proof>
+      <transf
+       name="split_conj"
+       proved="false"
+       expanded="true">
+       <goal
+        name="WP_parameter def.6.1"
+        locfile="../railway.mlw"
+        loclnum="1550" loccnumb="5" loccnume="8"
+        expl="1."
+        sum="0593121d97b5f492861ebfaf9827c418"
+        proved="false"
+        expanded="false"
+        shape="ainfix =acorrect_signalsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueIainfix =ato_intV28c1Aainfix =V0V29Aainfix =V28V30Aainfix =V2V31Aainfix =amk segment_state_typeV101V102V103amk segment_state_typeV29V30V31Aainfix =ato_intV32c4Aainfix =V32V33Aainfix =V102V34Aainfix =V103V35Aainfix =V166amk segment_state_typeV33V34V35Aainfix =ato_intV36c1Aainfix =V3V37Aainfix =V36V38Aainfix =V5V39Aainfix =V6V40Aainfix =V165amk signal_state_typeV37V38V39V40Aainfix =V111aof_intc1Aainfix =ato_intV0c5Aainfix =ato_intV1c0Aainfix =ato_intaroutec3Aainfix =V100V111Aainfix =V167V166ANainfix =ato_intV0c5Aainfix =ato_intaroutec4Aainfix =V96V100Aainfix =V168V167ANainfix =ato_intV0c0Aainfix =ato_intaroutec7Aainfix =V92V96Aainfix =V169V165Aainfix =V170V168ANainfix =ato_intV1c5Aainfix =ato_intV0c0Aainfix =ato_intaroutec0Aainfix =V150V92Aainfix =V146V88Aainfix =V147V89Aainfix =V148V90Aainfix =V149V91Aainfix =V143V85Aainfix =V144V86Aainfix =V145V87Aainfix =V158V92Aainfix =V154V88Aainfix =V155V89Aainfix =V156V90Aainfix =V157V91Aainfix =V151V85Aainfix =V152V86Aainfix =V153V87Lamk signal_state_typeV78V79V80V81Lamk segment_state_typeV85V86V87Lamk signal_state_typeV88V89V90V91Lamk segment_state_typeV93V94V95Lamk segment_state_typeV97V98V99Lamk segment_state_typeV104V105V106Lamk signal_state_typeV107V108V109V110Lamk segment_state_typeV115V116V117Lamk signal_state_typeV118V119V120V121Lamk segment_state_typeV123V124V125Lamk segment_state_typeV127V128V129Lamk segment_state_typeV134V135V136Lamk signal_state_typeV137V138V139V140F">
+        <label
+         name="W:diverges:N"/>
+        <label
+         name="expl:VC for def"/>
+        <label
+         name="GP_Subp:railway.ads:67"/>
+        <label
+         name="GP_Pretty_Ada:Railway.Open_Route"/>
+       </goal>
+       <goal
+        name="WP_parameter def.6.2"
+        locfile="../railway.mlw"
+        loclnum="1550" loccnumb="5" loccnume="8"
+        expl="2."
+        sum="3935a9c7dd1f4b3cc2d33232263a9ece"
+        proved="false"
+        expanded="false"
+        shape="ainfix =acorrect_segmentsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueIainfix =ato_intV28c1Aainfix =V0V29Aainfix =V28V30Aainfix =V2V31Aainfix =amk segment_state_typeV101V102V103amk segment_state_typeV29V30V31Aainfix =ato_intV32c4Aainfix =V32V33Aainfix =V102V34Aainfix =V103V35Aainfix =V166amk segment_state_typeV33V34V35Aainfix =ato_intV36c1Aainfix =V3V37Aainfix =V36V38Aainfix =V5V39Aainfix =V6V40Aainfix =V165amk signal_state_typeV37V38V39V40Aainfix =V111aof_intc1Aainfix =ato_intV0c5Aainfix =ato_intV1c0Aainfix =ato_intaroutec3Aainfix =V100V111Aainfix =V167V166ANainfix =ato_intV0c5Aainfix =ato_intaroutec4Aainfix =V96V100Aainfix =V168V167ANainfix =ato_intV0c0Aainfix =ato_intaroutec7Aainfix =V92V96Aainfix =V169V165Aainfix =V170V168ANainfix =ato_intV1c5Aainfix =ato_intV0c0Aainfix =ato_intaroutec0Aainfix =V150V92Aainfix =V146V88Aainfix =V147V89Aainfix =V148V90Aainfix =V149V91Aainfix =V143V85Aainfix =V144V86Aainfix =V145V87Aainfix =V158V92Aainfix =V154V88Aainfix =V155V89Aainfix =V156V90Aainfix =V157V91Aainfix =V151V85Aainfix =V152V86Aainfix =V153V87Lamk signal_state_typeV78V79V80V81Lamk segment_state_typeV85V86V87Lamk signal_state_typeV88V89V90V91Lamk segment_state_typeV93V94V95Lamk segment_state_typeV97V98V99Lamk segment_state_typeV104V105V106Lamk signal_state_typeV107V108V109V110Lamk segment_state_typeV115V116V117Lamk signal_state_typeV118V119V120V121Lamk segment_state_typeV123V124V125Lamk segment_state_typeV127V128V129Lamk segment_state_typeV134V135V136Lamk signal_state_typeV137V138V139V140F">
+        <label
+         name="W:diverges:N"/>
+        <label
+         name="expl:VC for def"/>
+        <label
+         name="GP_Subp:railway.ads:67"/>
+        <label
+         name="GP_Pretty_Ada:Railway.Open_Route"/>
+       </goal>
+      </transf>
+     </goal>
+     <goal
+      name="WP_parameter def.7"
+      locfile="../railway.mlw"
+      loclnum="1550" loccnumb="5" loccnume="8"
+      expl="7."
+      sum="66f7ac181c83090a0e2d706f1610f433"
+      proved="false"
+      expanded="false"
+      shape="ainfix =acorrect_segmentsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueAainfix =acorrect_signalsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueIainfix =ato_intV24c3Aainfix =V24V25Aainfix =V1V26Aainfix =V2V27Aainfix =V167amk segment_state_typeV25V26V27Aainfix =V100aof_intc1Aainfix =V3V107Aainfix =V4V108Aainfix =V5V109Aainfix =V6V110Aainfix =V165V171Aainfix =ato_intV0c5Aainfix =ato_intaroutec4Aainfix =V96V100Aainfix =V168V167ANainfix =ato_intV0c0Aainfix =ato_intaroutec7Aainfix =V92V96Aainfix =V169V165Aainfix =V170V168ANainfix =ato_intV1c5Aainfix =ato_intV0c0Aainfix =ato_intaroutec0Aainfix =V150V92Aainfix =V146V88Aainfix =V147V89Aainfix =V148V90Aainfix =V149V91Aainfix =V143V85Aainfix =V144V86Aainfix =V145V87Aainfix =V158V92Aainfix =V154V88Aainfix =V155V89Aainfix =V156V90Aainfix =V157V91Aainfix =V151V85Aainfix =V152V86Aainfix =V153V87Lamk signal_state_typeV78V79V80V81Lamk segment_state_typeV85V86V87Lamk signal_state_typeV88V89V90V91Lamk segment_state_typeV93V94V95Lamk segment_state_typeV97V98V99Lamk segment_state_typeV104V105V106Lamk signal_state_typeV107V108V109V110Lamk segment_state_typeV115V116V117Lamk signal_state_typeV118V119V120V121Lamk segment_state_typeV123V124V125Lamk segment_state_typeV127V128V129Lamk segment_state_typeV134V135V136Lamk signal_state_typeV137V138V139V140F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="expl:VC for def"/>
+      <label
+       name="GP_Subp:railway.ads:67"/>
+      <label
+       name="GP_Pretty_Ada:Railway.Open_Route"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="timeout" time="0.98"/>
+      </proof>
+      <transf
+       name="split_conj"
+       proved="false"
+       expanded="true">
+       <goal
+        name="WP_parameter def.7.1"
+        locfile="../railway.mlw"
+        loclnum="1550" loccnumb="5" loccnume="8"
+        expl="1."
+        sum="3ccbf552f0559aa0390bf829bbc6f272"
+        proved="false"
+        expanded="false"
+        shape="ainfix =acorrect_signalsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueIainfix =ato_intV24c3Aainfix =V24V25Aainfix =V1V26Aainfix =V2V27Aainfix =V167amk segment_state_typeV25V26V27Aainfix =V100aof_intc1Aainfix =V3V107Aainfix =V4V108Aainfix =V5V109Aainfix =V6V110Aainfix =V165V171Aainfix =ato_intV0c5Aainfix =ato_intaroutec4Aainfix =V96V100Aainfix =V168V167ANainfix =ato_intV0c0Aainfix =ato_intaroutec7Aainfix =V92V96Aainfix =V169V165Aainfix =V170V168ANainfix =ato_intV1c5Aainfix =ato_intV0c0Aainfix =ato_intaroutec0Aainfix =V150V92Aainfix =V146V88Aainfix =V147V89Aainfix =V148V90Aainfix =V149V91Aainfix =V143V85Aainfix =V144V86Aainfix =V145V87Aainfix =V158V92Aainfix =V154V88Aainfix =V155V89Aainfix =V156V90Aainfix =V157V91Aainfix =V151V85Aainfix =V152V86Aainfix =V153V87Lamk signal_state_typeV78V79V80V81Lamk segment_state_typeV85V86V87Lamk signal_state_typeV88V89V90V91Lamk segment_state_typeV93V94V95Lamk segment_state_typeV97V98V99Lamk segment_state_typeV104V105V106Lamk signal_state_typeV107V108V109V110Lamk segment_state_typeV115V116V117Lamk signal_state_typeV118V119V120V121Lamk segment_state_typeV123V124V125Lamk segment_state_typeV127V128V129Lamk segment_state_typeV134V135V136Lamk signal_state_typeV137V138V139V140F">
+        <label
+         name="W:diverges:N"/>
+        <label
+         name="expl:VC for def"/>
+        <label
+         name="GP_Subp:railway.ads:67"/>
+        <label
+         name="GP_Pretty_Ada:Railway.Open_Route"/>
+       </goal>
+       <goal
+        name="WP_parameter def.7.2"
+        locfile="../railway.mlw"
+        loclnum="1550" loccnumb="5" loccnume="8"
+        expl="2."
+        sum="ac98c32a68670e393b517efa2da16577"
+        proved="false"
+        expanded="false"
+        shape="ainfix =acorrect_segmentsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueIainfix =ato_intV24c3Aainfix =V24V25Aainfix =V1V26Aainfix =V2V27Aainfix =V167amk segment_state_typeV25V26V27Aainfix =V100aof_intc1Aainfix =V3V107Aainfix =V4V108Aainfix =V5V109Aainfix =V6V110Aainfix =V165V171Aainfix =ato_intV0c5Aainfix =ato_intaroutec4Aainfix =V96V100Aainfix =V168V167ANainfix =ato_intV0c0Aainfix =ato_intaroutec7Aainfix =V92V96Aainfix =V169V165Aainfix =V170V168ANainfix =ato_intV1c5Aainfix =ato_intV0c0Aainfix =ato_intaroutec0Aainfix =V150V92Aainfix =V146V88Aainfix =V147V89Aainfix =V148V90Aainfix =V149V91Aainfix =V143V85Aainfix =V144V86Aainfix =V145V87Aainfix =V158V92Aainfix =V154V88Aainfix =V155V89Aainfix =V156V90Aainfix =V157V91Aainfix =V151V85Aainfix =V152V86Aainfix =V153V87Lamk signal_state_typeV78V79V80V81Lamk segment_state_typeV85V86V87Lamk signal_state_typeV88V89V90V91Lamk segment_state_typeV93V94V95Lamk segment_state_typeV97V98V99Lamk segment_state_typeV104V105V106Lamk signal_state_typeV107V108V109V110Lamk segment_state_typeV115V116V117Lamk signal_state_typeV118V119V120V121Lamk segment_state_typeV123V124V125Lamk segment_state_typeV127V128V129Lamk segment_state_typeV134V135V136Lamk signal_state_typeV137V138V139V140F">
+        <label
+         name="W:diverges:N"/>
+        <label
+         name="expl:VC for def"/>
+        <label
+         name="GP_Subp:railway.ads:67"/>
+        <label
+         name="GP_Pretty_Ada:Railway.Open_Route"/>
+       </goal>
+      </transf>
+     </goal>
+     <goal
+      name="WP_parameter def.8"
+      locfile="../railway.mlw"
+      loclnum="1550" loccnumb="5" loccnume="8"
+      expl="8."
+      sum="b8824055c8b52e31216558d9a8c01735"
+      proved="false"
+      expanded="false"
+      shape="ainfix =acorrect_segmentsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueAainfix =acorrect_signalsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueIainfix =ato_intV20c1Aainfix =V20V21Aainfix =V1V22Aainfix =V2V23Aainfix =V168amk segment_state_typeV21V22V23Aainfix =V96aof_intc1Aainfix =V3V107Aainfix =V4V108Aainfix =V5V109Aainfix =V6V110Aainfix =V165V171Aainfix =ato_intV0c0Aainfix =ato_intaroutec7Aainfix =V92V96Aainfix =V169V165Aainfix =V170V168ANainfix =ato_intV1c5Aainfix =ato_intV0c0Aainfix =ato_intaroutec0Aainfix =V150V92Aainfix =V146V88Aainfix =V147V89Aainfix =V148V90Aainfix =V149V91Aainfix =V143V85Aainfix =V144V86Aainfix =V145V87Aainfix =V158V92Aainfix =V154V88Aainfix =V155V89Aainfix =V156V90Aainfix =V157V91Aainfix =V151V85Aainfix =V152V86Aainfix =V153V87Lamk signal_state_typeV78V79V80V81Lamk segment_state_typeV85V86V87Lamk signal_state_typeV88V89V90V91Lamk segment_state_typeV93V94V95Lamk segment_state_typeV97V98V99Lamk segment_state_typeV104V105V106Lamk signal_state_typeV107V108V109V110Lamk segment_state_typeV115V116V117Lamk signal_state_typeV118V119V120V121Lamk segment_state_typeV123V124V125Lamk segment_state_typeV127V128V129Lamk segment_state_typeV134V135V136Lamk signal_state_typeV137V138V139V140F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="expl:VC for def"/>
+      <label
+       name="GP_Subp:railway.ads:67"/>
+      <label
+       name="GP_Pretty_Ada:Railway.Open_Route"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="timeout" time="0.99"/>
+      </proof>
+      <transf
+       name="split_conj"
+       proved="false"
+       expanded="true">
+       <goal
+        name="WP_parameter def.8.1"
+        locfile="../railway.mlw"
+        loclnum="1550" loccnumb="5" loccnume="8"
+        expl="1."
+        sum="c03c0272267e2a3260681cea1dfee003"
+        proved="false"
+        expanded="false"
+        shape="ainfix =acorrect_signalsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueIainfix =ato_intV20c1Aainfix =V20V21Aainfix =V1V22Aainfix =V2V23Aainfix =V168amk segment_state_typeV21V22V23Aainfix =V96aof_intc1Aainfix =V3V107Aainfix =V4V108Aainfix =V5V109Aainfix =V6V110Aainfix =V165V171Aainfix =ato_intV0c0Aainfix =ato_intaroutec7Aainfix =V92V96Aainfix =V169V165Aainfix =V170V168ANainfix =ato_intV1c5Aainfix =ato_intV0c0Aainfix =ato_intaroutec0Aainfix =V150V92Aainfix =V146V88Aainfix =V147V89Aainfix =V148V90Aainfix =V149V91Aainfix =V143V85Aainfix =V144V86Aainfix =V145V87Aainfix =V158V92Aainfix =V154V88Aainfix =V155V89Aainfix =V156V90Aainfix =V157V91Aainfix =V151V85Aainfix =V152V86Aainfix =V153V87Lamk signal_state_typeV78V79V80V81Lamk segment_state_typeV85V86V87Lamk signal_state_typeV88V89V90V91Lamk segment_state_typeV93V94V95Lamk segment_state_typeV97V98V99Lamk segment_state_typeV104V105V106Lamk signal_state_typeV107V108V109V110Lamk segment_state_typeV115V116V117Lamk signal_state_typeV118V119V120V121Lamk segment_state_typeV123V124V125Lamk segment_state_typeV127V128V129Lamk segment_state_typeV134V135V136Lamk signal_state_typeV137V138V139V140F">
+        <label
+         name="W:diverges:N"/>
+        <label
+         name="expl:VC for def"/>
+        <label
+         name="GP_Subp:railway.ads:67"/>
+        <label
+         name="GP_Pretty_Ada:Railway.Open_Route"/>
+       </goal>
+       <goal
+        name="WP_parameter def.8.2"
+        locfile="../railway.mlw"
+        loclnum="1550" loccnumb="5" loccnume="8"
+        expl="2."
+        sum="1a4607ae98332334658207a91e8043f1"
+        proved="false"
+        expanded="false"
+        shape="ainfix =acorrect_segmentsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueIainfix =ato_intV20c1Aainfix =V20V21Aainfix =V1V22Aainfix =V2V23Aainfix =V168amk segment_state_typeV21V22V23Aainfix =V96aof_intc1Aainfix =V3V107Aainfix =V4V108Aainfix =V5V109Aainfix =V6V110Aainfix =V165V171Aainfix =ato_intV0c0Aainfix =ato_intaroutec7Aainfix =V92V96Aainfix =V169V165Aainfix =V170V168ANainfix =ato_intV1c5Aainfix =ato_intV0c0Aainfix =ato_intaroutec0Aainfix =V150V92Aainfix =V146V88Aainfix =V147V89Aainfix =V148V90Aainfix =V149V91Aainfix =V143V85Aainfix =V144V86Aainfix =V145V87Aainfix =V158V92Aainfix =V154V88Aainfix =V155V89Aainfix =V156V90Aainfix =V157V91Aainfix =V151V85Aainfix =V152V86Aainfix =V153V87Lamk signal_state_typeV78V79V80V81Lamk segment_state_typeV85V86V87Lamk signal_state_typeV88V89V90V91Lamk segment_state_typeV93V94V95Lamk segment_state_typeV97V98V99Lamk segment_state_typeV104V105V106Lamk signal_state_typeV107V108V109V110Lamk segment_state_typeV115V116V117Lamk signal_state_typeV118V119V120V121Lamk segment_state_typeV123V124V125Lamk segment_state_typeV127V128V129Lamk segment_state_typeV134V135V136Lamk signal_state_typeV137V138V139V140F">
+        <label
+         name="W:diverges:N"/>
+        <label
+         name="expl:VC for def"/>
+        <label
+         name="GP_Subp:railway.ads:67"/>
+        <label
+         name="GP_Pretty_Ada:Railway.Open_Route"/>
+       </goal>
+      </transf>
+     </goal>
+     <goal
+      name="WP_parameter def.9"
+      locfile="../railway.mlw"
+      loclnum="1550" loccnumb="5" loccnume="8"
+      expl="9."
+      sum="8c3d035ae83eaf1ac89a53c1875f0fb2"
+      proved="false"
+      expanded="false"
+      shape="ainfix =acorrect_segmentsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueAainfix =acorrect_signalsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueIainfix =ato_intV7c2Aainfix =V7V8Aainfix =V1V9Aainfix =V2V10Aainfix =amk segment_state_typeV82V83V84amk segment_state_typeV8V9V10Aainfix =ato_intV11c3Aainfix =V82V12Aainfix =V11V13Aainfix =V84V14Aainfix =V170amk segment_state_typeV12V13V14Aainfix =ato_intV15c1Aainfix =V15V16Aainfix =V4V17Aainfix =V5V18Aainfix =V6V19Aainfix =V169amk signal_state_typeV16V17V18V19Aainfix =V92aof_intc1Aainfix =ato_intV1c5Aainfix =ato_intV0c0Aainfix =ato_intaroutec0Aainfix =V150V92Aainfix =V146V88Aainfix =V147V89Aainfix =V148V90Aainfix =V149V91Aainfix =V143V85Aainfix =V144V86Aainfix =V145V87Aainfix =V158V92Aainfix =V154V88Aainfix =V155V89Aainfix =V156V90Aainfix =V157V91Aainfix =V151V85Aainfix =V152V86Aainfix =V153V87Lamk signal_state_typeV78V79V80V81Lamk segment_state_typeV85V86V87Lamk signal_state_typeV88V89V90V91Lamk segment_state_typeV93V94V95Lamk segment_state_typeV97V98V99Lamk segment_state_typeV104V105V106Lamk signal_state_typeV107V108V109V110Lamk segment_state_typeV115V116V117Lamk signal_state_typeV118V119V120V121Lamk segment_state_typeV123V124V125Lamk segment_state_typeV127V128V129Lamk segment_state_typeV134V135V136Lamk signal_state_typeV137V138V139V140F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="expl:VC for def"/>
+      <label
+       name="GP_Subp:railway.ads:67"/>
+      <label
+       name="GP_Pretty_Ada:Railway.Open_Route"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="unknown" time="0.12"/>
+      </proof>
+      <transf
+       name="split_conj"
+       proved="false"
+       expanded="true">
+       <goal
+        name="WP_parameter def.9.1"
+        locfile="../railway.mlw"
+        loclnum="1550" loccnumb="5" loccnume="8"
+        expl="1."
+        sum="27f7daf4b1b596eba370c87e824afa5f"
+        proved="false"
+        expanded="false"
+        shape="ainfix =acorrect_signalsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueIainfix =ato_intV7c2Aainfix =V7V8Aainfix =V1V9Aainfix =V2V10Aainfix =amk segment_state_typeV82V83V84amk segment_state_typeV8V9V10Aainfix =ato_intV11c3Aainfix =V82V12Aainfix =V11V13Aainfix =V84V14Aainfix =V170amk segment_state_typeV12V13V14Aainfix =ato_intV15c1Aainfix =V15V16Aainfix =V4V17Aainfix =V5V18Aainfix =V6V19Aainfix =V169amk signal_state_typeV16V17V18V19Aainfix =V92aof_intc1Aainfix =ato_intV1c5Aainfix =ato_intV0c0Aainfix =ato_intaroutec0Aainfix =V150V92Aainfix =V146V88Aainfix =V147V89Aainfix =V148V90Aainfix =V149V91Aainfix =V143V85Aainfix =V144V86Aainfix =V145V87Aainfix =V158V92Aainfix =V154V88Aainfix =V155V89Aainfix =V156V90Aainfix =V157V91Aainfix =V151V85Aainfix =V152V86Aainfix =V153V87Lamk signal_state_typeV78V79V80V81Lamk segment_state_typeV85V86V87Lamk signal_state_typeV88V89V90V91Lamk segment_state_typeV93V94V95Lamk segment_state_typeV97V98V99Lamk segment_state_typeV104V105V106Lamk signal_state_typeV107V108V109V110Lamk segment_state_typeV115V116V117Lamk signal_state_typeV118V119V120V121Lamk segment_state_typeV123V124V125Lamk segment_state_typeV127V128V129Lamk segment_state_typeV134V135V136Lamk signal_state_typeV137V138V139V140F">
+        <label
+         name="W:diverges:N"/>
+        <label
+         name="expl:VC for def"/>
+        <label
+         name="GP_Subp:railway.ads:67"/>
+        <label
+         name="GP_Pretty_Ada:Railway.Open_Route"/>
+       </goal>
+       <goal
+        name="WP_parameter def.9.2"
+        locfile="../railway.mlw"
+        loclnum="1550" loccnumb="5" loccnume="8"
+        expl="2."
+        sum="05b59b111ce9bf80fcc31ae9ec7dccb7"
+        proved="false"
+        expanded="false"
+        shape="ainfix =acorrect_segmentsamk segment_state_typeV143V144V145amk signal_state_typeV146V147V148V149aTrueIainfix =ato_intV7c2Aainfix =V7V8Aainfix =V1V9Aainfix =V2V10Aainfix =amk segment_state_typeV82V83V84amk segment_state_typeV8V9V10Aainfix =ato_intV11c3Aainfix =V82V12Aainfix =V11V13Aainfix =V84V14Aainfix =V170amk segment_state_typeV12V13V14Aainfix =ato_intV15c1Aainfix =V15V16Aainfix =V4V17Aainfix =V5V18Aainfix =V6V19Aainfix =V169amk signal_state_typeV16V17V18V19Aainfix =V92aof_intc1Aainfix =ato_intV1c5Aainfix =ato_intV0c0Aainfix =ato_intaroutec0Aainfix =V150V92Aainfix =V146V88Aainfix =V147V89Aainfix =V148V90Aainfix =V149V91Aainfix =V143V85Aainfix =V144V86Aainfix =V145V87Aainfix =V158V92Aainfix =V154V88Aainfix =V155V89Aainfix =V156V90Aainfix =V157V91Aainfix =V151V85Aainfix =V152V86Aainfix =V153V87Lamk signal_state_typeV78V79V80V81Lamk segment_state_typeV85V86V87Lamk signal_state_typeV88V89V90V91Lamk segment_state_typeV93V94V95Lamk segment_state_typeV97V98V99Lamk segment_state_typeV104V105V106Lamk signal_state_typeV107V108V109V110Lamk segment_state_typeV115V116V117Lamk signal_state_typeV118V119V120V121Lamk segment_state_typeV123V124V125Lamk segment_state_typeV127V128V129Lamk segment_state_typeV134V135V136Lamk signal_state_typeV137V138V139V140F">
+        <label
+         name="W:diverges:N"/>
+        <label
+         name="expl:VC for def"/>
+        <label
+         name="GP_Subp:railway.ads:67"/>
+        <label
+         name="GP_Pretty_Ada:Railway.Open_Route"/>
+       </goal>
+      </transf>
+     </goal>
+    </transf>
+   </goal>
+  </theory>
+  <theory
+   name="Railway__move_train__subprogram_def"
+   locfile="../railway.mlw"
+   loclnum="1619" loccnumb="7" loccnume="42"
+   verified="false"
+   expanded="true">
+   <goal
+    name="WP_parameter def"
+    locfile="../railway.mlw"
+    loclnum="1652" loccnumb="5" loccnume="8"
+    expl="VC for def"
+    sum="fcea0fc3c82de92b14df6487da0b809b"
+    proved="false"
+    expanded="true"
+    shape="ainfix =acorrect_segmentsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueAainfix =acorrect_signalsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueIainfix =V162V96Aainfix =V161V95Aainfix =V160V94Aainfix =V166V90Aainfix =V165V89Aainfix =V164V88Aainfix =V163V87Aainfix =V167V97Aainfix =V154V96Aainfix =V153V95Aainfix =V152V94Aainfix =V158V90Aainfix =V157V89Aainfix =V156V88Aainfix =V155V87Aainfix =V159V97Aiainfix =V179V177Aainfix =V180V178Aainfix =V97V108Aiainfix =V177V176Aainfix =V178V174Aainfix =V108V112Aiainfix =V176V175Aainfix =V112V116Aiainfix =V175V173Aainfix =V116V127Aiainfix =V173V171Aainfix =V174V172Aainfix =V127V138Aiainfix =V171V170Aainfix =V172V168Aainfix =V138V142Aiainfix =V170V169Aainfix =V142V150Aiainfix =V82V145Aainfix =V81V144Aainfix =V80V143Aainfix =V168V181Aainfix =V150V151Aainfix =V2V145Aainfix =V1V144Aainfix =V0V143Aainfix =V6V149Aainfix =V5V148Aainfix =V4V147Aainfix =V3V146Aainfix =V150V151Aainfix =V151aof_intc0ainfix =V150aof_intc1Aainfix =V168amk signal_state_typeV76V77V78V79Aainfix =V6V79Aainfix =V75V78Aainfix =V4V77Aainfix =V3V76Aainfix =ato_intV75c0Aainfix =V169amk segment_state_typeV72V73V74Aainfix =V71V74Aainfix =V1V73Aainfix =V0V72Aainfix =ato_intV71c0ainfix =ato_intV2c4Aainfix =ato_intaroutec6ainfix =V168V181Aainfix =V6V149Aainfix =V5V148Aainfix =V4V147Aainfix =V3V146Aainfix =V142aof_intc1Aainfix =V170amk segment_state_typeV68V69V70Aainfix =V67V70Aainfix =V1V69Aainfix =V0V68Aainfix =ato_intV67c5ainfix =ato_intV2c2Aainfix =ato_intaroutec5ainfix =V138aof_intc1Aainfix =V171amk segment_state_typeV64V65V66Aainfix =V63V66Aainfix =V133V65Aainfix =V132V64Aainfix =ato_intV63c0Aainfix =amk segment_state_typeV132V133V134amk segment_state_typeV60V61V62Aainfix =V2V62Aainfix =V59V61Aainfix =V0V60Aainfix =ato_intV59c5Aainfix =V172amk signal_state_typeV55V56V57V58Aainfix =V6V58Aainfix =V54V57Aainfix =V4V56Aainfix =V3V55Aainfix =ato_intV54c0ainfix =ato_intV2c3Aainfix =ato_intV1c2Aainfix =ato_intaroutec1ainfix =V127aof_intc1Aainfix =V173amk segment_state_typeV51V52V53Aainfix =V123V53Aainfix =V50V52Aainfix =V121V51Aainfix =ato_intV50c0Aainfix =amk segment_state_typeV121V122V123amk segment_state_typeV47V48V49Aainfix =V46V49Aainfix =V1V48Aainfix =V0V47Aainfix =ato_intV46c5Aainfix =V174amk signal_state_typeV42V43V44V45Aainfix =V41V45Aainfix =V5V44Aainfix =V4V43Aainfix =V3V42Aainfix =ato_intV41c0ainfix =ato_intV1c4Aainfix =ato_intV2c1Aainfix =ato_intaroutec2ainfix =V174V181Aainfix =V6V120Aainfix =V5V119Aainfix =V4V118Aainfix =V3V117Aainfix =V116aof_intc1Aainfix =V175amk segment_state_typeV38V39V40Aainfix =V2V40Aainfix =V1V39Aainfix =V37V38Aainfix =ato_intV37c0ainfix =ato_intV0c3Aainfix =ato_intaroutec4ainfix =V174V181Aainfix =V6V120Aainfix =V5V119Aainfix =V4V118Aainfix =V3V117Aainfix =V112aof_intc1Aainfix =V176amk segment_state_typeV34V35V36Aainfix =V2V36Aainfix =V1V35Aainfix =V33V34Aainfix =ato_intV33c5ainfix =ato_intV0c1Aainfix =ato_intaroutec7ainfix =V108aof_intc1Aainfix =V177amk segment_state_typeV30V31V32Aainfix =V104V32Aainfix =V103V31Aainfix =V29V30Aainfix =ato_intV29c0Aainfix =amk segment_state_typeV102V103V104amk segment_state_typeV26V27V28Aainfix =V2V28Aainfix =V25V27Aainfix =V0V26Aainfix =ato_intV25c5Aainfix =V178amk signal_state_typeV21V22V23V24Aainfix =V6V24Aainfix =V5V23Aainfix =V20V22Aainfix =V3V21Aainfix =ato_intV20c0ainfix =ato_intV0c4Aainfix =ato_intV1c1Aainfix =ato_intaroutec3ainfix =V97aof_intc1Aainfix =V179amk segment_state_typeV17V18V19Aainfix =V93V19Aainfix =V16V18Aainfix =V91V17Aainfix =ato_intV16c0Aainfix =amk segment_state_typeV91V92V93amk segment_state_typeV13V14V15Aainfix =V2V15Aainfix =V1V14Aainfix =V12V13Aainfix =ato_intV12c5Aainfix =V180amk signal_state_typeV8V9V10V11Aainfix =V6V11Aainfix =V5V10Aainfix =V4V9Aainfix =V7V8Aainfix =ato_intV7c0ainfix =ato_intV1c3Aainfix =ato_intV0c2Aainfix =ato_intaroutec0Lamk signal_state_typeV83V84V85V86Lamk signal_state_typeV87V88V89V90Lamk segment_state_typeV94V95V96Lamk signal_state_typeV98V99V100V101Lamk segment_state_typeV105V106V107Lamk segment_state_typeV109V110V111Lamk segment_state_typeV113V114V115Lamk signal_state_typeV117V118V119V120Lamk segment_state_typeV124V125V126Lamk signal_state_typeV128V129V130V131Lamk segment_state_typeV135V136V137Lamk segment_state_typeV139V140V141Lamk segment_state_typeV143V144V145Lamk signal_state_typeV146V147V148V149F">
+    <label
+     name="W:diverges:N"/>
+    <label
+     name="expl:VC for def"/>
+    <label
+     name="GP_Subp:railway.ads:74"/>
+    <label
+     name="GP_Pretty_Ada:Railway.Move_Train"/>
+    <transf
+     name="path_split"
+     proved="false"
+     expanded="true">
+     <goal
+      name="WP_parameter def.1"
+      locfile="../railway.mlw"
+      loclnum="1652" loccnumb="5" loccnume="8"
+      expl="1."
+      sum="41a6e4757ea79034d21af2a795c1846d"
+      proved="false"
+      expanded="false"
+      shape="ainfix =acorrect_segmentsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueAainfix =acorrect_signalsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueIainfix =V151aof_intc0Aainfix =V150V151Aainfix =V3V146Aainfix =V4V147Aainfix =V5V148Aainfix =V6V149Aainfix =V0V143Aainfix =V1V144Aainfix =V2V145Aainfix =V150V151Aainfix =V168V181Aainfix =V80V143Aainfix =V81V144Aainfix =V82V145ANainfix =ato_intV2c4Aainfix =ato_intaroutec6Aainfix =V142V150Aainfix =V170V169ANainfix =ato_intV2c2Aainfix =ato_intaroutec5Aainfix =V138V142Aainfix =V172V168Aainfix =V171V170ANainfix =ato_intV2c3Aainfix =ato_intV1c2Aainfix =ato_intaroutec1Aainfix =V127V138Aainfix =V174V172Aainfix =V173V171ANainfix =ato_intV1c4Aainfix =ato_intV2c1Aainfix =ato_intaroutec2Aainfix =V116V127Aainfix =V175V173ANainfix =ato_intV0c3Aainfix =ato_intaroutec4Aainfix =V112V116Aainfix =V176V175ANainfix =ato_intV0c1Aainfix =ato_intaroutec7Aainfix =V108V112Aainfix =V178V174Aainfix =V177V176ANainfix =ato_intV0c4Aainfix =ato_intV1c1Aainfix =ato_intaroutec3Aainfix =V97V108Aainfix =V180V178Aainfix =V179V177ANainfix =ato_intV1c3Aainfix =ato_intV0c2Aainfix =ato_intaroutec0Aainfix =V159V97Aainfix =V155V87Aainfix =V156V88Aainfix =V157V89Aainfix =V158V90Aainfix =V152V94Aainfix =V153V95Aainfix =V154V96Aainfix =V167V97Aainfix =V163V87Aainfix =V164V88Aainfix =V165V89Aainfix =V166V90Aainfix =V160V94Aainfix =V161V95Aainfix =V162V96Lamk signal_state_typeV83V84V85V86Lamk signal_state_typeV87V88V89V90Lamk segment_state_typeV94V95V96Lamk signal_state_typeV98V99V100V101Lamk segment_state_typeV105V106V107Lamk segment_state_typeV109V110V111Lamk segment_state_typeV113V114V115Lamk signal_state_typeV117V118V119V120Lamk segment_state_typeV124V125V126Lamk signal_state_typeV128V129V130V131Lamk segment_state_typeV135V136V137Lamk segment_state_typeV139V140V141Lamk segment_state_typeV143V144V145Lamk signal_state_typeV146V147V148V149F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="expl:VC for def"/>
+      <label
+       name="GP_Subp:railway.ads:74"/>
+      <label
+       name="GP_Pretty_Ada:Railway.Move_Train"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="timeout" time="1.00"/>
+      </proof>
+      <transf
+       name="split_conj"
+       proved="false"
+       expanded="true">
+       <goal
+        name="WP_parameter def.1.1"
+        locfile="../railway.mlw"
+        loclnum="1652" loccnumb="5" loccnume="8"
+        expl="1."
+        sum="d8f9e803ae1e07c2cbfeef514d2883cf"
+        proved="false"
+        expanded="false"
+        shape="ainfix =acorrect_signalsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueIainfix =V151aof_intc0Aainfix =V150V151Aainfix =V3V146Aainfix =V4V147Aainfix =V5V148Aainfix =V6V149Aainfix =V0V143Aainfix =V1V144Aainfix =V2V145Aainfix =V150V151Aainfix =V168V181Aainfix =V80V143Aainfix =V81V144Aainfix =V82V145ANainfix =ato_intV2c4Aainfix =ato_intaroutec6Aainfix =V142V150Aainfix =V170V169ANainfix =ato_intV2c2Aainfix =ato_intaroutec5Aainfix =V138V142Aainfix =V172V168Aainfix =V171V170ANainfix =ato_intV2c3Aainfix =ato_intV1c2Aainfix =ato_intaroutec1Aainfix =V127V138Aainfix =V174V172Aainfix =V173V171ANainfix =ato_intV1c4Aainfix =ato_intV2c1Aainfix =ato_intaroutec2Aainfix =V116V127Aainfix =V175V173ANainfix =ato_intV0c3Aainfix =ato_intaroutec4Aainfix =V112V116Aainfix =V176V175ANainfix =ato_intV0c1Aainfix =ato_intaroutec7Aainfix =V108V112Aainfix =V178V174Aainfix =V177V176ANainfix =ato_intV0c4Aainfix =ato_intV1c1Aainfix =ato_intaroutec3Aainfix =V97V108Aainfix =V180V178Aainfix =V179V177ANainfix =ato_intV1c3Aainfix =ato_intV0c2Aainfix =ato_intaroutec0Aainfix =V159V97Aainfix =V155V87Aainfix =V156V88Aainfix =V157V89Aainfix =V158V90Aainfix =V152V94Aainfix =V153V95Aainfix =V154V96Aainfix =V167V97Aainfix =V163V87Aainfix =V164V88Aainfix =V165V89Aainfix =V166V90Aainfix =V160V94Aainfix =V161V95Aainfix =V162V96Lamk signal_state_typeV83V84V85V86Lamk signal_state_typeV87V88V89V90Lamk segment_state_typeV94V95V96Lamk signal_state_typeV98V99V100V101Lamk segment_state_typeV105V106V107Lamk segment_state_typeV109V110V111Lamk segment_state_typeV113V114V115Lamk signal_state_typeV117V118V119V120Lamk segment_state_typeV124V125V126Lamk signal_state_typeV128V129V130V131Lamk segment_state_typeV135V136V137Lamk segment_state_typeV139V140V141Lamk segment_state_typeV143V144V145Lamk signal_state_typeV146V147V148V149F">
+        <label
+         name="W:diverges:N"/>
+        <label
+         name="expl:VC for def"/>
+        <label
+         name="GP_Subp:railway.ads:74"/>
+        <label
+         name="GP_Pretty_Ada:Railway.Move_Train"/>
+        <proof
+         prover="0"
+         timelimit="1"
+         memlimit="0"
+         obsolete="false"
+         archived="false">
+         <result status="timeout" time="0.99"/>
+        </proof>
+       </goal>
+       <goal
+        name="WP_parameter def.1.2"
+        locfile="../railway.mlw"
+        loclnum="1652" loccnumb="5" loccnume="8"
+        expl="2."
+        sum="f3d45c73bf19ff6bec0843c8a34fde69"
+        proved="false"
+        expanded="false"
+        shape="ainfix =acorrect_segmentsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueIainfix =V151aof_intc0Aainfix =V150V151Aainfix =V3V146Aainfix =V4V147Aainfix =V5V148Aainfix =V6V149Aainfix =V0V143Aainfix =V1V144Aainfix =V2V145Aainfix =V150V151Aainfix =V168V181Aainfix =V80V143Aainfix =V81V144Aainfix =V82V145ANainfix =ato_intV2c4Aainfix =ato_intaroutec6Aainfix =V142V150Aainfix =V170V169ANainfix =ato_intV2c2Aainfix =ato_intaroutec5Aainfix =V138V142Aainfix =V172V168Aainfix =V171V170ANainfix =ato_intV2c3Aainfix =ato_intV1c2Aainfix =ato_intaroutec1Aainfix =V127V138Aainfix =V174V172Aainfix =V173V171ANainfix =ato_intV1c4Aainfix =ato_intV2c1Aainfix =ato_intaroutec2Aainfix =V116V127Aainfix =V175V173ANainfix =ato_intV0c3Aainfix =ato_intaroutec4Aainfix =V112V116Aainfix =V176V175ANainfix =ato_intV0c1Aainfix =ato_intaroutec7Aainfix =V108V112Aainfix =V178V174Aainfix =V177V176ANainfix =ato_intV0c4Aainfix =ato_intV1c1Aainfix =ato_intaroutec3Aainfix =V97V108Aainfix =V180V178Aainfix =V179V177ANainfix =ato_intV1c3Aainfix =ato_intV0c2Aainfix =ato_intaroutec0Aainfix =V159V97Aainfix =V155V87Aainfix =V156V88Aainfix =V157V89Aainfix =V158V90Aainfix =V152V94Aainfix =V153V95Aainfix =V154V96Aainfix =V167V97Aainfix =V163V87Aainfix =V164V88Aainfix =V165V89Aainfix =V166V90Aainfix =V160V94Aainfix =V161V95Aainfix =V162V96Lamk signal_state_typeV83V84V85V86Lamk signal_state_typeV87V88V89V90Lamk segment_state_typeV94V95V96Lamk signal_state_typeV98V99V100V101Lamk segment_state_typeV105V106V107Lamk segment_state_typeV109V110V111Lamk segment_state_typeV113V114V115Lamk signal_state_typeV117V118V119V120Lamk segment_state_typeV124V125V126Lamk signal_state_typeV128V129V130V131Lamk segment_state_typeV135V136V137Lamk segment_state_typeV139V140V141Lamk segment_state_typeV143V144V145Lamk signal_state_typeV146V147V148V149F">
+        <label
+         name="W:diverges:N"/>
+        <label
+         name="expl:VC for def"/>
+        <label
+         name="GP_Subp:railway.ads:74"/>
+        <label
+         name="GP_Pretty_Ada:Railway.Move_Train"/>
+       </goal>
+      </transf>
+     </goal>
+     <goal
+      name="WP_parameter def.2"
+      locfile="../railway.mlw"
+      loclnum="1652" loccnumb="5" loccnume="8"
+      expl="2."
+      sum="ef9ea5d82a313b957c5da4339f85c70e"
+      proved="false"
+      expanded="false"
+      shape="ainfix =acorrect_segmentsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueAainfix =acorrect_signalsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueIainfix =ato_intV71c0Aainfix =V0V72Aainfix =V1V73Aainfix =V71V74Aainfix =V169amk segment_state_typeV72V73V74Aainfix =ato_intV75c0Aainfix =V3V76Aainfix =V4V77Aainfix =V75V78Aainfix =V6V79Aainfix =V168amk signal_state_typeV76V77V78V79Aainfix =V150aof_intc1Aainfix =ato_intV2c4Aainfix =ato_intaroutec6Aainfix =V142V150Aainfix =V170V169ANainfix =ato_intV2c2Aainfix =ato_intaroutec5Aainfix =V138V142Aainfix =V172V168Aainfix =V171V170ANainfix =ato_intV2c3Aainfix =ato_intV1c2Aainfix =ato_intaroutec1Aainfix =V127V138Aainfix =V174V172Aainfix =V173V171ANainfix =ato_intV1c4Aainfix =ato_intV2c1Aainfix =ato_intaroutec2Aainfix =V116V127Aainfix =V175V173ANainfix =ato_intV0c3Aainfix =ato_intaroutec4Aainfix =V112V116Aainfix =V176V175ANainfix =ato_intV0c1Aainfix =ato_intaroutec7Aainfix =V108V112Aainfix =V178V174Aainfix =V177V176ANainfix =ato_intV0c4Aainfix =ato_intV1c1Aainfix =ato_intaroutec3Aainfix =V97V108Aainfix =V180V178Aainfix =V179V177ANainfix =ato_intV1c3Aainfix =ato_intV0c2Aainfix =ato_intaroutec0Aainfix =V159V97Aainfix =V155V87Aainfix =V156V88Aainfix =V157V89Aainfix =V158V90Aainfix =V152V94Aainfix =V153V95Aainfix =V154V96Aainfix =V167V97Aainfix =V163V87Aainfix =V164V88Aainfix =V165V89Aainfix =V166V90Aainfix =V160V94Aainfix =V161V95Aainfix =V162V96Lamk signal_state_typeV83V84V85V86Lamk signal_state_typeV87V88V89V90Lamk segment_state_typeV94V95V96Lamk signal_state_typeV98V99V100V101Lamk segment_state_typeV105V106V107Lamk segment_state_typeV109V110V111Lamk segment_state_typeV113V114V115Lamk signal_state_typeV117V118V119V120Lamk segment_state_typeV124V125V126Lamk signal_state_typeV128V129V130V131Lamk segment_state_typeV135V136V137Lamk segment_state_typeV139V140V141Lamk segment_state_typeV143V144V145Lamk signal_state_typeV146V147V148V149F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="expl:VC for def"/>
+      <label
+       name="GP_Subp:railway.ads:74"/>
+      <label
+       name="GP_Pretty_Ada:Railway.Move_Train"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="timeout" time="0.99"/>
+      </proof>
+      <transf
+       name="split_conj"
+       proved="false"
+       expanded="true">
+       <goal
+        name="WP_parameter def.2.1"
+        locfile="../railway.mlw"
+        loclnum="1652" loccnumb="5" loccnume="8"
+        expl="1."
+        sum="434af74eebee0aa9a13b73737376b40a"
+        proved="false"
+        expanded="false"
+        shape="ainfix =acorrect_signalsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueIainfix =ato_intV71c0Aainfix =V0V72Aainfix =V1V73Aainfix =V71V74Aainfix =V169amk segment_state_typeV72V73V74Aainfix =ato_intV75c0Aainfix =V3V76Aainfix =V4V77Aainfix =V75V78Aainfix =V6V79Aainfix =V168amk signal_state_typeV76V77V78V79Aainfix =V150aof_intc1Aainfix =ato_intV2c4Aainfix =ato_intaroutec6Aainfix =V142V150Aainfix =V170V169ANainfix =ato_intV2c2Aainfix =ato_intaroutec5Aainfix =V138V142Aainfix =V172V168Aainfix =V171V170ANainfix =ato_intV2c3Aainfix =ato_intV1c2Aainfix =ato_intaroutec1Aainfix =V127V138Aainfix =V174V172Aainfix =V173V171ANainfix =ato_intV1c4Aainfix =ato_intV2c1Aainfix =ato_intaroutec2Aainfix =V116V127Aainfix =V175V173ANainfix =ato_intV0c3Aainfix =ato_intaroutec4Aainfix =V112V116Aainfix =V176V175ANainfix =ato_intV0c1Aainfix =ato_intaroutec7Aainfix =V108V112Aainfix =V178V174Aainfix =V177V176ANainfix =ato_intV0c4Aainfix =ato_intV1c1Aainfix =ato_intaroutec3Aainfix =V97V108Aainfix =V180V178Aainfix =V179V177ANainfix =ato_intV1c3Aainfix =ato_intV0c2Aainfix =ato_intaroutec0Aainfix =V159V97Aainfix =V155V87Aainfix =V156V88Aainfix =V157V89Aainfix =V158V90Aainfix =V152V94Aainfix =V153V95Aainfix =V154V96Aainfix =V167V97Aainfix =V163V87Aainfix =V164V88Aainfix =V165V89Aainfix =V166V90Aainfix =V160V94Aainfix =V161V95Aainfix =V162V96Lamk signal_state_typeV83V84V85V86Lamk signal_state_typeV87V88V89V90Lamk segment_state_typeV94V95V96Lamk signal_state_typeV98V99V100V101Lamk segment_state_typeV105V106V107Lamk segment_state_typeV109V110V111Lamk segment_state_typeV113V114V115Lamk signal_state_typeV117V118V119V120Lamk segment_state_typeV124V125V126Lamk signal_state_typeV128V129V130V131Lamk segment_state_typeV135V136V137Lamk segment_state_typeV139V140V141Lamk segment_state_typeV143V144V145Lamk signal_state_typeV146V147V148V149F">
+        <label
+         name="W:diverges:N"/>
+        <label
+         name="expl:VC for def"/>
+        <label
+         name="GP_Subp:railway.ads:74"/>
+        <label
+         name="GP_Pretty_Ada:Railway.Move_Train"/>
+       </goal>
+       <goal
+        name="WP_parameter def.2.2"
+        locfile="../railway.mlw"
+        loclnum="1652" loccnumb="5" loccnume="8"
+        expl="2."
+        sum="0d1cbeafccb7b29d84d963ba339b3902"
+        proved="false"
+        expanded="false"
+        shape="ainfix =acorrect_segmentsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueIainfix =ato_intV71c0Aainfix =V0V72Aainfix =V1V73Aainfix =V71V74Aainfix =V169amk segment_state_typeV72V73V74Aainfix =ato_intV75c0Aainfix =V3V76Aainfix =V4V77Aainfix =V75V78Aainfix =V6V79Aainfix =V168amk signal_state_typeV76V77V78V79Aainfix =V150aof_intc1Aainfix =ato_intV2c4Aainfix =ato_intaroutec6Aainfix =V142V150Aainfix =V170V169ANainfix =ato_intV2c2Aainfix =ato_intaroutec5Aainfix =V138V142Aainfix =V172V168Aainfix =V171V170ANainfix =ato_intV2c3Aainfix =ato_intV1c2Aainfix =ato_intaroutec1Aainfix =V127V138Aainfix =V174V172Aainfix =V173V171ANainfix =ato_intV1c4Aainfix =ato_intV2c1Aainfix =ato_intaroutec2Aainfix =V116V127Aainfix =V175V173ANainfix =ato_intV0c3Aainfix =ato_intaroutec4Aainfix =V112V116Aainfix =V176V175ANainfix =ato_intV0c1Aainfix =ato_intaroutec7Aainfix =V108V112Aainfix =V178V174Aainfix =V177V176ANainfix =ato_intV0c4Aainfix =ato_intV1c1Aainfix =ato_intaroutec3Aainfix =V97V108Aainfix =V180V178Aainfix =V179V177ANainfix =ato_intV1c3Aainfix =ato_intV0c2Aainfix =ato_intaroutec0Aainfix =V159V97Aainfix =V155V87Aainfix =V156V88Aainfix =V157V89Aainfix =V158V90Aainfix =V152V94Aainfix =V153V95Aainfix =V154V96Aainfix =V167V97Aainfix =V163V87Aainfix =V164V88Aainfix =V165V89Aainfix =V166V90Aainfix =V160V94Aainfix =V161V95Aainfix =V162V96Lamk signal_state_typeV83V84V85V86Lamk signal_state_typeV87V88V89V90Lamk segment_state_typeV94V95V96Lamk signal_state_typeV98V99V100V101Lamk segment_state_typeV105V106V107Lamk segment_state_typeV109V110V111Lamk segment_state_typeV113V114V115Lamk signal_state_typeV117V118V119V120Lamk segment_state_typeV124V125V126Lamk signal_state_typeV128V129V130V131Lamk segment_state_typeV135V136V137Lamk segment_state_typeV139V140V141Lamk segment_state_typeV143V144V145Lamk signal_state_typeV146V147V148V149F">
+        <label
+         name="W:diverges:N"/>
+        <label
+         name="expl:VC for def"/>
+        <label
+         name="GP_Subp:railway.ads:74"/>
+        <label
+         name="GP_Pretty_Ada:Railway.Move_Train"/>
+       </goal>
+      </transf>
+     </goal>
+     <goal
+      name="WP_parameter def.3"
+      locfile="../railway.mlw"
+      loclnum="1652" loccnumb="5" loccnume="8"
+      expl="3."
+      sum="116f19fee416ba70a3ef85c681590040"
+      proved="false"
+      expanded="false"
+      shape="ainfix =acorrect_segmentsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueAainfix =acorrect_signalsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueIainfix =ato_intV67c5Aainfix =V0V68Aainfix =V1V69Aainfix =V67V70Aainfix =V170amk segment_state_typeV68V69V70Aainfix =V142aof_intc1Aainfix =V3V146Aainfix =V4V147Aainfix =V5V148Aainfix =V6V149Aainfix =V168V181Aainfix =ato_intV2c2Aainfix =ato_intaroutec5Aainfix =V138V142Aainfix =V172V168Aainfix =V171V170ANainfix =ato_intV2c3Aainfix =ato_intV1c2Aainfix =ato_intaroutec1Aainfix =V127V138Aainfix =V174V172Aainfix =V173V171ANainfix =ato_intV1c4Aainfix =ato_intV2c1Aainfix =ato_intaroutec2Aainfix =V116V127Aainfix =V175V173ANainfix =ato_intV0c3Aainfix =ato_intaroutec4Aainfix =V112V116Aainfix =V176V175ANainfix =ato_intV0c1Aainfix =ato_intaroutec7Aainfix =V108V112Aainfix =V178V174Aainfix =V177V176ANainfix =ato_intV0c4Aainfix =ato_intV1c1Aainfix =ato_intaroutec3Aainfix =V97V108Aainfix =V180V178Aainfix =V179V177ANainfix =ato_intV1c3Aainfix =ato_intV0c2Aainfix =ato_intaroutec0Aainfix =V159V97Aainfix =V155V87Aainfix =V156V88Aainfix =V157V89Aainfix =V158V90Aainfix =V152V94Aainfix =V153V95Aainfix =V154V96Aainfix =V167V97Aainfix =V163V87Aainfix =V164V88Aainfix =V165V89Aainfix =V166V90Aainfix =V160V94Aainfix =V161V95Aainfix =V162V96Lamk signal_state_typeV83V84V85V86Lamk signal_state_typeV87V88V89V90Lamk segment_state_typeV94V95V96Lamk signal_state_typeV98V99V100V101Lamk segment_state_typeV105V106V107Lamk segment_state_typeV109V110V111Lamk segment_state_typeV113V114V115Lamk signal_state_typeV117V118V119V120Lamk segment_state_typeV124V125V126Lamk signal_state_typeV128V129V130V131Lamk segment_state_typeV135V136V137Lamk segment_state_typeV139V140V141Lamk segment_state_typeV143V144V145Lamk signal_state_typeV146V147V148V149F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="expl:VC for def"/>
+      <label
+       name="GP_Subp:railway.ads:74"/>
+      <label
+       name="GP_Pretty_Ada:Railway.Move_Train"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="timeout" time="0.98"/>
+      </proof>
+      <transf
+       name="split_conj"
+       proved="false"
+       expanded="true">
+       <goal
+        name="WP_parameter def.3.1"
+        locfile="../railway.mlw"
+        loclnum="1652" loccnumb="5" loccnume="8"
+        expl="1."
+        sum="2e463e0897178be6b78217a632504a44"
+        proved="false"
+        expanded="false"
+        shape="ainfix =acorrect_signalsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueIainfix =ato_intV67c5Aainfix =V0V68Aainfix =V1V69Aainfix =V67V70Aainfix =V170amk segment_state_typeV68V69V70Aainfix =V142aof_intc1Aainfix =V3V146Aainfix =V4V147Aainfix =V5V148Aainfix =V6V149Aainfix =V168V181Aainfix =ato_intV2c2Aainfix =ato_intaroutec5Aainfix =V138V142Aainfix =V172V168Aainfix =V171V170ANainfix =ato_intV2c3Aainfix =ato_intV1c2Aainfix =ato_intaroutec1Aainfix =V127V138Aainfix =V174V172Aainfix =V173V171ANainfix =ato_intV1c4Aainfix =ato_intV2c1Aainfix =ato_intaroutec2Aainfix =V116V127Aainfix =V175V173ANainfix =ato_intV0c3Aainfix =ato_intaroutec4Aainfix =V112V116Aainfix =V176V175ANainfix =ato_intV0c1Aainfix =ato_intaroutec7Aainfix =V108V112Aainfix =V178V174Aainfix =V177V176ANainfix =ato_intV0c4Aainfix =ato_intV1c1Aainfix =ato_intaroutec3Aainfix =V97V108Aainfix =V180V178Aainfix =V179V177ANainfix =ato_intV1c3Aainfix =ato_intV0c2Aainfix =ato_intaroutec0Aainfix =V159V97Aainfix =V155V87Aainfix =V156V88Aainfix =V157V89Aainfix =V158V90Aainfix =V152V94Aainfix =V153V95Aainfix =V154V96Aainfix =V167V97Aainfix =V163V87Aainfix =V164V88Aainfix =V165V89Aainfix =V166V90Aainfix =V160V94Aainfix =V161V95Aainfix =V162V96Lamk signal_state_typeV83V84V85V86Lamk signal_state_typeV87V88V89V90Lamk segment_state_typeV94V95V96Lamk signal_state_typeV98V99V100V101Lamk segment_state_typeV105V106V107Lamk segment_state_typeV109V110V111Lamk segment_state_typeV113V114V115Lamk signal_state_typeV117V118V119V120Lamk segment_state_typeV124V125V126Lamk signal_state_typeV128V129V130V131Lamk segment_state_typeV135V136V137Lamk segment_state_typeV139V140V141Lamk segment_state_typeV143V144V145Lamk signal_state_typeV146V147V148V149F">
+        <label
+         name="W:diverges:N"/>
+        <label
+         name="expl:VC for def"/>
+        <label
+         name="GP_Subp:railway.ads:74"/>
+        <label
+         name="GP_Pretty_Ada:Railway.Move_Train"/>
+       </goal>
+       <goal
+        name="WP_parameter def.3.2"
+        locfile="../railway.mlw"
+        loclnum="1652" loccnumb="5" loccnume="8"
+        expl="2."
+        sum="b932a1dcd7f575a166f01fb66ef2f3b5"
+        proved="false"
+        expanded="false"
+        shape="ainfix =acorrect_segmentsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueIainfix =ato_intV67c5Aainfix =V0V68Aainfix =V1V69Aainfix =V67V70Aainfix =V170amk segment_state_typeV68V69V70Aainfix =V142aof_intc1Aainfix =V3V146Aainfix =V4V147Aainfix =V5V148Aainfix =V6V149Aainfix =V168V181Aainfix =ato_intV2c2Aainfix =ato_intaroutec5Aainfix =V138V142Aainfix =V172V168Aainfix =V171V170ANainfix =ato_intV2c3Aainfix =ato_intV1c2Aainfix =ato_intaroutec1Aainfix =V127V138Aainfix =V174V172Aainfix =V173V171ANainfix =ato_intV1c4Aainfix =ato_intV2c1Aainfix =ato_intaroutec2Aainfix =V116V127Aainfix =V175V173ANainfix =ato_intV0c3Aainfix =ato_intaroutec4Aainfix =V112V116Aainfix =V176V175ANainfix =ato_intV0c1Aainfix =ato_intaroutec7Aainfix =V108V112Aainfix =V178V174Aainfix =V177V176ANainfix =ato_intV0c4Aainfix =ato_intV1c1Aainfix =ato_intaroutec3Aainfix =V97V108Aainfix =V180V178Aainfix =V179V177ANainfix =ato_intV1c3Aainfix =ato_intV0c2Aainfix =ato_intaroutec0Aainfix =V159V97Aainfix =V155V87Aainfix =V156V88Aainfix =V157V89Aainfix =V158V90Aainfix =V152V94Aainfix =V153V95Aainfix =V154V96Aainfix =V167V97Aainfix =V163V87Aainfix =V164V88Aainfix =V165V89Aainfix =V166V90Aainfix =V160V94Aainfix =V161V95Aainfix =V162V96Lamk signal_state_typeV83V84V85V86Lamk signal_state_typeV87V88V89V90Lamk segment_state_typeV94V95V96Lamk signal_state_typeV98V99V100V101Lamk segment_state_typeV105V106V107Lamk segment_state_typeV109V110V111Lamk segment_state_typeV113V114V115Lamk signal_state_typeV117V118V119V120Lamk segment_state_typeV124V125V126Lamk signal_state_typeV128V129V130V131Lamk segment_state_typeV135V136V137Lamk segment_state_typeV139V140V141Lamk segment_state_typeV143V144V145Lamk signal_state_typeV146V147V148V149F">
+        <label
+         name="W:diverges:N"/>
+        <label
+         name="expl:VC for def"/>
+        <label
+         name="GP_Subp:railway.ads:74"/>
+        <label
+         name="GP_Pretty_Ada:Railway.Move_Train"/>
+       </goal>
+      </transf>
+     </goal>
+     <goal
+      name="WP_parameter def.4"
+      locfile="../railway.mlw"
+      loclnum="1652" loccnumb="5" loccnume="8"
+      expl="4."
+      sum="6a5d7cd56428f75dac09e91c008a6fcf"
+      proved="false"
+      expanded="false"
+      shape="ainfix =acorrect_segmentsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueAainfix =acorrect_signalsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueIainfix =ato_intV54c0Aainfix =V3V55Aainfix =V4V56Aainfix =V54V57Aainfix =V6V58Aainfix =V172amk signal_state_typeV55V56V57V58Aainfix =ato_intV59c5Aainfix =V0V60Aainfix =V59V61Aainfix =V2V62Aainfix =amk segment_state_typeV132V133V134amk segment_state_typeV60V61V62Aainfix =ato_intV63c0Aainfix =V132V64Aainfix =V133V65Aainfix =V63V66Aainfix =V171amk segment_state_typeV64V65V66Aainfix =V138aof_intc1Aainfix =ato_intV2c3Aainfix =ato_intV1c2Aainfix =ato_intaroutec1Aainfix =V127V138Aainfix =V174V172Aainfix =V173V171ANainfix =ato_intV1c4Aainfix =ato_intV2c1Aainfix =ato_intaroutec2Aainfix =V116V127Aainfix =V175V173ANainfix =ato_intV0c3Aainfix =ato_intaroutec4Aainfix =V112V116Aainfix =V176V175ANainfix =ato_intV0c1Aainfix =ato_intaroutec7Aainfix =V108V112Aainfix =V178V174Aainfix =V177V176ANainfix =ato_intV0c4Aainfix =ato_intV1c1Aainfix =ato_intaroutec3Aainfix =V97V108Aainfix =V180V178Aainfix =V179V177ANainfix =ato_intV1c3Aainfix =ato_intV0c2Aainfix =ato_intaroutec0Aainfix =V159V97Aainfix =V155V87Aainfix =V156V88Aainfix =V157V89Aainfix =V158V90Aainfix =V152V94Aainfix =V153V95Aainfix =V154V96Aainfix =V167V97Aainfix =V163V87Aainfix =V164V88Aainfix =V165V89Aainfix =V166V90Aainfix =V160V94Aainfix =V161V95Aainfix =V162V96Lamk signal_state_typeV83V84V85V86Lamk signal_state_typeV87V88V89V90Lamk segment_state_typeV94V95V96Lamk signal_state_typeV98V99V100V101Lamk segment_state_typeV105V106V107Lamk segment_state_typeV109V110V111Lamk segment_state_typeV113V114V115Lamk signal_state_typeV117V118V119V120Lamk segment_state_typeV124V125V126Lamk signal_state_typeV128V129V130V131Lamk segment_state_typeV135V136V137Lamk segment_state_typeV139V140V141Lamk segment_state_typeV143V144V145Lamk signal_state_typeV146V147V148V149F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="expl:VC for def"/>
+      <label
+       name="GP_Subp:railway.ads:74"/>
+      <label
+       name="GP_Pretty_Ada:Railway.Move_Train"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="timeout" time="0.99"/>
+      </proof>
+      <transf
+       name="split_conj"
+       proved="false"
+       expanded="true">
+       <goal
+        name="WP_parameter def.4.1"
+        locfile="../railway.mlw"
+        loclnum="1652" loccnumb="5" loccnume="8"
+        expl="1."
+        sum="44be3d66017d748541fb66c424db8cc9"
+        proved="false"
+        expanded="false"
+        shape="ainfix =acorrect_signalsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueIainfix =ato_intV54c0Aainfix =V3V55Aainfix =V4V56Aainfix =V54V57Aainfix =V6V58Aainfix =V172amk signal_state_typeV55V56V57V58Aainfix =ato_intV59c5Aainfix =V0V60Aainfix =V59V61Aainfix =V2V62Aainfix =amk segment_state_typeV132V133V134amk segment_state_typeV60V61V62Aainfix =ato_intV63c0Aainfix =V132V64Aainfix =V133V65Aainfix =V63V66Aainfix =V171amk segment_state_typeV64V65V66Aainfix =V138aof_intc1Aainfix =ato_intV2c3Aainfix =ato_intV1c2Aainfix =ato_intaroutec1Aainfix =V127V138Aainfix =V174V172Aainfix =V173V171ANainfix =ato_intV1c4Aainfix =ato_intV2c1Aainfix =ato_intaroutec2Aainfix =V116V127Aainfix =V175V173ANainfix =ato_intV0c3Aainfix =ato_intaroutec4Aainfix =V112V116Aainfix =V176V175ANainfix =ato_intV0c1Aainfix =ato_intaroutec7Aainfix =V108V112Aainfix =V178V174Aainfix =V177V176ANainfix =ato_intV0c4Aainfix =ato_intV1c1Aainfix =ato_intaroutec3Aainfix =V97V108Aainfix =V180V178Aainfix =V179V177ANainfix =ato_intV1c3Aainfix =ato_intV0c2Aainfix =ato_intaroutec0Aainfix =V159V97Aainfix =V155V87Aainfix =V156V88Aainfix =V157V89Aainfix =V158V90Aainfix =V152V94Aainfix =V153V95Aainfix =V154V96Aainfix =V167V97Aainfix =V163V87Aainfix =V164V88Aainfix =V165V89Aainfix =V166V90Aainfix =V160V94Aainfix =V161V95Aainfix =V162V96Lamk signal_state_typeV83V84V85V86Lamk signal_state_typeV87V88V89V90Lamk segment_state_typeV94V95V96Lamk signal_state_typeV98V99V100V101Lamk segment_state_typeV105V106V107Lamk segment_state_typeV109V110V111Lamk segment_state_typeV113V114V115Lamk signal_state_typeV117V118V119V120Lamk segment_state_typeV124V125V126Lamk signal_state_typeV128V129V130V131Lamk segment_state_typeV135V136V137Lamk segment_state_typeV139V140V141Lamk segment_state_typeV143V144V145Lamk signal_state_typeV146V147V148V149F">
+        <label
+         name="W:diverges:N"/>
+        <label
+         name="expl:VC for def"/>
+        <label
+         name="GP_Subp:railway.ads:74"/>
+        <label
+         name="GP_Pretty_Ada:Railway.Move_Train"/>
+       </goal>
+       <goal
+        name="WP_parameter def.4.2"
+        locfile="../railway.mlw"
+        loclnum="1652" loccnumb="5" loccnume="8"
+        expl="2."
+        sum="3cd084e0672b22611dc88f0324360ab9"
+        proved="false"
+        expanded="false"
+        shape="ainfix =acorrect_segmentsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueIainfix =ato_intV54c0Aainfix =V3V55Aainfix =V4V56Aainfix =V54V57Aainfix =V6V58Aainfix =V172amk signal_state_typeV55V56V57V58Aainfix =ato_intV59c5Aainfix =V0V60Aainfix =V59V61Aainfix =V2V62Aainfix =amk segment_state_typeV132V133V134amk segment_state_typeV60V61V62Aainfix =ato_intV63c0Aainfix =V132V64Aainfix =V133V65Aainfix =V63V66Aainfix =V171amk segment_state_typeV64V65V66Aainfix =V138aof_intc1Aainfix =ato_intV2c3Aainfix =ato_intV1c2Aainfix =ato_intaroutec1Aainfix =V127V138Aainfix =V174V172Aainfix =V173V171ANainfix =ato_intV1c4Aainfix =ato_intV2c1Aainfix =ato_intaroutec2Aainfix =V116V127Aainfix =V175V173ANainfix =ato_intV0c3Aainfix =ato_intaroutec4Aainfix =V112V116Aainfix =V176V175ANainfix =ato_intV0c1Aainfix =ato_intaroutec7Aainfix =V108V112Aainfix =V178V174Aainfix =V177V176ANainfix =ato_intV0c4Aainfix =ato_intV1c1Aainfix =ato_intaroutec3Aainfix =V97V108Aainfix =V180V178Aainfix =V179V177ANainfix =ato_intV1c3Aainfix =ato_intV0c2Aainfix =ato_intaroutec0Aainfix =V159V97Aainfix =V155V87Aainfix =V156V88Aainfix =V157V89Aainfix =V158V90Aainfix =V152V94Aainfix =V153V95Aainfix =V154V96Aainfix =V167V97Aainfix =V163V87Aainfix =V164V88Aainfix =V165V89Aainfix =V166V90Aainfix =V160V94Aainfix =V161V95Aainfix =V162V96Lamk signal_state_typeV83V84V85V86Lamk signal_state_typeV87V88V89V90Lamk segment_state_typeV94V95V96Lamk signal_state_typeV98V99V100V101Lamk segment_state_typeV105V106V107Lamk segment_state_typeV109V110V111Lamk segment_state_typeV113V114V115Lamk signal_state_typeV117V118V119V120Lamk segment_state_typeV124V125V126Lamk signal_state_typeV128V129V130V131Lamk segment_state_typeV135V136V137Lamk segment_state_typeV139V140V141Lamk segment_state_typeV143V144V145Lamk signal_state_typeV146V147V148V149F">
+        <label
+         name="W:diverges:N"/>
+        <label
+         name="expl:VC for def"/>
+        <label
+         name="GP_Subp:railway.ads:74"/>
+        <label
+         name="GP_Pretty_Ada:Railway.Move_Train"/>
+       </goal>
+      </transf>
+     </goal>
+     <goal
+      name="WP_parameter def.5"
+      locfile="../railway.mlw"
+      loclnum="1652" loccnumb="5" loccnume="8"
+      expl="5."
+      sum="46f523ac9293caf08eb0a11ef845774d"
+      proved="false"
+      expanded="false"
+      shape="ainfix =acorrect_segmentsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueAainfix =acorrect_signalsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueIainfix =ato_intV41c0Aainfix =V3V42Aainfix =V4V43Aainfix =V5V44Aainfix =V41V45Aainfix =V174amk signal_state_typeV42V43V44V45Aainfix =ato_intV46c5Aainfix =V0V47Aainfix =V1V48Aainfix =V46V49Aainfix =amk segment_state_typeV121V122V123amk segment_state_typeV47V48V49Aainfix =ato_intV50c0Aainfix =V121V51Aainfix =V50V52Aainfix =V123V53Aainfix =V173amk segment_state_typeV51V52V53Aainfix =V127aof_intc1Aainfix =ato_intV1c4Aainfix =ato_intV2c1Aainfix =ato_intaroutec2Aainfix =V116V127Aainfix =V175V173ANainfix =ato_intV0c3Aainfix =ato_intaroutec4Aainfix =V112V116Aainfix =V176V175ANainfix =ato_intV0c1Aainfix =ato_intaroutec7Aainfix =V108V112Aainfix =V178V174Aainfix =V177V176ANainfix =ato_intV0c4Aainfix =ato_intV1c1Aainfix =ato_intaroutec3Aainfix =V97V108Aainfix =V180V178Aainfix =V179V177ANainfix =ato_intV1c3Aainfix =ato_intV0c2Aainfix =ato_intaroutec0Aainfix =V159V97Aainfix =V155V87Aainfix =V156V88Aainfix =V157V89Aainfix =V158V90Aainfix =V152V94Aainfix =V153V95Aainfix =V154V96Aainfix =V167V97Aainfix =V163V87Aainfix =V164V88Aainfix =V165V89Aainfix =V166V90Aainfix =V160V94Aainfix =V161V95Aainfix =V162V96Lamk signal_state_typeV83V84V85V86Lamk signal_state_typeV87V88V89V90Lamk segment_state_typeV94V95V96Lamk signal_state_typeV98V99V100V101Lamk segment_state_typeV105V106V107Lamk segment_state_typeV109V110V111Lamk segment_state_typeV113V114V115Lamk signal_state_typeV117V118V119V120Lamk segment_state_typeV124V125V126Lamk signal_state_typeV128V129V130V131Lamk segment_state_typeV135V136V137Lamk segment_state_typeV139V140V141Lamk segment_state_typeV143V144V145Lamk signal_state_typeV146V147V148V149F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="expl:VC for def"/>
+      <label
+       name="GP_Subp:railway.ads:74"/>
+      <label
+       name="GP_Pretty_Ada:Railway.Move_Train"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="timeout" time="0.99"/>
+      </proof>
+      <transf
+       name="split_conj"
+       proved="false"
+       expanded="true">
+       <goal
+        name="WP_parameter def.5.1"
+        locfile="../railway.mlw"
+        loclnum="1652" loccnumb="5" loccnume="8"
+        expl="1."
+        sum="e965dae95b834c7c275cdcf8755e130a"
+        proved="false"
+        expanded="false"
+        shape="ainfix =acorrect_signalsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueIainfix =ato_intV41c0Aainfix =V3V42Aainfix =V4V43Aainfix =V5V44Aainfix =V41V45Aainfix =V174amk signal_state_typeV42V43V44V45Aainfix =ato_intV46c5Aainfix =V0V47Aainfix =V1V48Aainfix =V46V49Aainfix =amk segment_state_typeV121V122V123amk segment_state_typeV47V48V49Aainfix =ato_intV50c0Aainfix =V121V51Aainfix =V50V52Aainfix =V123V53Aainfix =V173amk segment_state_typeV51V52V53Aainfix =V127aof_intc1Aainfix =ato_intV1c4Aainfix =ato_intV2c1Aainfix =ato_intaroutec2Aainfix =V116V127Aainfix =V175V173ANainfix =ato_intV0c3Aainfix =ato_intaroutec4Aainfix =V112V116Aainfix =V176V175ANainfix =ato_intV0c1Aainfix =ato_intaroutec7Aainfix =V108V112Aainfix =V178V174Aainfix =V177V176ANainfix =ato_intV0c4Aainfix =ato_intV1c1Aainfix =ato_intaroutec3Aainfix =V97V108Aainfix =V180V178Aainfix =V179V177ANainfix =ato_intV1c3Aainfix =ato_intV0c2Aainfix =ato_intaroutec0Aainfix =V159V97Aainfix =V155V87Aainfix =V156V88Aainfix =V157V89Aainfix =V158V90Aainfix =V152V94Aainfix =V153V95Aainfix =V154V96Aainfix =V167V97Aainfix =V163V87Aainfix =V164V88Aainfix =V165V89Aainfix =V166V90Aainfix =V160V94Aainfix =V161V95Aainfix =V162V96Lamk signal_state_typeV83V84V85V86Lamk signal_state_typeV87V88V89V90Lamk segment_state_typeV94V95V96Lamk signal_state_typeV98V99V100V101Lamk segment_state_typeV105V106V107Lamk segment_state_typeV109V110V111Lamk segment_state_typeV113V114V115Lamk signal_state_typeV117V118V119V120Lamk segment_state_typeV124V125V126Lamk signal_state_typeV128V129V130V131Lamk segment_state_typeV135V136V137Lamk segment_state_typeV139V140V141Lamk segment_state_typeV143V144V145Lamk signal_state_typeV146V147V148V149F">
+        <label
+         name="W:diverges:N"/>
+        <label
+         name="expl:VC for def"/>
+        <label
+         name="GP_Subp:railway.ads:74"/>
+        <label
+         name="GP_Pretty_Ada:Railway.Move_Train"/>
+       </goal>
+       <goal
+        name="WP_parameter def.5.2"
+        locfile="../railway.mlw"
+        loclnum="1652" loccnumb="5" loccnume="8"
+        expl="2."
+        sum="c98820ec57fd7ad919f62a6f06545291"
+        proved="false"
+        expanded="false"
+        shape="ainfix =acorrect_segmentsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueIainfix =ato_intV41c0Aainfix =V3V42Aainfix =V4V43Aainfix =V5V44Aainfix =V41V45Aainfix =V174amk signal_state_typeV42V43V44V45Aainfix =ato_intV46c5Aainfix =V0V47Aainfix =V1V48Aainfix =V46V49Aainfix =amk segment_state_typeV121V122V123amk segment_state_typeV47V48V49Aainfix =ato_intV50c0Aainfix =V121V51Aainfix =V50V52Aainfix =V123V53Aainfix =V173amk segment_state_typeV51V52V53Aainfix =V127aof_intc1Aainfix =ato_intV1c4Aainfix =ato_intV2c1Aainfix =ato_intaroutec2Aainfix =V116V127Aainfix =V175V173ANainfix =ato_intV0c3Aainfix =ato_intaroutec4Aainfix =V112V116Aainfix =V176V175ANainfix =ato_intV0c1Aainfix =ato_intaroutec7Aainfix =V108V112Aainfix =V178V174Aainfix =V177V176ANainfix =ato_intV0c4Aainfix =ato_intV1c1Aainfix =ato_intaroutec3Aainfix =V97V108Aainfix =V180V178Aainfix =V179V177ANainfix =ato_intV1c3Aainfix =ato_intV0c2Aainfix =ato_intaroutec0Aainfix =V159V97Aainfix =V155V87Aainfix =V156V88Aainfix =V157V89Aainfix =V158V90Aainfix =V152V94Aainfix =V153V95Aainfix =V154V96Aainfix =V167V97Aainfix =V163V87Aainfix =V164V88Aainfix =V165V89Aainfix =V166V90Aainfix =V160V94Aainfix =V161V95Aainfix =V162V96Lamk signal_state_typeV83V84V85V86Lamk signal_state_typeV87V88V89V90Lamk segment_state_typeV94V95V96Lamk signal_state_typeV98V99V100V101Lamk segment_state_typeV105V106V107Lamk segment_state_typeV109V110V111Lamk segment_state_typeV113V114V115Lamk signal_state_typeV117V118V119V120Lamk segment_state_typeV124V125V126Lamk signal_state_typeV128V129V130V131Lamk segment_state_typeV135V136V137Lamk segment_state_typeV139V140V141Lamk segment_state_typeV143V144V145Lamk signal_state_typeV146V147V148V149F">
+        <label
+         name="W:diverges:N"/>
+        <label
+         name="expl:VC for def"/>
+        <label
+         name="GP_Subp:railway.ads:74"/>
+        <label
+         name="GP_Pretty_Ada:Railway.Move_Train"/>
+       </goal>
+      </transf>
+     </goal>
+     <goal
+      name="WP_parameter def.6"
+      locfile="../railway.mlw"
+      loclnum="1652" loccnumb="5" loccnume="8"
+      expl="6."
+      sum="bd1d84bf2dd435acc49785d7f57d12fa"
+      proved="false"
+      expanded="false"
+      shape="ainfix =acorrect_segmentsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueAainfix =acorrect_signalsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueIainfix =ato_intV37c0Aainfix =V37V38Aainfix =V1V39Aainfix =V2V40Aainfix =V175amk segment_state_typeV38V39V40Aainfix =V116aof_intc1Aainfix =V3V117Aainfix =V4V118Aainfix =V5V119Aainfix =V6V120Aainfix =V174V181Aainfix =ato_intV0c3Aainfix =ato_intaroutec4Aainfix =V112V116Aainfix =V176V175ANainfix =ato_intV0c1Aainfix =ato_intaroutec7Aainfix =V108V112Aainfix =V178V174Aainfix =V177V176ANainfix =ato_intV0c4Aainfix =ato_intV1c1Aainfix =ato_intaroutec3Aainfix =V97V108Aainfix =V180V178Aainfix =V179V177ANainfix =ato_intV1c3Aainfix =ato_intV0c2Aainfix =ato_intaroutec0Aainfix =V159V97Aainfix =V155V87Aainfix =V156V88Aainfix =V157V89Aainfix =V158V90Aainfix =V152V94Aainfix =V153V95Aainfix =V154V96Aainfix =V167V97Aainfix =V163V87Aainfix =V164V88Aainfix =V165V89Aainfix =V166V90Aainfix =V160V94Aainfix =V161V95Aainfix =V162V96Lamk signal_state_typeV83V84V85V86Lamk signal_state_typeV87V88V89V90Lamk segment_state_typeV94V95V96Lamk signal_state_typeV98V99V100V101Lamk segment_state_typeV105V106V107Lamk segment_state_typeV109V110V111Lamk segment_state_typeV113V114V115Lamk signal_state_typeV117V118V119V120Lamk segment_state_typeV124V125V126Lamk signal_state_typeV128V129V130V131Lamk segment_state_typeV135V136V137Lamk segment_state_typeV139V140V141Lamk segment_state_typeV143V144V145Lamk signal_state_typeV146V147V148V149F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="expl:VC for def"/>
+      <label
+       name="GP_Subp:railway.ads:74"/>
+      <label
+       name="GP_Pretty_Ada:Railway.Move_Train"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="timeout" time="1.00"/>
+      </proof>
+      <transf
+       name="split_conj"
+       proved="false"
+       expanded="true">
+       <goal
+        name="WP_parameter def.6.1"
+        locfile="../railway.mlw"
+        loclnum="1652" loccnumb="5" loccnume="8"
+        expl="1."
+        sum="0f03acc7e655600814d4583d9aa94317"
+        proved="false"
+        expanded="false"
+        shape="ainfix =acorrect_signalsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueIainfix =ato_intV37c0Aainfix =V37V38Aainfix =V1V39Aainfix =V2V40Aainfix =V175amk segment_state_typeV38V39V40Aainfix =V116aof_intc1Aainfix =V3V117Aainfix =V4V118Aainfix =V5V119Aainfix =V6V120Aainfix =V174V181Aainfix =ato_intV0c3Aainfix =ato_intaroutec4Aainfix =V112V116Aainfix =V176V175ANainfix =ato_intV0c1Aainfix =ato_intaroutec7Aainfix =V108V112Aainfix =V178V174Aainfix =V177V176ANainfix =ato_intV0c4Aainfix =ato_intV1c1Aainfix =ato_intaroutec3Aainfix =V97V108Aainfix =V180V178Aainfix =V179V177ANainfix =ato_intV1c3Aainfix =ato_intV0c2Aainfix =ato_intaroutec0Aainfix =V159V97Aainfix =V155V87Aainfix =V156V88Aainfix =V157V89Aainfix =V158V90Aainfix =V152V94Aainfix =V153V95Aainfix =V154V96Aainfix =V167V97Aainfix =V163V87Aainfix =V164V88Aainfix =V165V89Aainfix =V166V90Aainfix =V160V94Aainfix =V161V95Aainfix =V162V96Lamk signal_state_typeV83V84V85V86Lamk signal_state_typeV87V88V89V90Lamk segment_state_typeV94V95V96Lamk signal_state_typeV98V99V100V101Lamk segment_state_typeV105V106V107Lamk segment_state_typeV109V110V111Lamk segment_state_typeV113V114V115Lamk signal_state_typeV117V118V119V120Lamk segment_state_typeV124V125V126Lamk signal_state_typeV128V129V130V131Lamk segment_state_typeV135V136V137Lamk segment_state_typeV139V140V141Lamk segment_state_typeV143V144V145Lamk signal_state_typeV146V147V148V149F">
+        <label
+         name="W:diverges:N"/>
+        <label
+         name="expl:VC for def"/>
+        <label
+         name="GP_Subp:railway.ads:74"/>
+        <label
+         name="GP_Pretty_Ada:Railway.Move_Train"/>
+       </goal>
+       <goal
+        name="WP_parameter def.6.2"
+        locfile="../railway.mlw"
+        loclnum="1652" loccnumb="5" loccnume="8"
+        expl="2."
+        sum="b5ed8780cdaa044c0ebbd6c13c7cf651"
+        proved="false"
+        expanded="false"
+        shape="ainfix =acorrect_segmentsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueIainfix =ato_intV37c0Aainfix =V37V38Aainfix =V1V39Aainfix =V2V40Aainfix =V175amk segment_state_typeV38V39V40Aainfix =V116aof_intc1Aainfix =V3V117Aainfix =V4V118Aainfix =V5V119Aainfix =V6V120Aainfix =V174V181Aainfix =ato_intV0c3Aainfix =ato_intaroutec4Aainfix =V112V116Aainfix =V176V175ANainfix =ato_intV0c1Aainfix =ato_intaroutec7Aainfix =V108V112Aainfix =V178V174Aainfix =V177V176ANainfix =ato_intV0c4Aainfix =ato_intV1c1Aainfix =ato_intaroutec3Aainfix =V97V108Aainfix =V180V178Aainfix =V179V177ANainfix =ato_intV1c3Aainfix =ato_intV0c2Aainfix =ato_intaroutec0Aainfix =V159V97Aainfix =V155V87Aainfix =V156V88Aainfix =V157V89Aainfix =V158V90Aainfix =V152V94Aainfix =V153V95Aainfix =V154V96Aainfix =V167V97Aainfix =V163V87Aainfix =V164V88Aainfix =V165V89Aainfix =V166V90Aainfix =V160V94Aainfix =V161V95Aainfix =V162V96Lamk signal_state_typeV83V84V85V86Lamk signal_state_typeV87V88V89V90Lamk segment_state_typeV94V95V96Lamk signal_state_typeV98V99V100V101Lamk segment_state_typeV105V106V107Lamk segment_state_typeV109V110V111Lamk segment_state_typeV113V114V115Lamk signal_state_typeV117V118V119V120Lamk segment_state_typeV124V125V126Lamk signal_state_typeV128V129V130V131Lamk segment_state_typeV135V136V137Lamk segment_state_typeV139V140V141Lamk segment_state_typeV143V144V145Lamk signal_state_typeV146V147V148V149F">
+        <label
+         name="W:diverges:N"/>
+        <label
+         name="expl:VC for def"/>
+        <label
+         name="GP_Subp:railway.ads:74"/>
+        <label
+         name="GP_Pretty_Ada:Railway.Move_Train"/>
+       </goal>
+      </transf>
+     </goal>
+     <goal
+      name="WP_parameter def.7"
+      locfile="../railway.mlw"
+      loclnum="1652" loccnumb="5" loccnume="8"
+      expl="7."
+      sum="dd3b768ad5270d2c8ea3c46a68b52b56"
+      proved="false"
+      expanded="false"
+      shape="ainfix =acorrect_segmentsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueAainfix =acorrect_signalsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueIainfix =ato_intV33c5Aainfix =V33V34Aainfix =V1V35Aainfix =V2V36Aainfix =V176amk segment_state_typeV34V35V36Aainfix =V112aof_intc1Aainfix =V3V117Aainfix =V4V118Aainfix =V5V119Aainfix =V6V120Aainfix =V174V181Aainfix =ato_intV0c1Aainfix =ato_intaroutec7Aainfix =V108V112Aainfix =V178V174Aainfix =V177V176ANainfix =ato_intV0c4Aainfix =ato_intV1c1Aainfix =ato_intaroutec3Aainfix =V97V108Aainfix =V180V178Aainfix =V179V177ANainfix =ato_intV1c3Aainfix =ato_intV0c2Aainfix =ato_intaroutec0Aainfix =V159V97Aainfix =V155V87Aainfix =V156V88Aainfix =V157V89Aainfix =V158V90Aainfix =V152V94Aainfix =V153V95Aainfix =V154V96Aainfix =V167V97Aainfix =V163V87Aainfix =V164V88Aainfix =V165V89Aainfix =V166V90Aainfix =V160V94Aainfix =V161V95Aainfix =V162V96Lamk signal_state_typeV83V84V85V86Lamk signal_state_typeV87V88V89V90Lamk segment_state_typeV94V95V96Lamk signal_state_typeV98V99V100V101Lamk segment_state_typeV105V106V107Lamk segment_state_typeV109V110V111Lamk segment_state_typeV113V114V115Lamk signal_state_typeV117V118V119V120Lamk segment_state_typeV124V125V126Lamk signal_state_typeV128V129V130V131Lamk segment_state_typeV135V136V137Lamk segment_state_typeV139V140V141Lamk segment_state_typeV143V144V145Lamk signal_state_typeV146V147V148V149F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="expl:VC for def"/>
+      <label
+       name="GP_Subp:railway.ads:74"/>
+      <label
+       name="GP_Pretty_Ada:Railway.Move_Train"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="timeout" time="0.99"/>
+      </proof>
+      <transf
+       name="split_conj"
+       proved="false"
+       expanded="true">
+       <goal
+        name="WP_parameter def.7.1"
+        locfile="../railway.mlw"
+        loclnum="1652" loccnumb="5" loccnume="8"
+        expl="1."
+        sum="f422112a6c021c6262eee61c06e015b0"
+        proved="false"
+        expanded="false"
+        shape="ainfix =acorrect_signalsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueIainfix =ato_intV33c5Aainfix =V33V34Aainfix =V1V35Aainfix =V2V36Aainfix =V176amk segment_state_typeV34V35V36Aainfix =V112aof_intc1Aainfix =V3V117Aainfix =V4V118Aainfix =V5V119Aainfix =V6V120Aainfix =V174V181Aainfix =ato_intV0c1Aainfix =ato_intaroutec7Aainfix =V108V112Aainfix =V178V174Aainfix =V177V176ANainfix =ato_intV0c4Aainfix =ato_intV1c1Aainfix =ato_intaroutec3Aainfix =V97V108Aainfix =V180V178Aainfix =V179V177ANainfix =ato_intV1c3Aainfix =ato_intV0c2Aainfix =ato_intaroutec0Aainfix =V159V97Aainfix =V155V87Aainfix =V156V88Aainfix =V157V89Aainfix =V158V90Aainfix =V152V94Aainfix =V153V95Aainfix =V154V96Aainfix =V167V97Aainfix =V163V87Aainfix =V164V88Aainfix =V165V89Aainfix =V166V90Aainfix =V160V94Aainfix =V161V95Aainfix =V162V96Lamk signal_state_typeV83V84V85V86Lamk signal_state_typeV87V88V89V90Lamk segment_state_typeV94V95V96Lamk signal_state_typeV98V99V100V101Lamk segment_state_typeV105V106V107Lamk segment_state_typeV109V110V111Lamk segment_state_typeV113V114V115Lamk signal_state_typeV117V118V119V120Lamk segment_state_typeV124V125V126Lamk signal_state_typeV128V129V130V131Lamk segment_state_typeV135V136V137Lamk segment_state_typeV139V140V141Lamk segment_state_typeV143V144V145Lamk signal_state_typeV146V147V148V149F">
+        <label
+         name="W:diverges:N"/>
+        <label
+         name="expl:VC for def"/>
+        <label
+         name="GP_Subp:railway.ads:74"/>
+        <label
+         name="GP_Pretty_Ada:Railway.Move_Train"/>
+       </goal>
+       <goal
+        name="WP_parameter def.7.2"
+        locfile="../railway.mlw"
+        loclnum="1652" loccnumb="5" loccnume="8"
+        expl="2."
+        sum="b3f35408d048445a1ed9949820a6e497"
+        proved="false"
+        expanded="false"
+        shape="ainfix =acorrect_segmentsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueIainfix =ato_intV33c5Aainfix =V33V34Aainfix =V1V35Aainfix =V2V36Aainfix =V176amk segment_state_typeV34V35V36Aainfix =V112aof_intc1Aainfix =V3V117Aainfix =V4V118Aainfix =V5V119Aainfix =V6V120Aainfix =V174V181Aainfix =ato_intV0c1Aainfix =ato_intaroutec7Aainfix =V108V112Aainfix =V178V174Aainfix =V177V176ANainfix =ato_intV0c4Aainfix =ato_intV1c1Aainfix =ato_intaroutec3Aainfix =V97V108Aainfix =V180V178Aainfix =V179V177ANainfix =ato_intV1c3Aainfix =ato_intV0c2Aainfix =ato_intaroutec0Aainfix =V159V97Aainfix =V155V87Aainfix =V156V88Aainfix =V157V89Aainfix =V158V90Aainfix =V152V94Aainfix =V153V95Aainfix =V154V96Aainfix =V167V97Aainfix =V163V87Aainfix =V164V88Aainfix =V165V89Aainfix =V166V90Aainfix =V160V94Aainfix =V161V95Aainfix =V162V96Lamk signal_state_typeV83V84V85V86Lamk signal_state_typeV87V88V89V90Lamk segment_state_typeV94V95V96Lamk signal_state_typeV98V99V100V101Lamk segment_state_typeV105V106V107Lamk segment_state_typeV109V110V111Lamk segment_state_typeV113V114V115Lamk signal_state_typeV117V118V119V120Lamk segment_state_typeV124V125V126Lamk signal_state_typeV128V129V130V131Lamk segment_state_typeV135V136V137Lamk segment_state_typeV139V140V141Lamk segment_state_typeV143V144V145Lamk signal_state_typeV146V147V148V149F">
+        <label
+         name="W:diverges:N"/>
+        <label
+         name="expl:VC for def"/>
+        <label
+         name="GP_Subp:railway.ads:74"/>
+        <label
+         name="GP_Pretty_Ada:Railway.Move_Train"/>
+       </goal>
+      </transf>
+     </goal>
+     <goal
+      name="WP_parameter def.8"
+      locfile="../railway.mlw"
+      loclnum="1652" loccnumb="5" loccnume="8"
+      expl="8."
+      sum="fa1ce59570879c229f685fececf97f91"
+      proved="false"
+      expanded="false"
+      shape="ainfix =acorrect_segmentsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueAainfix =acorrect_signalsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueIainfix =ato_intV20c0Aainfix =V3V21Aainfix =V20V22Aainfix =V5V23Aainfix =V6V24Aainfix =V178amk signal_state_typeV21V22V23V24Aainfix =ato_intV25c5Aainfix =V0V26Aainfix =V25V27Aainfix =V2V28Aainfix =amk segment_state_typeV102V103V104amk segment_state_typeV26V27V28Aainfix =ato_intV29c0Aainfix =V29V30Aainfix =V103V31Aainfix =V104V32Aainfix =V177amk segment_state_typeV30V31V32Aainfix =V108aof_intc1Aainfix =ato_intV0c4Aainfix =ato_intV1c1Aainfix =ato_intaroutec3Aainfix =V97V108Aainfix =V180V178Aainfix =V179V177ANainfix =ato_intV1c3Aainfix =ato_intV0c2Aainfix =ato_intaroutec0Aainfix =V159V97Aainfix =V155V87Aainfix =V156V88Aainfix =V157V89Aainfix =V158V90Aainfix =V152V94Aainfix =V153V95Aainfix =V154V96Aainfix =V167V97Aainfix =V163V87Aainfix =V164V88Aainfix =V165V89Aainfix =V166V90Aainfix =V160V94Aainfix =V161V95Aainfix =V162V96Lamk signal_state_typeV83V84V85V86Lamk signal_state_typeV87V88V89V90Lamk segment_state_typeV94V95V96Lamk signal_state_typeV98V99V100V101Lamk segment_state_typeV105V106V107Lamk segment_state_typeV109V110V111Lamk segment_state_typeV113V114V115Lamk signal_state_typeV117V118V119V120Lamk segment_state_typeV124V125V126Lamk signal_state_typeV128V129V130V131Lamk segment_state_typeV135V136V137Lamk segment_state_typeV139V140V141Lamk segment_state_typeV143V144V145Lamk signal_state_typeV146V147V148V149F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="expl:VC for def"/>
+      <label
+       name="GP_Subp:railway.ads:74"/>
+      <label
+       name="GP_Pretty_Ada:Railway.Move_Train"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="timeout" time="0.99"/>
+      </proof>
+      <transf
+       name="split_conj"
+       proved="false"
+       expanded="true">
+       <goal
+        name="WP_parameter def.8.1"
+        locfile="../railway.mlw"
+        loclnum="1652" loccnumb="5" loccnume="8"
+        expl="1."
+        sum="56cd3b92f8851f25bad0f8b7676c664a"
+        proved="false"
+        expanded="false"
+        shape="ainfix =acorrect_signalsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueIainfix =ato_intV20c0Aainfix =V3V21Aainfix =V20V22Aainfix =V5V23Aainfix =V6V24Aainfix =V178amk signal_state_typeV21V22V23V24Aainfix =ato_intV25c5Aainfix =V0V26Aainfix =V25V27Aainfix =V2V28Aainfix =amk segment_state_typeV102V103V104amk segment_state_typeV26V27V28Aainfix =ato_intV29c0Aainfix =V29V30Aainfix =V103V31Aainfix =V104V32Aainfix =V177amk segment_state_typeV30V31V32Aainfix =V108aof_intc1Aainfix =ato_intV0c4Aainfix =ato_intV1c1Aainfix =ato_intaroutec3Aainfix =V97V108Aainfix =V180V178Aainfix =V179V177ANainfix =ato_intV1c3Aainfix =ato_intV0c2Aainfix =ato_intaroutec0Aainfix =V159V97Aainfix =V155V87Aainfix =V156V88Aainfix =V157V89Aainfix =V158V90Aainfix =V152V94Aainfix =V153V95Aainfix =V154V96Aainfix =V167V97Aainfix =V163V87Aainfix =V164V88Aainfix =V165V89Aainfix =V166V90Aainfix =V160V94Aainfix =V161V95Aainfix =V162V96Lamk signal_state_typeV83V84V85V86Lamk signal_state_typeV87V88V89V90Lamk segment_state_typeV94V95V96Lamk signal_state_typeV98V99V100V101Lamk segment_state_typeV105V106V107Lamk segment_state_typeV109V110V111Lamk segment_state_typeV113V114V115Lamk signal_state_typeV117V118V119V120Lamk segment_state_typeV124V125V126Lamk signal_state_typeV128V129V130V131Lamk segment_state_typeV135V136V137Lamk segment_state_typeV139V140V141Lamk segment_state_typeV143V144V145Lamk signal_state_typeV146V147V148V149F">
+        <label
+         name="W:diverges:N"/>
+        <label
+         name="expl:VC for def"/>
+        <label
+         name="GP_Subp:railway.ads:74"/>
+        <label
+         name="GP_Pretty_Ada:Railway.Move_Train"/>
+       </goal>
+       <goal
+        name="WP_parameter def.8.2"
+        locfile="../railway.mlw"
+        loclnum="1652" loccnumb="5" loccnume="8"
+        expl="2."
+        sum="cdad76fcd392ed5f5b9fd30541518999"
+        proved="false"
+        expanded="false"
+        shape="ainfix =acorrect_segmentsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueIainfix =ato_intV20c0Aainfix =V3V21Aainfix =V20V22Aainfix =V5V23Aainfix =V6V24Aainfix =V178amk signal_state_typeV21V22V23V24Aainfix =ato_intV25c5Aainfix =V0V26Aainfix =V25V27Aainfix =V2V28Aainfix =amk segment_state_typeV102V103V104amk segment_state_typeV26V27V28Aainfix =ato_intV29c0Aainfix =V29V30Aainfix =V103V31Aainfix =V104V32Aainfix =V177amk segment_state_typeV30V31V32Aainfix =V108aof_intc1Aainfix =ato_intV0c4Aainfix =ato_intV1c1Aainfix =ato_intaroutec3Aainfix =V97V108Aainfix =V180V178Aainfix =V179V177ANainfix =ato_intV1c3Aainfix =ato_intV0c2Aainfix =ato_intaroutec0Aainfix =V159V97Aainfix =V155V87Aainfix =V156V88Aainfix =V157V89Aainfix =V158V90Aainfix =V152V94Aainfix =V153V95Aainfix =V154V96Aainfix =V167V97Aainfix =V163V87Aainfix =V164V88Aainfix =V165V89Aainfix =V166V90Aainfix =V160V94Aainfix =V161V95Aainfix =V162V96Lamk signal_state_typeV83V84V85V86Lamk signal_state_typeV87V88V89V90Lamk segment_state_typeV94V95V96Lamk signal_state_typeV98V99V100V101Lamk segment_state_typeV105V106V107Lamk segment_state_typeV109V110V111Lamk segment_state_typeV113V114V115Lamk signal_state_typeV117V118V119V120Lamk segment_state_typeV124V125V126Lamk signal_state_typeV128V129V130V131Lamk segment_state_typeV135V136V137Lamk segment_state_typeV139V140V141Lamk segment_state_typeV143V144V145Lamk signal_state_typeV146V147V148V149F">
+        <label
+         name="W:diverges:N"/>
+        <label
+         name="expl:VC for def"/>
+        <label
+         name="GP_Subp:railway.ads:74"/>
+        <label
+         name="GP_Pretty_Ada:Railway.Move_Train"/>
+       </goal>
+      </transf>
+     </goal>
+     <goal
+      name="WP_parameter def.9"
+      locfile="../railway.mlw"
+      loclnum="1652" loccnumb="5" loccnume="8"
+      expl="9."
+      sum="8003c76fa33df4b2a215b91d45a183b9"
+      proved="false"
+      expanded="false"
+      shape="ainfix =acorrect_segmentsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueAainfix =acorrect_signalsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueIainfix =ato_intV7c0Aainfix =V7V8Aainfix =V4V9Aainfix =V5V10Aainfix =V6V11Aainfix =V180amk signal_state_typeV8V9V10V11Aainfix =ato_intV12c5Aainfix =V12V13Aainfix =V1V14Aainfix =V2V15Aainfix =amk segment_state_typeV91V92V93amk segment_state_typeV13V14V15Aainfix =ato_intV16c0Aainfix =V91V17Aainfix =V16V18Aainfix =V93V19Aainfix =V179amk segment_state_typeV17V18V19Aainfix =V97aof_intc1Aainfix =ato_intV1c3Aainfix =ato_intV0c2Aainfix =ato_intaroutec0Aainfix =V159V97Aainfix =V155V87Aainfix =V156V88Aainfix =V157V89Aainfix =V158V90Aainfix =V152V94Aainfix =V153V95Aainfix =V154V96Aainfix =V167V97Aainfix =V163V87Aainfix =V164V88Aainfix =V165V89Aainfix =V166V90Aainfix =V160V94Aainfix =V161V95Aainfix =V162V96Lamk signal_state_typeV83V84V85V86Lamk signal_state_typeV87V88V89V90Lamk segment_state_typeV94V95V96Lamk signal_state_typeV98V99V100V101Lamk segment_state_typeV105V106V107Lamk segment_state_typeV109V110V111Lamk segment_state_typeV113V114V115Lamk signal_state_typeV117V118V119V120Lamk segment_state_typeV124V125V126Lamk signal_state_typeV128V129V130V131Lamk segment_state_typeV135V136V137Lamk segment_state_typeV139V140V141Lamk segment_state_typeV143V144V145Lamk signal_state_typeV146V147V148V149F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="expl:VC for def"/>
+      <label
+       name="GP_Subp:railway.ads:74"/>
+      <label
+       name="GP_Pretty_Ada:Railway.Move_Train"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="unknown" time="0.11"/>
+      </proof>
+      <transf
+       name="split_conj"
+       proved="false"
+       expanded="true">
+       <goal
+        name="WP_parameter def.9.1"
+        locfile="../railway.mlw"
+        loclnum="1652" loccnumb="5" loccnume="8"
+        expl="1."
+        sum="1ba47135469704f9b6fb106adf3a0668"
+        proved="false"
+        expanded="false"
+        shape="ainfix =acorrect_signalsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueIainfix =ato_intV7c0Aainfix =V7V8Aainfix =V4V9Aainfix =V5V10Aainfix =V6V11Aainfix =V180amk signal_state_typeV8V9V10V11Aainfix =ato_intV12c5Aainfix =V12V13Aainfix =V1V14Aainfix =V2V15Aainfix =amk segment_state_typeV91V92V93amk segment_state_typeV13V14V15Aainfix =ato_intV16c0Aainfix =V91V17Aainfix =V16V18Aainfix =V93V19Aainfix =V179amk segment_state_typeV17V18V19Aainfix =V97aof_intc1Aainfix =ato_intV1c3Aainfix =ato_intV0c2Aainfix =ato_intaroutec0Aainfix =V159V97Aainfix =V155V87Aainfix =V156V88Aainfix =V157V89Aainfix =V158V90Aainfix =V152V94Aainfix =V153V95Aainfix =V154V96Aainfix =V167V97Aainfix =V163V87Aainfix =V164V88Aainfix =V165V89Aainfix =V166V90Aainfix =V160V94Aainfix =V161V95Aainfix =V162V96Lamk signal_state_typeV83V84V85V86Lamk signal_state_typeV87V88V89V90Lamk segment_state_typeV94V95V96Lamk signal_state_typeV98V99V100V101Lamk segment_state_typeV105V106V107Lamk segment_state_typeV109V110V111Lamk segment_state_typeV113V114V115Lamk signal_state_typeV117V118V119V120Lamk segment_state_typeV124V125V126Lamk signal_state_typeV128V129V130V131Lamk segment_state_typeV135V136V137Lamk segment_state_typeV139V140V141Lamk segment_state_typeV143V144V145Lamk signal_state_typeV146V147V148V149F">
+        <label
+         name="W:diverges:N"/>
+        <label
+         name="expl:VC for def"/>
+        <label
+         name="GP_Subp:railway.ads:74"/>
+        <label
+         name="GP_Pretty_Ada:Railway.Move_Train"/>
+       </goal>
+       <goal
+        name="WP_parameter def.9.2"
+        locfile="../railway.mlw"
+        loclnum="1652" loccnumb="5" loccnume="8"
+        expl="2."
+        sum="995b8c20c29716ddaee489b9b6cc9cc1"
+        proved="false"
+        expanded="false"
+        shape="ainfix =acorrect_segmentsamk segment_state_typeV152V153V154amk signal_state_typeV155V156V157V158aTrueIainfix =ato_intV7c0Aainfix =V7V8Aainfix =V4V9Aainfix =V5V10Aainfix =V6V11Aainfix =V180amk signal_state_typeV8V9V10V11Aainfix =ato_intV12c5Aainfix =V12V13Aainfix =V1V14Aainfix =V2V15Aainfix =amk segment_state_typeV91V92V93amk segment_state_typeV13V14V15Aainfix =ato_intV16c0Aainfix =V91V17Aainfix =V16V18Aainfix =V93V19Aainfix =V179amk segment_state_typeV17V18V19Aainfix =V97aof_intc1Aainfix =ato_intV1c3Aainfix =ato_intV0c2Aainfix =ato_intaroutec0Aainfix =V159V97Aainfix =V155V87Aainfix =V156V88Aainfix =V157V89Aainfix =V158V90Aainfix =V152V94Aainfix =V153V95Aainfix =V154V96Aainfix =V167V97Aainfix =V163V87Aainfix =V164V88Aainfix =V165V89Aainfix =V166V90Aainfix =V160V94Aainfix =V161V95Aainfix =V162V96Lamk signal_state_typeV83V84V85V86Lamk signal_state_typeV87V88V89V90Lamk segment_state_typeV94V95V96Lamk signal_state_typeV98V99V100V101Lamk segment_state_typeV105V106V107Lamk segment_state_typeV109V110V111Lamk segment_state_typeV113V114V115Lamk signal_state_typeV117V118V119V120Lamk segment_state_typeV124V125V126Lamk signal_state_typeV128V129V130V131Lamk segment_state_typeV135V136V137Lamk segment_state_typeV139V140V141Lamk segment_state_typeV143V144V145Lamk signal_state_typeV146V147V148V149F">
+        <label
+         name="W:diverges:N"/>
+        <label
+         name="expl:VC for def"/>
+        <label
+         name="GP_Subp:railway.ads:74"/>
+        <label
+         name="GP_Pretty_Ada:Railway.Move_Train"/>
+       </goal>
+      </transf>
+     </goal>
+    </transf>
+   </goal>
+  </theory>
+ </file>
+</why3session>

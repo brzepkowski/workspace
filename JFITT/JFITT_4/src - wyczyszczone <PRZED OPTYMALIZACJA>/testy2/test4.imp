@@ -1,0 +1,9 @@
+DECLARE
+	n a(100) b(100) c(100) j 
+IN
+	GET n;
+	GET j;
+	IF n != j THEN
+		PUT n;
+	ENDIF
+END

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ksiazka>
+	<tytul>Hobbit</tytul>
+	<lista_autorow>
+		<autor>J.R.R.Tolkien</autor>
+		<autor>Wojciech Cejrowski</autor>
+		<autor>J.K.rowling</autor>
+	</lista_autorow>
+	<wprowadzenie>Dawno temu Bilbo wyruszył zabic smoka i zgarnąć gruby hajs</wprowadzenie>
+	<rozdzialy>
+		<rozdzial>
+			<tytul_rozdzialu>Rozdział pierwszy</tytul_rozdzialu>
+			<numer_strony_poczatkowej>12</numer_strony_poczatkowej>
+			<sekcje>
+				<sekcja>
+					<tytul_sekcji>Hobbiton</tytul_sekcji>
+					<akapity>
+						<akapit>Akapit 1</akapit>
+					</akapity>
+				</sekcja>
+			</sekcje>
+		</rozdzial>
+	</rozdzialy>
+</ksiazka>
+			
+	

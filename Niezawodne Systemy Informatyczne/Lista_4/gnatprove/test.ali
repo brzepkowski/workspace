@@ -1,0 +1,273 @@
+V "GNAT Lib v2014"
+M P W=b
+A -gnatc
+A -mtune=generic
+A -march=pentiumpro
+P ZX
+
+RN
+RV NO_ELABORATION_CODE
+
+U test%b		test.adb		f8df1c94 OO SU
+W ada%s			ada.ads			ada.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W base64%s		base64.adb		base64.ali
+
+D ada.ads		20140406181354 3ffc8e18 ada%s
+D a-ioexce.ads		20140406181358 e4a01f64 ada.io_exceptions%s
+D a-stream.ads		20140406181355 1a984740 ada.streams%s
+D a-textio.ads		20140406181359 386df5d4 ada.text_io%s
+D base64.ads		20151207165401 35dfdee9 base64%s
+D interfac.ads		20140406181359 69adb1b9 interfaces%s
+D i-cstrea.ads		20140406181357 febc86ed interfaces.c_streams%s
+D system.ads		20140406181356 bd760655 system%s
+D s-crtl.ads		20140406181356 2c012597 system.crtl%s
+D s-ficobl.ads		20140406181355 078245e4 system.file_control_block%s
+D s-parame.ads		20140406181358 06da98b2 system.parameters%s
+D s-wchcon.ads		20140406181358 1b7d22d2 system.wch_con%s
+D test.adb		20151130132450 f56d37a9 test%b
+X 1 ada.ads
+16K9*Ada 19e8 13|1r6 8r4 10r7 12r4 14r4 16r7 18r4 20r4 22r7 24r4
+X 4 a-textio.ads
+49K13*Text_IO 471e16 13|1w10 8r8 10r11 12r8 14r8 16r11 18r8 20r8 22r11 24r8
+166U14*New_Line 13|12s16 18s16 24s16
+242U14*Put 13|8s16 10s19 14s16 16s19 20s16 22s19
+X 5 base64.ads
+3K9*Base64 23e11 13|2w6 5r9 6r9 10r23 13r10 16r23 19r10 22r23
+5M9*Octet 13|10r30 22r30
+7M9*Sextet 13|16r30
+9A9*Data_Type(5M9)<integer> 13|5r16
+11A9*Encoded_Data_Type(7M9)<integer> 13|6r16
+13V13*Encode{11A9} 13|13s17
+18V12*Decode{9A9} 13|19s17
+X 13 test.adb
+4U11*Test 4b11 25l5 25t9
+5a4 T1{5|9A9} 9r13 10r42 13r25 19m4 21r13 22r42
+6a4 T2{5|11A9} 13m4 15r13 16r43 19r25
+9i8 I{integer} 10r45
+15i8 I{integer} 16r46
+21i8 I{integer} 22r45
+FD 1 ada.ads
+FS .1 16K9 ada
+FD 2 a-ioexce.ads
+FS .1 18K13 ada__io_exceptions
+FD 3 a-stream.ads
+FS .1 36K13 ada__streams
+FS .2 73U14 ada__streams__read_sea
+FS .3 77U14 ada__streams__write_sea
+FS .4 81U4 ada__streams__stream_element_arraySR
+FS .5 82U4 ada__streams__stream_element_arraySW
+FS .6 81U4 ada__streams__stream_element_arraySR -> 3.4
+FS .7 82U4 ada__streams__stream_element_arraySW -> 3.5
+FD 4 a-textio.ads
+FS .1 49K13 ada__text_io
+FS .2 86U14 ada__text_io__create
+FS .3 92U14 ada__text_io__open
+FS .4 98U14 ada__text_io__close
+FS .5 99U14 ada__text_io__delete
+FS .6 100U14 ada__text_io__reset
+FS .7 101U14 ada__text_io__reset__2
+FS .8 103V13 ada__text_io__mode
+FS .9 104V13 ada__text_io__name
+FS .10 105V13 ada__text_io__form
+FS .11 107V13 ada__text_io__is_open
+FS .12 113U14 ada__text_io__set_input
+FS .13 114U14 ada__text_io__set_output
+FS .14 115U14 ada__text_io__set_error
+FS .15 117V13 ada__text_io__standard_input
+FS .16 118V13 ada__text_io__standard_output
+FS .17 119V13 ada__text_io__standard_error
+FS .18 121V13 ada__text_io__current_input
+FS .19 122V13 ada__text_io__current_output
+FS .20 123V13 ada__text_io__current_error
+FS .21 127V13 ada__text_io__standard_input__2
+FS .22 128V13 ada__text_io__standard_output__2
+FS .23 129V13 ada__text_io__standard_error__2
+FS .24 131V13 ada__text_io__current_input__2
+FS .25 132V13 ada__text_io__current_output__2
+FS .26 133V13 ada__text_io__current_error__2
+FS .27 142U14 ada__text_io__flush
+FS .28 143U14 ada__text_io__flush__2
+FS .29 149U14 ada__text_io__set_line_length
+FS .30 150U14 ada__text_io__set_line_length__2
+FS .31 152U14 ada__text_io__set_page_length
+FS .32 153U14 ada__text_io__set_page_length__2
+FS .33 155V13 ada__text_io__line_length
+FS .34 156V13 ada__text_io__line_length__2
+FS .35 158V13 ada__text_io__page_length
+FS .36 159V13 ada__text_io__page_length__2
+FS .37 165U14 ada__text_io__new_line
+FS .38 166U14 ada__text_io__new_line__2
+FS .39 168U14 ada__text_io__skip_line
+FS .40 169U14 ada__text_io__skip_line__2
+FS .41 171V13 ada__text_io__end_of_line
+FS .42 172V13 ada__text_io__end_of_line__2
+FS .43 174U14 ada__text_io__new_page
+FS .44 175U14 ada__text_io__new_page__2
+FS .45 177U14 ada__text_io__skip_page
+FS .46 178U14 ada__text_io__skip_page__2
+FS .47 180V13 ada__text_io__end_of_page
+FS .48 181V13 ada__text_io__end_of_page__2
+FS .49 183V13 ada__text_io__end_of_file
+FS .50 184V13 ada__text_io__end_of_file__2
+FS .51 186U14 ada__text_io__set_col
+FS .52 187U14 ada__text_io__set_col__2
+FS .53 189U14 ada__text_io__set_line
+FS .54 190U14 ada__text_io__set_line__2
+FS .55 192V13 ada__text_io__col
+FS .56 193V13 ada__text_io__col__2
+FS .57 195V13 ada__text_io__line
+FS .58 196V13 ada__text_io__line__2
+FS .59 198V13 ada__text_io__page
+FS .60 199V13 ada__text_io__page__2
+FS .61 205U14 ada__text_io__get
+FS .62 206U14 ada__text_io__get__2
+FS .63 207U14 ada__text_io__put
+FS .64 208U14 ada__text_io__put__2
+FS .65 210U14 ada__text_io__look_ahead
+FS .66 215U14 ada__text_io__look_ahead__2
+FS .67 219U14 ada__text_io__get_immediate
+FS .68 223U14 ada__text_io__get_immediate__2
+FS .69 226U14 ada__text_io__get_immediate__3
+FS .70 231U14 ada__text_io__get_immediate__4
+FS .71 239U14 ada__text_io__get__3
+FS .72 240U14 ada__text_io__get__4
+FS .73 241U14 ada__text_io__put__3
+FS .74 242U14 ada__text_io__put__4
+FS .75 244U14 ada__text_io__get_line
+FS .76 249U14 ada__text_io__get_line__2
+FS .77 253V13 ada__text_io__get_line__3
+FS .78 256V13 ada__text_io__get_line__4
+FS .79 259U14 ada__text_io__put_line
+FS .80 263U14 ada__text_io__put_line__2
+FS .81 426V13 ada__text_io__afcb_allocate__2
+FS .82 428U14 ada__text_io__afcb_close__2
+FS .83 429U14 ada__text_io__afcb_free__2
+FS .84 431U14 ada__text_io__read__2
+FS .85 437U14 ada__text_io__write__2
+FS .86 460V13 ada__text_io__eof_char
+FS .87 466U14 ada__text_io__initialize_standard_files
+FD 5 base64.ads
+FS .1 3K9 base64
+FS .2 13V13 base64__encode
+FS .3 18V12 base64__decode
+FD 6 interfac.ads
+FS .1 38K9 interfaces
+FS .2 69V13 interfaces__shift_left
+FS .3 73V13 interfaces__shift_right
+FS .4 77V13 interfaces__shift_right_arithmetic
+FS .5 81V13 interfaces__rotate_left
+FS .6 85V13 interfaces__rotate_right
+FS .7 89V13 interfaces__shift_left__2
+FS .8 93V13 interfaces__shift_right__2
+FS .9 97V13 interfaces__shift_right_arithmetic__2
+FS .10 101V13 interfaces__rotate_left__2
+FS .11 105V13 interfaces__rotate_right__2
+FS .12 109V13 interfaces__shift_left__3
+FS .13 113V13 interfaces__shift_right__3
+FS .14 117V13 interfaces__shift_right_arithmetic__3
+FS .15 121V13 interfaces__rotate_left__3
+FS .16 125V13 interfaces__rotate_right__3
+FS .17 129V13 interfaces__shift_left__4
+FS .18 133V13 interfaces__shift_right__4
+FS .19 137V13 interfaces__shift_right_arithmetic__4
+FS .20 141V13 interfaces__rotate_left__4
+FS .21 145V13 interfaces__rotate_right__4
+FD 7 i-cstrea.ads
+FS .1 37K20 interfaces__c_streams
+FS .2 71V13 interfaces__c_streams__stdin
+FS .3 72V13 interfaces__c_streams__stdout
+FS .4 73V13 interfaces__c_streams__stderr
+FS .5 94V13 interfaces__c_streams__feof
+FS .6 96V13 interfaces__c_streams__ferror
+FS .7 105V13 interfaces__c_streams__fileno
+FS .8 128V13 interfaces__c_streams__fread
+FS .9 134V13 interfaces__c_streams__fread__2
+FS .10 172V13 interfaces__c_streams__fwrite
+FS .11 185V13 interfaces__c_streams__setvbuf
+FS .12 213V13 interfaces__c_streams__file_exists
+FS .13 216V13 interfaces__c_streams__is_regular_file
+FS .14 224U14 interfaces__c_streams__set_binary_mode
+FS .15 225U14 interfaces__c_streams__set_text_mode
+FS .16 255U14 interfaces__c_streams__set_mode
+FS .17 263U14 interfaces__c_streams__full_name
+FD 8 system.ads
+FS .1 37K9 system
+FS .2 74V13 system__Olt
+FS .3 75V13 system__Ole
+FS .4 76V13 system__Ogt
+FS .5 77V13 system__Oge
+FS .6 78V13 system__Oeq
+FD 9 s-crtl.ads
+FS .1 38K16 system__crtl
+FS .2 78V13 system__crtl__strlen
+FS .3 81U14 system__crtl__strncpy
+FS .4 88V13 system__crtl__atoi
+FS .5 91U14 system__crtl__clearerr
+FS .6 94V13 system__crtl__dup
+FS .7 97V13 system__crtl__dup2
+FS .8 100V13 system__crtl__fclose
+FS .9 103V13 system__crtl__fdopen
+FS .10 106V13 system__crtl__fflush
+FS .11 109V13 system__crtl__fgetc
+FS .12 112V13 system__crtl__fgets
+FS .13 115V13 system__crtl__fopen
+FS .14 122V13 system__crtl__fputc
+FS .15 125V13 system__crtl__fputwc
+FS .16 128V13 system__crtl__fputs
+FS .17 131U14 system__crtl__free
+FS .18 134V13 system__crtl__freopen
+FS .19 142V13 system__crtl__fseek
+FS .20 148V13 system__crtl__fseek64
+FS .21 154V13 system__crtl__ftell
+FS .22 157V13 system__crtl__ftell64
+FS .23 160V13 system__crtl__getenv
+FS .24 163V13 system__crtl__isatty
+FS .25 166V13 system__crtl__lseek
+FS .26 169V13 system__crtl__malloc
+FS .27 172U14 system__crtl__memcpy
+FS .28 175U14 system__crtl__memmove
+FS .29 178U14 system__crtl__mktemp
+FS .30 181V13 system__crtl__pclose
+FS .31 184V13 system__crtl__popen
+FS .32 187V13 system__crtl__realloc
+FS .33 191U14 system__crtl__rewind
+FS .34 194V13 system__crtl__rmdir
+FS .35 197V13 system__crtl__chdir
+FS .36 200V13 system__crtl__mkdir
+FS .37 205V13 system__crtl__setvbuf
+FS .38 212U14 system__crtl__tmpnam
+FS .39 215V13 system__crtl__tmpfile
+FS .40 218V13 system__crtl__ungetc
+FS .41 221V13 system__crtl__unlink
+FS .42 224V13 system__crtl__open
+FS .43 227V13 system__crtl__close
+FS .44 230V13 system__crtl__read
+FS .45 233V13 system__crtl__write
+FD 10 s-ficobl.ads
+FS .1 42K16 system__file_control_block
+FD 11 s-parame.ads
+FS .1 51K16 system__parameters
+FS .2 81V13 system__parameters__default_stack_size
+FS .3 84V13 system__parameters__minimum_stack_size
+FS .4 87V13 system__parameters__adjust_storage_size
+FD 12 s-wchcon.ads
+FS .1 41K16 system__wch_con
+FS .2 203V13 system__wch_con__get_wc_encoding_method
+FS .3 207V13 system__wch_con__get_wc_encoding_method__2
+FS .4 212V13 system__wch_con__is_start_of_encoding
+FD 13 test.adb
+FS .1 4U11 test
+FX 4 a-textio.ads .1 ada__text_io
+F 166*14 ada__text_io__new_line__2 13|.1:12s16 18s16 24s16
+F 242*14 ada__text_io__put__4 13|.1:8s16 10s19 14s16 16s19 20s16 22s19
+FX 5 base64.ads .1 base64
+F 13*13 base64__encode 13|.1:13s17
+F 18*12 base64__decode 13|.1:19s17
+FX 13 test.adb .1 test
+F 5*4 test__t1 9r13 10r42 13r25 19m4 21r13 22r42
+F 6*4 test__t2 13m4 15r13 16r43 19r25
+F 9*8 test__L_1__i 10c45
+F 15*8 test__L_2__i 16c46
+F 21*8 test__L_3__i 22c45
+

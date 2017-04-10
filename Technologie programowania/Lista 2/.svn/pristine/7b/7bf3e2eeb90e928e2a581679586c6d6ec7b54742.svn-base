@@ -1,0 +1,7 @@
+// Klasa GlobalInformations bedzie przechowywała wszystkie informacje o wszystkich graczach
+public class GlobalInformations {
+
+		GlobalInformations () {
+			String[][] table = new String[6][5];
+		}
+}

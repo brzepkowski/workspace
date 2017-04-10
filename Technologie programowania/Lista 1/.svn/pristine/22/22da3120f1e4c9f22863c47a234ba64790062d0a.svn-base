@@ -1,0 +1,60 @@
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+
+
+public class LiczbaTest4 {
+	
+	Liczba liczba = null;
+
+	@Before
+	public void setUp() throws Exception {
+		liczba = new Liczba();
+	}
+	
+	@Test
+	public void testOne() {
+		int a = 145;
+		int b = 16;
+		String str = null;
+		str = liczba.obliczenia(a, b);
+		assertEquals(str, "91");
+	}
+	
+	@Ignore
+	@Test
+	public void testTwo() {
+		int a = 145;
+		int b = 28;
+		String str = null;
+		str = liczba.obliczenia(a, b);
+		assertTrue(liczba.spozaZakresu);
+	}
+	
+	@Test(timeout = 1)
+	public void testThree() {
+		int a = 145;
+		int b = 28;
+		String str = null;
+		str = liczba.obliczenia(a, b);
+		assertNotSame(str, b);
+	}
+	
+	@Test(expected= NumberFormatException.class)
+	public void testFour() {
+		int a = Integer.parseInt("asd");
+		int b = 28;
+		String str = null;
+		str = liczba.obliczenia(a, b);
+	}
+	
+
+	@After
+	public void tearDown() throws Exception {
+		liczba = null;
+	}
+
+}

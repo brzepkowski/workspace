@@ -1,0 +1,6 @@
+project Lista_3 is
+
+   for Main use ("main.adb");
+
+end Lista_3;
+

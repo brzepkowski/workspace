@@ -1,0 +1,59 @@
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.After;
+
+
+public class CardsTest {
+
+	private Cards sprawdzenie;
+
+	@Before
+	public void setUp(){
+		sprawdzenie = new Cards();
+	}
+
+	@After
+	public void tearDown() {
+	sprawdzenie=null;
+	}
+	
+	@Test (timeout = 50)
+	public void test1() {
+		assertNotNull(sprawdzenie);
+	}
+
+
+	@Test
+	public void test2()
+	{
+		sprawdzenie.shuffleDeck();
+		assertNotEquals(sprawdzenie.getCards(2), null);		
+	}
+	
+	@Test(expected=IndexOutOfBoundsException.class)
+	public void test3() {
+		String[] temp = sprawdzenie.getCards(52);
+		assertNull(sprawdzenie.getCards(1));	
+	}
+	
+	@Test
+	public void test4()
+	{
+		sprawdzenie.shuffleDeck();
+		String[] temporary = sprawdzenie.getCards(2);
+		sprawdzenie.returnCards(temporary);
+		int temp = sprawdzenie.shuffledDeck.size();
+		assertEquals(52, temp);
+	}
+	
+	@Test 
+	public void test5() {
+		assertEquals(Cards.class, sprawdzenie.getClass());
+	}
+
+   
+
+}
+

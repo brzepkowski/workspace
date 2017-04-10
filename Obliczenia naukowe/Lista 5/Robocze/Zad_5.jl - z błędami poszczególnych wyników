@@ -1,0 +1,198 @@
+#Obliczenia naukowe - Lista 5
+#Bartosz Rzepkowski - 18.12.2015
+
+push!(LOAD_PATH, "/home/bartas/Julia/Lista\ 5/Programy")
+using systems
+
+function matcond(n::Int, c::Float64)
+# Function generates a random square matrix A of size n with
+# a given condition number c.
+# Inputs:
+#	n: size of matrix A, n>1
+#	c: condition of matrix A, c>= 1.0
+#
+# Usage: matcond (10, 100.0);
+#
+# Pawel Zielinski
+        if n < 2
+         error("size n should be > 1")
+        end
+        if c< 1.0
+         error("condition number  c of a matrix  should be >= 1.0")
+        end
+        (U,S,V)=svd(rand(n,n))
+        return U*diagm(linspace(1.0,c,n))*V'
+end
+
+
+
+n = 5
+c = float64([1.0, 10.0, 10.0^3, 10.0^7, 10.0^12, 10.0^16])
+Vector1 = zeros(n)
+Vector2 = zeros(n)
+Vector3 = zeros(n)
+Vector4 = zeros(n)
+
+for i=1:6
+  x = ones(n)
+  println("c = ", c[i])
+  #Eliminacja Gaussa
+  A = matcond(n, c[i])
+  b = A * x
+  A2 = copy(A)
+  b2 = copy(b)
+  x1 = Gauss(A, b, false)[1]
+  #------------
+  A = copy(A2)
+  b = copy(b2)
+  x2 = Gauss(A, b, true)[1]
+
+  #Błędy wzgledne x1
+  for i = 1: length(x)
+     Vector1[i] = abs(x[i] - x1[i]) / abs(x[i])
+  end
+  println("x1-> ", Vector1)
+
+  #Błędy względne x2
+  for i = 1: length(x)
+     Vector2[i] = abs(x[i] - x2[i]) / abs(x[i])
+  end
+  println("x2-> ", Vector2)
+
+  #Rozwiązanie dwuetapowe
+  A = copy(A2)
+  (lu1, ipvt1, err1) = rozkladLU(A, false)
+  A = copy(A2)
+  (lu2, ipvt2, err2) = rozkladLU(A, true)
+
+  b = copy(b2)
+  x3 = LUxb(lu1, false, b, ipvt1)
+  b = copy(b2)
+  x4 = LUxb(lu2, true, b, ipvt2)
+
+  #Błędy względne x3
+  for i = 1: length(x)
+     Vector3[i] = abs(x[i] - x3[i]) / abs(x[i])
+  end
+  println("x3-> ", Vector3)
+
+  #Błędy względne x4
+  for i = 1: length(x)
+     Vector4[i] = abs(x[i] - x4[i]) / abs(x[i])
+  end
+  println("x4-> ", Vector4)
+end
+
+n = 10
+c = float64([1.0, 10.0, 10.0^3, 10.0^7, 10.0^12, 10.0^16])
+Vector1 = zeros(n)
+Vector2 = zeros(n)
+Vector3 = zeros(n)
+Vector4 = zeros(n)
+for i=1:6
+  x = ones(n)
+  println("c = ", c[i])
+  #Eliminacja Gaussa
+  A = matcond(n, c[i])
+  b = A * x
+  A2 = copy(A)
+  b2 = copy(b)
+  x1 = Gauss(A, b, false)[1]
+  #------------
+  A = copy(A2)
+  b = copy(b2)
+  x2 = Gauss(A, b, true)[1]
+
+  #Błędy wzgledne x1
+  for i = 1: length(x)
+     Vector1[i] = abs(x[i] - x1[i]) / abs(x[i])
+  end
+  println("x1-> ", Vector1)
+
+  #Błędy względne x2
+  for i = 1: length(x)
+     Vector2[i] = abs(x[i] - x2[i]) / abs(x[i])
+  end
+  println("x2-> ", Vector2)
+
+  #Rozwiązanie dwuetapowe
+  A = copy(A2)
+  (lu1, ipvt1, err1) = rozkladLU(A, false)
+  A = copy(A2)
+  (lu2, ipvt2, err2) = rozkladLU(A, true)
+
+  b = copy(b2)
+  x3 = LUxb(lu1, false, b, ipvt1)
+  b = copy(b2)
+  x4 = LUxb(lu2, true, b, ipvt2)
+
+  #Błędy względne x3
+  for i = 1: length(x)
+     Vector3[i] = abs(x[i] - x3[i]) / abs(x[i])
+  end
+  println("x3-> ", Vector3)
+
+  #Błędy względne x4
+  for i = 1: length(x)
+     Vector4[i] = abs(x[i] - x4[i]) / abs(x[i])
+  end
+  println("x4-> ", Vector4)
+end
+
+n = 20
+c = float64([1.0, 10.0, 10.0^3, 10.0^7, 10.0^12, 10.0^16])
+Vector1 = zeros(n)
+Vector2 = zeros(n)
+Vector3 = zeros(n)
+Vector4 = zeros(n)
+for i=1:6
+  x = ones(n)
+  println("c = ", c[i])
+  #Eliminacja Gaussa
+  A = matcond(n, c[i])
+  b = A * x
+  A2 = copy(A)
+  b2 = copy(b)
+  x1 = Gauss(A, b, false)[1]
+  #------------
+  A = copy(A2)
+  b = copy(b2)
+  x2 = Gauss(A, b, true)[1]
+
+  #Błędy wzgledne x1
+  for i = 1: length(x)
+     Vector1[i] = abs(x[i] - x1[i]) / abs(x[i])
+  end
+  println("x1-> ", Vector1)
+
+  #Błędy względne x2
+  for i = 1: length(x)
+     Vector2[i] = abs(x[i] - x2[i]) / abs(x[i])
+  end
+  println("x2-> ", Vector2)
+
+  #Rozwiązanie dwuetapowe
+  A = copy(A2)
+  (lu1, ipvt1, err1) = rozkladLU(A, false)
+  A = copy(A2)
+  (lu2, ipvt2, err2) = rozkladLU(A, true)
+
+  b = copy(b2)
+  x3 = LUxb(lu1, false, b, ipvt1)
+  b = copy(b2)
+  x4 = LUxb(lu2, true, b, ipvt2)
+
+  #Błędy względne x3
+  for i = 1: length(x)
+     Vector3[i] = abs(x[i] - x3[i]) / abs(x[i])
+  end
+  println("x3-> ", Vector3)
+
+  #Błędy względne x4
+  for i = 1: length(x)
+     Vector4[i] = abs(x[i] - x4[i]) / abs(x[i])
+  end
+  println("x4-> ", Vector4)
+end
+
+

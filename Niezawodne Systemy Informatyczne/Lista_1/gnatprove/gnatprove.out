@@ -1,0 +1,4 @@
+Analyzed 1 units
+in unit maximum, 1 subprograms and packages out of 2 analyzed
+  Maximum at maximum.ads:1 skipped
+  Maximum.Maximum at maximum.ads:3 flow analyzed (0 errors and 0 warnings) and proved (9 checks)

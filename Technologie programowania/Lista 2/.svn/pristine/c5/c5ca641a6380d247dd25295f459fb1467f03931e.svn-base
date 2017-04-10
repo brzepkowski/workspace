@@ -1,0 +1,57 @@
+import java.io.*;
+import java.net.*;
+
+/**
+ * Klasa zawierająca implementację obsługi każdego z klientów
+ *
+ * @author Maciej Ubas
+ */
+class ClientWorker implements Runnable {
+
+    private Socket client;
+    private boolean alive = true;
+
+    ClientWorker(Socket client) {
+        this.client = client;
+        System.out.println("New client connected");
+    }
+
+    /**
+     * Podstawowa metoda wątków, 
+     * na podstawie switcha określa polecenie
+     * użytkownika
+     */
+    public void run() {
+        String line;
+        BufferedReader in = null;
+        PrintWriter out = null;
+        try {
+            in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+            out = new PrintWriter(client.getOutputStream(), true);
+        } catch (IOException e) {
+            System.out.println("in or out failed");
+            System.exit(-1);
+        }
+
+        while (alive) {
+            try {
+                line = in.readLine();
+                System.out.println("Message from client: " + line);
+                String[] tablica = line.split(" ");
+                String a = tablica[0];
+
+                switch (a) {
+                    case ("R"): //rozkład liczby
+                        System.out.println("case R");
+                        break;
+                   
+                }
+
+//Send data back to client
+            } catch (IOException e) {
+                System.out.println("The client has disconnected");
+                alive = false;
+            }
+        }
+    }
+}

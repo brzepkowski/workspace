@@ -1,0 +1,4 @@
+project Why is
+for Source_Files use (
+   "maximum.mlw");
+end Why;

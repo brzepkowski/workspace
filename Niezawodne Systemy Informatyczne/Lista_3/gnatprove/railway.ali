@@ -1,0 +1,114 @@
+V "GNAT Lib v2014"
+A -gnatc
+A -mtune=generic
+A -march=pentiumpro
+P ZX
+
+RN
+RV NO_ELABORATION_CODE
+
+U railway%b		railway.adb		74ee571b OO PK
+
+U railway%s		railway.ads		06dbf21b EE OO PK
+
+D railway.ads		20151127170404 06dbf21b railway%s
+D railway.adb		20151127170320 7235a500 railway%b
+D system.ads		20140406181356 bd760655 system%s
+X 1 railway.ads
+1K9*Railway 81l5 81e12 2|1b14 90l5 90t12
+2E9*One_Signal_State 2e41 32r24
+2n30*Red{2E9} 37r53 59r42 61r42 63r43 65r43 2|53r38 58r38 69r39 74r39 83r39
+2n35*Green{2E9} 42r40 45r40 48r41 51r41 2|11r38 22r38 27r39 38r39
+3E9*Route_Type 10e41 67r36 74r36 2|4r35 48r36
+3n24*Route_Left_Middle{3E9} 2|8r18 52r18
+4n24*Route_Middle_Right{3E9} 2|35r21 73r21
+5n24*Route_Right_Middle{3E9} 2|24r21 68r21
+6n24*Route_Middle_Left{3E9} 2|19r21 57r21
+7n24*Route_Enter_Left{3E9} 2|16r21 65r21
+8n24*Route_Leave_Right{3E9} 2|29r21 78r21
+9n24*Route_Enter_Right{3E9} 2|32r21 81r21
+10n24*Route_Leave_Left{3E9} 2|13r21 62r21
+12E9*One_Segment_State 17e36 23r18
+12n31*Occupied_Standing{12E9} 2|8r61 13r63 19r66 24r66 29r65 35r67 55r34
+. 60r32 66r32 71r34 76r33 82r33
+13n31*Occupied_Moving_Left{12E9} 46r38 52r37 2|14r32 20r34 25r33 57r66 62r63
+. 68r66
+14n31*Occupied_Moving_Right{12E9} 43r36 49r38 2|9r32 30r33 36r34 52r61 73r67
+. 78r65
+15n31*Reserved_Moving_From_Left{12E9} 44r40 50r39 60r37 64r36 2|10r34 17r32
+. 37r33 52r110 65r63 73r115
+16n31*Reserved_Moving_From_Right{12E9} 47r38 53r40 58r35 62r37 2|21r32 26r34
+. 33r33 57r112 68r114 81r65
+17n31*Free{12E9} 36r53 2|8r106 16r63 19r109 24r111 32r65 35r111 54r32 59r34
+. 63r32 70r33 75r34 79r33
+19R9*Segment_State_Type 25e10 36r20
+21e10*Left{12E9} 43r29 47r31 58r27 2|8r54 9m24 13r56 14m24 16r56 17m24 19r102
+. 21m24 52r54 54m24 57r105 60m24 62r56 63m24 65r56 66m24
+22e10*Middle{12E9} 44r31 46r29 49r29 53r31 60r27 62r27 2|8r97 10m24 19r57
+. 20m24 24r102 26m24 35r58 36m24 52r101 55m24 57r57 59m24 68r105 71m24 73r58
+. 75m24
+23e10*Right{12E9} 50r31 52r29 64r27 2|24r58 25m24 29r57 30m24 32r57 33m24
+. 35r103 37m24 68r58 70m24 73r107 76m24 78r57 79m24 81r57 82m24
+27R9*Signal_State_Type 34e10 37r20
+29e10*Left_Middle{2E9} 42r26 61r28 2|11m23 53m23
+30e10*Middle_Left{2E9} 45r26 59r28 2|22m23 58m23
+31e10*Middle_Right{2E9} 48r26 65r28 2|38m23 74m23 83m23
+32e10*Right_Middle{2E9} 51r26 63r28 2|27m23 69m23
+36r4*Segment_State{19R9} 43r15 44r17 46r15 47r17 49r15 50r17 52r15 53r17
+. 58r13 60r13 62r13 64r13 69r30 70r21 70r56 71r37 76r30 77r21 77r56 78r37
+. 2|8r40 8r83 9m10 10m10 13r42 14m10 16r42 17m10 19r43 19r88 20m10 21m10
+. 24r44 24r88 25m10 26m10 29r43 30m10 32r43 33m10 35r44 35r89 36m10 37m10
+. 52r40 52r87 54m10 55m10 57r43 57r91 59m10 60m10 62r42 63m10 65r42 66m10
+. 68r44 68r91 70m10 71m10 73r44 73r93 75m10 76m10 78r43 79m10 81r43 82m10
+37r4*Signal_State{27R9} 42r13 45r13 48r13 51r13 59r15 61r15 63r15 65r15 69r45
+. 71r20 71r59 76r45 78r20 78r59 2|11m10 22m10 27m10 38m10 53m10 58m10 69m10
+. 74m10 83m10
+39V13*Correct_Signals{boolean} 72s16 79s16
+55V13*Correct_Segments{boolean} 72s36 79s36
+67U14*Open_Route 67>26 67<48 2|4b14 44l8 44t18
+67e26 Route{3E9} 70r49 71r52 2|4b25 8r10 13r13 16r13 19r13 24r13 29r13 32r13
+. 35r13
+67b48 Success{boolean} 70r36 2|4b47 12m10 15m10 18m10 23m10 28m10 31m10 34m10
+. 39m10 41m10
+74U14*Move_Train 74>26 74<48 2|48b14 89l8 89t18
+74e26 Route{3E9} 77r49 78r52 2|48b26 52r10 57r13 62r13 65r13 68r13 73r13
+. 78r13 81r13
+74b48 Success{boolean} 77r36 2|48b48 56m10 61m10 64m10 67m10 72m10 77m10
+. 80m10 84m10 86m10
+FD 1 railway.ads
+FS .1 1K9 railway
+FS .2 39V13 railway__correct_signals
+FS .3 55V13 railway__correct_segments
+FS .4 67U14 railway__open_route
+FS .5 74U14 railway__move_train
+FS .6 39V13 railway__correct_signals -> 1.2
+FS .7 55V13 railway__correct_segments -> 1.3
+FD 2 railway.adb
+FS .1 1K14 standard__railway -> 1.1
+FS .2 4U14 railway__open_route -> 1.4
+FS .3 48U14 railway__move_train -> 1.5
+FD 3 system.ads
+FX 1 railway.ads .1 railway
+F 36*4 railway__segment_state .4:69r30 70r21 70r56 71r37 .5:76r30 77r21 77r56
+. 78r37 .6:43r15 44r17 46r15 47r17 49r15 50r17 52r15 53r17 .7:58r13 60r13
+. 62r13 64r13 2|.2:8r40 8r83 9m10 10m10 13r42 14m10 16r42 17m10 19r43 19r88
+. 20m10 21m10 24r44 24r88 25m10 26m10 29r43 30m10 32r43 33m10 35r44 35r89
+. 36m10 37m10 .3:52r40 52r87 54m10 55m10 57r43 57r91 59m10 60m10 62r42 63m10
+. 65r42 66m10 68r44 68r91 70m10 71m10 73r44 73r93 75m10 76m10 78r43 79m10
+. 81r43 82m10
+F 37*4 railway__signal_state .4:69r45 71r20 71r59 .5:76r45 78r20 78r59 .6:42r13
+. 45r13 48r13 51r13 .7:59r15 61r15 63r15 65r15 2|.2:11m10 22m10 27m10 38m10
+. .3:53m10 58m10 69m10 74m10 83m10
+F 39*13 railway__correct_signals .4:72s16 .5:79s16
+F 55*13 railway__correct_segments .4:72s36 .5:79s36
+FX 1 railway.ads .4 railway__open_route
+F 67>26 railway__open_route__route 70c49 71c52 2|.2:8c10 13c13 16c13 19c13
+. 24c13 29c13 32c13 35c13
+F 67<48 railway__open_route__success 70r36 2|.2:12m10 15m10 18m10 23m10 28m10
+. 31m10 34m10 39m10 41m10
+FX 1 railway.ads .5 railway__move_train
+F 74>26 railway__move_train__route 77c49 78c52 2|.3:52c10 57c13 62c13 65c13
+. 68c13 73c13 78c13 81c13
+F 74<48 railway__move_train__success 77r36 2|.3:56m10 61m10 64m10 67m10 72m10
+. 77m10 80m10 84m10 86m10
+

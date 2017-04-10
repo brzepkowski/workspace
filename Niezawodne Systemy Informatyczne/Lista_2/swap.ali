@@ -1,0 +1,20 @@
+V "GNAT Lib v2014"
+A -gnatA
+P ZX
+
+RN
+RV NO_IMPLEMENTATION_PRAGMAS
+RV SPARK_05
+
+U swap%b		swap.adb		82f78028 NE OO SU IU
+
+U swap%s		swap.ads		5a02c28e EE NE OO SU IU
+
+D swap.ads		20151026145141 5a02c28e swap%s
+D swap.adb		20151026133659 d8f542a6 swap%b
+D system.ads		20140406181356 bd760655 system%s
+X 1 swap.ads
+3U11*SWAP 3=16 3=35 2|3b11 9l5 9t9
+3i16 X{integer} 5r12 2|3b16 6m9 6r13 7r14 8m9 8r14
+3i35 Y{integer} 5r16 2|3b35 6r17 7m9 7r18 8r18
+

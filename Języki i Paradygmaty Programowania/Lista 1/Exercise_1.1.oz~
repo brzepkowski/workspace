@@ -1,0 +1,47 @@
+/*local
+   fun {IterLength I Ys}
+      case Ys
+      of nil then I
+      [] _|Yr then {IterLength I+1 Yr}
+      end
+   end
+in
+   fun {Length Xs}
+      {IterLength 0 Xs}
+   end
+end
+*/
+declare
+fun {Append X Y}
+   case X
+   of nil then Y
+   [] X|Xr then X|{Append Xr Y}
+   end
+end
+
+fun {Reverse Xs}
+   case Xs
+   of nil then nil
+   [] X|Xr then
+      {Append {Reverse Xr} [X] }
+   end
+end
+
+local
+   fun {IterReverse Rs Ys}
+      case Ys
+      of nil then Rs
+      [] Y|Yr then {IterReverse Y|Rs Yr}
+      end
+   end
+in
+   fun {Reverse Xs}
+      {IterReverse nil Xs}
+   end
+end
+
+{Browse {Reverse [1 2 3 4 5]}}
+
+ 
+
+

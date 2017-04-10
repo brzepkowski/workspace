@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="abstractfactory/src/main/java"/>
+	<classpathentry kind="src" path="abstractfactory/src/test/java"/>
+	<classpathentry kind="src" path="adapter/src/main/java"/>
+	<classpathentry kind="src" path="adapter/src/test/java"/>
+	<classpathentry kind="src" path="builder/src/main/java"/>
+	<classpathentry kind="src" path="builder/src/test/java"/>
+	<classpathentry kind="src" path="composite/src/main/java"/>
+	<classpathentry kind="src" path="composite/src/test/java"/>
+	<classpathentry kind="src" path="decorator/src/main/java"/>
+	<classpathentry kind="src" path="decorator/src/test/java"/>
+	<classpathentry kind="src" path="facade/src/main/java"/>
+	<classpathentry kind="src" path="facade/src/test/java"/>
+	<classpathentry kind="src" path="factorymethod/src/main/java"/>
+	<classpathentry kind="src" path="factorymethod/src/test/java"/>
+	<classpathentry kind="src" path="singleton/src/main/java"/>
+	<classpathentry kind="src" path="singleton/src/test/java"/>
+	<classpathentry kind="src" path="state/src/main/java"/>
+	<classpathentry kind="src" path="state/src/test/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="/home/bartas/Pobrane/mockito-all-1.10.8.jar"/>
+	<classpathentry kind="lib" path="/home/bartas/workspace/apache-jmeter-2.12/bin/ApacheJMeter.jar"/>
+	<classpathentry kind="lib" path="/home/bartas/Pobrane/jetty-all-9.2.5.v20141112.jar"/>
+	<classpathentry kind="lib" path="/home/bartas/Pobrane/javax.servlet-api-3.0.1.jar"/>
+	<classpathentry kind="output" path="state/target/test-classes"/>
+</classpath>

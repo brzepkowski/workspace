@@ -1,0 +1,86 @@
+V "GNAT Lib v4.8"
+M P AB W=b
+A -g
+A -g
+A -gnato
+A -gnatwa
+A -gnatQ
+A -gnat05
+A -gnatc
+A -gnatA
+P NO ZX
+
+RN
+RV NO_ALLOCATORS
+RV NO_DELAY
+RV NO_FIXED_POINT
+RV NO_IO
+RV NO_LOCAL_ALLOCATORS
+RV NO_LOCAL_PROTECTED_OBJECTS
+RV NO_NESTED_FINALIZATION
+RV NO_RELATIVE_DELAY
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_TASK_ALLOCATORS
+RV NO_TASK_HIERARCHY
+RV NO_TASKING
+RV NO_DEFAULT_INITIALIZATION
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_ELABORATION_CODE
+RV SPARK
+RV MAX_TASKS=1+
+RV MAX_ENTRY_QUEUE_LENGTH=1+
+
+U company%b		company.adb		43540b12 OO SU IL
+W ada%s			ada.ads			ada.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W semaphores%s		semaphores.adb		semaphores.ali
+
+D ada.ads		20070406091342 3ffc8e18
+D a-finali.ads		20111121113555 52ecdc1b
+D a-ioexce.ads		20091130110856 8b9de6cd
+D a-stream.ads		20090409150019 2ca4ee37
+D a-textio.ads		20130104124955 386df5d4
+D company.adb		20150411090232 fe27a178
+D interfac.ads		20110906094621 129923ea
+D i-cstrea.ads		20130102105938 3286f6aa
+D semaphores.ads	20150410221256 851e5fbe
+D system.ads		20140416144300 bd760655
+D s-crtl.ads		20130102105938 1ea48bce
+D s-ficobl.ads		20120709130952 55a71d43
+D s-finmas.ads		20111024091915 b95bb341
+D s-finroo.ads		20120426095924 4ff27390
+D s-parame.ads		20110830140625 b6e20cc0
+D s-pooglo.ads		20110804083314 542f33d0
+D s-stoele.ads		20090417130712 facd7d98
+D s-stopoo.ads		20111013103733 7b8fbeee
+D s-wchcon.ads		20090417130712 bfeb2e3d
+X 1 ada.ads
+16K9*Ada 19e8 6|1r6 1r23
+X 5 a-textio.ads
+49K13*Text_IO 471e16 6|1w10 1r27
+263U14*Put_Line 6|39s10 48s7 55s10 63s10
+X 6 company.adb
+3U11*company 3b11 79l5 79t12
+5i4 Product{integer} 29m7 29r18 37r27 39r56
+7i4 N{integer} 8r20 13r28 38r37 53r39
+8a4 Board(integer) 37m10 52r15
+11i4 In_Ptr{integer} 37r16 38m10 38r21 39r100
+11i12 Out_Ptr{integer} 52r21 53m10 53r22 55r129
+12w4 Board_Elements{9|2W19} 40r10 51r10
+13w4 Board_Spaces{9|2W19} 36r10 54r10
+20T14 President 32b14 43l8 43t17 70r20
+21T14 Worker 21d22 22r33 45b14 57l8 57t14 76r25
+21i22 ID{integer} 48r43 55r46
+22P9 Worker_Access(21T14) 71r16
+23T14 Buyer 60b14 66l8 66t13
+27U14 Produce 27b14 30l8 30t15 35s10
+46i7 I{integer} 52m10 55r91
+70t4 New_President{20T14}
+71p4 New_Worker{22P9} 76m7
+75i8 i{integer} 76r32
+X 9 semaphores.ads
+1K9*Semaphores 6|2w6 2r22 9|8e15
+2W19*Semaphore 6|12r20 13r18 9|7e17
+3Y13 Wait 6|36s23 51s25
+4U17 Signal 6|40s25 54s23
+

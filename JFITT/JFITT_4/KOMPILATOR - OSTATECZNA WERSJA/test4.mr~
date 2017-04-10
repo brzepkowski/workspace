@@ -1,0 +1,344 @@
+RESET 0 
+READ 1 
+STORE 1 0
+RESET 3 
+INC 3 
+SHL 3 
+SHL 3 
+SHL 3 
+INC 3 
+SHL 3 
+SHL 3 
+INC 3 
+SHL 3 
+INC 3 
+SHL 3 
+INC 3 
+SHL 3 302
+RESET 2 
+INC 2 
+SHL 2 
+INC 2 
+SHL 2 
+SHL 2 
+SHL 2 
+INC 2 
+SHL 2 
+SHL 2 
+SHL 2 
+INC 2 201
+RESET 0 
+INC 0 
+SHL 0   2
+ADD 2 0  203
+STORE 2 3  !!!! zapisz wartość (adres komórki) 203 pod 302
+RESET 5 
+INC 5 
+SHL 5 
+SHL 5 
+SHL 5 
+INC 5 
+SHL 5 
+SHL 5 
+INC 5 
+SHL 5 
+INC 5 
+SHL 5 
+INC 5 
+SHL 5 302
+LOAD 4 5
+RESET 0 
+STORE 0 4   !!! zapisz wartość 0 pod adresem 302
+RESET 3 
+INC 3 
+SHL 3 
+SHL 3 
+SHL 3 
+INC 3 
+SHL 3 
+SHL 3 
+INC 3 
+SHL 3 
+INC 3 
+SHL 3 
+INC 3 
+SHL 3 
+INC 3  303
+RESET 2 
+INC 2 
+SHL 2 
+INC 2 
+SHL 2 
+SHL 2 
+SHL 2 
+INC 2 
+SHL 2 
+SHL 2 
+SHL 2 
+INC 2 201
+RESET 0 
+INC 0  1
+ADD 2 0  201 + 1 = 202
+STORE 2 3  !!! Zapisz 202 (adres komórki) pod 303
+RESET 5 
+INC 5 
+SHL 5 
+SHL 5 
+SHL 5 
+INC 5 
+SHL 5 
+SHL 5 
+INC 5 
+SHL 5 
+INC 5 
+SHL 5 
+INC 5 
+SHL 5 
+INC 5 303
+LOAD 4 5
+RESET 0 
+INC 0   = 1
+STORE 0 4  !!! Zapisz 1 pod adresem 202 (zapisz 1 do tablicy c(1))
+RESET 3 
+INC 3 
+SHL 3 
+SHL 3 
+SHL 3 
+INC 3 
+SHL 3 
+INC 3 
+SHL 3 
+SHL 3 
+SHL 3 
+SHL 3   304
+RESET 2 
+INC 2 
+SHL 2 
+INC 2 
+SHL 2 
+SHL 2 
+SHL 2 
+INC 2 
+SHL 2 
+SHL 2 
+SHL 2 
+INC 2  201
+RESET 0 
+ADD 2 0  ~~ 201 + 0 = 201
+STORE 2 3  ?? Zapsiz 201 pod adresem 304
+RESET 5 
+INC 5 
+SHL 5 
+SHL 5 
+SHL 5 
+INC 5 
+SHL 5 
+INC 5 
+SHL 5 
+SHL 5 
+SHL 5 
+SHL 5 = 304
+LOAD 4 5  !! wczytaj wartość spod 304 (= 201)
+RESET 0 
+STORE 0 4   // Zapisz 0 pod adresem 201
+RESET 4 
+INC 4 
+SHL 4 
+SHL 4 
+SHL 4 
+INC 4 
+SHL 4 
+INC 4 
+SHL 4 
+SHL 4 
+SHL 4 
+SHL 4 
+INC 4 305 [ITERATOR i]
+RESET 1 
+LOAD 0 1 wczytaj wartość n
+STORE 0 4 zapisz n pod adresem iteratora
+RESET 0 
+RESET 1 
+INC 1 
+SHL 1 
+SHL 1 
+SHL 1 
+INC 1 
+SHL 1 
+INC 1 
+SHL 1 
+SHL 1 
+SHL 1 
+INC 1 
+SHL 1 
+INC 1 307 (t1)
+STORE 0 1  ~~zapisz 0 pod adresem t1 (stały zakres FOR)
+RESET 1 
+INC 1 
+SHL 1 
+SHL 1 
+SHL 1 
+INC 1 
+SHL 1 
+INC 1 
+SHL 1 
+SHL 1 
+SHL 1 
+SHL 1 
+INC 1   305
+LOAD 0 1  załaduj wartośc iteratora do R0
+RESET 4 
+INC 4 
+SHL 4 
+SHL 4 
+SHL 4 
+INC 4 
+SHL 4 
+INC 4 
+SHL 4 
+SHL 4 
+SHL 4 
+INC 4 
+SHL 4 
+INC 4  307 (t1)
+LOAD 3 4  	załaduj wartość t1
+SUB 0 3  	odejmij od iteratora t1
+JZERO 0 208  	jesli wynik = 0 skocz do 208
+INC 0 		jesli iterator większy, to jeszcze zwieksz R0 i dopiero
+JUMP 209  	skocz do 209
+RESET 0 	resetuj R0
+JZERO 0 286	jesli R0 = 0 skocz do 286 ("koniec" FOR)
+RESET 3 
+INC 3 
+SHL 3 
+SHL 3 
+SHL 3 
+INC 3 
+SHL 3 
+INC 3 
+SHL 3 
+SHL 3 
+INC 3 
+SHL 3 
+SHL 3 
+INC 3  309 (r3) = c(i)
+RESET 2 
+INC 2 
+SHL 2 
+INC 2 
+SHL 2 
+SHL 2 
+SHL 2 
+INC 2 
+SHL 2 
+SHL 2 
+SHL 2 
+INC 2  201  (poczatek tablicy c)
+RESET 1 
+INC 1 
+SHL 1 
+SHL 1 
+SHL 1 
+INC 1 
+SHL 1 
+INC 1 
+SHL 1 
+SHL 1 
+SHL 1 
+SHL 1 
+INC 1  		305 (adres iteratora)
+LOAD 0 1	załaduj wartość iteratora do R0
+ADD 2 0		dodaj do 201 wartość iteratora
+STORE 2 3	zapisz adres komórki tablicy c(i) pod r3 (309)
+RESET 2 
+INC 2 
+SHL 2 
+SHL 2 
+SHL 2 
+INC 2 
+SHL 2 
+INC 2 
+SHL 2 
+SHL 2 
+INC 2 
+SHL 2 
+SHL 2 
+INC 2  		309 (r3)
+LOAD 0 2 	załaduj adres komórki tablicy z r3
+LOAD 1 0	załaduj do R1 wartość z komórki tablicy
+WRITE 1 	wydrukuj wartość z komórki tablicy
+RESET 1 
+INC 1 
+SHL 1 
+SHL 1 
+SHL 1 
+INC 1 
+SHL 1 
+INC 1 
+SHL 1 
+SHL 1 
+SHL 1 
+SHL 1 
+INC 1 		305 - adres iteratora
+LOAD 0 1	załaduj wartość iteratora do R0
+DEC 0 		zmniejsz wartość iteratora o 1
+STORE 0 1	zapisz zmniejszoną wartość iteratora
+JUMP 175 	skocz do 175
+RESET 1 
+INC 1 
+SHL 1 
+SHL 1 
+SHL 1 
+INC 1 
+SHL 1 
+INC 1 
+SHL 1 
+SHL 1 
+SHL 1 
+SHL 1 
+INC 1 		305 - adres iteratora
+LOAD 0 1	załaduj wartość itratora
+COPY 6 0	skopiuj wartość itratora do R6
+RESET 4 
+INC 4 
+SHL 4 
+SHL 4 
+SHL 4 
+INC 4 
+SHL 4 
+INC 4 
+SHL 4 
+SHL 4 
+SHL 4 
+INC 4 
+SHL 4 
+INC 4 		307 - adres wartości końca zakresu FOR
+LOAD 3 4	załaduj wartośc t1 do R3
+SUB 0 3		odejmij od iteratora t1
+JZERO 0 320
+RESET 0 
+JUMP 325 
+SUB 3 6
+JZERO 3 324
+RESET 0 
+JUMP 325 
+INC 0 
+JZERO 0 343
+RESET 2 
+INC 2 
+SHL 2 
+SHL 2 
+SHL 2 
+INC 2 
+SHL 2 
+INC 2 
+SHL 2 
+SHL 2 
+INC 2 
+SHL 2 
+SHL 2 
+INC 2 
+LOAD 0 2
+LOAD 1 0
+WRITE 1 
+HALT  

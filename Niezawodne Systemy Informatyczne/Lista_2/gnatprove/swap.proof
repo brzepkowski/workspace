@@ -1,0 +1,8 @@
+[
+{"file":"swap.adb","line":6,"col":15,"message":"info: overflow check proved","rule":"overflow_check","severity":"info","tracefile":"","entity":{"name":"SWAP","file":"swap.ads","line":3}}
+,{"file":"swap.adb","line":7,"col":16,"message":"info: overflow check proved","rule":"overflow_check","severity":"info","tracefile":"","entity":{"name":"SWAP","file":"swap.ads","line":3}}
+,{"file":"swap.adb","line":8,"col":16,"message":"info: overflow check proved","rule":"overflow_check","severity":"info","tracefile":"","entity":{"name":"SWAP","file":"swap.ads","line":3}}
+,{"file":"swap.ads","line":5,"col":47,"message":"info: overflow check proved","rule":"overflow_check","severity":"info","tracefile":"","entity":{"name":"SWAP","file":"swap.ads","line":3}}
+,{"file":"swap.ads","line":7,"col":40,"message":"info: overflow check proved","rule":"overflow_check","severity":"info","tracefile":"","entity":{"name":"SWAP","file":"swap.ads","line":3}}
+,{"file":"swap.ads","line":8,"col":12,"message":"info: postcondition proved","rule":"postcondition","severity":"info","tracefile":"","entity":{"name":"SWAP","file":"swap.ads","line":3}}
+]

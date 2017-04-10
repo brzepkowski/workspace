@@ -1,0 +1,11 @@
+[
+{"file":"maximum.adb","line":6,"col":27,"message":"info: index check proved","rule":"index_check","severity":"info","tracefile":"","entity":{"name":"Maximum.Maximum","file":"maximum.ads","line":3}}
+,{"file":"maximum.adb","line":13,"col":10,"message":"info: loop invariant initialization proved","rule":"loop_invariant_initialization","severity":"info","tracefile":"","entity":{"name":"Maximum.Maximum","file":"maximum.ads","line":3}}
+,{"file":"maximum.adb","line":13,"col":10,"message":"info: loop invariant preservation proved","rule":"loop_invariant_preservation","severity":"info","tracefile":"","entity":{"name":"Maximum.Maximum","file":"maximum.ads","line":3}}
+,{"file":"maximum.adb","line":13,"col":63,"message":"info: index check proved","rule":"index_check","severity":"info","tracefile":"","entity":{"name":"Maximum.Maximum","file":"maximum.ads","line":3}}
+,{"file":"maximum.adb","line":14,"col":64,"message":"info: index check proved","rule":"index_check","severity":"info","tracefile":"","entity":{"name":"Maximum.Maximum","file":"maximum.ads","line":3}}
+,{"file":"maximum.adb","line":15,"col":10,"message":"info: loop variant proved","rule":"loop_variant","severity":"info","tracefile":"","entity":{"name":"Maximum.Maximum","file":"maximum.ads","line":3}}
+,{"file":"maximum.ads","line":7,"col":33,"message":"info: postcondition proved","rule":"postcondition","severity":"info","tracefile":"","entity":{"name":"Maximum.Maximum","file":"maximum.ads","line":3}}
+,{"file":"maximum.ads","line":7,"col":60,"message":"info: index check proved","rule":"index_check","severity":"info","tracefile":"","entity":{"name":"Maximum.Maximum","file":"maximum.ads","line":3}}
+,{"file":"maximum.ads","line":9,"col":69,"message":"info: index check proved","rule":"index_check","severity":"info","tracefile":"","entity":{"name":"Maximum.Maximum","file":"maximum.ads","line":3}}
+]

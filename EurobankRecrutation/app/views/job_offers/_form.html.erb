@@ -1,0 +1,53 @@
+<%= form_for(@job_offer) do |f| %>
+  <% if @job_offer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@job_offer.errors.count, "error") %> prohibited this job_offer from being saved:</h2>
+
+      <ul>
+      <% @job_offer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field col-md-4 text-right">Nazwa:</div>
+	<div class="field col-md-6 text-left">
+    <%= f.text_field :name %>
+  </div>
+	<div class="field col-md-4 text-right">Firma:</div>
+	<div class="field col-md-6 text-left">
+    <%= f.text_field :company %>
+  </div>
+	<div class="field col-md-4 text-right">Stanowisko:</div>
+	<div class="field col-md-6 text-left">
+    <%= f.text_field :position %>
+  </div>
+	<div class="field col-md-4 text-right">Miasto:</div>
+	<div class="field col-md-6 text-left">
+    <%= f.text_field :city %>
+  </div>
+	<div class="field col-md-4 text-right">Wynagrodzenie:</div>
+	<div class="field col-md-6 text-left">
+    <%= f.text_field :salary %>
+  </div>
+	<div class="field col-md-4 text-right">Data rozpoczęcia:</div>
+	<div class="field col-md-6 text-left">
+    <%= f.text_field :start_date %>
+  </div>
+	<div class="field col-md-4 text-right">Data zakończenia:</div>
+	<div class="field col-md-6 text-left">
+    <%= f.text_field :end_date %>
+  </div>
+	<div class="field col-md-4 text-right">Opis:</div>
+	<div class="field col-md-6 text-left">
+    <%= f.text_area :specification %>
+  </div>
+	<div class="field col-md-4 text-right">Wymagania:</div>
+	<div class="field col-md-6 text-left">
+    <%= f.text_area :requirements %>
+  </div>
+  <div class="actions col-md-10 col-offset-1">
+    <%= f.submit %>
+  </div>
+<% end %>

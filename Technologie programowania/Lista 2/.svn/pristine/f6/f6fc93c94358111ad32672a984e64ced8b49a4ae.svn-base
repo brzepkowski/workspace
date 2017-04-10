@@ -1,0 +1,104 @@
+
+import java.io.*;
+import java.net.*;
+
+/**
+ * Klasa zawierająca implementację obsługi każdego z klientów
+ *
+ * @author Maciej Ubas
+ */
+class ClientWorker implements Runnable {
+
+    private Socket client;
+    private boolean alive = true;
+
+    ClientWorker(Socket client) {
+        this.client = client;
+        System.out.println("New client connected");
+    }
+
+    /**
+     * Podstawowa metoda wątków, na podstawie switcha określa polecenie
+     * użytkownika
+     */
+    public void run() {
+        String line;
+        BufferedReader in = null;
+        PrintWriter out = null;
+        try {
+            in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+            out = new PrintWriter(client.getOutputStream(), true);
+        } catch (IOException e) {
+            System.out.println("in or out failed");
+            System.exit(-1);
+        }
+
+        while (alive) {
+            try {
+                line = in.readLine();
+                System.out.println("Message from client: " + line);
+                String[] tablica = line.split(" ");
+                String a = tablica[0];
+
+                switch (a) {
+                    case ("R"): //rozkład liczby
+                        System.out.println("case R");
+                        try {
+                            System.out.println(Sito.czynnikiPierwszeTekst(tablica[1]));
+                            out.println(Sito.czynnikiPierwszeTekst(tablica[1]));
+                        } catch (Sito.RozkladLiczbyException ex) {
+                            System.out.println("E " + ex.getMessage());
+                            out.println("E " + ex.getMessage());
+                        } catch (ArrayIndexOutOfBoundsException ex) {
+                            System.out.println("E Nie podano liczby");
+                            out.println("E Nie podano liczby");
+                        }
+                        break;
+                    case ("M"): //najmniejszy dzielnik
+                        System.out.println("case M");
+                        try {
+                            System.out.println("O " + Sito.najmniejszyDzielnik(tablica[1]));
+                            out.println("O " + Sito.najmniejszyDzielnik(tablica[1]));
+                        } catch (Sito.RozkladLiczbyException ex) {
+                            System.out.println("E " + ex.getMessage());
+                            out.println("E " + ex.getMessage());
+                        } catch (ArrayIndexOutOfBoundsException ex) {
+                            System.out.println("E Nie podano liczby");
+                            out.println("E Nie podano liczby");
+                        }
+                        break;
+                    case ("P"): //czy liczba jest pierwsza
+                        System.out.println("case P");
+                        try {
+                            System.out.println("O " + Sito.czyPierwsza(tablica[1]));
+                            out.println("O " + Sito.czyPierwsza(tablica[1]));
+                        } catch (Sito.RozkladLiczbyException ex) {
+                            System.out.println("E " + ex.getMessage());
+                            out.println("E " + ex.getMessage());
+                        } catch (ArrayIndexOutOfBoundsException ex) {
+                            System.out.println("E Nie podano liczby");
+                            out.println("E Nie podano liczby");
+                        }
+                        break;
+
+                    case ("Q"): //zamknięcie programy
+                        System.out.println("case Q");
+                        System.out.println("The client has disconnected");
+                        out.println("END");
+                        alive = false;
+                        break;
+
+                    default:
+                        out.println("Server didn't recognise your question");
+                        System.out.println("Server didn't recognise your question");
+                        break;
+                }
+
+//Send data back to client
+            } catch (IOException e) {
+                System.out.println("The client has disconnected");
+                alive = false;
+            }
+        }
+    }
+}

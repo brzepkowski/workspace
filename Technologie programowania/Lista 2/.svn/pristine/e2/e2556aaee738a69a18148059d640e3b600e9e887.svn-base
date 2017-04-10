@@ -1,0 +1,364 @@
+import java.awt.*;
+
+import java.awt.event.*;
+import java.io.*;
+import java.net.*;
+
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import javax.swing.JToggleButton;
+import javax.swing.border.TitledBorder;
+
+/**
+ * Klasa SocketClient umozliwia wysylanie polecen do serwera
+ * @author ubuntu
+ *
+ */
+
+class SocketClient extends JFrame implements ActionListener {
+  JLabel output;
+  JLabel informationZero;
+  JLabel informationOne;
+  JLabel informationTwo;
+  JLabel informationThree;
+  JLabel informationFour;
+  JButton button;
+  JButton connect;
+  JRadioButton buttonP;
+  JRadioButton buttonM;
+  JRadioButton buttonR;
+  JTextField hostTextField;
+  JTextField portTextField;
+  JTextField input;
+  Socket socket = null;
+  PrintWriter out = null;
+  BufferedReader in = null;
+  //ButtonGroup cardsButtonGroup;
+  JLabel numberOfTokensTitle;
+  JLabel numberOfTokens;
+  JLabel gamerStatusTitle;
+  JButton sendCards;
+  JLabel gamerStatus;
+  JToggleButton card1;
+  JToggleButton card2;
+  JToggleButton card3;
+  JToggleButton card4;
+  
+  JPanel panelG;
+  JPanel allGamers;
+  JPanel gamer1;
+  JPanel gamer2;
+  JPanel gamer3;
+  JPanel gamer4;
+  JPanel gamer5;
+  JPanel gamer6;
+  
+  /**
+   * Konstruktor SocketClient tworzy GUI klienta
+   */
+
+  SocketClient() {
+	setLocation(40, 20);
+	setSize(1010, 700);
+	setLayout(null);
+	setTitle("Gracz");
+    setFont(new Font(Font.SANS_SERIF,Font.PLAIN,40));
+    informationZero = new JLabel("Podaj adres hosta:");
+    informationZero.setBounds(10, 10, 150, 30);
+    hostTextField = new JTextField("localhost");
+    hostTextField.setBounds(160, 10, 100, 30);
+    informationOne = new JLabel("Podaj numer portu:");
+    informationOne.setBounds(275, 10, 150, 30);
+    portTextField = new JTextField("4444");
+    portTextField.setBounds(430, 10, 100, 30);
+    connect = new JButton("Połącz");
+    connect.setBounds(550, 10, 100, 30);
+    connect.addActionListener(this);
+   
+
+    add(informationZero);
+    add(hostTextField);
+    add(informationOne);
+    add(portTextField);
+    add(connect);
+    
+    // Panel Of Gamer
+    
+    panelG = new JPanel();
+    
+    panelG.setSize(750, 350);
+    panelG.setLocation(0, 360);
+    panelG.setLayout(null);
+    
+    numberOfTokensTitle = new JLabel("Liczba żetonów:");
+    numberOfTokensTitle.setBounds(0, 0 , 150, 30);
+    numberOfTokens = new JLabel("...");
+    numberOfTokens.setBounds(160, 0, 80, 30);
+    gamerStatusTitle = new JLabel("Status gracza:");
+    gamerStatusTitle.setBounds(290, 0, 150, 30);
+    gamerStatus = new JLabel("...");
+    gamerStatus.setBounds(400, 0, 100, 30);
+    sendCards = new JButton("Zamien karty");
+    sendCards.addActionListener(this);
+    sendCards.setBounds(520, 0, 200, 30);
+    card1= new JToggleButton ("Karta 1");
+    card1.setBounds(0, 40, 174, 265);
+    card2= new JToggleButton ("Karta 2");
+    card2.setBounds(185, 40, 174, 265);    
+    card3= new JToggleButton ("Karta 3");
+    card3.setBounds(370, 40, 174, 265);    
+    card4= new JToggleButton ("Karta 4");
+    card4.setBounds(555, 40, 174, 265); 
+    
+    // Adding Buttons of cards to button Group to make it possible to check, which one is pressed
+    
+    
+    
+    panelG.add(gamerStatusTitle);
+    panelG.add(gamerStatus);
+    panelG.add(numberOfTokensTitle);
+    panelG.add(numberOfTokens);
+    panelG.add(sendCards);
+    panelG.add(card1);
+    panelG.add(card2);
+    panelG.add(card3);
+    panelG.add(card4);
+    
+    panelG.setVisible(true);
+    add(panelG);
+    
+    // Panel of All Gamers
+    
+    allGamers = new JPanel();
+    add(allGamers);
+    allGamers.setLocation(0, 50);
+    allGamers.setSize(1000, 300);
+    allGamers.setLayout(new GridLayout(3, 2));
+    
+    // Panel of One Gamer
+    
+    gamer1 = new JPanel();
+    createPanel (gamer1);
+    allGamers.add(gamer1);
+    
+    gamer2 = new JPanel();
+    createPanel (gamer2);
+    allGamers.add(gamer2);
+    
+    gamer3 = new JPanel();
+    createPanel (gamer3);
+    allGamers.add(gamer3);
+    
+    gamer4 = new JPanel();
+    createPanel (gamer4);
+    allGamers.add(gamer4);
+    
+    gamer5 = new JPanel();
+    createPanel (gamer5);
+    allGamers.add(gamer5);
+    
+    gamer6 = new JPanel();
+    createPanel (gamer6);
+    allGamers.add(gamer6);
+    
+    // Auction Panel
+    
+    JPanel auction = new JPanel();
+    
+    JButton Check = new JButton("Check");
+    JButton Bet = new JButton("Bet");
+    JButton Raise = new JButton("Raise");
+    JButton Call = new JButton("Call");
+    JButton Fold = new JButton("Fold");
+    JButton Allin = new JButton("All in");
+    JLabel Auctions = new JLabel("Menu licytacji");
+    JLabel Bid = new JLabel("Stawka:");
+    JLabel BidValue = new JLabel("0");
+    JLabel Offer = new JLabel("Twoja oferta:");
+    JTextField YourOffer = new JTextField();
+    
+    auction.setLayout(null);
+    auction.setBackground(Color.RED);
+    
+    add(auction);
+    
+    auction.add(Check);
+    auction.add(Bet);
+    auction.add(Raise);
+    auction.add(Call);
+    auction.add(Fold);
+    auction.add(Allin);
+    auction.add(Auctions);
+    auction.add(Bid);
+    auction.add(BidValue);
+    auction.add(Offer);
+    auction.add(YourOffer);
+/*   
+    Check.addActionListener(this);
+    Rise.addActionListener(this);
+    Bet.addActionListener(this);
+    Call.addActionListener(this);
+    Fold.addActionListener(this);
+    Allin.addActionListener(this);
+   
+   */
+    
+    auction.setBounds(800,370, 200,300);
+    Auctions.setBounds(15,20, 250, 20);
+    Bid.setBounds(15, 50, 100, 20);
+    BidValue.setBounds(75, 50, 120, 20);
+    Offer.setBounds(15, 80, 110, 20);
+    YourOffer.setBounds(115, 80, 80, 20);
+    Check.setBounds(15, 110, 90, 20);
+    Bet.setBounds(15, 140, 90, 20);
+    Raise.setBounds(15, 170, 90, 20);
+    Call.setBounds(15, 200, 90, 20);
+    Fold.setBounds(15, 230, 90, 20);
+    Allin.setBounds(15, 260, 90, 20);
+   
+    
+}
+
+public void onCheck()
+{
+   
+
+}
+
+public void onRise()
+{
+   
+}
+
+public void onBet()
+{
+   
+}
+
+public void onCall()
+{
+   
+}
+
+public void onFold()
+{
+   
+}
+
+public void onAllin()
+{
+   
+}
+    
+    
+           
+    
+    
+
+
+public void createPanel (JPanel gamer) {
+	
+	TitledBorder title;
+	title = BorderFactory.createTitledBorder("");
+	gamer.setBorder(title);
+	
+	gamer.setLayout(new GridLayout(2, 2));
+	
+	JLabel gamerNumberTitle = new JLabel("Numer gracza:");
+	JLabel gamerNumber = new JLabel("...");
+	JLabel gamerNameTitle = new JLabel("Pseudonim:");
+	JLabel gamerName = new JLabel("...");
+	JLabel gamerTokensTitle = new JLabel("Liczba żetonów:");
+	JLabel gamerTokens = new JLabel("...");
+	JLabel gamerRoundTitle = new JLabel("Runda gracza:");
+	JLabel gamerRound = new JLabel("...");
+	
+	gamer.add(gamerNumberTitle);
+	gamer.add(gamerNumber);
+	gamer.add(gamerNameTitle);
+	gamer.add(gamerName);
+	gamer.add(gamerTokensTitle);
+	gamer.add(gamerTokens);
+	gamer.add(gamerRoundTitle);
+	gamer.add(gamerRound);
+	
+	gamer.setVisible(true);
+}
+   
+  
+
+  public void actionPerformed(ActionEvent event) {
+	if(event.getSource() == sendCards) {
+      try {
+    	  System.out.println("Wyslano: ");
+    	  
+    	  if (card1.isSelected()){
+    		  System.out.println("Karta 1");
+    		  out.print("P ");
+    	  }
+    	  if (card2.isSelected()){
+    		  System.out.println("Karta 2");
+    		  out.print("M ");
+    	  }
+    	  if (card3.isSelected()){
+    		  System.out.println("Karta 3");
+    		  out.print("R ");
+    	  }
+    	  if (card4.isSelected()){
+    		  System.out.println("Karta 4");
+    		  out.print("Q ");
+    	  }
+    	  if (card1.isSelected() == false && card2.isSelected() == false && card3.isSelected() == false && card4.isSelected() == false) {
+    		  System.out.println("Zadna karta nie zostanie wymieniona");
+    	  }
+    	  
+    	  out.println(input.getText());
+    	 
+        output.setText(in.readLine());
+      }
+      catch (IOException e) {
+        System.out.println("Read failed"); System.exit(1);
+      }
+      input.setText("");
+      input.requestFocus();
+    }
+    else if(event.getSource() == connect) {
+    	listenSocket();
+    }
+  }
+
+  public void listenSocket(){
+    try {
+      String hostAddress = hostTextField.getText();
+      int portAddress = Integer.parseInt(portTextField.getText());
+      socket = new Socket(hostAddress, portAddress);
+      out = new PrintWriter(socket.getOutputStream(), true);
+      in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+    }
+    catch (UnknownHostException e) {
+       System.out.println("Unknown host"); System.exit(1);
+     }
+     catch  (IOException e) {
+       System.out.println("No I/O");
+     }
+  }
+
+  public static void main(String[] args){
+    SocketClient frame = new SocketClient();
+    frame.addWindowListener( new WindowAdapter() {
+                               public void windowClosing(WindowEvent e) {
+                                 System.exit(0);
+                               }
+                             } );
+    //frame.pack();
+    frame.setVisible(true);
+    frame.setResizable(false);
+  }
+}

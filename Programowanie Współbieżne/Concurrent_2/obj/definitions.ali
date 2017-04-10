@@ -1,0 +1,32 @@
+V "GNAT Lib v4.8"
+A -g
+A -g
+A -gnato
+A -gnatwa
+A -gnatQ
+A -gnat05
+A -gnatA
+P ZX
+
+RN
+RV NO_FIXED_POINT
+RV NO_IMPLEMENTATION_PRAGMAS
+
+U definitions%s		definitions.ads		a8e3ec61 NE OO PK
+
+D definitions.ads	20150516131430 a8e3ec61
+D system.ads		20140416144300 bd760655
+X 1 definitions.ads
+1K9*Definitions 18l5 18e16
+3a4*Listeners_Mode{string}
+5i4*Tasks_Board_Size{integer}
+6i4*Magazine_Size{integer}
+8o4*Presidents_Delay{duration}
+9o4*Workers_Delay{duration}
+10o4*Buyers_Delay{duration}
+11i4*Number_Of_Workers{integer}
+13i4*Number_Of_Adding_Machines{integer}
+14i4*Number_Of_Multiplying_Machines{integer}
+15o4*Adding_Machines_Delay{duration}
+16o4*Multiplying_Machines_Delay{duration}
+

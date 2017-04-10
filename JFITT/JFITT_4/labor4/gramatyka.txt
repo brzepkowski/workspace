@@ -1,0 +1,39 @@
+program       -> DECLARE vdeclarations IN commands END
+
+vdeclarations -> vdeclarations pidentifier
+               | vdeclarations pidentifier(num)
+               | 
+
+commands    -> commands command
+             | 
+
+command     -> identifier := expression;
+             | IF condition THEN commands ENDIF
+             | IF condition THEN commands ELSE commands ENDIF
+             | WHILE condition DO commands ENDWHILE
+             | FOR pidentifier FROM value TO value DO commands ENDFOR
+             | FOR pidentifier DOWN FROM value TO value DO commands ENDFOR
+             | GET identifier;
+             | PUT value;
+
+expression  -> value
+             | value + value
+             | value - value
+             | value * value
+             | value / value
+             | value % value
+
+condition   -> value = value
+             | value != value
+             | value < value
+             | value > value
+             | value <= value
+             | value >= value
+
+value       -> num
+             | identifier
+
+identifier  -> pidentifier
+             | pidentifier(pidentifier)
+             | pidentifier(num)
+

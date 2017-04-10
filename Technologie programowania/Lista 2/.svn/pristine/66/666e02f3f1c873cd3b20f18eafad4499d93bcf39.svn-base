@@ -1,0 +1,103 @@
+import java.io.*;
+
+import java.net.*;
+import java.util.ArrayList;
+
+import javax.swing.text.html.HTMLDocument.Iterator;
+import java.util.*; /* import bibliotek narzedziowych */
+import java.net.*; /*import bibliotek odpowiedzialnych za komunikacje sieciowa */
+
+
+public class SocketServer extends Thread{
+	
+  // ServerSocket for accepting new connections (may be important to add private)
+  ServerSocket server = null;
+  
+  //ArrayList of all connected Clients - enables to send messages to all of them
+  private Hashtable allStreams = new Hashtable(); //<==== Zamienić na HashMap
+  
+  int numberOfPlayers = 0;
+  
+  // Constructor of SocketServer creates port on which it will be listening
+  //to new Clients
+  SocketServer(int port) {   
+    
+	  listenSocket(port);
+  }
+  
+  
+  // Method listen() enables to listen forever for new clients
+  public void listenSocket(int port) {
+	  
+	  try {
+		server = new ServerSocket(port);
+	
+	  
+	  System.out.println("Uruchomiono serwer na porcie: " + port);
+	  
+	  while(true) {
+		  
+			  Socket client = server.accept();
+			  
+			  numberOfPlayers++;
+      
+			  System.out.println("Nawiazano polaczenie z:" + client);
+      
+      		  PrintWriter out = new PrintWriter(client.getOutputStream(), true);
+      
+      		  allStreams.put(client, out);
+      		 
+      		  // Creates a Thread to deal with new connection
+      		  //(A thread is generally defined as separate line of control within one  process)
+      		  //(Many task done at the same time (multitasking).
+      		  new ServerThread (this, client);
+      		  
+      		  out.println(numberOfPlayers);
+      		  
+      } 
+	  }
+	  catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+  } 
+  
+ 	// Gets register/specification of all connected Clients
+  	Enumeration getAllStreams() {
+  
+	  	return allStreams.elements();
+  	}
+
+  	public void broadcast(String message) {
+  		
+  		//We have to synchronize, because Clients may disconnect
+  		synchronized (allStreams) {
+  			
+  			for (Enumeration enumeration = getAllStreams(); enumeration.hasMoreElements(); ) {
+  				
+  				PrintWriter out = (PrintWriter)enumeration.nextElement();
+  				
+  				out.println(message);
+  				
+  			}
+  			
+  		}
+  	}
+  	
+  	// <=== It is important to write method which will remove clients from server
+
+  public static void main(String[] args) {
+	 
+	  int port = 0;
+	 
+	  try {
+		  port = Integer.parseInt(args[0]);
+		
+	  }
+	  catch (NumberFormatException ex) {
+		  System.out.println("Nieprawidlowa dana");
+	  }
+	 
+	  new SocketServer(port);
+  }
+}

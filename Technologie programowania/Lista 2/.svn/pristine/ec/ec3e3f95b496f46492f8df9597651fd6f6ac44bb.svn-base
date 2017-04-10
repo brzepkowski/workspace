@@ -1,0 +1,441 @@
+import java.io.BufferedReader;
+
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+
+
+import java.util.Arrays;
+
+
+
+class MyException1 extends Exception {};
+class MyException2 extends Exception {};
+
+/**
+ * Klasa RozkladLiczby odpowiada za utworzenie dzielnikow danej liczby
+ * @author ubuntu
+ *
+ */
+
+class RozkladLiczby {
+    
+    private int [] tablica;
+
+    RozkladLiczby (int n) throws MyException1 {
+        
+        if (n < 2) throw new MyException1 ( );
+        
+        try {
+            tablica = new int [n - 1]; 
+        }
+        catch (OutOfMemoryError e) {
+            throw new MyException1 ();
+        }
+        //wype³nienie tablicy liczbami od 2 do n
+        for (int i = 0; i < tablica.length; i++) {
+            tablica [i] = i + 2;
+        }
+        for (int j = 0; j < tablica.length; j++) {
+            int asd; // asd - aktualnie sprawdzany dzielnik
+            asd = tablica [j];
+            
+            for (int k = j + 1; k < tablica.length; k++) {
+                if (tablica[k]%asd == 0) tablica[k] = asd;
+            }
+          /*  System.out.println (j + 2 + " - " + tablica[j]);*/
+        }
+    }
+
+    public void RozkladLiczby(int parseInt) {
+		// TODO Auto-generated method stub
+		
+	}
+/**
+ * Metdoa czynnikiPierwsze tworzy tablice dzielnikow danej liczby
+ * @param m m - Liczba, dla ktorej tworzone sa dzielniki
+ * @return
+ * @throws MyException2
+ */
+	public int [] czynnikiPierwsze (int m) throws MyException2 {
+        
+        if (m < 2 || m > tablica.length + 1) throw new MyException2 ();
+        
+        int [] dzielniki = new int [31];
+        
+        int i = 0;
+        while (m != 1) {
+            dzielniki[i] = tablica[m-2];
+            m = m / tablica[m - 2];
+            /* System.out.print(m + " " + "->" + dzielniki[i] + ". ");*/
+            i++;
+        }
+        
+        //***SKRÓCENIE TABLICY***
+        int dlugosc_tablicy = 0;
+        int k = 0;
+        while (dzielniki[k] != 0) {
+            dlugosc_tablicy++;
+            k++;
+        }
+       // System.out.println ("Dlugosc tablicy: " + dlugosc_tablicy);
+        
+        int [] nowe_dzielniki = Arrays.copyOf (dzielniki, dlugosc_tablicy);
+        
+        return nowe_dzielniki;
+    }
+	
+	/** metoda RozklaLiczbyTest odbiera rodzaj zadania wyslanego prez klienta i odpowiednio na nie reaguje
+	 * 
+	 * @param args - jest to tablica Stringow, w ktorej przekazywany jest rodzaj zadania i liczba do obslugi
+	 * @return
+	 */
+    public String RozkladLiczbyTest (String[] args) {
+    	String wynik = "";
+        int n, m;
+        char OP = 0;
+        int [] dziel;
+        for (int k = 0; k < args.length; k++) {
+               
+               try {  
+            	  OP = args[0].charAt(0);
+               }
+               catch (NumberFormatException ex) {
+                      System.out.println(args[k] + " - Nieprawidlowa dana");
+               }
+               catch (OutOfMemoryError e) {
+                      System.out.println(e.getMessage() );
+                      System.exit(0);
+               }
+               
+            	if (OP == 'P') {   //************************************************************************************
+            		  try {
+               	   System.out.println("Dziala dla P - Czy liczba jest pierwsza");
+               	n = Integer.parseInt(args[1]);       
+                RozkladLiczby tablica = new RozkladLiczby (n);
+                
+                m =  Integer.parseInt(args[2]);
+                dziel = tablica.czynnikiPierwsze(m);  
+                
+                int licznik = 1;
+                int bufor = dziel[0];
+           
+                wynik = (wynik + m + " = " );
+                for (int j = 0; j < dziel.length; j++) {
+                //System.out.print(dziel[j] + " ");
+                }
+                //System.out.println(" ");
+           
+                //***WYPISYWANIE***
+                if (dziel.length == 1) wynik = ("E 1");
+                else wynik = ("E 0");
+                /*for (int i = 1; i <= (dziel.length - 1); i++) {
+                    
+                       if (dziel[i] == bufor) {
+                              if (i == dziel.length - 1) {
+                                     licznik++;
+                                     wynik = (wynik + bufor + "^" + licznik);
+                              }
+                              if (i != dziel.length - 1) {
+                                     licznik++;
+                              }
+                       }
+                            
+                       else {
+                              if (i == dziel.length - 1) {
+                                     if (licznik == 1) {
+                                            wynik = (wynik + bufor + "*");
+                                     }
+                                     else {
+                                            wynik = (wynik + bufor + "^" + licznik + "*");
+                                     }
+                                     bufor = dziel[i];
+                                     licznik = 1;
+                                     wynik = (wynik + bufor);
+                              }
+                              else {
+                                     if (licznik != 1) {
+                                            wynik = (wynik + bufor + "^" + licznik + "*");
+                                            bufor = dziel[i];
+                                            licznik = 1;
+                                     }
+                                     else {
+                                            wynik = (wynik + bufor + "*");
+                                            bufor = dziel[i];
+                                            licznik = 1;
+                                     }
+                              }
+                       }
+                }*/
+                return wynik;
+                //System.out.println(wynik);
+                
+                //wynik = "";
+                }
+                catch (MyException1 e) {
+                       System.out.println(args[0] + " - Nie mozna stworzyc sita");
+                       System.exit(0);
+                }
+                catch (MyException2 e) {
+                       wynik = ("Q" + " - Liczba spoza zakresu");
+                       return wynik;
+                }
+                catch (NumberFormatException ex) {
+                       System.out.println(args[k] + " - Nieprawidlowa dana");
+                }
+                catch (OutOfMemoryError e) {
+                       System.out.println(e.getMessage() );
+                       System.exit(0);
+                }
+               	   		
+                  }
+                  if (OP == 'M') {
+               	   System.out.println("Dziala dla M");
+               	
+              	 try {
+                	   
+                	n = Integer.parseInt(args[1]);       
+                 RozkladLiczby tablica = new RozkladLiczby (n);
+                 
+                 m =  Integer.parseInt(args[2]);
+                 dziel = tablica.czynnikiPierwsze(m);  
+                 
+                 int licznik = 1;
+                 int bufor = dziel[0];
+            
+                 wynik = ("E " + m + " = " );
+                 for (int j = 0; j < dziel.length; j++) {
+                 //System.out.print(dziel[j] + " ");
+                 }
+                 //System.out.println(" ");
+            
+                 //***WYPISYWANIE***
+                 wynik = ("E " + dziel[0]);
+                /* if (dziel.length == 1) wynik = ("E " + m + "=" + dziel[0]);
+                 for (int i = 1; i <= (dziel.length - 1); i++) {
+                     
+                        if (dziel[i] == bufor) {
+                               if (i == dziel.length - 1) {
+                                      licznik++;
+                                      wynik = (wynik + bufor + "^" + licznik);
+                               }
+                               if (i != dziel.length - 1) {
+                                      licznik++;
+                               }
+                        }
+                             
+                        else {
+                               if (i == dziel.length - 1) {
+                                      if (licznik == 1) {
+                                             wynik = (wynik + bufor + "*");
+                                      }
+                                      else {
+                                             wynik = (wynik + bufor + "^" + licznik + "*");
+                                      }
+                                      bufor = dziel[i];
+                                      licznik = 1;
+                                      wynik = (wynik + bufor);
+                               }
+                               else {
+                                      if (licznik != 1) {
+                                             wynik = (wynik + bufor + "^" + licznik + "*");
+                                             bufor = dziel[i];
+                                             licznik = 1;
+                                      }
+                                      else {
+                                             wynik = (wynik + bufor + "*");
+                                             bufor = dziel[i];
+                                             licznik = 1;
+                                      }
+                               }
+                        }
+                 }*/
+                 return wynik;
+                 //System.out.println(wynik);
+                 
+                 //wynik = "";
+                 }
+                 catch (MyException1 e) {
+                        System.out.println(args[0] + " - Nie mozna stworzyc sita");
+                        System.exit(0);
+                 }
+                 catch (MyException2 e) {
+                        wynik = ("Q" + " - Liczba spoza zakresu");
+                        return wynik;
+                 }
+                 catch (NumberFormatException ex) {
+                        System.out.println(args[k] + " - Nieprawidlowa dana");
+                 }
+                 catch (OutOfMemoryError e) {
+                        System.out.println(e.getMessage() );
+                        System.exit(0);
+                 }
+               	   
+                  }
+                  if (OP == 'R') {
+               	   System.out.println("Dziala dla R");
+               	 try {
+                 	   
+                 	n = Integer.parseInt(args[1]);       
+                  RozkladLiczby tablica = new RozkladLiczby (n);
+                  
+                  m =  Integer.parseInt(args[2]);
+                  dziel = tablica.czynnikiPierwsze(m);  
+                  
+                  int licznik = 1;
+                  int bufor = dziel[0];
+             
+                  wynik = ("E " + m + " = " );
+                  for (int j = 0; j < dziel.length; j++) {
+                  //System.out.print(dziel[j] + " ");
+                  }
+                  //System.out.println(" ");
+             
+                  //***WYPISYWANIE***
+                  if (dziel.length == 1) wynik = ("E " + m + "=" + dziel[0]);
+                  for (int i = 1; i <= (dziel.length - 1); i++) {
+                      
+                         if (dziel[i] == bufor) {
+                                if (i == dziel.length - 1) {
+                                       licznik++;
+                                       wynik = (wynik + bufor + "^" + licznik);
+                                }
+                                if (i != dziel.length - 1) {
+                                       licznik++;
+                                }
+                         }
+                              
+                         else {
+                                if (i == dziel.length - 1) {
+                                       if (licznik == 1) {
+                                              wynik = (wynik + bufor + "*");
+                                       }
+                                       else {
+                                              wynik = (wynik + bufor + "^" + licznik + "*");
+                                       }
+                                       bufor = dziel[i];
+                                       licznik = 1;
+                                       wynik = (wynik + bufor);
+                                }
+                                else {
+                                       if (licznik != 1) {
+                                              wynik = (wynik + bufor + "^" + licznik + "*");
+                                              bufor = dziel[i];
+                                              licznik = 1;
+                                       }
+                                       else {
+                                              wynik = (wynik + bufor + "*");
+                                              bufor = dziel[i];
+                                              licznik = 1;
+                                       }
+                                }
+                         }
+                  }
+                  return wynik;
+                  //System.out.println(wynik);
+                  
+                  //wynik = "";
+                  }
+                  catch (MyException1 e) {
+                         System.out.println(args[0] + " - Nie mozna stworzyc sita");
+                         System.exit(0);
+                  }
+                  catch (MyException2 e) {
+                         wynik = ("Q" + " - Liczba spoza zakresu");
+                         return wynik;
+                  }
+                  catch (NumberFormatException ex) {
+                         System.out.println(args[k] + " - Nieprawidlowa dana");
+                  }
+                  catch (OutOfMemoryError e) {
+                         System.out.println(e.getMessage() );
+                         System.exit(0);
+                  }
+                 	   		
+                  }  
+        }
+		return wynik;
+        
+ }
+}
+
+/**
+ * Klasa Thread umozliwia polaczenie sie wielu klientow z serwerem
+ * @author ubuntu
+ *
+ */
+
+
+public class PlayerThread implements Runnable {
+		BufferedReader in = null;
+		PrintWriter out = null;
+		Socket client = null;
+		SocketServer server = null;
+		String line = "";  //line bedzie jako RozkladArgs do metody RozkladLiczbyTest
+		String answer = "";
+		RozkladLiczby rozklad;
+		
+		
+		public PlayerThread (SocketServer s, Socket socket) {
+			server = s;
+			client = socket;
+			try {
+				in = new BufferedReader(new InputStreamReader(
+						client.getInputStream()));
+				out = new PrintWriter(client.getOutputStream(), true);
+			}
+			catch (IOException e) {
+				System.out.println("i/o");
+			}
+		}
+		
+		public void run() {
+			
+			try {
+				in = new BufferedReader(new InputStreamReader(
+						client.getInputStream()));
+				out = new PrintWriter(client.getOutputStream(), true);
+			}
+			catch (IOException e) {
+				System.out.println("i/o");
+			}
+			while (line != null) {
+				try {
+					String[] rozkladArgs = new String[3];
+					line = in.readLine();
+					if (Character.toString(line.charAt(0)) == null) {
+						System.out.println("Zerwano polaczenie");
+					
+					}
+					else {
+						rozkladArgs[0] = Character.toString(line.charAt(0));
+					}
+					//System.out.println(rozkladArgs[0]);
+					rozkladArgs[1] = server.rozmiar_sita;
+					rozklad = new RozkladLiczby(Integer.parseInt(server.rozmiar_sita));
+					//System.out.println(rozkladArgs[1]);
+					String num = "";
+					for (int i = 2; i < line.length(); i++) {
+						num = (num + line.charAt(i));
+					}
+					rozkladArgs[2] = num;
+					//System.out.println(rozkladArgs[2]);
+					answer = rozklad.RozkladLiczbyTest(rozkladArgs);
+					System.out.println(line + "  ---->  " + answer );
+					out.println(line + " ----> " + answer);
+					if (line == null) break; // mozna dodac, && line == 'Q' <- sygnal konca
+					
+					
+				} catch (IOException e) {
+					System.out.println("Read line");
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (MyException1 e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}				
+			}
+		}
+}

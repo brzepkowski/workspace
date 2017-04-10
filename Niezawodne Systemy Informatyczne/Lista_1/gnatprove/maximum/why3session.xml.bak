@@ -1,0 +1,823 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE why3session PUBLIC "-//Why3//proof session v2//EN" "http://why3.lri.fr/why3session.dtd">
+<why3session shape_version="4">
+ <prover
+  id="0"
+  name="Alt-Ergo for GNATprove"
+  version="0.95"/>
+ <file
+  name="../maximum.mlw"
+  verified="true"
+  expanded="true">
+  <theory
+   name="Standard__short_short_integer"
+   locfile="../maximum.mlw"
+   loclnum="2" loccnumb="7" loccnume="36"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__short_integer"
+   locfile="../maximum.mlw"
+   loclnum="30" loccnumb="7" loccnume="30"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__integer"
+   locfile="../maximum.mlw"
+   loclnum="58" loccnumb="7" loccnume="24"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__long_integer"
+   locfile="../maximum.mlw"
+   loclnum="86" loccnumb="7" loccnume="29"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__long_long_integer"
+   locfile="../maximum.mlw"
+   loclnum="114" loccnumb="7" loccnume="34"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__natural"
+   locfile="../maximum.mlw"
+   loclnum="142" loccnumb="7" loccnume="24"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__positive"
+   locfile="../maximum.mlw"
+   loclnum="170" loccnumb="7" loccnume="25"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__short_float"
+   locfile="../maximum.mlw"
+   loclnum="198" loccnumb="7" loccnume="28"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__float"
+   locfile="../maximum.mlw"
+   loclnum="227" loccnumb="7" loccnume="22"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__long_float"
+   locfile="../maximum.mlw"
+   loclnum="256" loccnumb="7" loccnume="27"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__long_long_float"
+   locfile="../maximum.mlw"
+   loclnum="285" loccnumb="7" loccnume="32"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__character"
+   locfile="../maximum.mlw"
+   loclnum="313" loccnumb="7" loccnume="26"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__wide_character"
+   locfile="../maximum.mlw"
+   loclnum="341" loccnumb="7" loccnume="31"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__wide_wide_character"
+   locfile="../maximum.mlw"
+   loclnum="369" loccnumb="7" loccnume="36"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__string"
+   locfile="../maximum.mlw"
+   loclnum="397" loccnumb="7" loccnume="23"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__wide_string"
+   locfile="../maximum.mlw"
+   loclnum="429" loccnumb="7" loccnume="28"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__wide_wide_string"
+   locfile="../maximum.mlw"
+   loclnum="455" loccnumb="7" loccnume="33"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__duration"
+   locfile="../maximum.mlw"
+   loclnum="481" loccnumb="7" loccnume="25"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__integer_8"
+   locfile="../maximum.mlw"
+   loclnum="514" loccnumb="7" loccnume="26"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__integer_16"
+   locfile="../maximum.mlw"
+   loclnum="542" loccnumb="7" loccnume="27"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__integer_32"
+   locfile="../maximum.mlw"
+   loclnum="570" loccnumb="7" loccnume="27"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__integer_64"
+   locfile="../maximum.mlw"
+   loclnum="598" loccnumb="7" loccnume="27"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__universal_integer"
+   locfile="../maximum.mlw"
+   loclnum="626" loccnumb="7" loccnume="34"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__universal_real"
+   locfile="../maximum.mlw"
+   loclnum="654" loccnumb="7" loccnume="31"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Maximum__vector"
+   locfile="../maximum.mlw"
+   loclnum="682" loccnumb="7" loccnume="22"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Maximum__maximum__TS1bP1"
+   locfile="../maximum.mlw"
+   loclnum="707" loccnumb="7" loccnume="31"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Maximum__maximum__S1b"
+   locfile="../maximum.mlw"
+   loclnum="733" loccnumb="7" loccnume="28"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Maximum__maximum__a"
+   locfile="../maximum.mlw"
+   loclnum="759" loccnumb="7" loccnume="26"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Maximum__maximum__a__axiom"
+   locfile="../maximum.mlw"
+   loclnum="772" loccnumb="7" loccnume="33"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Maximum__maximum__L6s__T7s"
+   locfile="../maximum.mlw"
+   loclnum="779" loccnumb="7" loccnume="33"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Maximum__maximum__L8s__T9s"
+   locfile="../maximum.mlw"
+   loclnum="805" loccnumb="7" loccnume="33"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Maximum__maximum"
+   locfile="../maximum.mlw"
+   loclnum="831" loccnumb="7" loccnume="23"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Maximum__maximum__axiom"
+   locfile="../maximum.mlw"
+   loclnum="853" loccnumb="7" loccnume="30"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Maximum__maximum__L_1__T2b"
+   locfile="../maximum.mlw"
+   loclnum="860" loccnumb="7" loccnume="33"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Maximum__maximum__L_1__L5b__T6b"
+   locfile="../maximum.mlw"
+   loclnum="883" loccnumb="7" loccnume="38"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Maximum__maximum__L_1__L3b__T4b"
+   locfile="../maximum.mlw"
+   loclnum="906" loccnumb="7" loccnume="38"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Maximum__maximum__L_1__L9b__T10b"
+   locfile="../maximum.mlw"
+   loclnum="929" loccnumb="7" loccnume="39"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Maximum__maximum__L_1__L7b__T8b"
+   locfile="../maximum.mlw"
+   loclnum="952" loccnumb="7" loccnume="38"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Maximum__maximum__max"
+   locfile="../maximum.mlw"
+   loclnum="974" loccnumb="7" loccnume="28"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Maximum__maximum__max__axiom"
+   locfile="../maximum.mlw"
+   loclnum="988" loccnumb="7" loccnume="35"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Maximum__maximum__L_1__i"
+   locfile="../maximum.mlw"
+   loclnum="995" loccnumb="7" loccnume="31"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Maximum__maximum__L_1__i__axiom"
+   locfile="../maximum.mlw"
+   loclnum="1008" loccnumb="7" loccnume="38"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Maximum__maximum__L_1"
+   locfile="../maximum.mlw"
+   loclnum="1014" loccnumb="7" loccnume="28"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Maximum__maximum__L_1__axiom"
+   locfile="../maximum.mlw"
+   loclnum="1022" loccnumb="7" loccnume="35"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__short_short_integer__axiom"
+   locfile="../maximum.mlw"
+   loclnum="1028" loccnumb="7" loccnume="43"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__short_integer__axiom"
+   locfile="../maximum.mlw"
+   loclnum="1035" loccnumb="7" loccnume="37"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__integer__axiom"
+   locfile="../maximum.mlw"
+   loclnum="1042" loccnumb="7" loccnume="31"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__long_integer__axiom"
+   locfile="../maximum.mlw"
+   loclnum="1049" loccnumb="7" loccnume="36"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__long_long_integer__axiom"
+   locfile="../maximum.mlw"
+   loclnum="1056" loccnumb="7" loccnume="41"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__natural__axiom"
+   locfile="../maximum.mlw"
+   loclnum="1063" loccnumb="7" loccnume="31"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__positive__axiom"
+   locfile="../maximum.mlw"
+   loclnum="1070" loccnumb="7" loccnume="32"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__short_float__axiom"
+   locfile="../maximum.mlw"
+   loclnum="1077" loccnumb="7" loccnume="35"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__float__axiom"
+   locfile="../maximum.mlw"
+   loclnum="1084" loccnumb="7" loccnume="29"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__long_float__axiom"
+   locfile="../maximum.mlw"
+   loclnum="1091" loccnumb="7" loccnume="34"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__long_long_float__axiom"
+   locfile="../maximum.mlw"
+   loclnum="1098" loccnumb="7" loccnume="39"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__character__axiom"
+   locfile="../maximum.mlw"
+   loclnum="1105" loccnumb="7" loccnume="33"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__wide_character__axiom"
+   locfile="../maximum.mlw"
+   loclnum="1112" loccnumb="7" loccnume="38"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__wide_wide_character__axiom"
+   locfile="../maximum.mlw"
+   loclnum="1119" loccnumb="7" loccnume="43"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__string__axiom"
+   locfile="../maximum.mlw"
+   loclnum="1126" loccnumb="7" loccnume="30"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__wide_string__axiom"
+   locfile="../maximum.mlw"
+   loclnum="1133" loccnumb="7" loccnume="35"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__wide_wide_string__axiom"
+   locfile="../maximum.mlw"
+   loclnum="1140" loccnumb="7" loccnume="40"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__duration__axiom"
+   locfile="../maximum.mlw"
+   loclnum="1147" loccnumb="7" loccnume="32"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__integer_8__axiom"
+   locfile="../maximum.mlw"
+   loclnum="1154" loccnumb="7" loccnume="33"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__integer_16__axiom"
+   locfile="../maximum.mlw"
+   loclnum="1161" loccnumb="7" loccnume="34"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__integer_32__axiom"
+   locfile="../maximum.mlw"
+   loclnum="1168" loccnumb="7" loccnume="34"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__integer_64__axiom"
+   locfile="../maximum.mlw"
+   loclnum="1175" loccnumb="7" loccnume="34"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__universal_integer__axiom"
+   locfile="../maximum.mlw"
+   loclnum="1182" loccnumb="7" loccnume="41"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Standard__universal_real__axiom"
+   locfile="../maximum.mlw"
+   loclnum="1189" loccnumb="7" loccnume="38"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Maximum__vector__axiom"
+   locfile="../maximum.mlw"
+   loclnum="1196" loccnumb="7" loccnume="29"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Maximum__maximum__TS1bP1__axiom"
+   locfile="../maximum.mlw"
+   loclnum="1203" loccnumb="7" loccnume="38"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Maximum__maximum__S1b__axiom"
+   locfile="../maximum.mlw"
+   loclnum="1210" loccnumb="7" loccnume="35"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Maximum__maximum__L6s__T7s__axiom"
+   locfile="../maximum.mlw"
+   loclnum="1217" loccnumb="7" loccnume="40"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Maximum__maximum__L8s__T9s__axiom"
+   locfile="../maximum.mlw"
+   loclnum="1224" loccnumb="7" loccnume="40"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Maximum__maximum__L_1__T2b__axiom"
+   locfile="../maximum.mlw"
+   loclnum="1231" loccnumb="7" loccnume="40"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Maximum__maximum__L_1__L5b__T6b__axiom"
+   locfile="../maximum.mlw"
+   loclnum="1238" loccnumb="7" loccnume="45"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Maximum__maximum__L_1__L3b__T4b__axiom"
+   locfile="../maximum.mlw"
+   loclnum="1245" loccnumb="7" loccnume="45"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Maximum__maximum__L_1__L9b__T10b__axiom"
+   locfile="../maximum.mlw"
+   loclnum="1252" loccnumb="7" loccnume="46"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Maximum__maximum__L_1__L7b__T8b__axiom"
+   locfile="../maximum.mlw"
+   loclnum="1259" loccnumb="7" loccnume="45"
+   verified="true"
+   expanded="true">
+  </theory>
+  <theory
+   name="Maximum__maximum__subprogram_def"
+   locfile="../maximum.mlw"
+   loclnum="1266" loccnumb="7" loccnume="39"
+   verified="true"
+   expanded="true">
+   <goal
+    name="WP_parameter def"
+    locfile="../maximum.mlw"
+    loclnum="1291" loccnumb="5" loccnume="8"
+    expl="VC for def"
+    sum="3f012749db6c7d1fa3c46b48712edda9"
+    proved="true"
+    expanded="true"
+    shape="ainfix =ato_intagetaeltsaaV33ato_intV24Aainfix &lt;=V33ato_intalastartaaAainfix &lt;=ato_intafirstartaaV33EAainfix &lt;=ato_intagetaeltsaaV34ato_intV24Iainfix &lt;=V34ato_intalastartaaAainfix &lt;=ato_intafirstartaaV34FIainfix =V32V24Aainfix =V24V26Aainfix =V24V25Aainfix =V24V20Aainfix =V26V24Aainfix =V24V25Aiainfix =V22V5Aainfix =V23V6Aainfix =V5V20Aainfix =V6V21ainfix =V22V8Aainfix =V23V12Aainfix =V8V20Aainfix =V12V21ANainfix &lt;=V12ato_intalastartaaAainfix =V12ainfix +V9c1Aainfix =V11V9Aainfix &lt;=V9ato_intalastartaaAainfix &lt;=ato_intafirstartaaV9Aainfix =ato_intagetaeltsaaV35ato_intV8Aainfix &lt;=V35V9Aainfix &lt;=ato_intafirstartaaV35EAainfix &lt;=ato_intagetaeltsaaV36ato_intV8Iainfix &lt;=V36V9Aainfix &lt;=ato_intafirstartaaV36FAiainfix =V7V5ainfix =V7agetaeltsaaV6ainfix &gt;ato_intagetaeltsaaV6ato_intV5Aainfix =c0V0Oainfix =V22V17Aainfix =V23V18Aainfix =V29V31Aainfix =V28V30Aainfix =V17V8Aainfix =V18V9Aainfix =V19V10Aainfix =V8V14Aainfix =V9V15Aainfix =V10V16AfAainfix =ato_intagetaeltsaaV37ato_intV8Aainfix &lt;=V37V9Aainfix &lt;=ato_intafirstartaaV37EAainfix &lt;=ato_intagetaeltsaaV38ato_intV8Iainfix &lt;=V38V9Aainfix &lt;=ato_intafirstartaaV38FAiainfix =V7V5ainfix =V7agetaeltsaaV6ainfix &gt;ato_intagetaeltsaaV6ato_intV5ainfix &lt;=V6ato_intalastartaaAainfix &lt;=ato_intafirstartaaV6Aainfix =V6ato_intafirstartaaAainfix =V5agetaeltsaaato_intafirstartaaAainfix &gt;alengthaac0Aainfix =ato_intalastartaaalastAainfix =ato_intafirstartaaafirstAainfix &lt;=ato_intalastartaaalastAainfix &gt;=ato_intafirstartaaafirstIainfix &lt;=ato_intafirstartaaato_intalastartaaFAain_rangeV3Iainfix &lt;=V3ato_intalastartaaAainfix &lt;=ato_intafirstartaaV3Iainfix =V27aTrueIainfix &lt;=ato_intagetaeltsaaV39ato_intV24Iainfix &lt;=V39ato_intalastartaaAainfix &lt;=ato_intafirstartaaV39Fqainfix =V27aTrueAain_rangeV4Iainfix &lt;=V4ato_intalastartaaAainfix &lt;=ato_intafirstartaaV4Iainfix =V24V26Aainfix =V24V25Aainfix =V24V20Aainfix =V26V24Aainfix =V24V25Aiainfix =V22V5Aainfix =V23V6Aainfix =V5V20Aainfix =V6V21ainfix =V22V8Aainfix =V23V12Aainfix =V8V20Aainfix =V12V21ANainfix &lt;=V12ato_intalastartaaAainfix =V12ainfix +V9c1Aainfix =V11V9Aainfix &lt;=V9ato_intalastartaaAainfix &lt;=ato_intafirstartaaV9Aainfix =ato_intagetaeltsaaV40ato_intV8Aainfix &lt;=V40V9Aainfix &lt;=ato_intafirstartaaV40EAainfix &lt;=ato_intagetaeltsaaV41ato_intV8Iainfix &lt;=V41V9Aainfix &lt;=ato_intafirstartaaV41FAiainfix =V7V5ainfix =V7agetaeltsaaV6ainfix &gt;ato_intagetaeltsaaV6ato_intV5Aainfix =c0V0Oainfix =V22V17Aainfix =V23V18Aainfix =V29V31Aainfix =V28V30Aainfix =V17V8Aainfix =V18V9Aainfix =V19V10Aainfix =V8V14Aainfix =V9V15Aainfix =V10V16AfAainfix =ato_intagetaeltsaaV42ato_intV8Aainfix &lt;=V42V9Aainfix &lt;=ato_intafirstartaaV42EAainfix &lt;=ato_intagetaeltsaaV43ato_intV8Iainfix &lt;=V43V9Aainfix &lt;=ato_intafirstartaaV43FAiainfix =V7V5ainfix =V7agetaeltsaaV6ainfix &gt;ato_intagetaeltsaaV6ato_intV5ainfix &lt;=V6ato_intalastartaaAainfix &lt;=ato_intafirstartaaV6Aainfix =V6ato_intafirstartaaAainfix =V5agetaeltsaaato_intafirstartaaAainfix =ato_intagetaeltsaaV44ato_intV13Aainfix &lt;=V44V12Aainfix &lt;=ato_intafirstartaaV44EAainfix &lt;=ato_intagetaeltsaaV45ato_intV13Iainfix &lt;=V45V12Aainfix &lt;=ato_intafirstartaaV45FIainfix &gt;V12V11Aiainfix =V13V8ainfix =V13agetaeltsaaV12ainfix &gt;ato_intagetaeltsaaV12ato_intV8Aainfix &lt;=V12ato_intalastartaaAainfix =V12ainfix +V9c1Aainfix =V11V9Aainfix &lt;=V9ato_intalastartaaAainfix &lt;=ato_intafirstartaaV9Aainfix &gt;V12V11Iiainfix =V13V8ainfix =V13agetaeltsaaV12ainfix &gt;ato_intagetaeltsaaV12ato_intV8Iainfix &lt;=V12ato_intalastartaaIainfix =V12ainfix +V9c1Iainfix =V11V9Iainfix &lt;=V9ato_intalastartaaAainfix &lt;=ato_intafirstartaaV9Aain_rangeV2Iainfix &lt;=V2V9Aainfix &lt;=ato_intafirstartaaV2Aain_rangeV1Iainfix &lt;=V1V9Aainfix &lt;=ato_intafirstartaaV1Iainfix &lt;=V9ato_intalastartaaAainfix &lt;=ato_intafirstartaaV9Iainfix =ato_intagetaeltsaaV46ato_intV8Aainfix &lt;=V46V9Aainfix &lt;=ato_intafirstartaaV46EAainfix &lt;=ato_intagetaeltsaaV47ato_intV8Iainfix &lt;=V47V9Aainfix &lt;=ato_intafirstartaaV47FAainfix =ato_intagetaeltsaaV48ato_intV7Aainfix &lt;=V48V6Aainfix &lt;=ato_intafirstartaaV48EAainfix &lt;=ato_intagetaeltsaaV49ato_intV7Iainfix &lt;=V49V6Aainfix &lt;=ato_intafirstartaaV49FIiainfix =V7V5ainfix =V7agetaeltsaaV6ainfix &gt;ato_intagetaeltsaaV6ato_intV5Iainfix &lt;=V6ato_intalastartaaAainfix &lt;=ato_intafirstartaaV6Iainfix =V6ato_intafirstartaaIainfix =V5agetaeltsaaato_intafirstartaaAain_rangeato_intafirstartaaIainfix &gt;alengthaac0Aainfix =ato_intalastartaaalastAainfix =ato_intafirstartaaafirstAainfix &lt;=ato_intalastartaaalastAainfix &gt;=ato_intafirstartaaafirstIainfix &lt;=ato_intafirstartaaato_intalastartaaLamk refV14Lamk refV15Lamk refV20Lamk refV21F">
+    <label
+     name="W:diverges:N"/>
+    <label
+     name="GP_Subp:maximum.ads:3"/>
+    <label
+     name="GP_Pretty_Ada:Maximum.Maximum"/>
+    <label
+     name="expl:VC for def"/>
+    <transf
+     name="split_goal"
+     proved="true"
+     expanded="true">
+     <goal
+      name="WP_parameter def.1"
+      locfile="../maximum.mlw"
+      loclnum="1291" loccnumb="5" loccnume="8"
+      expl="1."
+      sum="3f3f0a649fabfcaa984c02825bbf7dd2"
+      proved="true"
+      expanded="false"
+      shape="ain_rangeato_intafirstartaaIainfix &gt;alengthaac0Aainfix =ato_intalastartaaalastAainfix =ato_intafirstartaaafirstAainfix &lt;=ato_intalastartaaalastAainfix &gt;=ato_intafirstartaaafirstIainfix &lt;=ato_intafirstartaaato_intalastartaaLamk refV14Lamk refV15Lamk refV20Lamk refV21F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="GP_Subp:maximum.ads:3"/>
+      <label
+       name="GP_Pretty_Ada:Maximum.Maximum"/>
+      <label
+       name="expl:VC for def"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="valid" time="0.04"/>
+      </proof>
+     </goal>
+     <goal
+      name="WP_parameter def.2"
+      locfile="../maximum.mlw"
+      loclnum="1291" loccnumb="5" loccnume="8"
+      expl="2. loop invariant init"
+      sum="73e07d7656038e49b3ac61a88546f725"
+      proved="true"
+      expanded="false"
+      shape="loop invariant initainfix =ato_intagetaeltsaaV32ato_intV7Aainfix &lt;=V32V6Aainfix &lt;=ato_intafirstartaaV32EAainfix &lt;=ato_intagetaeltsaaV33ato_intV7Iainfix &lt;=V33V6Aainfix &lt;=ato_intafirstartaaV33FIiainfix =V7V5ainfix =V7agetaeltsaaV6ainfix &gt;ato_intagetaeltsaaV6ato_intV5Iainfix &lt;=V6ato_intalastartaaAainfix &lt;=ato_intafirstartaaV6Iainfix =V6ato_intafirstartaaIainfix =V5agetaeltsaaato_intafirstartaaIainfix &gt;alengthaac0Aainfix =ato_intalastartaaalastAainfix =ato_intafirstartaaafirstAainfix &lt;=ato_intalastartaaalastAainfix &gt;=ato_intafirstartaaafirstIainfix &lt;=ato_intafirstartaaato_intalastartaaLamk refV14Lamk refV15Lamk refV20Lamk refV21F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="GP_Subp:maximum.ads:3"/>
+      <label
+       name="GP_Pretty_Ada:Maximum.Maximum"/>
+      <label
+       name="expl:VC for def"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="valid" time="0.04"/>
+      </proof>
+     </goal>
+     <goal
+      name="WP_parameter def.3"
+      locfile="../maximum.mlw"
+      loclnum="1291" loccnumb="5" loccnume="8"
+      expl="3."
+      sum="0717ce4860992cefbe10beafd9bd7e55"
+      proved="true"
+      expanded="false"
+      shape="ain_rangeV1Iainfix &lt;=V1V9Aainfix &lt;=ato_intafirstartaaV1Iainfix &lt;=V9ato_intalastartaaAainfix &lt;=ato_intafirstartaaV9Iainfix =ato_intagetaeltsaaV32ato_intV8Aainfix &lt;=V32V9Aainfix &lt;=ato_intafirstartaaV32EAainfix &lt;=ato_intagetaeltsaaV33ato_intV8Iainfix &lt;=V33V9Aainfix &lt;=ato_intafirstartaaV33FIiainfix =V7V5ainfix =V7agetaeltsaaV6ainfix &gt;ato_intagetaeltsaaV6ato_intV5Iainfix &lt;=V6ato_intalastartaaAainfix &lt;=ato_intafirstartaaV6Iainfix =V6ato_intafirstartaaIainfix =V5agetaeltsaaato_intafirstartaaIainfix &gt;alengthaac0Aainfix =ato_intalastartaaalastAainfix =ato_intafirstartaaafirstAainfix &lt;=ato_intalastartaaalastAainfix &gt;=ato_intafirstartaaafirstIainfix &lt;=ato_intafirstartaaato_intalastartaaLamk refV14Lamk refV15Lamk refV20Lamk refV21F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="GP_Subp:maximum.ads:3"/>
+      <label
+       name="GP_Pretty_Ada:Maximum.Maximum"/>
+      <label
+       name="expl:VC for def"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="valid" time="0.03"/>
+      </proof>
+     </goal>
+     <goal
+      name="WP_parameter def.4"
+      locfile="../maximum.mlw"
+      loclnum="1291" loccnumb="5" loccnume="8"
+      expl="4."
+      sum="25f1ebd061e2bfda2d21654b45a41d24"
+      proved="true"
+      expanded="false"
+      shape="ain_rangeV2Iainfix &lt;=V2V9Aainfix &lt;=ato_intafirstartaaV2Iainfix &lt;=V9ato_intalastartaaAainfix &lt;=ato_intafirstartaaV9Iainfix =ato_intagetaeltsaaV32ato_intV8Aainfix &lt;=V32V9Aainfix &lt;=ato_intafirstartaaV32EAainfix &lt;=ato_intagetaeltsaaV33ato_intV8Iainfix &lt;=V33V9Aainfix &lt;=ato_intafirstartaaV33FIiainfix =V7V5ainfix =V7agetaeltsaaV6ainfix &gt;ato_intagetaeltsaaV6ato_intV5Iainfix &lt;=V6ato_intalastartaaAainfix &lt;=ato_intafirstartaaV6Iainfix =V6ato_intafirstartaaIainfix =V5agetaeltsaaato_intafirstartaaIainfix &gt;alengthaac0Aainfix =ato_intalastartaaalastAainfix =ato_intafirstartaaafirstAainfix &lt;=ato_intalastartaaalastAainfix &gt;=ato_intafirstartaaafirstIainfix &lt;=ato_intafirstartaaato_intalastartaaLamk refV14Lamk refV15Lamk refV20Lamk refV21F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="GP_Subp:maximum.ads:3"/>
+      <label
+       name="GP_Pretty_Ada:Maximum.Maximum"/>
+      <label
+       name="expl:VC for def"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="valid" time="0.02"/>
+      </proof>
+     </goal>
+     <goal
+      name="WP_parameter def.5"
+      locfile="../maximum.mlw"
+      loclnum="1291" loccnumb="5" loccnume="8"
+      expl="5."
+      sum="0f86a8051d0dd55feb4c6015847fe724"
+      proved="true"
+      expanded="false"
+      shape="ainfix &gt;V12V11Iiainfix =V13V8ainfix =V13agetaeltsaaV12ainfix &gt;ato_intagetaeltsaaV12ato_intV8Iainfix &lt;=V12ato_intalastartaaIainfix =V12ainfix +V9c1Iainfix =V11V9Iainfix &lt;=V9ato_intalastartaaAainfix &lt;=ato_intafirstartaaV9Iainfix =ato_intagetaeltsaaV32ato_intV8Aainfix &lt;=V32V9Aainfix &lt;=ato_intafirstartaaV32EAainfix &lt;=ato_intagetaeltsaaV33ato_intV8Iainfix &lt;=V33V9Aainfix &lt;=ato_intafirstartaaV33FIiainfix =V7V5ainfix =V7agetaeltsaaV6ainfix &gt;ato_intagetaeltsaaV6ato_intV5Iainfix &lt;=V6ato_intalastartaaAainfix &lt;=ato_intafirstartaaV6Iainfix =V6ato_intafirstartaaIainfix =V5agetaeltsaaato_intafirstartaaIainfix &gt;alengthaac0Aainfix =ato_intalastartaaalastAainfix =ato_intafirstartaaafirstAainfix &lt;=ato_intalastartaaalastAainfix &gt;=ato_intafirstartaaafirstIainfix &lt;=ato_intafirstartaaato_intalastartaaLamk refV14Lamk refV15Lamk refV20Lamk refV21F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="GP_Subp:maximum.ads:3"/>
+      <label
+       name="GP_Pretty_Ada:Maximum.Maximum"/>
+      <label
+       name="expl:VC for def"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="valid" time="0.04"/>
+      </proof>
+     </goal>
+     <goal
+      name="WP_parameter def.6"
+      locfile="../maximum.mlw"
+      loclnum="1291" loccnumb="5" loccnume="8"
+      expl="6. loop invariant preservation"
+      sum="a293fc44861e3994fa38a611c9287e92"
+      proved="true"
+      expanded="false"
+      shape="loop invariant preservationainfix =ato_intagetaeltsaaV32ato_intV13Aainfix &lt;=V32V12Aainfix &lt;=ato_intafirstartaaV32EAainfix &lt;=ato_intagetaeltsaaV33ato_intV13Iainfix &lt;=V33V12Aainfix &lt;=ato_intafirstartaaV33FIainfix &gt;V12V11Aiainfix =V13V8ainfix =V13agetaeltsaaV12ainfix &gt;ato_intagetaeltsaaV12ato_intV8Aainfix &lt;=V12ato_intalastartaaAainfix =V12ainfix +V9c1Aainfix =V11V9Aainfix &lt;=V9ato_intalastartaaAainfix &lt;=ato_intafirstartaaV9Iainfix =ato_intagetaeltsaaV34ato_intV8Aainfix &lt;=V34V9Aainfix &lt;=ato_intafirstartaaV34EAainfix &lt;=ato_intagetaeltsaaV35ato_intV8Iainfix &lt;=V35V9Aainfix &lt;=ato_intafirstartaaV35FIiainfix =V7V5ainfix =V7agetaeltsaaV6ainfix &gt;ato_intagetaeltsaaV6ato_intV5Iainfix &lt;=V6ato_intalastartaaAainfix &lt;=ato_intafirstartaaV6Iainfix =V6ato_intafirstartaaIainfix =V5agetaeltsaaato_intafirstartaaIainfix &gt;alengthaac0Aainfix =ato_intalastartaaalastAainfix =ato_intafirstartaaafirstAainfix &lt;=ato_intalastartaaalastAainfix &gt;=ato_intafirstartaaafirstIainfix &lt;=ato_intafirstartaaato_intalastartaaLamk refV14Lamk refV15Lamk refV20Lamk refV21F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="GP_Subp:maximum.ads:3"/>
+      <label
+       name="GP_Pretty_Ada:Maximum.Maximum"/>
+      <label
+       name="expl:VC for def"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="valid" time="0.18"/>
+      </proof>
+     </goal>
+     <goal
+      name="WP_parameter def.7"
+      locfile="../maximum.mlw"
+      loclnum="1291" loccnumb="5" loccnume="8"
+      expl="7."
+      sum="f1be0ce3dfcc75152e6c6b80dc0483d0"
+      proved="true"
+      expanded="false"
+      shape="ain_rangeV4Iainfix &lt;=V4ato_intalastartaaAainfix &lt;=ato_intafirstartaaV4Iainfix =V24V26Aainfix =V24V25Aainfix =V24V20Aainfix =V26V24Aainfix =V24V25Aiainfix =V22V5Aainfix =V23V6Aainfix =V5V20Aainfix =V6V21ainfix =V22V8Aainfix =V23V12Aainfix =V8V20Aainfix =V12V21ANainfix &lt;=V12ato_intalastartaaAainfix =V12ainfix +V9c1Aainfix =V11V9Aainfix &lt;=V9ato_intalastartaaAainfix &lt;=ato_intafirstartaaV9Aainfix =ato_intagetaeltsaaV32ato_intV8Aainfix &lt;=V32V9Aainfix &lt;=ato_intafirstartaaV32EAainfix &lt;=ato_intagetaeltsaaV33ato_intV8Iainfix &lt;=V33V9Aainfix &lt;=ato_intafirstartaaV33FAiainfix =V7V5ainfix =V7agetaeltsaaV6ainfix &gt;ato_intagetaeltsaaV6ato_intV5Aainfix =c0V0Oainfix =V22V17Aainfix =V23V18Aainfix =V29V31Aainfix =V28V30Aainfix =V17V8Aainfix =V18V9Aainfix =V19V10Aainfix =V8V14Aainfix =V9V15Aainfix =V10V16AfAainfix =ato_intagetaeltsaaV34ato_intV8Aainfix &lt;=V34V9Aainfix &lt;=ato_intafirstartaaV34EAainfix &lt;=ato_intagetaeltsaaV35ato_intV8Iainfix &lt;=V35V9Aainfix &lt;=ato_intafirstartaaV35FAiainfix =V7V5ainfix =V7agetaeltsaaV6ainfix &gt;ato_intagetaeltsaaV6ato_intV5ainfix &lt;=V6ato_intalastartaaAainfix &lt;=ato_intafirstartaaV6Aainfix =V6ato_intafirstartaaAainfix =V5agetaeltsaaato_intafirstartaaIainfix &gt;alengthaac0Aainfix =ato_intalastartaaalastAainfix =ato_intafirstartaaafirstAainfix &lt;=ato_intalastartaaalastAainfix &gt;=ato_intafirstartaaafirstIainfix &lt;=ato_intafirstartaaato_intalastartaaLamk refV14Lamk refV15Lamk refV20Lamk refV21F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="GP_Subp:maximum.ads:3"/>
+      <label
+       name="GP_Pretty_Ada:Maximum.Maximum"/>
+      <label
+       name="expl:VC for def"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="valid" time="0.04"/>
+      </proof>
+     </goal>
+     <goal
+      name="WP_parameter def.8"
+      locfile="../maximum.mlw"
+      loclnum="1291" loccnumb="5" loccnume="8"
+      expl="8."
+      sum="c9ea3f1886ba3ca73de25bc2065a9fb5"
+      proved="true"
+      expanded="false"
+      shape="ain_rangeV3Iainfix &lt;=V3ato_intalastartaaAainfix &lt;=ato_intafirstartaaV3Iainfix =V27aTrueIainfix &lt;=ato_intagetaeltsaaV32ato_intV24Iainfix &lt;=V32ato_intalastartaaAainfix &lt;=ato_intafirstartaaV32Fqainfix =V27aTrueIainfix =V24V26Aainfix =V24V25Aainfix =V24V20Aainfix =V26V24Aainfix =V24V25Aiainfix =V22V5Aainfix =V23V6Aainfix =V5V20Aainfix =V6V21ainfix =V22V8Aainfix =V23V12Aainfix =V8V20Aainfix =V12V21ANainfix &lt;=V12ato_intalastartaaAainfix =V12ainfix +V9c1Aainfix =V11V9Aainfix &lt;=V9ato_intalastartaaAainfix &lt;=ato_intafirstartaaV9Aainfix =ato_intagetaeltsaaV33ato_intV8Aainfix &lt;=V33V9Aainfix &lt;=ato_intafirstartaaV33EAainfix &lt;=ato_intagetaeltsaaV34ato_intV8Iainfix &lt;=V34V9Aainfix &lt;=ato_intafirstartaaV34FAiainfix =V7V5ainfix =V7agetaeltsaaV6ainfix &gt;ato_intagetaeltsaaV6ato_intV5Aainfix =c0V0Oainfix =V22V17Aainfix =V23V18Aainfix =V29V31Aainfix =V28V30Aainfix =V17V8Aainfix =V18V9Aainfix =V19V10Aainfix =V8V14Aainfix =V9V15Aainfix =V10V16AfAainfix =ato_intagetaeltsaaV35ato_intV8Aainfix &lt;=V35V9Aainfix &lt;=ato_intafirstartaaV35EAainfix &lt;=ato_intagetaeltsaaV36ato_intV8Iainfix &lt;=V36V9Aainfix &lt;=ato_intafirstartaaV36FAiainfix =V7V5ainfix =V7agetaeltsaaV6ainfix &gt;ato_intagetaeltsaaV6ato_intV5ainfix &lt;=V6ato_intalastartaaAainfix &lt;=ato_intafirstartaaV6Aainfix =V6ato_intafirstartaaAainfix =V5agetaeltsaaato_intafirstartaaIainfix &gt;alengthaac0Aainfix =ato_intalastartaaalastAainfix =ato_intafirstartaaafirstAainfix &lt;=ato_intalastartaaalastAainfix &gt;=ato_intafirstartaaafirstIainfix &lt;=ato_intafirstartaaato_intalastartaaLamk refV14Lamk refV15Lamk refV20Lamk refV21F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="GP_Subp:maximum.ads:3"/>
+      <label
+       name="GP_Pretty_Ada:Maximum.Maximum"/>
+      <label
+       name="expl:VC for def"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="valid" time="0.04"/>
+      </proof>
+     </goal>
+     <goal
+      name="WP_parameter def.9"
+      locfile="../maximum.mlw"
+      loclnum="1291" loccnumb="5" loccnume="8"
+      expl="9."
+      sum="db25600c8542adca22499c2e8e3dd251"
+      proved="true"
+      expanded="false"
+      shape="ainfix =ato_intagetaeltsaaV33ato_intV24Aainfix &lt;=V33ato_intalastartaaAainfix &lt;=ato_intafirstartaaV33EAainfix &lt;=ato_intagetaeltsaaV34ato_intV24Iainfix &lt;=V34ato_intalastartaaAainfix &lt;=ato_intafirstartaaV34FIainfix =V32V24Aainfix =V24V26Aainfix =V24V25Aainfix =V24V20Aainfix =V26V24Aainfix =V24V25Aiainfix =V22V5Aainfix =V23V6Aainfix =V5V20Aainfix =V6V21ainfix =V22V8Aainfix =V23V12Aainfix =V8V20Aainfix =V12V21ANainfix &lt;=V12ato_intalastartaaAainfix =V12ainfix +V9c1Aainfix =V11V9Aainfix &lt;=V9ato_intalastartaaAainfix &lt;=ato_intafirstartaaV9Aainfix =ato_intagetaeltsaaV35ato_intV8Aainfix &lt;=V35V9Aainfix &lt;=ato_intafirstartaaV35EAainfix &lt;=ato_intagetaeltsaaV36ato_intV8Iainfix &lt;=V36V9Aainfix &lt;=ato_intafirstartaaV36FAiainfix =V7V5ainfix =V7agetaeltsaaV6ainfix &gt;ato_intagetaeltsaaV6ato_intV5Aainfix =c0V0Oainfix =V22V17Aainfix =V23V18Aainfix =V29V31Aainfix =V28V30Aainfix =V17V8Aainfix =V18V9Aainfix =V19V10Aainfix =V8V14Aainfix =V9V15Aainfix =V10V16AfAainfix =ato_intagetaeltsaaV37ato_intV8Aainfix &lt;=V37V9Aainfix &lt;=ato_intafirstartaaV37EAainfix &lt;=ato_intagetaeltsaaV38ato_intV8Iainfix &lt;=V38V9Aainfix &lt;=ato_intafirstartaaV38FAiainfix =V7V5ainfix =V7agetaeltsaaV6ainfix &gt;ato_intagetaeltsaaV6ato_intV5ainfix &lt;=V6ato_intalastartaaAainfix &lt;=ato_intafirstartaaV6Aainfix =V6ato_intafirstartaaAainfix =V5agetaeltsaaato_intafirstartaaAainfix &gt;alengthaac0Aainfix =ato_intalastartaaalastAainfix =ato_intafirstartaaafirstAainfix &lt;=ato_intalastartaaalastAainfix &gt;=ato_intafirstartaaafirstIainfix &lt;=ato_intafirstartaaato_intalastartaaFLamk refV14Lamk refV15Lamk refV20Lamk refV21F">
+      <label
+       name="W:diverges:N"/>
+      <label
+       name="GP_Subp:maximum.ads:3"/>
+      <label
+       name="GP_Pretty_Ada:Maximum.Maximum"/>
+      <label
+       name="expl:VC for def"/>
+      <proof
+       prover="0"
+       timelimit="1"
+       memlimit="0"
+       obsolete="false"
+       archived="false">
+       <result status="valid" time="0.13"/>
+      </proof>
+     </goal>
+    </transf>
+   </goal>
+  </theory>
+ </file>
+</why3session>

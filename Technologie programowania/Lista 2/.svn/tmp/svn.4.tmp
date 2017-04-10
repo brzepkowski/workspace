@@ -1,0 +1,80 @@
+
+import java.io.*;
+import java.net.*;
+
+
+/**
+ * Klasa serwera, każdy z użytkowników to osobny wątek
+ * @author Maciej Ubas
+ */
+class SocketServer extends Thread {
+
+    ServerSocket server = null;
+    Socket client = null;
+    BufferedReader in = null;
+    PrintWriter out = null;
+    String line = "";
+    int numerPortu;
+
+    /**
+     * Konstruktor klasy
+     * @param numerPortu port na którym działa serwer
+     * @param rozmiarSita rozmiar sita do rozkładu liczby
+     */
+    SocketServer(int numerPortu) {
+        this.numerPortu = numerPortu;
+        
+        try {
+            server = new ServerSocket(numerPortu);
+        } catch (IOException e) {
+            System.out.println("Could not listen on port " + numerPortu);
+            System.exit(-1);
+        }
+    }
+
+    /**
+     * Tworzy nowy wątek dla klienta
+     */
+    public void listenSocket() {						
+        while (true) {
+            ClientWorker w;
+            try {
+                w = new ClientWorker(server.accept());
+                Thread t = new Thread(w);
+                t.start();
+            } catch (IOException e) {
+                System.out.println("Accept failed: " + numerPortu);
+            }
+        }
+    }
+
+    protected void finalize() {
+        try {
+            in.close();
+            out.close();
+            client.close();
+            server.close();
+        } catch (IOException e) {
+            System.out.println("Could not close.");
+        }
+    }
+
+    /**
+     * Startuje serwer 
+     * @param args 
+     */
+    public static void main(String[] args) {
+        int port = 0;
+        try {
+            port = Integer.parseInt(args[0]);
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            System.out.println("Please input the port");
+            return;
+        }
+        
+        System.out.println("Server has started");
+        SocketServer server = new SocketServer(port);
+        server.listenSocket();
+
+    }
+}

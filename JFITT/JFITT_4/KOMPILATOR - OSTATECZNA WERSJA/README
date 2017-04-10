@@ -1,0 +1,12 @@
+/* Bartosz Rzepkowski - 208732 
+20.01.2016
+*/
+Sposób użycia kompilatora:
+- Aby skompilowac program należy w terminalu wprowadzić procedurę "make",
+- Aby użyć kompilatora na danym pliku należy podać komendę:
+	./compiler nazwa_pliku
+(nalezy pamietac o uwzględnieniu rozszerzenia .imp),
+- Procedura wygeneruje plik o takiej samej nazwie, jednak z rozszerzeniem ",mr",
+- Aby uruchomic program należy podac komendę:
+	./interpreter nazwa_pliku
+(tym razem z rozszerzeniem ".mr").

@@ -1,0 +1,11 @@
+[ deklaracja tablicy ]
+DECLARE
+    n tab(1234567890) m
+IN
+    GET n;
+    m := 1234567889-n;
+    tab(n) := m;
+    tab(m) := n;
+    PUT tab(n);
+    PUT tab(m);
+END

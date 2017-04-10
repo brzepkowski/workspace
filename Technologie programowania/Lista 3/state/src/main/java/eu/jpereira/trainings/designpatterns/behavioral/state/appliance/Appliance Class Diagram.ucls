@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.7" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" 
+    name="eu.jpereira.trainings.designpatterns.behavioral.state.appliance.ApplianceCommunicationException" 
+    project="Lista 3" 
+    file="/Lista 3/state/src/main/java/eu/jpereira/trainings/designpatterns/behavioral/state/appliance/ApplianceCommunicationException.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="97" width="266" x="235" y="76"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="2" language="java" name="eu.jpereira.trainings.designpatterns.behavioral.state.appliance.Appliance" 
+    project="Lista 3" 
+    file="/Lista 3/state/src/main/java/eu/jpereira/trainings/designpatterns/behavioral/state/appliance/Appliance.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="223" width="266" x="235" y="339"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="3" language="java" name="eu.jpereira.trainings.designpatterns.behavioral.state.appliance.AbstractAppliance" 
+    project="Lista 3" 
+    file="/Lista 3/state/src/main/java/eu/jpereira/trainings/designpatterns/behavioral/state/appliance/AbstractAppliance.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="223" width="266" x="541" y="76"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="eu.jpereira.trainings.designpatterns.behavioral.state.appliance.Toaster" 
+    project="Lista 3" 
+    file="/Lista 3/state/src/main/java/eu/jpereira/trainings/designpatterns/behavioral/state/appliance/Toaster.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="187" width="266" x="541" y="339"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <realization id="5">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="2"/>  
+  </realization>  
+  <generalization id="6">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

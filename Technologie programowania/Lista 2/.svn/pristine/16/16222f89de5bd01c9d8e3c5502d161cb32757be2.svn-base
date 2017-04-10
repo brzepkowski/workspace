@@ -1,0 +1,121 @@
+import java.io.*;
+import java.net.*;
+
+class Bot extends Thread {
+
+	public String personalNumber = "";
+	boolean isConnected = false;
+	public String c1;
+	public String c2;
+	public String c3;
+	public String c4;
+	public int tokens = 0;
+	public String status;
+	public String highest;
+
+	public String[] parts;
+	public String part1 = "";
+	public String part2 = "";
+	public String part3 = "";
+	public String part4 = "";
+	public String part5 = "";
+	public String part6 = "";
+
+	Socket socket = null;
+	PrintWriter out = null;
+	BufferedReader in = null;
+
+	Bot() {
+		listenSocket();
+		System.out.println("bot wystartował");
+	}
+
+	public void listenSocket() {
+		try {
+			if (isConnected == true) {
+			} else {
+				String hostAddress = "localhost";
+				int portAddress = SocketServer.port;
+				socket = new Socket(hostAddress, portAddress);
+				out = new PrintWriter(socket.getOutputStream(), true);
+				in = new BufferedReader(new InputStreamReader(
+						socket.getInputStream()));
+				personalNumber = in.readLine();
+				System.out.println(personalNumber + " Połączono: " + socket);
+				start();
+				System.out.println("Connected, personalNumber is "
+						+ personalNumber);
+				isConnected = true;
+			}
+		} catch (UnknownHostException e) {
+			System.out.println("Unknown host");
+			System.exit(1);
+		} catch (IOException e) {
+			System.out.println("No I/O");
+		}
+	}
+
+	@Override
+	public void run() {
+		while (true) {
+			try {
+				String message = in.readLine();
+				Interpreter(message);
+
+				System.out.println("Message odebrana przez klienta: //"
+						+ message);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+	}
+
+	public void Interpreter(String message) {
+		try {
+			parts = message.split("-");
+			part1 = parts[0];
+			part2 = parts[1];
+			part3 = parts[2];
+			part4 = parts[3];
+			part5 = parts[4];
+			part6 = parts[5];
+		} catch (NullPointerException e) {
+			System.exit(0);
+		}
+
+		if (part1.equals("Status")) {
+			if (part2.equals(personalNumber)) {
+				status = "dealer";
+			} else if (part3.equals(personalNumber)) {
+				status = "smallBlind";
+			} else if (part4.equals(personalNumber)) {
+				status = "bigBlind";
+			}
+		} else if (part1.equals("Tokens")) {
+			if (part2.equals(personalNumber))
+				tokens = Integer.parseInt(part3);
+		} else if (part1.equals("Auction")) {
+			if (part2.equals("Highest")) {
+				highest = part3;
+			}
+		} else if (part1.equals("UnlockAuctionButtons")) {
+			if (part2.equals(personalNumber)) {
+				out.println("Auction-" + personalNumber + "-fold-0-0-0");
+			}
+		} else if (part1.equals("CardValues")) {
+			String str = "CardValues-" + personalNumber + "-" + c1 + "-" + c2
+					+ "-" + c3 + "-" + c4;
+			out.println(str);
+		} else if (part1.equals("Disconnected")) {
+			System.out
+					.println("Jeden z graczy siÄ™ rozĹ‚Ä…czyĹ‚, nastÄ…pi wyĹ‚Ä…czenie programu");
+			System.exit(0);
+		}
+	}
+
+	public static void main(String[] args) {
+		System.out.println("_");
+	}
+}

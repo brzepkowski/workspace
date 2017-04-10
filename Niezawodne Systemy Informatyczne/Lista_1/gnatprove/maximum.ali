@@ -1,0 +1,47 @@
+V "GNAT Lib v2014"
+A -gnatc
+A -mtune=generic
+A -march=pentiumpro
+P ZX
+
+RN
+RV NO_ELABORATION_CODE
+
+U maximum%b		maximum.adb		0038061c OO PK
+
+U maximum%s		maximum.ads		949b92e0 EE OO PK
+
+D maximum.ads		20151019145641 949b92e0 maximum%s
+D maximum.adb		20151019152429 94a394fc maximum%b
+D system.ads		20140406181356 bd760655 system%s
+X 1 maximum.ads
+1K9*Maximum 11l5 11e12 2|1b14 20l5 20t12
+2A14*Vector(integer)<integer> 3r34 2|3r27
+3V18*Maximum{integer} 3>27 7r66 9r74 2|3b13 18l7 18t14
+3a27 A{2A14} 5r29 7r47 7r58 9r56 9r67 2|3b21 6r24 6r26 8r16 10r13 11r20 13r45
+. 13r61 14r46 14r62
+7i42 i{integer} 7r60
+9i51 i{integer} 9r69
+X 2 maximum.adb
+6i7 Max{integer} 10r20 11m13 13r69 14r69 17r14
+8i11 I{integer} 10r15 11r22 13r56 14r57 15r43
+13i40 j{integer} 13r63
+14i41 k{integer} 14r64
+FD 1 maximum.ads
+FS .1 1K9 maximum
+FS .2 3V18 maximum__maximum
+FD 2 maximum.adb
+FS .1 1K14 standard__maximum -> 1.1
+FS .2 3V13 maximum__maximum -> 1.2
+FD 3 system.ads
+FX 1 maximum.ads .2 maximum__maximum
+F 3>27 maximum__maximum__a 5c29 7c47 7c58 9c56 9c67 2|.2:6c24 6c26 8c16 10c13
+. 11c20 13c45 13c61 14c46 14c62
+F 7*42 maximum__maximum__L8s__i 7c60
+F 9*51 maximum__maximum__L6s__i 9c69
+FX 2 maximum.adb .2 maximum__maximum
+F 6*7 maximum__maximum__max 10r20 11m13 13r69 14r69 17r14
+F 8*11 maximum__maximum__L_1__i 10c15 11c22 13c56 14c57 15c43
+F 13*40 maximum__maximum__L_1__L5b__j 13c63
+F 14*41 maximum__maximum__L_1__L9b__k 14c64
+

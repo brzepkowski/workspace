@@ -1,0 +1,6 @@
+project Lista_4 is
+
+   for Main use ("test.adb");
+
+end Lista_4;
+

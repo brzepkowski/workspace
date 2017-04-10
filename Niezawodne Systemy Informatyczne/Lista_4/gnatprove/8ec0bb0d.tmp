@@ -1,0 +1,5 @@
+warning_mode=TREAT_AS_ERROR
+flow_analysis_mode
+prove_mode
+ide_mode
+

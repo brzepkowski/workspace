@@ -1,0 +1,6 @@
+DECLARE
+	n
+IN
+	n := 100 % 33;
+	PUT n;
+END

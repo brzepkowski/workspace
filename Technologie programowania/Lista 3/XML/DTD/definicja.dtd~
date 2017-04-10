@@ -1,0 +1,15 @@
+   <!ELEMENT ksiazka (tytul, lista_autorow, wprowadzenie, rozdzialy)>
+   <!ELEMENT tytul (#PCDATA)>
+   <!ELEMENT lista_autorow (autor)>
+	<!ELEMENT autor (#PCDATA)>
+   <!ELEMENT wprowadzenie (#PCDATA)>
+   <!ELEMENT rozdzialy (rozdzial+)>
+	 <!ELEMENT rozdzial (tytul_rozdzialu, numer_strony_poczatkowej, sekcje)>
+		<!ELEMENT tytul_rozdzialu (#PCDATA)>
+		<!ELEMENT numer_strony_poczatkowej (#PCDATA)>
+		<!ELEMENT sekcje (sekcja+)>
+			<!ELEMENT sekcja (tytul_sekcji, akapity)>
+				<!ELEMENT tytul_sekcji (#PCDATA)>
+				<!ELEMENT akapity (akapit*)>
+					<!ELEMENT akapit (#PCDATA)>
+

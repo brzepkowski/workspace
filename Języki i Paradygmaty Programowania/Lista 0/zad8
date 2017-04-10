@@ -1,0 +1,46 @@
+{Show 'Hello World'}
+
+local A B in
+   A = 3
+   proc {B}
+      {Show ! + 'Tinman'}
+   end
+   {B 7}
+end
+
+{Browse 'Hello World'}
+
+declare W=3 H=5
+{Browse foo(width:W height:H surface:thread W*H end)}
+
+    local I F C in 
+       I = 5
+       F = 5.5
+       C = &t 
+       {Browse [I F C]}
+    end
+
+    local X Y B in 
+       X = foo
+       {NewName Y}
+       B = true 
+       {Browse [X Y B]}
+    end
+
+declare T I Y LT RT W in 
+T = tree(key:I value:Y left:LT right:RT)
+I = seif
+Y = 43
+LT = nil
+RT = nil
+W = tree(I Y LT RT)
+{Browse [T W]}
+% Selecting a Component
+{Browse T.key}
+{Browse W.1}
+% Getting the Arity of a Record
+local X in {Arity T X} {Browse X} end 
+local X in {Arity W X} {Browse X} end
+% Selecting a component conditionally
+local X in {CondSelect W key eeva X} {Browse X} end 
+local X in {CondSelect T key eeva X} {Browse X} end

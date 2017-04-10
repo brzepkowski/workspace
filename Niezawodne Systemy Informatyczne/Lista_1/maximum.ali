@@ -1,0 +1,30 @@
+V "GNAT Lib v2014"
+A -gnatA
+P ZX
+
+RN
+RV NO_IMPLICIT_CONDITIONALS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV SPARK_05
+
+U maximum%b		maximum.adb		0038061c NE OO PK
+
+U maximum%s		maximum.ads		949b92e0 EE NE OO PK
+
+D maximum.ads		20151019145641 949b92e0 maximum%s
+D maximum.adb		20151019152339 94a394fc maximum%b
+D system.ads		20140406181356 bd760655 system%s
+X 1 maximum.ads
+1K9*Maximum 11l5 11e12 2|1b14 20l5 20t12
+2A14*Vector(integer)<integer> 3r34 2|3r27
+3V18*Maximum{integer} 3>27 7r66 9r74 2|3b13 18l7 18t14
+3a27 A{2A14} 5r29 7r47 7r58 9r56 9r67 2|3b21 6r24 6r26 8r16 10r13 11r20 13r45
+. 13r61 14r46 14r62
+7i42 i{integer} 7r60
+9i51 i{integer} 9r69
+X 2 maximum.adb
+6i7 Max{integer} 10r20 11m13 13r69 14r69 17r14
+8i11 I{integer} 10r15 11r22 13r56 14r57 15r43
+13i40 j{integer} 13r63
+14i41 k{integer} 14r64
+

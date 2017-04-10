@@ -1,0 +1,65 @@
+import java.awt.GridLayout;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JToggleButton;
+import javax.swing.SwingUtilities;
+
+
+
+public class GamerGUI implements Runnable{
+
+	
+		@Override
+		public void run() {
+			JFrame f = new JFrame();
+			f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	        // Add a layout manager so that the button is not placed on top of the label
+	        f.setLayout(null);
+	        f.setSize(800,600);
+	        
+	        // Panel Of Gamer
+	        
+	        JPanel panelG = new JPanel();
+	        
+	        panelG.setSize(800, 250);
+	        panelG.setLocation(0, 350);
+	        panelG.setLayout(new GridLayout(2, 5));
+	        
+	        JToggleButton kart1= new JToggleButton ("Karta 1");
+	        JToggleButton kart2= new JToggleButton ("Karta 2");
+	        JToggleButton kart3= new JToggleButton ("Karta 3");
+	        JToggleButton kart4= new JToggleButton ("Karta 4");
+	        JLabel numberOfTokensTitle = new JLabel("Liczba żetonów:");
+	        JLabel numberOfTokens = new JLabel("...");
+	        JLabel gamerStatusTitle = new JLabel("Status gracza:");
+	        JLabel gamerStatus = new JLabel("...");
+	        
+	        panelG.add(gamerStatusTitle);
+	        panelG.add(gamerStatus);
+	        panelG.add(numberOfTokensTitle);
+	        panelG.add(numberOfTokens);
+	        panelG.add(kart1);
+	        panelG.add(kart2);
+	        panelG.add(kart3);
+	        panelG.add(kart4);
+	        
+	        panelG.setVisible(true);
+	        
+	        // Panel Pojedynczy Obcy Gracz
+	        
+	        
+	        
+	               
+	        f.add(panelG);
+	        f.setVisible(true);
+		}
+		
+		public static void main(String[] args) {
+	        GamerGUI gui = new GamerGUI();
+	        // Schedules the application to be run at the correct time in the event queue.
+	        SwingUtilities.invokeLater(gui);
+	    }
+}

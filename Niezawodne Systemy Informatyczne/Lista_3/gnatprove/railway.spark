@@ -1,0 +1,7 @@
+[
+{ "name" : "Railway.Correct_Signals", "file" :"railway.ads", "line" :  39, "spark" : "all" }
+, { "name" : "Railway.Correct_Segments", "file" :"railway.ads", "line" :  55, "spark" : "all" }
+, { "name" : "Railway.Open_Route", "file" :"railway.ads", "line" :  67, "spark" : "all" }
+, { "name" : "Railway.Move_Train", "file" :"railway.ads", "line" :  74, "spark" : "all" }
+, { "name" : "Railway", "file" :"railway.ads", "line" :  1, "spark" : "all" }
+]

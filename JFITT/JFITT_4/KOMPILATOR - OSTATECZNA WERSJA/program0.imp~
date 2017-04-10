@@ -1,0 +1,12 @@
+DECLARE
+    a b
+IN
+    a := 5;
+	b := 5;
+        IF b = 5 THEN 
+		PUT 1;
+        ELSE 
+		PUT 0;
+        ENDIF
+        a := a / 2;
+END

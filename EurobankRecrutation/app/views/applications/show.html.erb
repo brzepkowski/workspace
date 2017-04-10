@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @application.email %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @application.name %>
+</p>
+
+<p>
+  <strong>Surname:</strong>
+  <%= @application.surname %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @application.country %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @application.city %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @application.phone %>
+</p>
+
+<%= link_to "Wyślij zaproszenie", :controller => :applications, :action => :invite %>  
+
+<%= link_to 'Edit', edit_job_offer_application_path(@application.job_offer, @application) %> |
+<%= link_to 'Back', job_offer_applications_path %>

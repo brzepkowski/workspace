@@ -1,0 +1,11 @@
+public class Player {
+
+	String name = "";
+	int cash;
+	String[] cards;
+
+	Player(int cash) {
+		this.cash = cash;
+	}
+
+}

@@ -1,0 +1,5 @@
+project Why is
+for Source_Files use (
+   "swap.mlw",
+   "divide.mlw");
+end Why;

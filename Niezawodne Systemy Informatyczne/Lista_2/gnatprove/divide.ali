@@ -1,0 +1,33 @@
+V "GNAT Lib v2014"
+A -gnatc
+A -mtune=generic
+A -march=pentiumpro
+P ZX
+
+RN
+RV NO_ELABORATION_CODE
+
+U divide%b		divide.adb		0dc4d97b OO SU IU
+
+U divide%s		divide.ads		1b90ce3e EE OO SU IU
+
+D divide.ads		20151026101935 1b90ce3e divide%s
+D divide.adb		20151026145439 16541745 divide%b
+D system.ads		20140406181356 bd760655 system%s
+X 1 divide.ads
+3U11*DIVIDE 3>18 3>33 4<18 4<34 2|3b11 14l5 14t11
+3i18 X{natural} 6r14 2|3b18 8r9 12r29
+3i33 Y{positive} 6r22 6r44 2|3b33 9r15 10r16 12r37
+4i18 Q{natural} 6r18 2|4b18 7m4 11m7 11r12 12r33
+4i34 R{natural} 6r26 6r34 2|4b34 8m4 9r10 10m7 10r12 12r41
+FD 1 divide.ads
+FS .1 3U11 divide
+FD 2 divide.adb
+FS .1 3U11 standard__divide -> 1.1
+FD 3 system.ads
+FX 1 divide.ads .1 divide
+F 3>18 divide__x 2|.1:8c9 12c29
+F 3>33 divide__y 2|.1:9c15 10c16 12c37
+F 4<18 divide__q 2|.1:7m4 11m7 11r12 12r33
+F 4<34 divide__r 2|.1:8m4 9r10 10m7 10r12 12r41
+

@@ -1,0 +1,36 @@
+import java.awt.GridLayout;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+
+public class OneGamer extends JPanel{
+	
+	public OneGamer() {
+		
+		JPanel gamer = new JPanel();
+		
+		JLabel gamerNumberTitle = new JLabel("Numer gracza:");
+		JLabel gamerNumber = new JLabel("...");
+		JLabel gamerNameTitle = new JLabel("Pseudonim:");
+		JLabel gamerName = new JLabel("...");
+		JLabel gamerTokensTitle = new JLabel("Liczba żetonów:");
+		JLabel gamerTokens = new JLabel("...");
+		JLabel gamerRoundTitle = new JLabel("Runda gracza:");
+		JLabel gamerRound = new JLabel("...");
+		
+		gamer.add(gamerNumberTitle);
+		gamer.add(gamerNumber);
+		gamer.add(gamerNameTitle);
+		gamer.add(gamerName);
+		gamer.add(gamerTokensTitle);
+		gamer.add(gamerTokens);
+		gamer.add(gamerRoundTitle);
+		gamer.add(gamerRound);
+		
+		gamer.setVisible(true);
+		
+		
+	}
+
+}

@@ -1,0 +1,363 @@
+V "GNAT Lib v4.8"
+M P AB W=b
+P SS ZX
+
+RN
+RV NO_ALLOCATORS
+RV NO_DELAY
+RV NO_EXCEPTION_HANDLERS
+RV NO_EXCEPTIONS
+RV NO_FIXED_POINT
+RV NO_FLOATING_POINT
+RV NO_IO
+RV NO_IMPLICIT_DYNAMIC_CODE
+RV NO_IMPLICIT_LOOPS
+RV NO_LOCAL_ALLOCATORS
+RV NO_LOCAL_PROTECTED_OBJECTS
+RV NO_PROTECTED_TYPE_ALLOCATORS
+RV NO_PROTECTED_TYPES
+RV NO_RELATIVE_DELAY
+RV NO_SELECT_STATEMENTS
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_TASK_ALLOCATORS
+RV NO_TASK_HIERARCHY
+RV NO_TASKING
+RV NO_TERMINATE_ALTERNATIVES
+RV NO_DEFAULT_INITIALIZATION
+RV NO_IMPLEMENTATION_PRAGMAS
+RV SPARK
+RV MAX_SELECT_ALTERNATIVES=7
+RV MAX_TASK_ENTRIES=7
+RV MAX_TASKS=1+
+RV MAX_ENTRY_QUEUE_LENGTH=1+
+
+U company%b		company.adb		7aadc9c7 NE OO SU
+W ada%s			ada.ads			ada.ali
+W ada.calendar.delays%s	a-caldel.adb		a-caldel.ali
+W ada.numerics%s	a-numeri.ads		a-numeri.ali
+W ada.numerics.discrete_random%s
+W ada.numerics.float_random%s  a-nuflra.adb	a-nuflra.ali
+W ada.real_time%s	a-reatim.adb		a-reatim.ali
+W ada.tags%s		a-tags.adb		a-tags.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W definitions%s		definitions.ads		definitions.ali
+W synchronous_fifo%s	synchronous_fifo.adb	synchronous_fifo.ali
+W system%s		system.ads		system.ali
+W system.concat_2%s	s-conca2.adb		s-conca2.ali
+W system.concat_3%s	s-conca3.adb		s-conca3.ali
+W system.concat_4%s	s-conca4.adb		s-conca4.ali
+W system.concat_5%s	s-conca5.adb		s-conca5.ali
+W system.concat_6%s	s-conca6.adb		s-conca6.ali
+W system.concat_8%s	s-conca8.adb		s-conca8.ali
+W system.img_int%s	s-imgint.adb		s-imgint.ali
+W system.parameters%s	s-parame.adb		s-parame.ali
+Z system.random_numbers%s  s-rannum.adb		s-rannum.ali
+W system.soft_links%s	s-soflin.adb		s-soflin.ali
+W system.task_info%s	s-tasinf.adb		s-tasinf.ali
+W system.tasking%s	s-taskin.adb		s-taskin.ali
+W system.tasking.protected_objects%s  s-taprob.adb  s-taprob.ali
+W system.tasking.rendezvous%s  s-tasren.adb	s-tasren.ali
+W system.tasking.stages%s  s-tassta.adb		s-tassta.ali
+
+D ada.ads		20070406091342 3ffc8e18
+D a-calend.ads		20120515092648 d86d6c8c
+D a-caldel.ads		20090409150019 9f20b83d
+D a-except.ads		20120716125141 10fcae55
+D a-finali.ads		20111121113555 52ecdc1b
+D a-ioexce.ads		20091130110856 8b9de6cd
+D a-numeri.ads		20080324174807 bb51c45a
+D a-nudira.ads		20100622172941 2fef2912
+D a-nudira.adb		20100622172941 e57ce22b
+D a-nuflra.ads		20100622172941 49c50e0b
+D a-reatim.ads		20090409150019 63f07669
+D a-stream.ads		20090409150019 2ca4ee37
+D a-tags.ads		20111212115430 6c0509d0
+D a-textio.ads		20130104124955 386df5d4
+D a-unccon.ads		20070406091342 f9eb8f06
+D company.adb		20150516145204 bea45575
+D definitions.ads	20150516131430 a8e3ec61
+D interfac.ads		20110906094621 129923ea
+D i-c.ads		20110801143639 5421119b
+D i-cstrea.ads		20130102105938 3286f6aa
+D synchronous_fifo.ads	20150515182204 32ada21e
+D synchronous_fifo.adb	20150515182159 f6924f7f
+D system.ads		20140416144300 bd760655
+D s-atacco.ads		20120515093410 4c36d12f
+D s-conca2.ads		20090420091404 fbd0f2fc
+D s-conca3.ads		20090420091404 762a026a
+D s-conca4.ads		20090420091404 025fe3be
+D s-conca5.ads		20090420091404 1039cea1
+D s-conca6.ads		20090420091404 c7caf514
+D s-conca8.ads		20090420091404 ea110f26
+D s-crtl.ads		20130102105938 1ea48bce
+D s-exctab.ads		20090417131547 66e51330
+D s-ficobl.ads		20120709130952 55a71d43
+D s-finmas.ads		20111024091915 b95bb341
+D s-finroo.ads		20120426095924 4ff27390
+D s-imgint.ads		20090409150019 02dbe0c2
+D s-imguns.ads		20090409150019 9ff43cf7
+D s-linux.ads		20110906091515 70c7cb45
+D s-multip.ads		20101011073009 38ac9f73
+D s-oscons.ads		20140416144301 d627f9dc
+D s-osinte.ads		20120309145048 938b6b03
+D s-parame.ads		20110830140625 b6e20cc0
+D s-pooglo.ads		20110804083314 542f33d0
+D s-rannum.ads		20100623054052 5eb33f0a
+D s-rannum.adb		20130102110615 34372cc7
+D s-ransee.ads		20120130115052 01a57b33
+D s-secsta.ads		20110830140625 eea35a36
+D s-soflin.ads		20120515094619 24c8153c
+D s-stache.ads		20090417130712 596fc1b4
+D s-stausa.ads		20110804134155 017a0a05
+D s-stalib.ads		20130104124955 f78bcf95
+D s-stoele.ads		20090417130712 facd7d98
+D s-stoele.adb		20100617152355 afc5dc80
+D s-stopoo.ads		20111013103733 7b8fbeee
+D s-tasinf.ads		20120730151500 21316953
+D s-taspri.ads		20110927094500 15f617a8
+D s-taprop.ads		20111212143339 1dd2e1b6
+D s-taskin.ads		20121029113218 59e95256
+D s-taprob.ads		20110927094500 502249e3
+D s-tpoben.ads		20121029113218 b641f948
+D s-tasren.ads		20120208100446 a67a9949
+D s-tassta.ads		20121029110946 70812003
+D s-traent.ads		20090417130712 5221ee41
+D s-unstyp.ads		20090409150019 6ae15c76
+D s-valuns.ads		20090409150019 10a8ed3b
+D s-wchcon.ads		20090417130712 bfeb2e3d
+X 1 ada.ads
+16K9*Ada 19e8 16|1r6 1r23 2r6 3r6 105r31 385r31 389r27
+X 7 a-numeri.ads
+16K13*Numerics 32e17 16|2r10 3r10 105r35 385r35 389r31
+X 8 a-nudira.ads
+44k22*Discrete_Random 73e33 16|2w19 105r44 385r44
+48R9 Generator 16|106r23[105] 386r23[385]
+50V13 Random{16|104I12} 16|110s38[105] 402s54[385] 403s54[385]
+53U14 Reset<44|91p14> 16|109s16[105] 401s16[385]
+X 9 a-nudira.adb
+51V16 Random[44|74]{16|104I12} 45|390b13[16|105]
+X 10 a-nuflra.ads
+41K22*Float_Random 72e30 16|3w19 389r40
+45R9*Generator 16|390r16
+47F12*Uniformly_Distributed{float}
+49V13*Random{47F12}<44|62p13> 16|396s55
+51U14*Reset<44|91p14> 16|404s11
+X 14 a-textio.ads
+49K13*Text_IO 471e16 16|1w10 1r27
+249U14*Get_Line 16|527s10
+263U14*Put_Line 16|125s10 128s13 148s10 160s10 163s13 177s10 193s10 210s19
+. 218s16 255s19 278s16 319s22 334s22 357s22 368s22 427s7 498s13 504s13 524s10
+. 525s10 526s10 530s16 534s16 537s13 539s10
+X 16 company.adb
+7U11*Company 7b11 571l5 571t12
+9R9 Basic_Record 14e14 17r43 23r19 28r43 36r19 42r35 43r39 61r55 119r43 154r43
+. 314r45 326r49 382r39 409r21 419r18
+10i7 Argument_1{integer} 131r44 133r44 173r41 319r94 334r119 402m19 530r54
+11e7 Operator{character} 130r23 319r175 334r199 405m19 437r23 450r26 463r29
+. 530r142
+12i7 Argument_2{integer} 131r67 133r67 173r64 319r141 334r166 403m19 530r105
+13i7 Product{integer} 131m23 133m23 140r31 173m20 181r31 447m59 460m59 479m67
+. 483m52
+16W19 Adding_Machine 16d34 25l8 25e22 57r41 118b19 151l8 151t22 563r33
+16i34 ID{integer} 125r71 128r66
+17U17 Store_Record 17>30 119b17 122l11 122t23 440s31 453s31
+17r30 Task_Record{9R9} 119b30 121r23
+18U17 Push_Button 123b17 137l11 137t22 441s31 454s31
+19U17 Get_Product 19<29 138b17 141l11 141t22 447s37 460s37
+19i29 Product{integer} 138b29 140m10
+20U17 Is_Broken 20<27 142b17 145l11 145t20 442s34 455s34
+20b27 IsBroken{boolean} 142b27 144m10
+21U17 Repair 146b17 150l11 150t17
+23r7 My_Record{9R9} 121r10 130r13 131r13 131r34 131r57 133r13 133r34 133r57
+. 140r21
+24b7 Broken{boolean} 126r26 127r13 144r22 149r10
+27W19 Multiplying_Machine 27d39 39l8 39e27 58r46 153b19 196l8 196t27 558r38
+27i39 ID{integer} 160r78 163r50 177r78
+28U17 Store_Record 28>30 154b17 157l11 157t23 466s39
+28r30 Task_Record{9R9} 154b30 156r23
+29U17 Push_Button_One 158b17 169l11 169t26 467s39
+30U17 Push_Button_Two 170b17 178l11 178t26 433s36
+31U17 Get_Product 31<29 179b17 182l11 182t22 479s45
+31i29 Product{integer} 179b29 181m10
+32U17 Get_Business 32<30 183b17 186l11 186t23 474s45 477s48
+32b30 Button_Pushed{boolean} 183b30 185m10
+33U17 Is_Broken 33<27 187b17 190l11 190t20 468s42
+33b27 IsBroken{boolean} 187b27 189m10
+34U17 Repair 191b17 195l11 195t17
+36r7 My_Record{9R9} 156r10 173r10 173r31 173r54 181r21
+37b7 Button_Two_Pushed{boolean} 167r13 175r10 185r27
+38b7 Broken{boolean} 161r26 162r13 189r22 194r10
+41T14 Board 44l8 44e13 307b14 341l8 341t13 343r13
+42Y13 Pin_Task 42>22 314b23 323t19 413s18
+42r22 Task_Record{9R9} 316r49 319r82 319r129 319r163
+43Y13 Get_Task 43<22 43>53 326b23 336t19 435s18
+43r22 Task_Record{9R9} 332m19 332r19 334r107 334r154 334r187
+43i53 ID{integer} 334r58
+46T14 Shop 49l8 49e12 345b14 377l8 377t12 379r19
+47Y13 Put_Product 47>25 47>43 352b23 361t19 483s30
+47i25 Product{integer} 354r49 357r115
+47i43 ID{integer} 357r59
+48Y13 Buy_Product 364b23 372t19 513s24
+51T14 President 408b14 416l8 416t17 544r20
+52T14 Worker 52d22 53r33 418b14 486l11 486t17 568r25
+52i22 ID{integer} 427r43 435r39 483r61
+53P9 Worker_Access(52T14) 546r16
+54T14 Buyer 510b14 516l8 516t13 547r16
+55T14 Listener 56r35 518b14 541l8 541t16 554r27
+56P9 Listener_Access(55T14) 548r18
+57P9 Adding_Machine_Access(16W19) 67r65 74r49 75r48 76r47 77r49 207r59 215r55
+. 222r54 230r56 420r27 489r31 549r25
+58P9 Multiplying_Machine_Access(27W19) 70r70 81r55 82r46 83r48 84r54 86r48
+. 87r50 252r65 260r56 267r58 275r61 287r55 295r60 421r32 490r36 550r30
+61A9 Array_Of_Tasks(9R9)<integer> 62r18
+62a4 Tasks_Board{61A9} 316m19 332r34 530r39 530r90 530r127
+65a4 Magazine(integer) 354m19 368r77 534r39
+67A9 Array_Of_Adding_Machines(57P9)<integer> 68r22 202r25
+68a4 Adding_Machines{67A9} 209r34 219m16 564m7
+70A9 Array_Of_Multiplying_Machines(58P9)<integer> 71r27 245r23 247r25
+71a4 Multiplying_Machines{70A9} 254r35 279m16 559m7
+73T14 Free_Adding_Machines 78l8 78e28 198b14 237l8 237t28 239r24
+74Y13 Get_Adding_Machine 74<32 207b23 212t19 439s31 452s31
+74p32 Add_Machine{57P9} 209m19 209r19
+75Y13 Return_Adding_Machine 75>35 215b20 220t16 448s37 461s37 497s31
+75p35 Add_Machine{57P9} 219r62
+76Y13 Store_Broken_Machine 76>34 222b20 227t16 444s37 457s37
+76p34 Add_Machine{57P9} 224r60
+77Y13 Get_Broken_Machine 77<32 230b20 234t19 494s31
+77p32 Add_Machine{57P9} 232m16 232r16
+80T14 Free_Multiplying_Machines 88l8 88e33 241b14 302l8 302t33 304r25
+81Y13 Get_Multiplying_Machine 81<37 252b23 257t19 465s35
+81p37 Mult_Machine{58P9} 254m19 254r19
+82Y13 Store_Busy_Machine 82>32 260b23 264t19 473s41
+82p32 Mult_Machine{58P9} 262r63
+83Y13 Get_Busy_Machine 83<30 267b23 272t19 432s32
+83p30 Mult_Machine{58P9} 269m19 269r19
+84Y13 Return_Multiplying_Machine 84>40 275b20 280t16 480s41 503s32
+84p40 Mult_Machine{58P9} 279r72
+85Y13 Get_Number_Of_Needed_Workers 85<42 282b20 285t16 430s29
+85i42 Workers_Needed{integer} 284m16 284r16
+86Y13 Store_Broken_Machine 86>34 287b20 292t16 470s41
+86p34 Mult_Machine{58P9} 289r60
+87Y13 Get_Broken_Machine 87<32 295b23 299t19 500s32
+87p32 Mult_Machine{58P9} 297m19 297r19
+90T14 Mechanic 488b14 507l8 507t16 545r19
+94i4 Broken_Adding_Machines{integer} 226m16 226r42 229r18 493r13 496m13 496r39
+95i4 Broken_Multiplying_Machines{integer} 291m16 291r47 294r18 499r16 502m13
+. 502r44
+96i4 Workers_Needed_By_Other_Machines{integer} 263m19 263r55 271m19 271r55
+. 284r34
+97i4 Board_Pointer{integer} 316r31 317m19 317r36 328m19 328r36 332r46 529r27
+98i4 Magazine_Pointer{integer} 354r28 355m19 355r39 366m19 366r39 368r86
+. 533r27
+102U14 Random_Breaking 102b14 102<30 116l8 116t23 126s10 161s10
+102b30 Broken{boolean} 112m10 114m10
+104I12 Rand_Range<short_short_integer> 105r60
+105K15 Rand_Int[8|44] 106r14 109r7 110r29
+106r7 seed{8|48R9[105]} 109r22 110r45
+107i7 Random{integer} 110m7 111r10
+200i7 Adding_Machines_Pointer{integer} 206r18 209r50 210r76 211m19 211r46
+. 217m16 217r43 218r71 219r32
+201i7 Broken_Machines_Pointer{integer} 224r32 225m16 225r43 232r47 233m19
+. 233r46
+202a7 Broken_Machines{67A9} 224m16 232r31
+207p42 Add_Machine{57P9}
+215p42 Add_Machine{57P9}
+222p41 Add_Machine{57P9}
+230p39 Add_Machine{57P9}
+239t4 Free_Add_Machines{73T14} 439r13 444r19 448r19 452r13 457r19 461r19
+. 494r13 497r13
+243i7 Multiplying_Machines_Pointer{integer} 251r18 254r56 255r76 256m19 256r51
+. 277m16 277r48 278r72 279r37
+244i7 Busy_Machines_Pointer{integer} 261m19 261r44 262r33 266r18 269r49 270m19
+. 270r44
+245a7 Busy_Machines{70A9} 262m19 269r35
+246i7 Broken_Machines_Pointer{integer} 289r32 290m16 290r43 297r51 298m19
+. 298r46
+247a7 Broken_Machines{70A9} 289m16 297r35
+252p47 Mult_Machine{58P9}
+260p42 Mult_Machine{58P9}
+267p40 Mult_Machine{58P9}
+275p47 Mult_Machine{58P9}
+282i49 Workers_Needed{integer}
+287p41 Mult_Machine{58P9}
+295p42 Mult_Machine{58P9}
+304t4 Free_Mult_Machines{80T14} 430r10 432r13 465r16 470r22 473r22 480r22
+. 500r13 503r13
+308i7 Board_Elements{integer} 321m19 321r37 325r18 330m19 330r37
+309i7 Board_Spaces{integer} 313r18 322m19 322r35 331m19 331r35
+314r32 Task_Record{9R9}
+326r32 Task_Record{9R9}
+326i63 ID{integer}
+343t4 Board_1{41T14} 413r10 435r10
+346i7 Magazine_Elements{integer} 359m19 359r40 363r18 370m19 370r40
+347i7 Magazine_Spaces{integer} 351r18 360m19 360r38 371m19 371r38
+352i35 Product{integer}
+352i53 ID{integer}
+379t4 Companys_Shop{46T14} 483r16 513r10
+382U14 Produce 382b14 382<22 406l8 406t15 412s10
+382r22 Task_Record{9R9} 402m7 403m7 405m7
+384I12 Rand_Range<short_short_integer> 385r60
+385K15 Rand_Int[8|44] 386r14 401r7 402r45 403r45
+386r7 seed{8|48R9[385]} 401r22 402r61 403r61
+389K15 Rnd=389:40 390r12 396r51 404r7
+390r7 Gen{10|45R9} 396r62 404r17
+391A12 Character_Array(character)<integer> 393r38 399r27
+393V16 Pick_Random{character} 393b16 393>28 397l11 397t22 405s31
+393a28 Char_Arr{391A12} 396r17 396r26 396r75
+399a7 Operators{391A12} 405r43
+409r7 Created_Task{9R9} 412m18 413r27
+419r7 My_Record{9R9} 435m28 437r13 440r44 447m49 447r49 450r16 453r44 460m49
+. 460r49 463r19 466r52 479m57 479r57 483r42
+420p7 My_Adding_Machine{57P9} 439m50 439r50 440r13 441r13 442r16 444r58 447r19
+. 448r59 452m50 452r50 453r13 454r13 455r16 457r58 460r19 461r59
+421p7 My_Multiplying_Machine{58P9} 432m49 432r49 433r13 465m59 465r59 466r16
+. 467r16 468r19 470r62 473r60 474r22 477r25 479r22 480r68
+422b7 Button_Two_Pushed{boolean} 474m58 475r28 477m61
+423i7 Needed_Workers{integer} 430m58 431r13
+424b7 Adding_Machine_Broken{boolean} 442m44 443r19 455m44 456r19
+425b7 Multiplying_Machine_Broken{boolean} 468m52 469r22
+438L15 One_Broken_Adding_Machine 445r24
+451L15 Two_Broken_Adding_Machine 458r24
+464L18 Broken_Multiplying_Machine 471r27
+489p7 Broken_Adding_Machine{57P9} 494m50 494r50 497r53
+490p7 Broken_Multiplying_Machine{58P9} 500m51 500r51 503r59
+519a7 Option{string} 523m10 527m19 528r13 532r16
+520i7 Last{natural} 527m27
+529i17 i{integer} 530r51 530r102 530r139
+533i17 i{integer} 534r48
+544t4 New_President{51T14}
+545t4 New_Mechanic{90T14}
+546p4 New_Worker{53P9} 568m7
+547t4 New_Buyer{54T14}
+548p4 New_Listener{56P9} 554m7
+549p4 New_Adding_Machine{57P9} 563m7 564r29
+550p4 New_Multiplying_Machine{58P9} 558m7 559r34
+557i8 i{integer} 558r58 559r28
+562i8 i{integer} 563r48 564r23
+567i8 i{integer} 568r32
+X 17 definitions.ads
+1K9*Definitions 16|4w6 4r23 17|18e16
+3a4*Listeners_Mode{string} 16|318r22 333r22 356r22 367r22 553r7
+5i4*Tasks_Board_Size{integer} 16|62r38 309r32
+6i4*Magazine_Size{integer} 16|65r26 347r35
+8o4*Presidents_Delay{duration} 16|414r16
+9o4*Workers_Delay{duration} 16|429r16
+10o4*Buyers_Delay{duration} 16|514r16
+11i4*Number_Of_Workers{integer} 16|567r18
+13i4*Number_Of_Adding_Machines{integer} 16|68r52 200r44 202r55 245r58 247r60
+. 557r18
+14i4*Number_Of_Multiplying_Machines{integer} 16|71r62 243r49 562r18
+15o4*Adding_Machines_Delay{duration} 16|135r19
+16o4*Multiplying_Machines_Delay{duration} 16|176r16
+X 18 interfac.ads
+61M9*Unsigned_32
+64M9*Unsigned_64
+X 21 synchronous_fifo.ads
+3k9*Synchronous_Fifo 16|5w6 21|11e21
+X 44 s-rannum.ads
+66V13*Random{18|61M9} 45|219i21
+67V13*Random{18|64M9} 45|219i21
+X 50 s-stausa.ads
+203U14*Initialize 204i<c,__gnat_stack_usage_initialize>22
+268U14*Output_Results 272i<c,__gnat_stack_usage_output_results>22
+

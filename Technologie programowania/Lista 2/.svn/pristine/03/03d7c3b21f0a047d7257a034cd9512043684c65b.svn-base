@@ -1,0 +1,169 @@
+import java.awt.*;
+
+import java.awt.event.*;
+import java.io.*;
+import java.net.*;
+
+import javax.swing.ButtonGroup;
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+
+/**
+ * Klasa SocketClient umozliwia wysylanie polecen do serwera
+ * @author ubuntu
+ *
+ */
+
+class SocketClient extends JFrame implements ActionListener {
+  JLabel output;
+  JLabel informationZero;
+  JLabel informationOne;
+  JLabel informationTwo;
+  JLabel informationThree;
+  JLabel informationFour;
+  JButton button;
+  JButton connect;
+  ButtonGroup bg;
+  JRadioButton buttonP;
+  JRadioButton buttonM;
+  JRadioButton buttonR;
+  JTextField hostTextField;
+  JTextField portTextField;
+  JTextField input;
+  Socket socket = null;
+  PrintWriter out = null;
+  BufferedReader in = null;
+  
+  /**
+   * Konstruktor SocketClient tworzy GUI klienta
+   */
+
+  SocketClient() {
+	setLocation(40, 20);
+	setSize(400, 150);
+	setLayout(null);
+	setTitle("Klient");
+    setFont(new Font(Font.SANS_SERIF,Font.PLAIN,40));
+    informationZero = new JLabel("Podaj adres hosta:");
+    informationZero.setBounds(10, 10, 150, 30);
+    hostTextField = new JTextField("localhost");
+    hostTextField.setBounds(160, 10, 100, 30);
+    informationOne = new JLabel("Podaj numer portu:");
+    informationOne.setBounds(10, 40, 150, 30);
+    portTextField = new JTextField("4444");
+    portTextField.setBounds(160, 40, 100, 30);
+    connect = new JButton("Połącz");
+    connect.setBounds(275, 40, 100, 30);
+    connect.addActionListener(this);
+   /* informationTwo = new JLabel("Wprowadź dane:");
+    informationTwo.setBounds(10, 70, 140, 30);
+    input = new JTextField(20);
+    input.setBounds(10, 100, 370, 100);
+    informationThree = new JLabel("Wybierz rodzaj pytania:");
+    informationThree.setBounds(10, 210, 200, 30);
+    buttonP = new JRadioButton("P");
+    buttonP.setBounds(10, 240, 50, 30);
+    buttonM = new JRadioButton("M");
+    buttonM.setBounds(80, 240, 50, 30);
+    buttonR = new JRadioButton("R");
+    buttonR.setBounds(150, 240, 50, 30);
+    button = new JButton("Wyślij");
+    button.addActionListener(this);
+    button.setBounds(275, 270, 100, 30);
+    bg = new ButtonGroup();
+    bg.add(buttonP);
+    bg.add(buttonM);
+    bg.add(buttonR);
+   
+    
+    informationFour = new JLabel("Odpowiedź serwera:");
+    informationFour.setBounds(10, 300, 150, 30);
+    output = new JLabel();
+    output.setBackground(Color.WHITE);
+    output.setBounds(10, 330, 370, 100);*/
+
+    add(informationZero);
+    add(hostTextField);
+    add(informationOne);
+    add(portTextField);
+    add(connect);
+   /* add(informationTwo);
+    add(input);
+    add(button);
+    add(informationThree);
+    add(buttonP);
+    add(buttonM);
+    add(buttonR);
+    add(informationFour);
+    add(output);*/
+  }
+
+  public void actionPerformed(ActionEvent event) {
+    if(event.getSource() == button) {
+      try {
+    	  
+    	  if (buttonP.isSelected()){
+    		  //System.out.println("Wcisnieto przycisk P");
+    		  out.print("P ");
+    	  }
+    	  if (buttonM.isSelected()){
+    		  //System.out.println("Wcisnieto przycisk M");
+    		  out.print("M ");
+    	  }
+    	  if (buttonR.isSelected()){
+    		  //System.out.println("Wcisnieto przycisk R");
+    		  out.print("R ");
+    	  }
+    	  if (buttonP.isSelected() == false && buttonM.isSelected() == false && buttonR.isSelected() == false) {
+    		  System.out.println("Zaden przycisk nie zostal wcisniety");
+    	  }
+    	  
+    	  out.println(input.getText());
+    	 
+        output.setText(in.readLine());
+      }
+      catch (IOException e) {
+        System.out.println("Read failed"); System.exit(1);
+      }
+      input.setText("");
+      input.requestFocus();
+    }
+    else if(event.getSource() == connect) {
+    	listenSocket();
+    }
+  }
+
+  public void listenSocket(){
+    try {
+      String hostAddress = hostTextField.getText();
+      int portAddress = Integer.parseInt(portTextField.getText());
+      socket = new Socket(hostAddress, portAddress);
+      out = new PrintWriter(socket.getOutputStream(), true);
+      in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+      GamerGUI player = new GamerGUI();
+    }
+    catch (UnknownHostException e) {
+       System.out.println("Unknown host"); System.exit(1);
+     }
+     catch  (IOException e) {
+       System.out.println("No I/O");
+     }
+  }
+
+  public static void main(String[] args){
+	GamerGUI player;
+    SocketClient frame = new SocketClient();
+    frame.addWindowListener( new WindowAdapter() {
+                               public void windowClosing(WindowEvent e) {
+                                 System.exit(0);
+                               }
+                             } );
+    //frame.pack();
+    frame.setVisible(true);
+    frame.setResizable(false);
+  }
+}

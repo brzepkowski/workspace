@@ -1,0 +1,7 @@
+[ Błąd w linii 6: użycie niezainicjowanej zmiennej a ]
+DECLARE
+  a b t(2)
+IN
+  GET b;
+  b := a;
+END

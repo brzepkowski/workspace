@@ -1,0 +1,12 @@
+DECLARE
+  a b
+IN
+  GET a;
+  GET b;
+  FOR i FROM a TO b DO
+    a := a+1;
+	b := b-1;
+  ENDFOR
+  PUT a;
+  PUT b;
+END

@@ -1,0 +1,14 @@
+{Show 'Hello World'}
+
+local A B in
+   A = 3
+   proc {B}
+      {Show ! + 'Tinman'}
+   end
+   {B 7}
+end
+
+{Browse 'Hello World'}
+
+declare W=3 H=5
+{Browse foo(width:W height:H surface:thread W*H end)}

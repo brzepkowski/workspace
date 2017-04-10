@@ -1,0 +1,5 @@
+Analyzed 2 units
+in unit divide, 1 subprograms and packages out of 1 analyzed
+  DIVIDE at divide.ads:3 flow analyzed (0 errors and 0 warnings) and proved (9 checks)
+in unit swap, 1 subprograms and packages out of 1 analyzed
+  SWAP at swap.ads:3 flow analyzed (0 errors and 0 warnings) and proved (6 checks)

@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<Locations >
+  <Project>
+    <vfs_file>/home/bartas/GPS_Projects/Lista_3/lista_3.gpr</vfs_file>
+    <file_marker column=" 1" line=" 1" >
+      <vfs_file>/home/bartas/GPS_Projects/Lista_2/swap.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1" >
+      <vfs_file>/home/bartas/GPS_Projects/Lista_2/swap.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1" >
+      <vfs_file>/home/bartas/GPS_Projects/Lista_2/divide.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1" >
+      <vfs_file>/home/bartas/GPS_Projects/Lista_2/divide.ads</vfs_file>
+    </file_marker>
+    <file_marker current="true" column=" 69" line=" 12" >
+      <vfs_file>/home/bartas/GPS_Projects/Lista_3/main.adb</vfs_file>
+    </file_marker>
+  </Project>
+  <Project >
+    <file_marker current="true" column=" 69" line=" 12">
+      <vfs_file >/home/bartas/GPS_Projects/Lista_3/main.adb</vfs_file>
+    </file_marker>
+  </Project>
+  <Project >
+    <file_marker current="true" column=" 69" line=" 7">
+      <vfs_file >/home/bartas/GPS_Projects/Lista_3/main.adb</vfs_file>
+    </file_marker>
+  </Project>
+  <Project >
+    <file_marker column=" 1" line=" 1">
+      <vfs_file >/home/bartas/GPS_Projects/Lista_3/main.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1">
+      <vfs_file >/home/bartas/GPS_Projects/Lista_3/railway.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1">
+      <vfs_file >/home/bartas/GPS_Projects/Lista_3/railway.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1">
+      <vfs_file >/home/bartas/GPS_Projects/Lista_3/railway.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1">
+      <vfs_file >/home/bartas/GPS_Projects/Lista_3/main.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1">
+      <vfs_file >/home/bartas/GPS_Projects/Lista_3/railway.adb</vfs_file>
+    </file_marker>
+    <file_marker current="true" column=" 1" line=" 1">
+      <vfs_file >/home/bartas/GPS_Projects/Lista_3/railway.ads</vfs_file>
+    </file_marker>
+  </Project>
+  <Project >
+    <file_marker column=" 1" line=" 1">
+      <vfs_file >/home/bartas/GPS_Projects/Lista_3/main.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1">
+      <vfs_file >/home/bartas/GPS_Projects/Lista_3/railway.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1">
+      <vfs_file >/home/bartas/GPS_Projects/Lista_3/railway.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 22" line=" 87">
+      <vfs_file >/home/bartas/GPS_Projects/Lista_3/railway.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1">
+      <vfs_file >/home/bartas/GPS_Projects/Lista_3/main.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1">
+      <vfs_file >/home/bartas/GPS_Projects/Lista_3/railway.adb</vfs_file>
+    </file_marker>
+    <file_marker current="true" column=" 1" line=" 1">
+      <vfs_file >/home/bartas/GPS_Projects/Lista_3/railway.ads</vfs_file>
+    </file_marker>
+  </Project>
+</Locations>

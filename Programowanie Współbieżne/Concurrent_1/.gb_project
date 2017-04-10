@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Root>
+<Properties>
+<com.adacore.gnatbench.isRootProject>false</com.adacore.gnatbench.isRootProject>
+<com.adacore.gnatbench.builder.isDrivenByMakefile>true</com.adacore.gnatbench.builder.isDrivenByMakefile>
+</Properties>
+</Root>

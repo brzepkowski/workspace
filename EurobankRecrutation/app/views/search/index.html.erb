@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<div class="intro-header">
+<h1>Znalezione oferty</h1>
+</div>
+<hr>
+
+    <% @search_results.each do |job_offer| %>
+			<% job_offer.each do |k| %>
+      <div class="container">
+        <div class="field"><h3>Nazwa: <%= k.name %></h3></div>
+				<div class="field">Firma: <%= k.company %></div>
+				<div class="field">Stanowisko: <%= k.position %></div>
+        <div class="field">Miasto: <%= k.city %></div>
+				<div class="field">Data rozpoczęcia: <%= k.start_date %></div>
+        <div class="field">Opis: <%= k.specification %></div>
+        <div class="field"><%= link_to 'Przejdź do strony oferty', k %></div>
+        <!--<td><%= link_to 'Edit', edit_job_offer_path(k) %></td>
+        <td><%= link_to 'Destroy', k, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+      </div>
+			<hr>
+			<% end %>
+    <% end %>
+
+<!--
+<%= link_to 'New Job offer', new_job_offer_path %>
+-->

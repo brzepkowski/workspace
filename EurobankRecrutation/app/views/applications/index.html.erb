@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Applications</h1>
+
+<table>
+  <thead>
+    <tr>
+			<th>ID oferty</th>
+      <th>Email</th>
+      <th>Name</th>
+      <th>Surname</th>
+      <th>Country</th>
+      <th>Region</th>
+      <th>City</th>
+      <th>Phone</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @applications.each do |application| %>
+      <tr>
+				<td><%= application.job_offer_id %></td>
+        <td><%= application.email %></td>
+        <td><%= application.name %></td>
+        <td><%= application.surname %></td>
+        <td><%= application.country %></td>
+        <td><%= application.city %></td>
+        <td><%= application.phone %></td>
+        <td><%= link_to 'Show', job_offer_application_path(application.job_offer, application) %></td>
+        <td><%= link_to 'Edit', edit_job_offer_application_path(application.job_offer, application) %></td>
+        <td><%= link_to 'Destroy', {:id => application.job_offer, :job_offer_id => application}, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Application', new_job_offer_application_path %>

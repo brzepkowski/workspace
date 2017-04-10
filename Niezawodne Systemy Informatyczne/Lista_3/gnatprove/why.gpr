@@ -1,0 +1,5 @@
+project Why is
+for Source_Files use (
+   "main.mlw",
+   "railway.mlw");
+end Why;

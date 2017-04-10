@@ -1,0 +1,79 @@
+declare
+    proc {Insert Key Value TreeIn ?TreeOut}
+       if TreeIn == nil then TreeOut = tree(Key Value nil nil)
+       else  
+          local tree(K1 V1 T1 T2) = TreeIn in 
+             if Key == K1 then TreeOut = tree(Key Value T1 T2)
+             elseif Key < K1 then 
+                 local T in 
+                    TreeOut = tree(K1 V1 T T2)
+                    {Insert Key Value T1 T}
+                 end 
+             else 
+                 local T in 
+                    TreeOut = tree(K1 V1 T1 T)
+                    {Insert Key Value T2 T}
+                 end  
+             end 
+          end 
+       end 
+    end
+
+    fun {Lookup X T}
+       case T
+       of nil then notfound
+       [] tree(Y V T1 T2) then
+	  if X<Y then {Lookup X T1}
+	  elseif X>Y then {Lookup X T2}
+	  else found(V) end
+       end
+    end
+    
+
+    local T0 T1 T2 T3 in
+       {Insert alex 10 nil T0}
+       {Insert bob 2 T0 T1}
+       {Insert george 15 T1 T2}
+       {Insert henry 3 T2 T3}
+       {Browse T3}
+    end
+
+    fun {Concat Xs}
+     {FoldR Xs Append nil}
+    end
+    
+    fun {Inorder T}
+     case T of e then nil
+     [] n(V L R) then
+        {Concat [{Inorder L}
+                 [V]
+                 {Inorder R}]}
+     end
+    end
+
+    proc {DFS T}
+       case T
+       of leaf then skip
+       [] tree(Key Val L R) then
+	  {DFS L}
+	  {Browse Key#Val}
+	  {DFS R}
+       end
+    end
+    
+
+declare Tr
+Tr = tree(bob 10 tree(leaf 8 nil nil) tree(dan 10 nil tree(leaf 20 nil nil)))
+%{Browse Tr}
+
+%{Browse {Lookup bob Tr}}
+
+local T0 T1 T2 T3 in
+       {Insert alex 10 nil T0}
+       {Insert bob 10 T0 T1}
+       {Insert george 15 T1 T2}
+       {Insert henry 10 T2 T3}
+      % {Browse T3}
+   %{Browse {Inorder T3}}
+   %{DFS T3}
+    end

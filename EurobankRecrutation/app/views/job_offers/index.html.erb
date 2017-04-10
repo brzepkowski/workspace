@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<div class="intro-header">
+<h1>Oferty pracy</h1>
+</div>
+<hr>
+
+    <% @job_offers.each do |job_offer| %>
+      <div class="container">
+        <div class="field"><h3>Nazwa: <%= job_offer.name %></h3></div>
+        <div class="field">Firma: <%= job_offer.company %></div>
+				<div class="field">Stanowisko: <%= job_offer.position %></div>
+        <div class="field">Miasto: <%= job_offer.city %></div>
+				<div class="field">Data rozpoczęcia: <%= job_offer.start_date %></div>
+        <div class="field">Opis: <%= job_offer.specification %></div>
+        <div class="field"><%= link_to 'Przejdź do strony oferty', job_offer %></div>
+        <!--<td><%= link_to 'Edit', edit_job_offer_path(job_offer) %></td>
+        <td><%= link_to 'Destroy', job_offer, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+      </div>
+			<hr>
+    <% end %>
+
+
+<%= link_to 'New Job offer', new_job_offer_path %>
+

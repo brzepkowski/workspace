@@ -1,0 +1,87 @@
+import java.util.Random;
+
+
+public class Table {
+	
+	SocketServer server = null;
+	
+	public int dealer;
+	public int bigBlind;
+	public int smallBlind;
+	
+	Cards cards;
+	
+	public int auctionRoundsLeft;
+	public int whichRound = 0; // <-- This takes value 0 for round of changing cars and 1 for auction 
+	
+	public Table(SocketServer s) {
+		this.server = s;
+		System.out.println("Wszyscy gracze podłączeni, gra rozpoczęta!");
+		server.broadcast("UnblockButtons-0-0-0-0-0");
+		
+		//Drawing Dealer, Small Blind and Big Blind and broadcasting information about it
+		dealer = drawDealer(1, server.numberOfPlayers);
+		if (dealer + 1 > server.numberOfPlayers) {
+			smallBlind = 1;
+		}
+		else {
+			smallBlind = dealer + 1;
+		}
+		if (server.numberOfPlayers > 2) {
+			if (smallBlind + 1 > server.numberOfPlayers) {
+				bigBlind = 1;
+			}
+			else {
+				bigBlind = smallBlind + 1;
+			}
+		}
+		else {
+			bigBlind = 0;
+		}
+		String message = "Status-" + dealer + "-" + smallBlind + "-" + bigBlind + "-0-0";
+		server.broadcast(message);
+		
+		// Creating object of Cards, shuffling the deck and giving 4 cards to each player
+		cards = new Cards();
+		
+		cards.shuffleDeck();
+		
+		for (int i = 1; i <= server.numberOfPlayers; i++) {
+		
+			String[] basicCards = cards.getCards(4);
+			String bCards = "BasicCards-" + i + "-" + basicCards[0] + "-" + basicCards[1] + "-" + basicCards[2] + "-" + basicCards[3];
+			server.broadcast(bCards);
+		}
+		
+	}
+	
+	public void interpreter(String message) {
+		System.out.println("Interpreter obsłuzy message: ");
+		String[] parts = message.split("-");
+		String part1 = parts[0];
+		String part2 = parts[1];
+		String part3 = parts[2];
+		
+		if (part2.equals("ChangeOfCards")) {
+			System.out.println("Odebrano karty do wymiany od gracza: " + part1);
+		}
+		else {
+			System.out.println(part1);
+			System.out.println(part2);
+			System.out.println(part3);
+		}
+	}
+	
+	public int drawDealer(int min, int max) {
+	    Random rand = new Random();
+
+	    // nextInt is normally exclusive of the top value,
+	    // so add 1 to make it inclusive
+	    int randomDealer = rand.nextInt((max - min) + 1) + min;
+
+	    return randomDealer;
+	}
+	
+	
+
+}

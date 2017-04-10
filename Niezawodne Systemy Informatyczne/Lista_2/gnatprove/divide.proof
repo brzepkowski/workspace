@@ -1,0 +1,11 @@
+[
+{"file":"divide.adb","line":10,"col":14,"message":"info: range check proved","rule":"range_check","severity":"info","tracefile":"","entity":{"name":"DIVIDE","file":"divide.ads","line":3}}
+,{"file":"divide.adb","line":11,"col":14,"message":"info: overflow check proved","rule":"overflow_check","severity":"info","tracefile":"","entity":{"name":"DIVIDE","file":"divide.ads","line":3}}
+,{"file":"divide.adb","line":12,"col":7,"message":"info: loop invariant initialization proved","rule":"loop_invariant_initialization","severity":"info","tracefile":"","entity":{"name":"DIVIDE","file":"divide.ads","line":3}}
+,{"file":"divide.adb","line":12,"col":7,"message":"info: loop invariant preservation proved","rule":"loop_invariant_preservation","severity":"info","tracefile":"","entity":{"name":"DIVIDE","file":"divide.ads","line":3}}
+,{"file":"divide.adb","line":12,"col":35,"message":"info: overflow check proved","rule":"overflow_check","severity":"info","tracefile":"","entity":{"name":"DIVIDE","file":"divide.ads","line":3}}
+,{"file":"divide.adb","line":12,"col":39,"message":"info: overflow check proved","rule":"overflow_check","severity":"info","tracefile":"","entity":{"name":"DIVIDE","file":"divide.ads","line":3}}
+,{"file":"divide.ads","line":6,"col":13,"message":"info: postcondition proved","rule":"postcondition","severity":"info","tracefile":"","entity":{"name":"DIVIDE","file":"divide.ads","line":3}}
+,{"file":"divide.ads","line":6,"col":20,"message":"info: overflow check proved","rule":"overflow_check","severity":"info","tracefile":"","entity":{"name":"DIVIDE","file":"divide.ads","line":3}}
+,{"file":"divide.ads","line":6,"col":24,"message":"info: overflow check proved","rule":"overflow_check","severity":"info","tracefile":"","entity":{"name":"DIVIDE","file":"divide.ads","line":3}}
+]

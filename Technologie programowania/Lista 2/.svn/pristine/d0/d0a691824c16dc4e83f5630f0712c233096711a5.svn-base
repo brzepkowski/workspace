@@ -1,0 +1,57 @@
+import static org.junit.Assert.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+
+public class GameLogicTest {
+
+	private GameLogic logika;
+	private Cards karty;
+
+	@Before
+	public void setUp(){
+		logika = new GameLogic();
+		karty = new Cards();
+	}
+
+	@After
+	public void tearDown() {
+	logika=null;
+	karty=null;
+	}
+	
+	@Test
+	public void Test1() {
+		int[] winners = logika.resultCompare("2-11","2-13","3-7","3-6","fold","fold");
+		assertEquals(4, winners[0]);
+	}
+	
+	@Test
+	public void Test2() {
+		int[] winners = logika.resultCompare("fold","fold","3-6","fold","fold","fold");
+		assertEquals(3, winners[0]);
+	}
+	
+	@Test
+	public void Test3() {
+		int[] winners = logika.resultCompare("fold","fold","3-6","fold","3-8","fold");
+		assertEquals(3, winners[0]);
+	}
+
+	@Test
+	public void Test4() {
+		String[] hand = new String[]{"1s","ac","1d","2d"};
+		String[] hand2 = new String[]{"as","5c","1d","2d"};
+		assertEquals(logika.cardCompare(hand), logika.cardCompare(hand2));
+	}
+	
+	@Test
+	public void Test5() {
+		int[] winners = logika.resultCompare("2-11","2-13","3-6","3-6","fold","fold");
+		assertEquals(4, winners[1]);
+	}
+	
+
+	
+}

@@ -1,0 +1,3 @@
+1. Przy tworzeniu projektu w ostatnim oknie zaznaczyć "make"
+2. Po zapisaniu funkcji otworzyć Project-> Rebuild current Project w celu utworzenia pliku wykonywalnego
+3. Nacisnnąć PPM na pliku z rozszerzeniem /adb w "Project Explorer", wybrać Run As -> Local Ada Application
