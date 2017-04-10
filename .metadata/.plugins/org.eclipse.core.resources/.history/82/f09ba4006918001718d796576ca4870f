@@ -1,0 +1,63 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.nio.ByteBuffer;
+
+public class RC4 {
+
+  public static void swap(int[] s, int source, int destination) {
+    int buffer = s[source];
+    s[source] = s[destination];
+    s[destination] = buffer;
+  }
+
+  public static int[] ksa_k(String k, int n, int t) {
+    int l = k.length();
+    int[] s = new int[n];
+    for (int i = 0; i < n; i++) {
+      s[i] = i;
+    }
+    int j = 0;
+    for (int i = 0; i <= t; i++) {
+      j = (j + s[i % n] + k.charAt(i % l)) % n;
+      swap(s, i % n, j % n);
+    }
+    return s;
+  }
+
+  public static int[] prga_s(int[] s, int n, String pathToOutputFile, int desiredSizeOfFile) throws FileNotFoundException {
+	  OutputStream output = new FileOutputStream(pathToOutputFile, true);
+	  int i = 0; int j = 0;
+	  while (i < 2) {
+		  i = (i + j) % n;
+		  j = (j + s[i]) % n;
+		  swap(s, i, j);
+		  int z = s[(s[i] + s[j]) % n];
+		  byte[] bytes = ByteBuffer.allocate(4).putInt(z).array();
+		  System.out.print(z + " -> ");
+		  int flag = 0; // Needed to print the whole number (for example 256 is equal to 0x01 0x00 and 
+		  				// the second part would not be printed in the "for" loop below
+		  for (byte b: bytes) {
+			  if (b != 0 || flag != 0) {
+				  System.out.format("0x%x ", b);
+				  flag = 1;
+			  }
+		  }
+		  System.out.println();
+	  }
+	  return null;
+  }
+  
+  public static void rc4(String k, int n, int t) throws FileNotFoundException {
+	  int[] s = ksa_k(k, n, t);
+	  prga_s(s, n, "test_file", 1000);
+  }
+  
+  public static void main(String[] args) throws FileNotFoundException {
+    rc4("123456", 256, 256);
+    //File file = new File("test_file");
+    //System.out.println(file.getTotalSpace());
+  }
+  
+}

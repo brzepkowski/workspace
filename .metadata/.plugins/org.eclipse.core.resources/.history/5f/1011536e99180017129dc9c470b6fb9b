@@ -1,0 +1,82 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.math.BigInteger;
+import java.nio.ByteBuffer;
+import java.util.BitSet;
+
+public class RC4 {
+
+  public static void swap(int[] s, int source, int destination) {
+    int buffer = s[source];
+    s[source] = s[destination];
+    s[destination] = buffer;
+  }
+
+  public static int[] ksa_k(BigInteger keyAsNumber, int n, int t) {
+	  byte[] k = keyAsNumber.toByteArray();
+	  if (k[0] == 0) { // Remove first byte if it is equal to 0
+	      byte[] tmp = new byte[k.length - 1];
+	      System.arraycopy(k, 1, tmp, 0, tmp.length);
+	      k = tmp;
+	  }
+	  int l = k.length;
+	  int[] s = new int[n];
+	  for (int i = 0; i < n; i++) {
+		  s[i] =  i;
+	  }
+	  int j = 0;
+	  for (int i = 0; i <= t; i++) {
+		  j = (j + s[i % n] + Byte.toUnsignedInt(k[i % l])) % n;
+		  swap(s, i % n, j % n);
+	  }
+	  return s;
+  }
+  
+  public static void ksa_rs_k(BigInteger keyAsNumber, int n, int t) {
+	  BitSet k = BitSet.valueOf(keyAsNumber.toByteArray());
+	  for (int i = 0; i < k.length(); i++) {
+		  System.out.println(k[i]);
+	  }
+  }
+
+  // Desired size of file is in BYTES
+  public static void prga_s(int[] s, int n, String pathToOutputFile, int desiredSizeOfFile) throws IOException {
+	  OutputStream output = new FileOutputStream(pathToOutputFile, false); // False means that it will not append the file, but overwrite the content
+	  int i = 0; int j = 0;
+	  int totalGeneratedSize = 0;
+	  while (totalGeneratedSize < desiredSizeOfFile) {
+		  i = (i + j) % n;
+		  j = (j + s[i]) % n;
+		  swap(s, i, j);
+		  int z = s[(s[i] + s[j]) % n];
+		  byte[] bytes = ByteBuffer.allocate(4).putInt(z).array();
+		  int flag = 0; // Needed to print the whole number (for example 256 is equal to 0x01 0x00 and 
+		  				// the second part would not be printed in the "for" loop below
+		  for (byte b: bytes) {
+			  if (b != 0 || flag != 0) {
+				  output.write(b);
+				  flag = 1;
+				  totalGeneratedSize++;
+			  }
+		  }
+	  }
+	  System.out.println(totalGeneratedSize);
+  }
+  
+  public static void rc4(BigInteger k, int n, int t) throws IOException {
+	  //int[] s = ksa_k(k, n, t);
+	  ksa_rs_k(k, n, t);
+	  //prga_s(s, n, "output.in", 15000000);
+	  for (int b: s) {
+		  System.out.println(b);
+	  }
+  }
+  
+  public static void main(String[] args) throws IOException {
+	  rc4(new BigInteger("18273644789324432543543543"), 256, 256);
+  }
+  
+}

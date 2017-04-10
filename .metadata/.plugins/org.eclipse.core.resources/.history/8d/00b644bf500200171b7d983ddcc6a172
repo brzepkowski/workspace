@@ -1,0 +1,11 @@
+import scala.io.Source
+
+var Book = Source.fromFile("Ostatnie_zyczenie.txt", "UTF-8").mkString.split("\\s+")
+
+var Stop = Source.fromFile("Stop_words.txt", "UTF-8").mkString.split("\\s+")
+
+Book.filterNot(Stop.contains(_))
+
+Predef.println(str)
+
+

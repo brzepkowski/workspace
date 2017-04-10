@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Software as a service/views/partials/header.ejs&apos; to &apos;navbar.ejs&apos;" description="Rename resource &apos;header.ejs&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="views/partials/header.ejs" name="navbar.ejs" stamp="1460552855304" updateReferences="true"/>
+</session>

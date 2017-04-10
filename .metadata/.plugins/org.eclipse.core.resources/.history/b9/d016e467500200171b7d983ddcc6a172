@@ -1,0 +1,6 @@
+import scala.io.Source
+
+var str = Source.fromFile("Ostatnie_zyczenie.txt", "UTF-8").mkString//.split("\\s+")
+Predef.println(str)
+
+

@@ -1,0 +1,11 @@
+import java.math.BigInteger;
+
+public class PrimeNumbersTheourem {
+	
+	public static void main(String[] args) {
+		BigInteger x = new BigInteger("0");
+		x = Math.pow(2,  64);
+	}
+	
+	
+}

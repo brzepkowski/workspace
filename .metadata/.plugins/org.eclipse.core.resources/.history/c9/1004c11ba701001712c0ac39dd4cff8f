@@ -1,0 +1,34 @@
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
+
+public class WordListChapters {
+		
+	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
+		
+		WordList wordListGenerator = new WordList();
+		
+		Map<Integer, HashMap<String, Integer>> chaptersLists = new HashMap<Integer, HashMap<String, Integer>>();
+		
+		for (int i = 1; i <= 12; i++) {
+			// Generate list of words and appearances in every chapter
+			Map<String, Integer> wordList = wordListGenerator.generateList("Zadanie_2/" + i);
+			chaptersLists.put(i, (HashMap<String, Integer>) wordList);
+		}
+		
+		for (Map.Entry<Integer, HashMap<String, Integer>> entry: chaptersLists.entrySet()) {
+			wordListGenerator.deleteStopWords(entry.getValue());
+		}
+		
+		for (int i = 1; i <= 12; i++) {
+			HashMap<String, Integer> wordList = chaptersLists.get(i);
+			
+			for (Map.Entry<String, Integer> entry: wordList.entrySet()) {
+				System.out.println(i + " -> " + entry.getKey() + " - " + entry.getValue());
+			}
+		}
+			
+
+	}
+}

@@ -1,0 +1,10 @@
+INDEX VERSION 1.129+/home/bartas/workspace/.metadata/.plugins/org.eclipse.jdt.core
+2813054029.index
+267055828.index
+3581017926.index
+2727733729.index
+1324199121.index
+3427303303.index
+2740326002.index
+692720142.index
+3498518563.index

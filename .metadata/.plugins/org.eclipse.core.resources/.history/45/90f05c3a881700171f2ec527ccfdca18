@@ -1,0 +1,37 @@
+public class RC4 {
+
+  public static void swap(int[] s, int source, int destination) {
+    int buffer = s[source];
+    s[source] = s[destination];
+    s[destination] = buffer;
+  }
+
+  public static int[] ksa_k(String k, int n, int t) {
+    int l = k.length();
+    int[] s = new int[n];
+    for (int i = 0; i < n; i++) {
+      s[i] = i;
+    }
+    int j = 0;
+    for (int i = 0; i <= t; i++) {
+      j = (j + s[i % n] + k.charAt(i % l)) % n;
+      swap(s[i % n], s[j % n]);
+    }
+    return s;
+  }
+
+  public static void main(String[] args) {
+    int[] s = ksa_k("12345", 16, 16);
+    for (int i = 0; i < s.length; i++) {
+    	System.out.print(s[i] + ", ");
+    }
+    System.out.println("");
+    
+    swap(s[0], s[1]);
+    
+    for (int i = 0; i < s.length; i++) {
+    	System.out.print(s[i] + ", ");
+    }
+    System.out.println("");
+  }
+}

@@ -1,0 +1,140 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.math.BigInteger;
+import java.nio.ByteBuffer;
+import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.BitSet;
+import java.util.List;
+
+public class RC4 {
+
+  public static void swap(int[] s, int source, int destination) {
+    int buffer = s[source];
+    s[source] = s[destination];
+    s[destination] = buffer;
+  }
+
+  public static int[] ksa(int keyLength, int n, int t) {
+	  byte[] k = new byte[keyLength / 8];
+	  SecureRandom secureRandom = new SecureRandom();
+	  secureRandom.nextBytes(k); // Generate random key of length "keyLength" (in BYTES)
+	  int l = k.length;
+	  System.out.println("L = " + l);
+	  int[] s = new int[n];
+	  for (int i = 0; i < n; i++) {
+		  s[i] =  i;
+	  }
+	  int j = 0;
+	  for (int i = 0; i <= t; i++) {
+		  j = (j + s[i % n] + Byte.toUnsignedInt(k[i % l])) % n;
+		  swap(s, i % n, j % n);
+	  }
+	  return s;
+  }
+  
+  public static int[] ksa_rs(int keyLength, int n, int t) {
+	  SecureRandom secureRandom = new SecureRandom();
+	  byte[] keyBytes = new byte[keyLength / 8];
+	  secureRandom.nextBytes(keyBytes);
+	  BitSet k = BitSet.valueOf(keyBytes);
+	  int l = k.length();
+	  System.out.println("L = " + l);
+	  int[] s = new int[n];
+	  int[] newS = new int[n];
+	  for (int i = 0; i < n; i++) {
+		  s[i] = i;
+	  }
+	  for (int r = 0; r <= t; r++) {
+//		  System.out.println("----S----");
+//		  for (int x: s) System.out.println(x);
+		  List<Integer> top = new ArrayList<Integer>();
+		  List<Integer> bottom = new ArrayList<Integer>();
+		  for (int i = 0; i < n; i++) {
+			  if (!k.get((r*n + i) % l))
+				  top.add(i);
+			  else 
+				  bottom.add(i);
+		  }
+		  int topSize = top.size();
+		  int bottomSize = bottom.size();
+		  for (int i = 0; i < topSize; i++) {
+			  newS[i] = s[top.get(i)];
+		  }
+		  for (int i = 0; i < bottomSize; i++) {
+			  newS[topSize + i] = s[bottom.get(i)];
+		  }
+		  for (int i = 0; i < n; i++)
+			  s[i] = newS[i];
+	  }
+	  return s;
+  }
+  
+  public static void stoppingRule(int[] cards, int round, BitSet kBits) {
+	  int j = Math.abs(cards.length - kBits.get(round % kBits.length())) % cards.length;
+  }
+
+  public static int[] ksa_sst(int keyLength, int n, int t) {
+	  byte[] k = new byte[keyLength / 8];
+	  SecureRandom secureRandom = new SecureRandom();
+	  secureRandom.nextBytes(k); // Generate random key of length "keyLength" (in BYTES)
+	  BitSet kBits = BitSet.valueOf(k);
+	  int l = k.length;
+	  System.out.println("L = " + l);
+	  int[] s = new int[n];
+	  for (int i = 0; i < n; i++) {
+		  s[i] =  i;
+	  }
+	  int j = 0;
+	  for (int i = 0; i <= t; i++) {
+		  j = (j + s[i % n] + Byte.toUnsignedInt(k[i % l])) % n;
+		  swap(s, i % n, j % n);
+	  }
+	  return s;
+  }
+  
+  // Desired size of file is in BYTES
+  public static void prga_s(int[] s, int n, String pathToOutputFile, int desiredSizeOfFile) throws IOException {
+	  OutputStream output = new FileOutputStream(pathToOutputFile, false); // False means that it will not append the file, but overwrite the content
+	  int i = 0; int j = 0;
+	  int totalGeneratedSize = 0;
+	  while (totalGeneratedSize < desiredSizeOfFile) {
+		  i = (i + j) % n;
+		  j = (j + s[i]) % n;
+		  swap(s, i, j);
+		  int z = s[(s[i] + s[j]) % n];
+		  byte[] bytes = ByteBuffer.allocate(4).putInt(z).array();
+		  int flag = 0; // Needed to print the whole number (for example 256 is equal to 0x01 0x00 and 
+		  				// the second part would not be printed in the "for" loop below
+		  for (byte b: bytes) {
+			  if (b != 0 || flag != 0) {
+				  output.write(b);
+				  flag = 1;
+				  totalGeneratedSize++;
+			  }
+		  }
+	  }
+	  System.out.println(totalGeneratedSize);
+  }
+  
+  public static void rc4(int keyLength, int n, int t) throws IOException {
+	  int[] s = ksa(keyLength, n, t);
+	  prga_s(s, n, "RC4("+n+", "+t+").in", 15000000);
+  }
+  
+  public static void rc4_rs(int keyLength, int n, int t) throws IOException {
+	  int[] s = ksa_rs(keyLength, n, t);
+	  prga_s(s, n, "RC4-RS("+n+", "+t+").in", 15000000);
+  }
+  
+  public static void main(String[] args) throws IOException {
+	  //rc4(128, 256, 256);
+	  rc4_rs(128, 256, 4096);
+	  
+	  //int[] s = ksa_rs_k(256, 256, 4096);
+  }
+  
+}

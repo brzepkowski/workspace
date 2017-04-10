@@ -1,0 +1,5 @@
+import scala.io.Source
+
+Source.fromFile(source, "UTF-8").mkString.split("\\s+")
+
+
