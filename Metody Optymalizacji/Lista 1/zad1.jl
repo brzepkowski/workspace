@@ -1,8 +1,12 @@
+# Bartosz Rzepkowski
+# Metdoy optymalizacji - Lista 1
+# Zadanie 1
 using JuMP
 using GLPKMathProgInterface
 using Clp
 
-function generateVariables(n)
+# Funkcja tworząca macierz Hilberta A oraz wektory b i c
+function generujDane(n)
   A = Matrix{Float64}(n, n)
   b = Vector{Float64}(n)
   c = Vector{Float64}(n)
@@ -27,9 +31,8 @@ function generateVariables(n)
   return (A, b, c)
 end
 
-function hilbertGLPK(n)
-  (A, b, c) = generateVariables(n)
-
+# Rozwiązuje zadanie za pomocą solvera GLPKSolverLP
+function hilbertGLPK(A, b, c, n)
   model = Model(solver = GLPKSolverLP())
 	@variable(model, x[1:n]>=0)
 	@objective(model,Min, vecdot(c,x))
@@ -49,9 +52,8 @@ function hilbertGLPK(n)
   println("Błąd względny = ", norm(x - x̂) / norm(x))
 end
 
-function hilbertCLP(n)
-  (A, b, c) = generateVariables(n)
-
+# Rozwiązuje zadanie za pomocą solvera ClpSolver
+function hilbertCLP(A, b, c, n)
   model = Model(solver = ClpSolver())
 	@variable(model, x[1:n]>=0)
 	@objective(model,Min, vecdot(c,x))
@@ -71,5 +73,6 @@ function hilbertCLP(n)
   println("Błąd względny = ", norm(x - x̂) / norm(x))
 end
 
-hilbertGLPK(10)
-hilbertCLP(10)
+(A, b, c) = generujDane(7)
+hilbertGLPK(A, b, c, 7)
+hilbertCLP(A, b, c, 7)

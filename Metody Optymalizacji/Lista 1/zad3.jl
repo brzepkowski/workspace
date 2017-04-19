@@ -1,7 +1,10 @@
+# Bartosz Rzepkowski
+# Metdoy optymalizacji - Lista 1
+# Zadanie 3
 using JuMP
 using GLPKMathProgInterface
 
-model = Model(solver = GLPKSolverLP())
+model = Model(solver = GLPKSolverLP()) # Zastosuj solver GLPKSolverLP
 #------Variables------
 @variable(model, B1 >= 0)
 @variable(model, B2 >= 0)
@@ -19,7 +22,7 @@ model = Model(solver = GLPKSolverLP())
 @variable(model, x₈ >= 0)
 
 #------Objective-------
-@objective(model,Min, 1300*B1 + 10*B1 + 1500*B2 + 10*B2 + 20*x₁ + 20*x₃)
+@objective(model,Min, 1300*B1 + 10*B1 + 1500*B2 + 10*B2 + 20*x₁ + 20*x₃) # Funkcja celu -> minimalizacja kosztów produkcji paliw
 
 #-----Constraints------
 @constraint(model, 0.15*B1 + 0.1*B2 + 0.5*K == PS)
