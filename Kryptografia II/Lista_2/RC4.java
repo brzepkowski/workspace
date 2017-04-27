@@ -23,7 +23,7 @@ public class RC4 {
 	  SecureRandom secureRandom = new SecureRandom();
 	  secureRandom.nextBytes(k); // Generate random key of length "keyLength" (in BYTES)
 	  int l = k.length;
-	  System.out.println("L = " + l);
+	  System.out.println("L = " + l*8);
 	  int[] s = new int[n];
 	  for (int i = 0; i < n; i++) {
 		  s[i] =  i;
@@ -114,7 +114,7 @@ public class RC4 {
 	  secureRandom.nextBytes(k); // Generate random key of length "keyLength" (in BYTES)
 	  BitSet kBits = BitSet.valueOf(k);
 	  int l = k.length;
-	  System.out.println("L = " + l);
+	  System.out.println("L = " + l*8);
 	  int[] s = new int[n];
 	  for (int i = 0; i < n; i++) {
 		  s[i] =  i;
@@ -143,34 +143,51 @@ public class RC4 {
 	  OutputStream output = new FileOutputStream(pathToOutputFile, false); // False means that it will not append the file, but overwrite the content
 	  int i = 0; int j = 0;
 	  int totalGeneratedSize = 0;
+	  int flag = 0;
+	  int finalOutput = 0;
 	  while (totalGeneratedSize < desiredSizeOfFile) {
 		  i = (i + j) % n;
 		  j = (j + s[i]) % n;
 		  swap(s, i, j);
 		  int z = s[(s[i] + s[j]) % n];
-		  byte[] bytes = ByteBuffer.allocate(4).putInt(z).array();
-		  int flag = 0; // Needed to print the whole number (for example 256 is equal to 0x01 0x00 and 
-		  				// the second part would not be printed in the "for" loop below
-		  for (byte b: bytes) {
-			  if (b != 0 || flag != 0) {
-				  output.write(b);
-				  flag = 1;
-				  totalGeneratedSize++;
-			  }
-		  }
+		  int base = (int) ((Math.log(n) / Math.log(2)));
+		  	if (flag < n / base) {
+				if (flag < (n / base) - 2) {
+					finalOutput += z;
+					finalOutput = finalOutput << base;
+					flag++;
+				}
+                else if (flag == (n/base) -2) {
+                    finalOutput += z;
+                    finalOutput = finalOutput << (n % base);
+                    flag++;
+                }
+		  		else if (flag == (n/base) -1) {
+					if (n % base != 0) {
+						z = z >> base - (n % base);
+					}
+                    finalOutput += z;
+					flag++;
+				}
+			} else {
+		  		output.write(finalOutput);
+		  		finalOutput = 0;
+		  		flag = 0;
+				totalGeneratedSize += 1;
+			}
+
 	  }
 	  System.out.println(totalGeneratedSize);
   }
   
   public static void rc4(int keyLength, int n, int t) throws IOException {
 	  int[] s = ksa(keyLength, n, t);
-	  prga_s(s, n, "RC4("+n+", "+t+").in", 15000000);
+	  prga_s(s, n, "RC4("+n+", "+t+").in", 1000000000);
   }
   
   public static void rc4_rs(int keyLength, int n, int t) throws IOException {
 	  int[] s = ksa_rs(keyLength, n, t);
-	  prga_s(s, n, "RC4-RS("+n+", "+t+").in", 15000000);
-	  
+	  prga_s(s, n, "RC4-RS("+n+", "+t+").in", 1000000000);
   }
   
   public static void rc4_sst(int keyLength, int n) throws IOException {
@@ -179,9 +196,17 @@ public class RC4 {
   }
   
   public static void main(String[] args) throws IOException {
-	  //rc4(128, 256, 256);
-	  //rc4_rs(128, 256, 4096);
-	  rc4_sst(128, 256);
+  	int keyLength = Integer.parseInt(args[1]);
+  	int n = Integer.parseInt(args[2]);
+
+  	if (args[0].equals("RC4")) {
+		rc4(keyLength, n, n);
+	} else if (args[0].equals("RC4-RS")) {
+        int t = (int) (2.0 * (Math.log(n) / Math.log(2)));
+		rc4_rs(keyLength, n, t);
+	} else {
+		rc4_sst(keyLength, n);
+	}
   }
   
 }
