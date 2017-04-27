@@ -82,14 +82,18 @@ object CosineSignatures {
 		var signature = collection.mutable.ListBuffer.empty[(Double, Double)]
 
 		for (i <- Range(0, 1024)) {
-			var randomVector = Seq.fill(vector1.size)(Random.nextDouble).toArray
+			var randomVector = Seq.fill(vector1.size)((Random.nextDouble*2)-1).toArray
 			signature += Tuple2(cosineSimilarity(arr1, randomVector), cosineSimilarity(arr2, randomVector))
 			}
 
 		val writer = new PrintWriter(new File("signature.txt" ))
 
 		for (pair <- signature) {
-			writer.write(pair._1 + " | " + pair._2 + "\n")
+			var x1 = 1
+			var x2 = 1
+			if (pair._1 < 0) x1 = -1
+			if (pair._2 < 0) x2 = -1
+			writer.write(x1 + " | " + x2 + "\n")
 		}
 		writer.close()
 	}
