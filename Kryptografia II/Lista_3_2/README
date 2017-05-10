@@ -1,0 +1,24 @@
+1) Aby uruchomić program trzeba pobrać UnlimitedJCEPolicyJDK<wersja jdk> (załączone w folderze całego projektu) i zainstalować zgodnie z instrukcją. Jest to potrzebne, żeby używać AES 256-bit zamiast wersji 128-bitowej,
+2) Aby stworzyć keystore trzeba wprowadzić:
+ $keytool -genseckey -keystore aes-keystore.jck -storetype jceks -storepass mystorepass -keyalg AES -keysize 256 -alias jceksaes -keypass mykeypass,
+gdzie:
+- mystorepass - klucz do całego keystore,
+- jceksaes - alias klucza (identyfikator klucza),
+- mykeypass - klucz do klucza spod aliasu.
+
+----------------------------------------------------------------------
+
+(*) 3) Aby wygenerować klucz trzeba wprowadzić:
+ $keytool -genseckey -alias jceksaes -keyalg AES -keysize 256 -storetype JCEKS -keypass mykeypass -storetype jceks -keystore aes-keystore.jck -storepass mystorepass,
+gdzie jceksaes jest aliasem klucza
+
+
+---------------------------------------------------------------------
+
+By skompilować program w termianlu:
+
+$javac -cp "org.apache.commons.codec-1.3.0.jar" Main.java
+
+Przykładowe uruchomienie (z lokalizacji out/production/Lista_3_2):
+
+$ java -cp .:../../../lib/org.apache.commons.codec-1.3.0.jar Main oracle encrypt aes-keystore.jck jceksaes input
