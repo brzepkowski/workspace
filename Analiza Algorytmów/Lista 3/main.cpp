@@ -1,7 +1,7 @@
 #include <iostream>
 #include <unordered_map>
 #include <algorithm>
-#include <zconf.h>
+//#include <zconf.h>
 
 using namespace std;
 
@@ -22,18 +22,39 @@ int check(int processorInCS, int n, int processors[], int buffer) {
     int previousProcessors[n];
     copy(processors, processors+n, previousProcessors);
 
+
+    cout << "Weszlo check (" << processorInCS << "), PRZED:" << endl;
+    for (int j = 0; j < n; j++) {
+        cout << processors[j] << ", ";
+    }
+    cout << endl;
+
+    /*// Check if this combination has already been checked
+    if (moves.find(atos(processors, n)) != moves.end()) {
+        cout << "Wohoo, zwracam wartość: " << moves[atos(processors, n)] << endl;
+        return moves[atos(processors, n)] + buffer;
+    }*/
+
     if (processorInCS == 0) {
         int registry = processors[processorInCS];
-        processors[processorInCS] = (registry + 1) % (n + 1);
+        processors[processorInCS] = (registry + 1) % (n - 2);
     } else {
         int prevRegistry = processors[processorInCS - 1];
         processors[processorInCS] = prevRegistry;
     }
 
-    // Check if this combination has already been checked
-    if (moves.find(atos(processors, n)) != moves.end()) {
-        return moves[atos(processors, n)] + buffer + 1;
+    cout << "PO:" << endl;
+    for (int j = 0; j < n; j++) {
+        cout << processors[j] << ", ";
     }
+    cout << endl;
+
+    // Check if this combination has already been checked
+   /* if (moves.find(atos(processors, n)) != moves.end()) {
+//        cout << "Wohoo, zwracam wartość: " << moves[atos(processors, n)] << endl;
+        cout << "3) Zwracam: " << moves[atos(processors, n)] + buffer << endl;
+        return moves[atos(processors, n)] + buffer + 1;
+    }*/
 
     // First check how many processors will go to the critical section. If only one, we can return value
     int total = 0;
@@ -65,35 +86,47 @@ int check(int processorInCS, int n, int processors[], int buffer) {
                     max = movesLeft;
             }
         }
+//        cout << "Zwracam max" << endl;
         if (moves.find(atos(previousProcessors, n)) == moves.end() || moves[atos(previousProcessors, n)] < max) {
             moves[atos(previousProcessors, n)] = max;
             dodaniaDoMapy++;
         }
+        //cout << "1) Zwracam: " << max + buffer + 1 << endl;
         return max + buffer + 1;
     } else {
+        //cout << "Zwracam bufor = " << buffer << endl;
         if (moves.find(atos(previousProcessors, n)) == moves.end()) {
             moves[atos(previousProcessors, n)] = 0;
             dodaniaDoMapy++;
         }
+        //cout << "2) Zwracam: " << buffer + 1 << ", bo legalna" << endl;
         return buffer + 1;
     }
 }
 
 void fill(int index, int n, int processors[]) {
     if (index == 0) {
-        for (int i = 0; i < n + 1; i++) {
+        for (int i = 0; i < n - 2; i++) {
             processors[index] = i;
             //------ CRITICAL SECTION ---------
+            for (int j = 0; j < n; j++) {
+                cout << processors[j] << ", ";
+            }
+            cout << endl;
+            //cout << (moves.find(processors) != moves.end()) << endl;
             if (moves.find(atos(processors, n)) == moves.end()) { // If such configuration hasn't been tested yet
                 int previousProcessors[n];
                 copy(processors, processors+n, previousProcessors);
 
+                cout << "------CRITICAL SECTION---------" << endl;
                 int total = 0;
                 if (processors[0] == processors[n-1]) {
+                    cout << 0 << endl;
                     total++;
                 }
                 for (int i = 1; i < n; i++) {
                     if (processors[i] != processors[i-1]) {
+                        cout << i << endl;
                         total++;
                     }
                 }
@@ -117,21 +150,24 @@ void fill(int index, int n, int processors[]) {
                                 max = movesLeft;
                         }
                     }
+                    //cout << "Dodaje max = " << max << endl;
                     if (moves.find(atos(previousProcessors, n)) == moves.end() || moves[atos(previousProcessors, n)] < max) {
                         moves[atos(previousProcessors, n)] = max;
                         dodaniaDoMapy++;
                     }
                 } else {
+                    //cout << "Dodaje wartość 0" << endl;
                     if (moves.find(atos(previousProcessors, n)) == moves.end()) {
                         moves[atos(previousProcessors, n)] = 0;
                         dodaniaDoMapy++;
                     }
                 }
+                //cout << "------------------------------" << endl;
             }
         }
     }  else {
 //        #pragma omp parallel for
-        for (int i = 0; i < n + 1; i++) {
+        for (int i = 0; i < n - 2; i++) {
             fill(index - 1, n, processors);
             processors[index] = processors[index] + 1;
         }
@@ -148,6 +184,8 @@ int main(int argc, char** args) {
     int n = atoi(args[1]);
     int processors[n] = {0};
 
+    //cout << arrayToString(processors, n) << endl;
+
 //    #pragma omp task
     fill(n - 1, n, processors);
 
@@ -157,7 +195,7 @@ int main(int argc, char** args) {
         if (it->second > max)
             max = it->second;
 
-        /*std::cout << it->first  // string (key)
+       /* std::cout << it->first  // string (key)
                   << ": "
                   << it->second   // string's value
                   << std::endl ;*/
