@@ -21,7 +21,7 @@ function printSchedule(schedule, Machines, Horizon, p)
               print("|", i[1])
             end
           end
-          if j == p[i[1]]
+          if j == p[i[1]] && j != 1
             print("--|")
           end
           if j != 1 && j != p[i[1]]
@@ -46,50 +46,42 @@ function printSchedule(schedule, Machines, Horizon, p)
   println("-------------------------------------------------")
 end #printSchedule
 
-function multipleMachines(p::Vector{Int},
-                       m::Int, graph)
+function multipleMachines(p::Vector{Int}, m::Int, graph)
 
   n = length(p)
-  #  n - liczba zadan
-  #  p - wektor czasow wykonania zadan
-  #  r - wektor momentow dostepnosci zadan
-  #  w - wektor wag zadan
-
-  T = sum(p) + 1 # dlugosc horyzontu czasowego
+  T = sum(p) + 1
 
   model = Model(solver = GLPKSolverMIP())
 
-  Task = 1:n
+  Tasks = 1:n
   Horizon = 1:T
   Machines = 1:m
 
-	@variable(model, x[Task, Horizon, Machines], Bin)
+	@variable(model, x[Tasks, Horizon, Machines], Bin)
 
 	# Funkcja celu
-  @objective(model, Min, sum(((t-1) + p[j]) * x[j, t, m] for j in Task, t in Horizon, m in Machines))
+  @objective(model, Min, sum(((t-1) + p[j]) * x[j, t, m] for j in Tasks, t in Horizon, m in Machines))
 
-	# dokladnie jeden moment rozpoczenia j-tego zadania
-	for j in Task
+  # Dokładnie jeden moment rozpoczęcia j-tego zadania
+	for j in Tasks
 		@constraint(model, sum(x[j,t, m] for t in 1:T-p[j]+1, m in Machines) == 1)
 	end
 
-	# moment rozpoczecia j-tego zadan co najmniej jak moment gotowosci rj zadania
-	for j in Task
+  # Moment rozpoczęcia j-tego zadania co najmniej jak moment gotowości zgodny z grafem
+	for j in Tasks
     for neighbor in out_neighbors(j, graph)
 	    @constraint(model, sum(x[neighbor, t, m]*(t-1) for t in 1:T-p[neighbor]+1, m in Machines) >= sum(x[j, t, m]*(t-1) for t in 1:T-p[j]+1, m in Machines) + p[j])
     end
 	end
 
-	# zadania nie nakladaja sie na siebie
+  # Zadania nie nakladaja się na siebie
 	for t in Horizon
     for m in Machines
-		    @constraint(model, sum(x[j, s, m] for j in Task, s in max(1, t-p[j]+1):t) <= 1)
+		    @constraint(model, sum(x[j, s, m] for j in Tasks, s in max(1, t-p[j]+1):t) <= 1)
       end
 	end
 
-	#print(model) # drukuj model
-
-	status = solve(model) # rozwiaz egzemplarz
+	status = solve(model)
 
   fcelu = getobjectivevalue(model)
   momenty = getvalue(x)
@@ -98,7 +90,6 @@ function multipleMachines(p::Vector{Int},
 
   if status==:Optimal
   	 println("Funkcja celu: ", fcelu)
-     #println("momenty rozpoczecia zadan: ", momenty)
      for i in 1:JuMP.size(momenty, 1)
        for j in 1:JuMP.size(momenty, 2)
          for k in 1:JuMP.size(momenty, 3)
@@ -130,7 +121,7 @@ add_edge!(graph, 5, 8)
 add_edge!(graph, 6, 9)
 add_edge!(graph, 7, 9)
 
-# czasy wykonia j-tego zadania
+# Czasy wykonia
 p = [ 1;
       2;
 		  1;

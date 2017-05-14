@@ -1,49 +1,43 @@
+# Bartosz Rzepkowski
+# Metdoy optymalizacji - Lista 2
+# Zadanie 2
+# Na podstawie programu autorstwa prof. Pawła Zielińskiego
 using JuMP
 using GLPKMathProgInterface
 
-function singleMachine(p::Vector{Int},
-	           			     r::Vector{Int},
-	        						 w::Vector{Float64})
+function singleMachine(p::Vector{Int}, r::Vector{Int}, w::Vector{Float64})
 
  n = length(p)
- #  n - liczba zadan
- #  p - wektor czasow wykonania zadan
- #  r - wektor momentow dostepnosci zadan
- #  w - wektor wag zadan
-
- T = maximum(r) + sum(p) + 1 # dlugosc horyzontu czasowego
+ T = maximum(r) + sum(p) + 1 # Długość horyzontu czasowego
 
  model = Model(solver = GLPKSolverMIP())
 
- Task = 1:n
+ Tasks = 1:n
  Horizon = 1:T
 
-	#  zmienne moment rozpoczecia j-tego zadania
-	# tjt=1 jesli zadanie rozpoczyna sie w momencie t-1; t in Horizon
-	# 0 w.p.p
-	@variable(model, x[Task,Horizon], Bin)
+	@variable(model, x[Tasks,Horizon], Bin)
 
-	# minimalizacja sumy wazonych opoznien zadan
-	@objective(model,Min, sum(w[j] * ((t-1) + p[j]) * x[j,t] for j in Task, t in Horizon))
+	# Minimalizacja ∑ w[i]c[i], gdzie c jest czsem zakończenia danego zadania
+	@objective(model,Min, sum(w[j] * ((t-1) + p[j]) * x[j,t] for j in Tasks, t in Horizon))
 
-	# dokladnie jeden moment rozpoczenia j-tego zadania
-	for j in Task
+	# Dokładnie jeden moment rozpoczęcia j-tego zadania
+	for j in Tasks
 		@constraint(model,sum(x[j,t] for t in 1:T-p[j]+1) == 1)
 	end
 
-	# moment rozpoczecia j-tego zadan co najmniej jak moment gotowosci rj zadania
-	for j in Task
+	# Moment rozpoczęcia j-tego zadania co najmniej jak moment gotowości rⱼ zadania
+	for j in Tasks
 		@constraint(model,sum((t-1)*x[j,t] for t in 1:T-p[j]+1) >= r[j])
 	end
 
-	# zadania nie nakladaja sie na siebie
+	# Zadania nie nakladaja się na siebie
 	for t in Horizon
-		@constraint(model,sum(x[j,s]  for j in Task, s in max(1, t-p[j]+1):t)<=1)
+		@constraint(model,sum(x[j,s]  for j in Tasks, s in max(1, t-p[j]+1):t)<=1)
 	end
 
-	print(model) # drukuj model
+	print(model)
 
-	status = solve(model) # rozwiaz egzemplarz
+	status = solve(model)
 
 	if status==:Optimal
 		 return status, getobjectivevalue(model), getvalue(x)
@@ -53,19 +47,19 @@ function singleMachine(p::Vector{Int},
 
 end # singleMachine
 
-# czasy wykonia j-tego zadania
+# Czasy wykonia
 p=[ 3;
     2;
 		4;
 	  5;
 		1]
-# momenty dostepnosci j-tego zadania
+# Momenty dostepnosci
 r=[ 2;
 		1;
 	  3;
 		1;
 		0]
-# wagi j-tego zadania
+# Wagi
 w=[ 1.0;
 		1.0;
 	  1.0;
