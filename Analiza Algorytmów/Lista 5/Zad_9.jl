@@ -17,6 +17,8 @@ function pageRank(graph, α)
 
   P = (1 - α)*A + α*(1/n)*B
 
+  println(P)
+
   c = ones(n)
 
   model = Model(solver = GLPKSolverLP())
