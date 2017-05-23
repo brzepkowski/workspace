@@ -1,0 +1,1 @@
+Aby skorzystać z LLLplus trzeba zamienić "roundf" w pliku src/lll.jl (linia 45) na "round" (jeśli używa się Juno, to trzeba go zrestartować).

@@ -1,3 +1,5 @@
+using LLLplus
+
 function genKey(n)
   w = zeros(BigInt, n)
   total = 0
@@ -19,7 +21,7 @@ function genKey(n)
   while (gcd(r, q) != 1)
     r = rand(1:q)
   end
-  println("q = ", q, ", r = ", r, ", gcd = ", gcd(r,q))
+  # println("q = ", q, ", r = ", r, ", gcd = ", gcd(r,q))
 
   β = zeros(BigInt, n)
   for i in 1:n
@@ -28,8 +30,6 @@ function genKey(n)
 
     return (β, w, q, r) # β is public key, whereas (w, q, r) is private key
 end
-
-genKey(20)
 
 function encrypt(pathToFile::String)
   (β, w, q, r) = genKey(8)
@@ -52,7 +52,7 @@ function encrypt(pathToFile::String)
   close(readFile)
   close(writeFile)
   return (β, w, q, r)
-end
+end # encrypt
 
 function decrypt(pathToFile::String, w, q, r)
   readFile = open(pathToFile)
@@ -72,7 +72,67 @@ function decrypt(pathToFile::String, w, q, r)
     end
     println(" -> ", plaintext)
   end
-end
+end # decrypt
 
-(β, w, q, r) = encrypt("input")
-decrypt("input_enc", w, q, r)
+function findPlaintextInMatrix(M, n) # M is the matrix and n is the size of its inner part
+  column = -1
+  for i in 1:n
+    flag = true
+    for j in 1:n
+      if M[j, i] != 0 && M[j, i] != 1
+        flag = false
+      end
+    end
+    if flag
+      column = i
+    end
+  end
+
+  # Read bits from matrix
+  bits = ""
+  if column != -1
+    for i in 1:n
+      bits = string(bits, Int(M[i, column]))
+    end
+  end
+  println("---- ", bits, " -----")
+  # Translate bits into char
+  plaintext = Char(0)
+  for i in 1:length(bits)
+    if bits[i] == '1'
+      plaintext += 2^(i - 1)
+    end
+  end
+  println("COLUMN = ", column, ", BITS = ", plaintext)
+end # findPlaintextInMatrix
+
+
+function lllHack(pathToFile::String, β) # β is public key
+  n = length(β)
+  readFile = open(pathToFile)
+  for c in eachline(readFile)
+    c = parse(Int, c)
+    M = zeros(n + 1, n + 1)
+    for i in 1:n
+      for j in 1:n
+        if i == j
+          M[i, j] = 1
+        end
+      end
+    end
+    for i in 1:n
+      M[n+1, i] = β[i]
+    end
+    M[n+1, n+1] = -c
+    println(" -> ", c)
+    # println(M)
+    (Mˈ, _, _, _) = lll(M)
+    # println(Mˈ)
+    findPlaintextInMatrix(Mˈ, n)
+  end
+
+end # lllHack
+
+(β, w, q, r) = encrypt("/home/bartas/workspace/Kryptografia II/Lista_4/input")
+# decrypt("input_enc", w, q, r)
+lllHack("/home/bartas/workspace/Kryptografia II/Lista_4/input_enc", β)

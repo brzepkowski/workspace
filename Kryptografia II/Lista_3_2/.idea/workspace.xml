@@ -133,9 +133,9 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -147,6 +147,7 @@
     <property name="Downloaded.Files.Path.Enabled" value="true" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Lista_5" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -650,11 +651,12 @@
       <workItem from="1493802214205" duration="6211000" />
       <workItem from="1494087877183" duration="659000" />
       <workItem from="1494148478230" duration="582000" />
+      <workItem from="1495103313271" duration="285000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24469000" />
+    <option name="totallyTimeSpent" value="24754000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
