@@ -1,0 +1,4 @@
+Aby uruchomić należy wykonać:
+
+scalac *.scala
+scala -cp . Polynomial
