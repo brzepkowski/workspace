@@ -169,8 +169,12 @@ function decrypt()
 
   for line in eachline(readFile)
     c = parse(BigInt, line)
-    calculateRoot(c, p, keyLength)
-    calculateRoot(c, q, keyLength)
+
+    # Parallelisation
+    pair = (p,q)
+    Threads.@threads for i=1:2
+      calculateRoot(c, pair[i], keyLength)
+    end
   end
 
   close(readFile)
