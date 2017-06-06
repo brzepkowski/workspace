@@ -1,3 +1,4 @@
+using Distributions
 typealias Comes Val{:Comes}
 typealias Leaves Val{:Leaves}
 
@@ -7,36 +8,68 @@ typealias Actions Union{
 }
 
 type Event
-  clientNumber
+  queueId
+  clientId
   action
   time
 end
 
-function continuousTimeQueue()
-  e1 = Event(1, Comes, 12)
-  e2 = Event(2, Comes, 13)
-  e3 = Event(3, Comes, 2)
-  e4 = Event(4, Comes, 15)
-  e5 = Event(5, Comes, 9)
-  events = [e1, e2, e3, e4, e5]
-  el = [6,21,2,1,4,5]
-  # println(el)
-  # Collections.heapify!(el)
-  # println(el)
-  # Collections.heappop!(el)
-  # println(el)
-  # Collections.heappop!(el)
-  # println(el)
-  # Collections.heappop!(el)
-  # println(el)
-  # Collections.heappop!(el)
-  # println(el)
-  # Collections.heappop!(el)
-  # println(el)
+Base.isless(a::Event,b::Event) = isless(a.time,b.time)
 
-  println(events)
-  Collections.heapify!(events)
-  println(events)
+function continuousTimeQueue(λ, μ, n)
+  G = Exponential(1/λ)
+  H = Exponential(1/μ)
+  queues = []
+  priorityQueue = [] # Needed to keep track of consecutive events
+  clientId = 1
+  timesInqueues = []
+
+  # Initiate empty arrays representing all n queues
+  for i in 1:n
+    push!(queues, [])
+  end
+
+  # Compute beginning times of arrivals of clients to the queues
+  for k in 1:n
+    Collections.heappush!(priorityQueue, Event(k, clientId, Comes, rand(G)))
+    clientId += 1
+  end
+
+  t = 0
+  while t < 5
+      event = Collections.heappop!(priorityQueue)
+      queueId = event.queueId
+      t = event.time
+      println("t: ", t)
+      println("1): ", priorityQueue)
+
+      if (event.action == Comes)
+        newClient = Event(queueId, clientId, Comes, t + rand(G)) # Calculate time of arrival of new client in queue k
+        clientId += 1
+        Collections.heappush!(priorityQueue, newClient) # Add time of arrival of new client to queue k to the priority queue
+
+        if (queues[queueId] == []) # Add time, when client will be serviced to the priority queue
+          clientServiced = Event(queueId, event.clientId, Leaves, t + rand(H))
+          Collections.heappush!(priorityQueue, clientServiced)
+        else
+          push!(queues[queueId], event)
+        end
+      else # client Leaves
+        if (queues[queueId] != [])
+          nextClient = Collections.heappop!(queues[queueId])
+          nextClientLeaves = Event(queueId, nextClient.clientId, Leaves, t + rand(H))
+        end
+      end
+      println("2): ", priorityQueue)
+      sleep(2)
+  end
+
+  println(priorityQueue)
+
+
+
+  # Collections.heappush!(events, e1)
+
 end # continuousTimeQueue
 
-continuousTimeQueue()
+continuousTimeQueue(0.5, 1.0, 5)
