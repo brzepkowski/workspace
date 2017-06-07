@@ -35,7 +35,7 @@ end # pageRank
 
 graph = simple_graph(6)
 add_edge!(graph, 1, 1)
-add_edge!(graph, 2, 3)
+# add_edge!(graph, 2, 3)
 add_edge!(graph, 2, 5)
 add_edge!(graph, 3, 1)
 add_edge!(graph, 4, 2)
