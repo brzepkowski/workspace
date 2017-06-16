@@ -43,7 +43,8 @@ function continuousTimeQueue(λ, μ, n, T)
       queueId = event.queueId
       t = event.time
       # println("t: ", t)
-      # println("1): ", priorityQueue)
+      # println(event)
+      # println("1): ", queues[queueId])
 
       if (t < T)
         if (event.action == Comes)
@@ -54,22 +55,30 @@ function continuousTimeQueue(λ, μ, n, T)
           if (queues[queueId] == []) # Add time, when client will be serviced to the priority queue
             clientServiced = Event(queueId, event.clientId, Leaves, t + rand(H))
             Collections.heappush!(priorityQueue, clientServiced)
-          else
-            push!(queues[queueId], event)
           end
 
+          push!(queues[queueId], event)
           push!(clients, (event.clientId, event.time))
         else # client Leaves
+          Collections.heappop!(queues[queueId])
+
           if (queues[queueId] != [])
-            nextClient = Collections.heappop!(queues[queueId])
+            nextClient = queues[queueId][1]
             nextClientLeaves = Event(queueId, nextClient.clientId, Leaves, t + rand(H))
+            Collections.heappush!(priorityQueue, nextClientLeaves)
           end
 
           beginningTime = filter(pair -> pair[1] == event.clientId, clients)[1][2]
           # println("Znalazłem!!!: ", beginningTime)
+          # println("SYS_TIME: d", event.time - beginningTime)
           push!(timesSpent, event.time - beginningTime)
         end
       end
+
+      # println("2): ", queues[queueId])
+
+      # sleep(1)
+      # println(queues)
   end
 
   # println(priorityQueue)
@@ -85,7 +94,4 @@ function continuousTimeQueue(λ, μ, n, T)
 end # continuousTimeQueue
 
 # λ, μ, n, T
-continuousTimeQueue(0.5, 1.0, 100, 100) # Średni czas: 0.9909238451701395
-continuousTimeQueue(0.8, 1.0, 100, 100) # Średni czas: 0.9909238451701395
-continuousTimeQueue(0.9, 1.0, 100, 100) # Średni czas: 0.9909238451701395
-continuousTimeQueue(0.99, 1.0, 100, 100) # Średni czas: 0.9909238451701395
+continuousTimeQueue(0.9, 1.0, 10, 1000) # Średni czas: 0.9909238451701395

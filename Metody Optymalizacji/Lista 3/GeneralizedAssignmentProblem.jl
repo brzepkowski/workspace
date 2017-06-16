@@ -1,6 +1,6 @@
 # Autor - Bartosz Rzepkowski
 # Metody optymalizacji - Lista 3
-
+using LightGraphs
 using JuMP
 using GLPKMathProgInterface
 using LatexPrint
@@ -85,11 +85,6 @@ function solveIterativeModel(machinesAmount, jobsAmount, J, M, costs, resources,
     Jˈ = [j for j in J]
     F = []
 
-    println("-------GRAPH-------")
-    println(lap(transpose(graph)))
-    println("--------F----------")
-    println(lap(transpose(F)))
-
     while (Jˈ != [])
 
       model = Model(solver = GLPKSolverMIP())
@@ -155,14 +150,14 @@ function solveIterativeModel(machinesAmount, jobsAmount, J, M, costs, resources,
         end
       end
 
-      # println("-------GRAPH-------")
-      # println(graph)
+      println("-------GRAPH-------")
+      println(graph)
       # println(lap(transpose(graph)))
       # println("--------F----------")
       # println(lap(transpose(F)))
     end
-    # println("--------F----------")
-    # println(F)
+    println("--------F----------")
+    println(F)
 
 
 end # solveIterativeModel

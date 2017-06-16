@@ -49,4 +49,4 @@ function printStats(M) # M is array of arrays with all data. Each cell in sub-ar
   end
 end
 
-queue(0.3, 0.5, 1000)
+queue(0.3, 0.4, 100000)

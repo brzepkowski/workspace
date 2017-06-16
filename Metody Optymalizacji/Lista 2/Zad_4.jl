@@ -117,33 +117,33 @@ end # multipleMachines
 graph = simple_graph(8)
 add_edge!(graph, 1, 2)
 add_edge!(graph, 1, 3)
-add_edge!(graph, 1, 4)
+#=add_edge!(graph, 1, 4)
 add_edge!(graph, 2, 5)
 add_edge!(graph, 3, 6)
 add_edge!(graph, 4, 6)
 add_edge!(graph, 4, 7)
 add_edge!(graph, 5, 8)
 add_edge!(graph, 6, 8)
-add_edge!(graph, 7, 8)
+add_edge!(graph, 7, 8)=#
 
 # Czasy wykonia
 p = [ 5;
       4;
-		  5;
+		  5]#=;
 	    4;
 		  3;
       5;
       1;
-      6]
+      6]=#
 
 # Zapotrzebowanie na zasoby
 r = [ 9;
       17;
-      11;
+      11]#=;
       4;
       13;
       7;
       7;
-      17]
+      17]=#
 
-multipleMachines(p, 8, r, 30, graph)
+multipleMachines(p, 3, r, 20, graph)

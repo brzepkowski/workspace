@@ -39,9 +39,17 @@ p = [1 0 0 0]
 for i in 1:3
   pˈ = p*P
   t = 1
-  while norm(pˈ - π) > ϵ
+  max = 1
+  while max > ϵ
     pˈ = pˈ * P
     t += 1
+    # Oblicz max
+    max = 0
+    for (i, element) in enumerate(pˈ)
+      if abs(element - π[i]) > max
+        max = abs(element - π[i])
+      end
+    end
   end
   println(i, ") t = ", t)
   ϵ = ϵ/10
