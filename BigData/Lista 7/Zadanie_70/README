@@ -1,0 +1,5 @@
+Przykładowe wywołanie:
+$ ./apriori -m6 vote.txt results.txt
+
+results2.txt <- ./apriori -tr vote.txt results.txt
+
