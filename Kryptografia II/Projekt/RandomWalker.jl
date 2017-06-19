@@ -1,4 +1,3 @@
-using LightGraphs
 
 function swap(x, y, S)
   temp = S[x]
@@ -15,10 +14,10 @@ function generateKey(L)
     while (length(bits) < 8)
       bits = string('0', bits)
     end
-    println(bits)
+    # println(bits)
     keyBits = string(keyBits, bits)
   end
-  println(keyBits)
+  # println(keyBits)
   return (K, keyBits)
 end # generateKey
 
@@ -31,13 +30,14 @@ function generateIndexes(N)
   return indexes
 end # generateIndexes
 
-function randomWalker(N, d, l)
+function randomWalker(N, L, d, l) # N - maksymalny rozmiar wyjściowych liczb, L - długość klucza, d - stopień wierzchołków, l - liczba kroków
   S = [] # Tablica zawierająca wszystkie permutacje Sⱼ
   iˈ = generateIndexes(N)
 
   s = collect(0:N-1)
   for i in 1:d
-    push!(S, s[randperm(length(s))])
+    # push!(S, s[randperm(length(s))])
+    push!(S, KSAₖ(N, L))
   end
 
   vₖ = 0
@@ -49,26 +49,37 @@ function randomWalker(N, d, l)
   println(vₖ)
 end # randomWalker
 
-function KSAₖ(N, T, L)
+function KSAₖ(N, L)
   iˈ = generateIndexes(N)
-  (K, keyBits) = generateKey(L)
-  round = 0
-  cards = falses(N)
 
-  L = length(K)
+  (K, keyBits) = generateKey(L)
+  cards = falses(N)
   S = Array{Int}(N)
   for i in 0:N-1
     S[iˈ[i]] = i
   end
   j = 0
-  # for i in 0:T
   r = 0 # r - round
+  beginning = Dates.second(now())
   while (!stoppingRuleKLZ(cards, r, keyBits))
-    j = (j + S[iˈ[r % N]] + Int(K[iˈ[r % L]])) % N
-    swap(iˈ[r % N], iˈ[j % N], S)
-    r += 1
+    if (Dates.second(now()) - beginning > 0.4)
+      (K, keyBits) = generateKey(L)
+      cards = falses(N)
+      S = Array{Int}(N)
+      for i in 0:N-1
+        S[iˈ[i]] = i
+      end
+      j = 0
+      r = 0
+      beginning = Dates.second(now())
+    else
+      j = (j + S[iˈ[r % N]] + Int(K[iˈ[r % L]])) % N
+      swap(iˈ[r % N], iˈ[j % N], S)
+      r += 1
+    end
   end
-  println(S)
+  # println(S)
+  return S
 end # KSAₖ
 
 function countMarkedCards(cards::BitArray)
@@ -113,9 +124,9 @@ function stoppingRuleKLZ(π::BitArray, r, keyBits) # π - tablica kart, które b
   end
 end # stoppingRuleKLZ
 
-# for i in 1:10
-#   randomWalker(10, 2, 6)
-# end
+for i in 1:10
+  randomWalker(256, 64, 16, 24)
+end
 
 
-KSAₖ(16, 16, 4)
+# KSAₖ(16, 4)
