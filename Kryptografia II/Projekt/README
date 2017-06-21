@@ -1,0 +1,1 @@
+dieharder -f test.in -a -g 202

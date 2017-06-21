@@ -36,47 +36,59 @@ function randomWalker(N, L, d, l) # N - maksymalny rozmiar wyjściowych liczb, L
 
   s = collect(0:N-1)
   for i in 1:d
-    # push!(S, s[randperm(length(s))])
-    push!(S, KSAₖ(N, L))
+    push!(S, s[randperm(length(s))])
+    # push!(S, KSAₖStoppingRule(N, L, iˈ))
   end
 
   vₖ = 0
   for k in 0:l-1
-    # println(S[iˈ[k % d]])
-    # println("k = ", k ,"(", iˈ[k], ") , k mod d = ", k % d,"(", iˈ[k%d], ") , vₖ = ", vₖ, "(", iˈ[vₖ], ") , vₖ+1 = ", S[iˈ[k % d]][vₖ + 1], "(", iˈ[S[iˈ[k % d]][vₖ + 1]] , ")")
     vₖ = S[iˈ[k % d]][vₖ + 1]
   end
-  println(vₖ)
+  # println(vₖ)
+  return vₖ
 end # randomWalker
 
-function KSAₖ(N, L)
+function randomWalkerShiftingPerms(N, L, d, l) # N - maksymalny rozmiar wyjściowych liczb, L - długość klucza, d - stopień wierzchołków, l - liczba kroków
+  S = [] # Tablica zawierająca wszystkie permutacje Sⱼ
   iˈ = generateIndexes(N)
 
+  s = collect(0:N-1)
+  for i in 1:d
+    # push!(S, s[randperm(length(s))])
+    push!(S, KSAₖStoppingRule(N, L, iˈ))
+  end
+
+  vₖ = 0
+  for k in 0:l-1
+    vₖ = S[iˈ[k % d]][vₖ + 1]
+    for i in 1:d
+      S[i] = PRGAₛPerm(S[i], N, iˈ)
+    end
+  end
+  # println(vₖ)
+  return vₖ
+end # randomWalker
+
+function KSAₖStoppingRule(N, L, iˈ) # iˈ dodane jeko argument w celu przyspieszenia
   (K, keyBits) = generateKey(L)
   cards = falses(N)
+  cards[N] = true
   S = Array{Int}(N)
   for i in 0:N-1
     S[iˈ[i]] = i
   end
   j = 0
   r = 0 # r - round
-  beginning = Dates.second(now())
-  while (!stoppingRuleKLZ(cards, r, keyBits))
-    if (Dates.second(now()) - beginning > 0.4)
-      (K, keyBits) = generateKey(L)
-      cards = falses(N)
-      S = Array{Int}(N)
-      for i in 0:N-1
-        S[iˈ[i]] = i
-      end
-      j = 0
-      r = 0
-      beginning = Dates.second(now())
-    else
-      j = (j + S[iˈ[r % N]] + Int(K[iˈ[r % L]])) % N
-      swap(iˈ[r % N], iˈ[j % N], S)
-      r += 1
+  while (countMarkedCards(cards) < N)
+    j = (j + S[iˈ[r % N]] + Int(K[iˈ[r % L]])) % N
+    swap(iˈ[r % N], iˈ[j % N], S)
+    if (!cards[iˈ[r % N]] && (r%N) == (j%N))
+      cards[iˈ[r%N]] = true
     end
+    if (!cards[iˈ[r%N]] && cards[iˈ[j%N]])
+      cards[iˈ[r%N]] = true
+    end
+    r += 1
   end
   # println(S)
   return S
@@ -84,49 +96,87 @@ end # KSAₖ
 
 function countMarkedCards(cards::BitArray)
   markedCards = 0
-  for i in 1:length(cards)
-    if (cards[i])
+  for card in cards
+    if (card)
       markedCards += 1
     end
   end
   return markedCards
 end
 
-function stoppingRuleKLZ(π::BitArray, r, keyBits) # π - tablica kart, które będziemy oznaczać, r - numer rundy, keyBits - klucz zapisany bitowo
-  iˈ = generateIndexes(length(keyBits))
-  n = length(π)
-  r = r % n
-
-  # value(Bits) oznacza, czy bit na miejscu `round mod length(keyBits)` jest równy 0 czy 1
-  valueBits = 0
-  if (keyBits[iˈ[r % length(keyBits)]] == '1')
-    valueBits = 1
-  end
-
-  j = (n - 1) - valueBits
-  m = countMarkedCards(π)
-
-  if (m < ceil((n - 1)/2))
-    if (!π[iˈ[r]] && !π[iˈ[j]])
-      π[iˈ[r]] = true
+# Ta wersja wykonuje jedynie permutację zbioru S (też uzywa stoppingRule)
+function PRGAₛPerm(S, N, iˈ) # iˈ dodane jako argument w celu przyspieszenia
+  cards = falses(N)
+  cards[N] = true
+  i = 0
+  j = 0
+  while (countMarkedCards(cards) < N)
+    i = (i + 1) % N
+    j = (j + S[iˈ[i]]) % N
+    swap(iˈ[i], iˈ[j], S)
+    if (!cards[iˈ[i]] && i == j)
+      cards[iˈ[i]] = true
     end
-  else
-    if (!π[iˈ[r]] && π[iˈ[j]]) || (!π[iˈ[r]] && r == j)
-      π[iˈ[r]] = true
+    if (!cards[iˈ[i]] && cards[iˈ[j]])
+      cards[iˈ[i]] = true
     end
   end
+  return S
+end # PRGAₛPerm
 
-  m = countMarkedCards(π)
-  if (m == n) # Wszystkie karty zostały oznaczone
-    return true
-  else
-    return false
+# function generateFile(mode, amountOfNumbers, n, L, d, l) # n - liczba bitów
+#   N = 2^n
+#   header = string("#==============================================\n",
+#   "# generator Park       seed = 1\n",
+#   "#=============================================\n",
+#   "type: d\n",
+#   "count: ", amountOfNumbers,
+#   "\nnumbit: ", n, "\n")
+#   open("test.in", "w") do f
+#   write(f, header)
+#     for i in 1:amountOfNumbers
+#       write(f, string(randomWalker(N, L, d, l), "\n"))
+#     end
+#   end
+# end # generateFile
+
+function PRGAₛ(S, N, iˈ)
+  i = 0
+  j = 0
+  Z = []
+  while (length(Z) < N)
+    i = (i + 1) % N
+    j = (j + S[iˈ[i]]) % N
+    swap(iˈ[i], iˈ[j], S)
+    z = S[iˈ[(S[iˈ[i]] + S[iˈ[j]]) % N]]
+    push!(Z, z)
   end
-end # stoppingRuleKLZ
+  return Z
+end # PRGAₛ
 
-for i in 1:10
-  randomWalker(256, 64, 16, 24)
+function randomWalkerAdditionalRC4(N, L, d, l) # N - maksymalny rozmiar wyjściowych liczb, L - długość klucza, d - stopień wierzchołków, l - liczba kroków
+  S = [] # Tablica zawierająca wszystkie permutacje Sⱼ
+  iˈ = generateIndexes(N)
+
+  s = collect(0:N-1)
+  for i in 1:d
+    # push!(S, s[randperm(length(s))])
+    push!(S, KSAₖStoppingRule(N, L, iˈ))
+  end
+  push!(S, PRGAₛ(KSAₖStoppingRule(d, L, iˈ), d, iˈ))
+
+  vₖ = 0
+  for k in 0:l-1
+    bₖ = S[d+1][iˈ[k%d]]
+    vₖ = S[iˈ[bₖ]][vₖ + 1]
+  end
+  # println(vₖ)
+  return vₖ
+end # randomWalker
+
+while (true)
+  write(randomWalker(256, 64, 16, 24))
 end
 
-
-# KSAₖ(16, 4)
+# println(PRGAₛ([6,5,4,3,2,1], 6, generateIndexes(6)))
+# println(randomWalkerAdditionalRC4(256, 64, 16, 24))
