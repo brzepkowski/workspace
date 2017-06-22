@@ -32,7 +32,7 @@ end # generateIndexes
 
 function countMarkedCards(cards::BitArray)
   markedCards = 0
-  for card in cards
+  for card in cards # !!!! Tu zrównoleglić !!!!
     if (card)
       markedCards += 1
     end
@@ -109,11 +109,18 @@ function randomWalker(N, L, d, l, T) # N - maksymalny rozmiar wyjściowych liczb
     push!(S, KSAₖStoppingRule(N, L, iˈ))
   end
 
+  println("#==============================================
+# generator Park       seed = 1
+#=============================================
+type: d
+count: ", T,
+"\nnumbit: ", Int(log2(N)))
+
   vₖ = 0
   for t in 1:T
     for k in 0:l-1
       vₖ = S[iˈ[k % d]][vₖ + 1]
-      write(vₖ)
+      println(vₖ)
     end
   end
 end # randomWalker
@@ -128,12 +135,20 @@ function randomWalkerShiftingPerms(N, L, d, l, T) # N - maksymalny rozmiar wyjś
     push!(S, KSAₖStoppingRule(N, L, iˈ))
   end
 
+  println("#==============================================
+# generator Park       seed = 1
+#=============================================
+type: d
+count: ", T,
+"\nnumbit: ", Int(log2(N)))
+
   vₖ = 0
   for t in 1:T
     for k in 0:l-1
       vₖ = S[iˈ[k % d]][vₖ + 1]
-      write(vₖ)
-      for i in 1:d
+      # write(vₖ)
+      println(vₖ)
+      for i in 1:d # !!!! To zrównoleglić !!!!
         S[i] = PRGAₛPerm(S[i], N, iˈ)
       end
     end
@@ -151,12 +166,20 @@ function randomWalkerAdditionalRC4(N, L, d, l, T) # N - maksymalny rozmiar wyjś
   end
   push!(S, KSAₖStoppingRule(d, L, iˈ))
 
+  println("#==============================================
+# generator Park       seed = 1
+#=============================================
+type: d
+count: ", T,
+"\nnumbit: ", Int(log2(N)))
+
   vₖ = 0
   for t in 1:T
     for k in 0:l-1
       bₖ = S[d+1][iˈ[k%d]]
       vₖ = S[iˈ[bₖ]][vₖ + 1]
-      write(vₖ)
+      # write(vₖ)
+      println(vₖ)
     end
   end
 end # randomWalkerAdditionalRC4
@@ -172,20 +195,28 @@ function randomWalkerAdditionalRC4ShiftingPerms(N, L, d, l, T) # N - maksymalny 
   end
   push!(S, KSAₖStoppingRule(d, L, iˈ))
 
+  println("#==============================================
+# generator Park       seed = 1
+#=============================================
+type: d
+count: ", T,
+"\nnumbit: ", Int(log2(N)))
+
   vₖ = 0
   for t in 1:T
     for k in 0:l-1
       bₖ = S[d+1][iˈ[k%d]]
       vₖ = S[iˈ[bₖ]][vₖ + 1]
-      write(vₖ)
-      for i in 1:d
+      # write(vₖ)
+      println(vₖ)
+      for i in 1:d # !!!! To zrównoleglić !!!!
         S[i] = PRGAₛPerm(S[i], N, iˈ)
       end
     end
   end
 end # randomWalkerAdditionalRC4
 
-randomWalker(256, 64, 16, 24, 1000)
-# randomWalkerShiftingPerms(256, 64, 16, 24)
+# randomWalker(16, 16, 4, 4, 1000000)
+randomWalkerShiftingPerms(256, 64, 16, 24, 1000)
 # randomWalkerAdditionalRC4(256, 64, 16, 24)
 # randomWalkerAdditionalRC4ShiftingPerms(256, 64, 16, 24)
