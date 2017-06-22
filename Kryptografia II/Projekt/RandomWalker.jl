@@ -46,16 +46,10 @@ function PRGAₛPerm(S, N, iˈ) # iˈ dodane jako argument w celu przyspieszenia
   cards[N] = true
   i = 0
   j = 0
-  while (countMarkedCards(cards) < N)
+  for t in 1:N # Zamiast stoppingRule dodany stały licznik N
     i = (i + 1) % N
     j = (j + S[iˈ[i]]) % N
     swap(iˈ[i], iˈ[j], S)
-    if (!cards[iˈ[i]] && i == j)
-      cards[iˈ[i]] = true
-    end
-    if (!cards[iˈ[i]] && cards[iˈ[j]])
-      cards[iˈ[i]] = true
-    end
   end
   return S
 end # PRGAₛPerm
@@ -216,7 +210,7 @@ count: ", T,
   end
 end # randomWalkerAdditionalRC4
 
-# randomWalker(16, 16, 4, 4, 1000000)
-randomWalkerShiftingPerms(256, 64, 16, 24, 1000)
+randomWalker(16, 16, 4, 4, 1000000)
+# randomWalkerShiftingPerms(256, 64, 16, 24, 1000000)
 # randomWalkerAdditionalRC4(256, 64, 16, 24)
 # randomWalkerAdditionalRC4ShiftingPerms(256, 64, 16, 24)
