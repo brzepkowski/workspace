@@ -1,1 +1,14 @@
-dieharder -f test.in -a -g 202
+Generowanie plików testowych (parametry wywołań podawane są jako argumenty funkcji, możne przerobić, żeby program na wejściu je odczytywał):
+
+$ julia RandomWalker.jl | cat > "nazwa_pliku"
+
+Uwaga: Długość klucza L chyba powinna <= N (dla takich parametrów działało)
+
+Testowanie dieharderem:
+
+$ dieharder -a -g 202 -f "nazwa_pliku"
+
+Żeby dieharder zapisywał dane do pliku:
+
+$ dieharder -a -g 202 -f "nazwa_pliku" | cat > results
+
