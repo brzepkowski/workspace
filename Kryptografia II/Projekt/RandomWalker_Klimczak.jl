@@ -70,18 +70,13 @@ function randomWalker(n, L, d, l, T) # N - maksymalny rozmiar wyjściowych liczb
   N = 2^n
   S = Vector{Vector{Int64}}(d) # Tablica zawierająca wszystkie permutacje Sⱼ
   iˈ = generateIndexes(N)
-  io = IOBuffer()
+  io = STDOUT
+  buf = 0
+  licz = 1
 
   Threads.@threads for i in 1:d
     S[i] = KSAₖStoppingRule(N, L, iˈ)
   end
-
-  write(io, "#==============================================
-# generator Park       seed = 1
-#=============================================
-type: d
-count: $(T)
-numbit: $(Int(log2(N)))\n")
 
   vₖ = 0
   for t in 1:T
@@ -91,31 +86,35 @@ numbit: $(Int(log2(N)))\n")
     for k in 0:l-1
       vₖ = S[iˈ[k % d]][vₖ + 1]
     end
-    write(io, "$(vₖ)\n")
+
+    w = vₖ
+    buf += w
+    buf <<= n
+    licz+=1
+    if licz == 64/n
+      write(buf)
+      # flush(io)
+      buf = 0
+      licz = 1
+    end
   end
-  return io
 end # randomWalker
 
 function randomWalkerShiftingPerms(n, L, d, l, T) # N - maksymalny rozmiar wyjściowych liczb, L - długość klucza, d - stopień wierzchołków, l - liczba kroków
   N = 2^n
   S = Vector{Vector{Int64}}(d) # Tablica zawierająca wszystkie permutacje Sⱼ
   iˈ = generateIndexes(N)
-  io = IOBuffer()
+  io = STDOUT
+  buf = 0
+  licz = 1
 
   Threads.@threads for i in 1:d
     S[i] = KSAₖStoppingRule(N, L, iˈ)
   end
 
-  write(io, "#==============================================
-# generator Park       seed = 1
-#=============================================
-type: d
-count: $(T)
-numbit: $(Int(log2(N)))\n")
-
   vₖ = 0
   for t in 1:T
-    if t%100000 == 0
+    if t%1 == 0
       write(STDERR, "$(t/T)\n")
     end
     for k in 0:l-1
@@ -124,28 +123,32 @@ numbit: $(Int(log2(N)))\n")
         S[i] = PRGAₛPerm(S[i], N, iˈ)
       end
     end
-    write(io, "$(vₖ)\n")
+    w = vₖ
+    buf += w
+    buf <<= n
+    licz+=1
+    if licz == 64/n
+      write(io, buf)
+      buf = 0
+      licz = 1
+    end
   end
-  return io
+#  return io
 end # randomWalkerShiftingPerms
 
 function randomWalkerAdditionalRC4(n, L, d, l, T) # N - maksymalny rozmiar wyjściowych liczb, L - długość klucza, d - stopień wierzchołków, l - liczba kroków
   N = 2^n
   S = Vector{Vector{Int64}}(d+1) # Tablica zawierająca wszystkie permutacje Sⱼ
   iˈ = generateIndexes(N)
-  io = IOBuffer()
+  io = STDOUT
+  buf = 0
+  licz = 1
   Threads.@threads for i in 1:d
     S[i] = KSAₖStoppingRule(N, L, iˈ)
   end
   S[d+1]= KSAₖStoppingRule(d, L, iˈ)
-
-  write(io, "#==============================================
-# generator Park       seed = 1
-#=============================================
-type: d
-count: $(T)
-numbit: $(Int(log2(N)))\n")
-
+  buf = 0
+  licz = 1
   vₖ = 0
   for t in 1:T
     if t%100000 == 0
@@ -155,27 +158,31 @@ numbit: $(Int(log2(N)))\n")
       bₖ = S[d+1][iˈ[k%d]]
       vₖ = S[iˈ[bₖ]][vₖ + 1]
     end
-    write(io, "$(vₖ)\n")
+    w = vₖ
+    buf += w
+    buf <<= n
+    licz+=1
+    if licz == 64/n
+      write(io, buf)
+      buf = 0
+      licz = 1
+    end
   end
-  return io
+#  return io
 end # randomWalkerAdditionalRC4
 
 function randomWalkerAdditionalRC4ShiftingPerms(n, L, d, l, T) # N - maksymalny rozmiar wyjściowych liczb, L - długość klucza, d - stopień wierzchołków, l - liczba kroków
   N = 2^n
   S = Vector{Vector{Int64}}(d+1) # Tablica zawierająca wszystkie permutacje Sⱼ
   iˈ = generateIndexes(N)
-  io = IOBuffer()
+  io = STDOUT
+  buf = 0
+  licz = 1
   Threads.@threads for i in 1:d
     S[i] = KSAₖStoppingRule(N, L, iˈ)
   end
   S[d+1 ]= KSAₖStoppingRule(d, L, iˈ)
 
-  write(io, "#==============================================
-# generator Park       seed = 1
-#=============================================
-type: d
-count: $(T)
-numbit: $(Int(log2(N)))\n")
 
   vₖ = 0
   for t in 1:T
@@ -189,9 +196,17 @@ numbit: $(Int(log2(N)))\n")
         S[i] = PRGAₛPerm(S[i], N, iˈ)
       end
     end
-    write(io, "$(vₖ)\n")
+    w = vₖ
+    buf += w
+    buf <<= n
+    licz+=1
+    if licz == 64/n
+      write(io, buf)
+      buf = 0
+      licz = 1
+    end
   end
-  return io
+#  return io
 end # randomWalkerAdditionalRC4
 
 function io_to_file(io::IOBuffer, file::String)
@@ -213,12 +228,12 @@ function generateTests()
 
 
   println("Rw81616")
-  io_to_file(randomWalker(8,16,16,16,1000000), "rw_8_16_16.in")
+  io_to_file(randomWalker(8,16,16,16,1000000), "Rw_8_16_16.in")
   println("RwSp81616")
-  io_to_file(randomWalkerShiftingPerms(8,16,16,16,1000000), "rwsp_8_16_16.in")
+  io_to_file(randomWalkerShiftingPerms(8,16,16,16,1000000), "Rwsp_8_16_16.in")
   println("RwArc81616")
-  io_to_file(randomWalkerAdditionalRC4(8,16,16,16,1000000), "rwarc_8_16_16.in")
+  io_to_file(randomWalkerAdditionalRC4(8,16,16,16,1000000), "Rwarc_8_16_16.in")
   println("RwArcSp81616")
-  io_to_file(randomWalkerAdditionalRC4ShiftingPerms(8,16,16,16,1000000), "rwarcsp_8_16_16.in")
+  io_to_file(randomWalkerAdditionalRC4ShiftingPerms(8,16,16,16,1000000), "Rwarcsp_8_16_16.in")
 
 end
