@@ -1,33 +1,52 @@
+/* Żeby zobaczyc cala odpowiedz:
+?- set_prolog_flag(toplevel_print_options,[quoted(true), portray(true), max_depth(0), spacing(next_argument)]).
+ */
 :- use_module(library(clpfd)).
 
-/*click(Vars) :-
-	Vars = [W,X,Y,Z],
+/* Wersja 5x5 */
+board5(Vars) :-
+	length(Vars, 25),
 	Vars ins 0..1,
-	Board = [0,0,0,0],
-	mult_one_list([1,1,1,0], 1, R1),
-	mult_one_list([1,1,0,1], 1, R2),
-	mult_one_list([1,0,1,1], 1, R3),
-	mult_one_list([0,1,1,1], Z, R4),
-	list_sum(Board, R1, L1),
-	list_sum(L1, R2, L2),
-	list_sum(L2, R3, L3),
-	list_sum(L3, R4, L4),
-	L4 #= [3,3,3,3],
-	nth0(0,R4,X2),
-	X2 #= 0,
-	label(Vars).*/
-	
-click(X) :-
-	X in 0..1,
-	0 * X #= 0,
-	label([X]).
+	constraints5(Vars, 0),
+	label(Vars),
+	print_(Vars, 0).
 
-list_sum([],[],[]).
-list_sum([H1|T1],[H2|T2],[X|L3]):-list_sum(T1,T2,L3), X is H1+H2.
+print_(_, 25).
+print_(List, I) :-
+	nth0(I, List, X),
+	write(X), write(" "),
+	(mod(I, 5) =:= 4 -> writeln(""); !),
+	INext is I + 1,
+	print_(List, INext).
 
-mult_one_list(L1, Elem, R) :-
-    maplist(mult_2_numbers(Elem), L1, R).
+constraints5(_, 25).
+constraints5(List, I) :-
+	nth0(I, List, C),
+	(I < 5 ->
+		(mod(I, 5) =:= 0 -> IR is I + 1, ID is I + 5, nth0(IR, List, CR), nth0(ID, List, CD), mod(C + CR + CD, 2) #= 1; /* Lewa sciana */
+		(mod(I, 5) =:= 4 -> IL is I - 1, ID is I + 5, nth0(IL, List, CL), nth0(ID, List, CD), mod(C + CL + CD, 2) #= 1; /* Prawa sciana */
+		IL is I - 1, IR is I + 1, ID is I + 5, nth0(IL, List, CL), nth0(IR, List, CR), nth0(ID, List, CD), mod(C + CL + CR + CD, 2) #= 1 )); 		     /* Miedzy scianami */
+	(I > 19 -> 
+		(mod(I, 5) =:= 0 -> IR is I + 1, IU is I - 5, nth0(IR, List, CR), nth0(IU, List, CU), mod(C + CR + CU, 2) #= 1; /* Lewa sciana */
+		(mod(I, 5) =:= 4 -> IL is I - 1, IU is I - 5, nth0(IL, List, CL), nth0(IU, List, CU), mod(C + CL + CU, 2) #= 1; /* Prawa sciana */
+		IL is I - 1, IR is I + 1, IU is I - 5, nth0(IL, List, CL), nth0(IR, List, CR), nth0(IU, List, CU), mod(C + CL + CR + CU, 2) #= 1 )); 		     /* Miedzy scianami */
+	(mod(I, 5) =:= 0 -> IR is I + 1, IU is I - 5, ID is I + 5, nth0(IR, List, CR), nth0(IU, List, CU), nth0(ID, List, CD), mod(C + CR + CU + CD, 2) #= 1; /* Lewa sciana */
+	(mod(I, 5) =:= 4 -> IL is I - 1, IU is I - 5, ID is I + 5, nth0(IL, List, CL), nth0(IU, List, CU), nth0(ID, List, CD), mod(C + CL + CU + CD, 2) #= 1; /* Prawa sciana */
+	IL is I - 1, IR is I + 1, IU is I - 5, ID is I + 5, nth0(IL, List, CL), nth0(IR, List, CR), nth0(IU, List, CU), nth0(ID, List, CD), mod(C + CL + CR + CU + CD, 2) #= 1 )) 		     /* Miedzy scianami */
+	)),
+	INext is I + 1,
+	constraints5(List, INext).
 
-mult_2_numbers(V1, V2, R) :-
-    R is V1 * V2.
+
+
+
+
+
+
+
+
+
+
+
+
 
