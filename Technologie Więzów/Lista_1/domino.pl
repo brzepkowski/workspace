@@ -8,15 +8,12 @@ domino(Vars) :-
 	set_corner_values(Vars, 16), % Możemy zacząć od pierwszego narożnika
 	constraints1(Vars, 0),
 	constraints2(Vars, 0),
-	writeln("Skonczylo wszystko--------------"),
 	label(Vars),
 	print_(Vars, 0).
 
 
-
 set_board_values(_, _, 195) :- !.
 set_board_values([V|Vs], Board, I) :-
-	writeln(I),
 	Pass = [15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179],
 	I1 is I + 1,
 	[B|Bs] = Board,
@@ -26,7 +23,6 @@ set_board_values([V|Vs], Board, I) :-
 
 set_corner_values(_, 179) :- !. % Możemy skończyć przed końcem całej macierzy, po dodaniu wartości ostatniego narożnika
 set_corner_values(Vars, I) :-
-	write("COR: "), writeln(I),
 	Corners = [16, 18, 20, 22, 24, 26, 28, 46, 48, 50, 52, 54, 56, 58, 76, 78, 80, 82, 84, 86, 88, 106, 108, 110, 112, 114, 116, 118, 136, 138, 140, 142, 144, 146, 148, 166, 168, 170, 172, 174, 176, 178],
 	I1 is I + 1,
 	(memberchk(I, Corners) -> nth0(I, Vars, V), V #= 0; true),
@@ -35,18 +31,20 @@ set_corner_values(Vars, I) :-
 
 
 
-print_(_, 195).
+print_(_, 195) :- writeln("---------------").
 print_(List, I) :-
+	Horizontal = [15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179],
 	nth0(I, List, X),
-	write(X), write("     "),
-	(mod(I, 15) =:= 14 -> writeln(""); !),
+	(memberchk(I, Horizontal) -> (mod(I, 2) =:= 0 -> write("+"); (X =:= 0 -> write("-"); write(" "))); 
+		(mod(I, 2) =:= 1 -> (X =:= 1 -> write(" "); write("|")); write(X))	
+	),
+	(mod(I, 15) =:= 14 -> writeln("|"); !),
 	INext is I + 1,
 	print_(List, INext).
 
 
 constraints1(_, 196) :- !.
 constraints1(List, I) :-
-	%writeln(I),
 	Pass = [15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179],
 	(memberchk(I, Pass) -> true ;
 	(I < 15 ->
@@ -65,12 +63,9 @@ constraints1(List, I) :-
 	constraints1(List, INext).
 
 
-constraints2(_, 56) :- !, writeln("KONIEC CONSTRAINTS 2").
+constraints2(_, 56) :- !.
 constraints2(Vars, I) :-
 	Board = [3,1,2,6,6,1,2,2,3,4,1,5,3,0,3,6,5,6,6,1,2,4,5,0,5,6,4,1,3,3,0,0,6,1,0,6,3,2,4,0,4,1,5,2,4,3,5,5,4,1,0,2,4,5,2,0],
-	writeln("Constraints2: "),	
-	writeln(I),
-	/*sleep(0.25),*/
 	nth0(I, Board, V),
 	(I < 8 ->
 		(mod(I, 8) =:= 0 -> IR is I + 1, ID is I + 8, nth0(IR, Board, VR), nth0(ID, Board, VD), constraints_for_pairs(V, [VR, VD], Vars); /* Lewa sciana */
@@ -90,9 +85,8 @@ constraints2(Vars, I) :-
 
 
 /* Dodanie sumowania poszczególnych wartości do jedynki --> find_all_cases(VL, VR, Vars, Sublist), list_sum(Sublist, Final), Final #= 1   */
-constraints_for_pairs(_, [], _) :- !, writeln("Wszystkie pary!")/*, sleep(3)*/.
+constraints_for_pairs(_, [], _) :- !.
 constraints_for_pairs(V, [X|Xs], Vars) :-
-	write("Weszlo: "), write(V), write(" / "), writeln([X|Xs]),
 	find_all_cases(V, X, Vars, []),
 	constraints_for_pairs(V, Xs, Vars).
 
@@ -102,16 +96,11 @@ list_sum([Item1,Item2 | Tail], Total) :-
     list_sum([Item1+Item2|Tail], Total).
 
 
-
-
 find_all_cases(V1, V2, Vars, List) :- find_horizontal_cases_(1, V1, V2, Vars, List).
 
 
-
-
-find_horizontal_cases_(111, V1, V2, Vars, List) :- !, writeln("Koniec1 -> przechodze do vertical"), find_vertical_cases_(1, V1, V2, Vars, List).
+find_horizontal_cases_(111, V1, V2, Vars, List) :- !, find_vertical_cases_(1, V1, V2, Vars, List).
 find_horizontal_cases_(I, V1, V2, Vars, List) :-
-	write("Hor: "), writeln(I),
 	Ommited = [15,31,47,63,79,95],
 	Board1 = [3,-1,1,-1,2,-1,6,-1,6,-1,1,-1,2,-1,2,-1,3,-1,4,-1,1,-1,5,-1,3,-1,0,-1,3,-1,6,-1,5,-1,6,-1,6,-1,1,-1,2,-1,4,-1,5,-1,0,-1,5,-1,6,-1,4,-1,1,-1,3,-1,3,-1,0,-1,0,-1,6,-1,1,-1,0,-1,6,-1,3,-1,2,-1,4,-1,0,-1,4,-1,1,-1,5,-1,2,-1,4,-1,3,-1,5,-1,5,-1,4,-1,1,-1,0,-1,2,-1,4,-1,5,-1,2,-1,0],
 	Projection = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,0,
@@ -122,19 +111,18 @@ find_horizontal_cases_(I, V1, V2, Vars, List) :-
 		      150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,0,
 		      180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,0],
 	nth0(I, Projection, IProjected),
-	nth0(IProjected, Vars, V), % <-- TU BŁĄD!!!
+	nth0(IProjected, Vars, V),
 	I2 is I + 2,	
 	(memberchk(I, Ommited) -> 
 		find_horizontal_cases_(I2, V1, V2, Vars, List);
-		IL is I - 1, IR is I + 1, nth0(IL, Board1, VL), nth0(IR, Board1, VR), (((VL =:= V1, VR =:= V2);(VR =:= V1, VL =:= V2)) ->  writeln("Pasuje!"), append(List, [V], AppendedList), find_horizontal_cases_(I2, V1, V2, Vars, AppendedList); find_horizontal_cases_(I2, V1, V2, Vars, List))
+		IL is I - 1, IR is I + 1, nth0(IL, Board1, VL), nth0(IR, Board1, VR), (((VL =:= V1, VR =:= V2);(VR =:= V1, VL =:= V2)) -> append(List, [V], AppendedList), find_horizontal_cases_(I2, V1, V2, Vars, AppendedList); find_horizontal_cases_(I2, V1, V2, Vars, List))
 	).
 
 
 
 
-find_vertical_cases_(111, _, _, _, List) :- !, writeln("Koniec!"), writeln(List), list_sum(List, Final), write("Final: "), writeln(Final), Final #= 1.
+find_vertical_cases_(111, _, _, _, List) :- !, list_sum(List, Final), Final #= 1.
 find_vertical_cases_(I, V1, V2, Vars, List) :-
-	write("VER: "), writeln(I),
 	Ommited = [13,27,41,55,69,83,97],
 	Board2 = [3,-1,3,-1,5,-1,5,-1,6,-1,4,-1,4,-1,1,-1,4,-1,6,-1,6,-1,1,-1,1,-1,1,-1,2,-1,1,-1,6,-1,4,-1,0,-1,5,-1,0,-1,6,-1,5,-1,1,-1,1,-1,6,-1,2,-1,2,-1,6,-1,3,-1,2,-1,3,-1,3,-1,4,-1,4,-1,1,-1,0,-1,4,-1,3,-1,2,-1,3,-1,5,-1,2,-1,3,-1,5,-1,0,-1,4,-1,5,-1,2,-1,2,-1,6,-1,0,-1,0,-1,0,-1,5,-1,0],
 	Projection = [0,15,30,45,60,75,90,105,120,135,150,165,180,0,
@@ -146,10 +134,10 @@ find_vertical_cases_(I, V1, V2, Vars, List) :-
 		      12,27,42,57,72,87,102,117,132,147,162,177,192,0,
 		      14,29,44,59,74,89,104,119,134,149,164,179,194,0],
 	nth0(I, Projection, IProjected),      
-	nth0(IProjected, Vars, V), % <-- TU BŁĄD!!!
+	nth0(IProjected, Vars, V),
 	I2 is I + 2,	
 	(memberchk(I, Ommited) -> 
 		find_vertical_cases_(I2, V1, V2, Vars, List);
-		IL is I - 1, IR is I + 1, nth0(IL, Board2, VL), nth0(IR, Board2, VR), (((VL =:= V1, VR =:= V2);(VR =:= V1, VL =:= V2)) ->  writeln("Pasuje!"), append(List, [V], AppendedList), find_vertical_cases_(I2, V1, V2, Vars, AppendedList); find_vertical_cases_(I2, V1, V2, Vars, List))
+		IL is I - 1, IR is I + 1, nth0(IL, Board2, VL), nth0(IR, Board2, VR), (((VL =:= V1, VR =:= V2);(VR =:= V1, VL =:= V2)) -> append(List, [V], AppendedList), find_vertical_cases_(I2, V1, V2, Vars, AppendedList); find_vertical_cases_(I2, V1, V2, Vars, List))
 	).
 
