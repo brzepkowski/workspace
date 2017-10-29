@@ -32,7 +32,7 @@ constraints5(List, I) :-
 		IL is I - 1, IR is I + 1, IU is I - 5, nth0(IL, List, CL), nth0(IR, List, CR), nth0(IU, List, CU), mod(C + CL + CR + CU, 2) #= 1 )); 		     /* Miedzy scianami */
 	(mod(I, 5) =:= 0 -> IR is I + 1, IU is I - 5, ID is I + 5, nth0(IR, List, CR), nth0(IU, List, CU), nth0(ID, List, CD), mod(C + CR + CU + CD, 2) #= 1; /* Lewa sciana */
 	(mod(I, 5) =:= 4 -> IL is I - 1, IU is I - 5, ID is I + 5, nth0(IL, List, CL), nth0(IU, List, CU), nth0(ID, List, CD), mod(C + CL + CU + CD, 2) #= 1; /* Prawa sciana */
-	IL is I - 1, IR is I + 1, IU is I - 5, ID is I + 5, nth0(IL, List, CL), nth0(IR, List, CR), nth0(IU, List, CU), nth0(ID, List, CD), mod(C + CL + CR + CU + CD, 2) #= 1 )) 		     /* Miedzy scianami */
+	IL is I - 1, IR is I + 1, IU is I - 5, ID is I + 5, nth0(IL, List, CL), nth0(IR, List, CR), nth0(IU, List, CU), nth0(ID, List, CD), mod(C + CL + CR + CU + CD, 2) #= 1 )) /* Miedzy scianami */
 	)),
 	INext is I + 1,
 	constraints5(List, INext).
