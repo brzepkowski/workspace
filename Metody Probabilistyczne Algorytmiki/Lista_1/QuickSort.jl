@@ -148,7 +148,7 @@ function testDualPivotQuickSort(m, n)
 end # testQuickSort
 
 # testQuickSort(100, 10)
-testDualPivotQuickSort(100, 10)
+# testDualPivotQuickSort(100, 10)
 
 
 # m - liczba eksperymentów, n - długość tablicy
@@ -165,15 +165,17 @@ function plotDualPivotQuickSort(m, n)
     Cₙ, Sₙ, ECₙ, VCₙ = testDualPivotQuickSort(m, i) # Zamienione oznaczenie Cₙ i Sₙ (w tym miejscu to są tablice)
     push!(CₙResults, Cₙ)
     push!(SₙResults, Sₙ)
-    push!(ECₙResults, ECₙ)
+    # push!(ECₙResults, ECₙ)
     push!(VCₙResults, VCₙ)
-    push!(Bounds1, ECₙ + 2*sqrt(VCₙ))
-    push!(Bounds2, ECₙ - 2*sqrt(VCₙ))
+    # push!(Bounds1, ECₙ + 2*sqrt(VCₙ))
+    # push!(Bounds2, ECₙ - 2*sqrt(VCₙ))
+    EC = ((19/10)*(i + 1)*Harmonic(i+1)) - ((711/200)*(i+1)) + (3/2)
+    push!(ECₙResults, EC)
   end
   PyPlot.plot(x, CₙResults, color="red", "o")
   PyPlot.plot(x, ECₙResults, color="blue", linestyle="-")
-  PyPlot.plot(x, Bounds1, color="black", linestyle="--")
-  PyPlot.plot(x, Bounds2, color="black", linestyle="--")
+  # PyPlot.plot(x, Bounds1, color="black", linestyle="--")
+  # PyPlot.plot(x, Bounds2, color="black", linestyle="--")
   title("Wyniki")
 end #plotDualPivotQuickSort
 
