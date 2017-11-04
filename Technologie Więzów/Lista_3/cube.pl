@@ -1,5 +1,4 @@
 :- use_module(library(clpfd)).
-:- use_module(matrix).
 
 matrix_rotate(X, Z) :-
   transpose(X, Y),
@@ -13,6 +12,45 @@ flatten_([], []).
 flatten_([H|T], L) :-
   flatten_(T, Ls),
   append(H, Ls, L).
+
+mult_by_scalar1([], _, []).
+mult_by_scalar1([M|Ms], S, [M*S|Ts]) :-
+  mult_by_scalar1(Ms, S, Ts).
+
+mult_by_scalar2([], _, []).
+mult_by_scalar2([M|Ms], S, [T|Ts]) :-
+  mult_by_scalar1(M, S, T),
+  mult_by_scalar2(Ms, S, Ts).
+
+mult_by_scalar3([], _, []).
+mult_by_scalar3([M|Ms], S, [T|Ts]) :-
+  mult_by_scalar2(M, S, T),
+  mult_by_scalar3(Ms, S, Ts).
+
+
+add_matrices1([], [], []).
+add_matrices1([M|Ms], [N|Ns], [M+N|Ts]) :-
+  add_matrices1(Ms, Ns, Ts).
+
+add_matrices2([], [], []).
+add_matrices2([M|Ms], [N|Ns], [T|Ts]) :-
+  add_matrices1(M, N, T),
+  add_matrices2(Ms, Ns, Ts).
+
+add_matrices3([], [], []).
+add_matrices3([M|Ms], [N|Ns], [T|Ts]) :-
+  add_matrices2(M, N, T),
+  add_matrices3(Ms, Ns, Ts).
+
+multiply_many_by_scalar([], [], []).
+multiply_many_by_scalar([R|Rs], [V|Vs], [L|Ls]) :-
+  mult_by_scalar3(R, V, L),
+  multiply_many_by_scalar(Rs, Vs, Ls).
+
+add_many_matrices([Item], Item).
+add_many_matrices([Item1,Item2 | Tail], Total) :-
+    add_matrices3(Item1, Item2, Result),
+    add_many_matrices([Result|Tail], Total).
 
 % X - macierz, którą będziemy obracać, I - licznik, ile obrotów wykonaliśmy, L - lista ze wszsystkim rotacjami pierwotnej macierzy
 generate_rotations(_, 4, []).
@@ -182,7 +220,27 @@ constraints4(L) :-
   flatten_([L0, L1, L2, L3, L4, L5, L6, L7, L8, L9, L10, L11, L12, L13, L14, L15, L16, L17, L18, L19, L20, L21,
     L22, L23, L24, L25, L26, L27, L28, L29, L30, L31, L32, L33, L34, L35], L).
 
-cube(X) :-
+final_constraints1([]).
+final_constraints1([X|Xs]) :-
+  X #= 1,
+  final_constraints1(Xs).
+
+final_constraints2([]).
+final_constraints2([X|Xs]) :-
+  final_constraints1(X),
+  final_constraints2(Xs).
+
+final_constraints3([]).
+final_constraints3([X|Xs]) :-
+  final_constraints2(X),
+  final_constraints3(Xs).
+
+print_([], []).
+print_([R|Rs], [V|Vs]) :-
+  (V =:= 1 -> writeln(R); true),
+  print_(Rs, Vs).
+
+cube(AllVars) :-
   length(Vars1, 176),
   length(Vars2, 176),
   length(Vars3, 176),
@@ -205,10 +263,14 @@ cube(X) :-
   list_sum(Vars5, Vars5_sum), Vars5_sum #= 1,
   list_sum(Vars6, Vars6_sum), Vars6_sum #= 1,
   list_sum(Vars7, Vars7_sum), Vars7_sum #= 1,
-  constraints1(L1), length(L1, Len1), write("L1: "), writeln(Len1),
-  constraints2(L2), length(L2, Len2), write("L2: "), writeln(Len2),
-  constraints3(L3), length(L3, Len3), write("L3: "), writeln(Len3),
-  constraints4(L4), length(L4, Len4), write("L4: "), writeln(Len4),
+  constraints1(L1), %length(L1, Len1), write("L1: "), writeln(Len1),
+  constraints2(L2), %length(L2, Len2), write("L2: "), writeln(Len2),
+  constraints3(L3), %length(L3, Len3), write("L3: "), writeln(Len3),
+  constraints4(L4), %length(L4, Len4), write("L4: "), writeln(Len4),
   flatten_([L1, L1, L1, L1, L2, L3, L4], AllRotations), % moja funkcja flatten_
   flatten([Vars1, Vars2, Vars3, Vars4, Vars5, Vars6, Vars7], AllVars), % wbudowana funkcja flatten
-  length(AllVars, AllVarsLen).
+  multiply_many_by_scalar(AllRotations, AllVars, RotationsTimesVars),
+  add_many_matrices(RotationsTimesVars, Final),
+  final_constraints3(Final),
+  label(AllVars),
+  print_(AllRotations, AllVars).
