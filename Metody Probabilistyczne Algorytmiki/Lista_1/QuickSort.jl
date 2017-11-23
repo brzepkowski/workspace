@@ -140,14 +140,14 @@ function testDualPivotQuickSort(m, n)
   VCₙ = ECₙ² - ECₙ^2
   VSₙ = ESₙ² - ESₙ^2
   println("ECₙ = ", ECₙ, ", ESₙ = ", ESₙ)
-  EC = ((19/10)*(n + 1)*Harmonic(n+1)) - ((711/200)*(n+1)) + (3/2)
+  EC = ((19/10)*(n + 1)*Harmonic(n+1)) - ((711/200e)*(n+1)) + (3/2)
   ES = ((3/5)*(n+1)*Harmonic(n+1)) - ((27/100)*(n+1)) - (7/12)
   println("EC  = ", EC, ", ES  = ", ES)
   println("VCₙ = ", VCₙ, ", VSₙ = ", VSₙ)
   return CₙResults, SₙResults, ECₙ, VCₙ
 end # testQuickSort
 
-# testQuickSort(100, 10)
+testQuickSort(100, 10)
 # testDualPivotQuickSort(100, 10)
 
 
@@ -179,4 +179,4 @@ function plotDualPivotQuickSort(m, n)
   title("Wyniki")
 end #plotDualPivotQuickSort
 
-plotDualPivotQuickSort(10, 100)
+# plotDualPivotQuickSort(10, 100)
