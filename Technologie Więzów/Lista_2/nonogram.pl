@@ -36,37 +36,34 @@ generate_row_vars(M, N, Ys) :-
 
 get_range([], 0).
 get_range([C|Cs], R) :-
-  print(Cs), nl,
   get_range(Cs, Rs),
   R is Rs + C + 1.
 
 % C - blok, X - zmienne, R - zasięg (ile mamy możliwości dla tego bloku),
 % B - początek
-all_options_for_block(_, _, 0, _, []).
-all_options_for_block(C, X, R, B, Expr) :-
-  % sleep(1),
-  % print("--------"), nl,
-  % print("C: "), print(C), nl,
-  % print("R: "), print(R), nl,
-  % print("B: "), print(B), nl,
+all_options_for_block(_, _, _, 0, _, []).
+all_options_for_block(N, [C|Cs], X, R, B, Expr) :-
   B1 is B + 1,
   R1 is R - 1,
   sublist(X, B, C, X1),
-  all_options_for_block(C, X, R1, B1, ExprInn),
-  append([X1], ExprInn, Expr).
+  BI is B + C + 1,
+  one_column(N, BI, Cs, X, Expr2),
+  append([X1], Expr2, Expr3),
+  all_options_for_block(N, [C|Cs], X, R1, B1, ExprInn),
+  append(Expr3, ExprInn, Expr).
 
 % N - długość kolumny, [C|Cs] - lista bloków, X - lista zmiennych w kolumnie,
 % B - początek
-inner_columns_constraints(N, B, [C|Cs], X) :-
+one_column(_, _, [], _, []).
+one_column(N, B, [C|Cs], X, Expr) :-
   get_range(Cs, R1),
-  R2 is N - R1,
-  R is R2 - C + 1,
-  all_options_for_block(C, X, R, B, Expr),
-  print(Expr), nl.
+  R is N - R1 - C - B + 1,
+  all_options_for_block(N, [C|Cs], X, R, B, Expr).
 
-columns_constraints(_, _, [], []).
-columns_constraints(N, B, [C|Cs], [X|Xs]) :-
-  inner_columns_constraints(N, B, C, X).
+% [C|Cs] - lista list bloków
+columns_constraints(_, _, [], [], _).
+columns_constraints(N, B, [C|Cs], [X|Xs], Expr) :-
+  one_column(N, B, C, X, Expr).
   % columns_constraints(N, Cs, Xs).
 
 nonogram(M, N, Columns) :-
@@ -76,20 +73,8 @@ nonogram(M, N, Columns) :-
   flatten(YT, YTF),
   flatten(X, XF),
   rows_equal_columns(XF, YTF),
-  columns_constraints(N, 0, Columns, X),
+  columns_constraints(N, 0, Columns, X, Expr),
+  print(Expr), nl,
   append(XF, YTF, AllVars),
   label(AllVars),
   print(AllVars).
-
-% nonogram(Xs, Ys, M, N, Columns, Rows) :-
-%   BoardSize is N*M,
-%   length(Xs, BoardSize),
-%   length(Ys, BoardSize),
-%   Xs ins 0..1,
-%   Ys ins 0..1,
-%   rows_equal_columns(Xs, Ys),
-%   columns_constraints(M, N, 0, Columns, Xs),
-%   rows_constraints(M, N, 0, Rows, Ys),
-%   append(Xs, Ys, AllVars),
-%   label(AllVars),
-%   print_(M, N, 0, 0, Ys).
