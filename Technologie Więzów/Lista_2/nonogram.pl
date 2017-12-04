@@ -18,77 +18,78 @@ sublist(List, Offset, Length, Sublist) :-
   length(Sublist, Length),
   append(Sublist, _, Rest).
 
-% początkowo len = length(Column_blocks), potem jest to iterator
-% x - ile "kolumn" musimy przeskoczyc (potrzebne, ponieważ zmienne decyzyjne są w liście jednowymiarowej)
-inner_columns_constraints(0, N, _, X, Xs, Total) :-
-  sublist(Xs, X, N, ColumnXs),
-  list_sum(ColumnXs, SumOfXs),
-  SumOfXs #= Total.
-inner_columns_constraints(Len, N, Column_blocks, X, Xs, Previous) :-
-  nth1(Len, Column_blocks, Block),
-  Total is Previous + Block,
-  Length is Total + 1,
-  Beginning is N - Length,
-  SummedBeginning is X + Beginning,
-  sublist(Xs, SummedBeginning, Length, ColumnXs),
-  list_sum(ColumnXs, SumOfXs),
-  SumOfXs #>= Total,
-  Len1 is Len - 1,
-  inner_columns_constraints(Len1, N, Column_blocks, X, Xs, Total).
-
-columns_constraints(0, _, _, _, _).
-columns_constraints(M, N, X, Columns, Xs) :-
-  nth1(M, Columns, Column_blocks),
-  length(Column_blocks, Len),
-  inner_columns_constraints(Len, N, Column_blocks, X, Xs, 0),
-  X1 is X + N,
+generate_column_vars(0, _, []).
+generate_column_vars(M, N, Xs) :-
+  length(X, N), % wygeneruj jedną kolumnę
+  X ins 0..1,
   M1 is M - 1,
-  columns_constraints(M1, N, X1, Columns, Xs).
+  generate_column_vars(M1, N, Xss),
+  append([X], Xss, Xs).
 
-% początkowo len = length(Column_blocks), potem jest to iterator
-% x - ile "kolumn" musimy przeskoczyc (potrzebne, ponieważ zmienne decyzyjne są w liście jednowymiarowej)
-inner_rows_constraints(0, N, _, Y, Ys, Total) :-
-  sublist(Ys, Y, N, RowYs),
-  list_sum(RowYs, SumOfYs),
-  SumOfYs #= Total.
-inner_rows_constraints(Len, M, Row_blocks, Y, Ys, Previous) :-
-  nth1(Len, Row_blocks, Block),
-  Total is Previous + Block,
-  Length is Total + 1,
-  Beginning is M - Length,
-  SummedBeginning is Y + Beginning,
-  sublist(Ys, SummedBeginning, Length, RowYs),
-  list_sum(RowYs, SumOfYs),
-  SumOfYs #>= Total,
-  Len1 is Len - 1,
-  inner_rows_constraints(Len1, M, Row_blocks, Y, Ys, Total).
-
-rows_constraints(_, 0, _, _, _).
-rows_constraints(M, N, Y, Rows, Ys) :-
-  nth1(N, Rows, Row_blocks),
-  length(Row_blocks, Len),
-  inner_rows_constraints(Len, M, Row_blocks, Y, Ys, 0),
-  Y1 is Y + M,
+generate_row_vars(_, 0, []).
+generate_row_vars(M, N, Ys) :-
+  length(Y, M), % wygeneruj jeden wiersz
+  Y ins 0..1,
   N1 is N - 1,
-  rows_constraints(M, N1, Y1, Rows, Ys).
+  generate_row_vars(M, N1, Yss),
+  append([Y], Yss, Ys).
 
-print_(_, N, N, _, _).
-print_(M, N, I, X, AllVars) :- % I - aktualnie drukowany wiersz
-  sublist(AllVars, X, M, Sublist),
-  print(Sublist), nl,
-  I1 is I + 1,
-  X1 is X + M,
-  print_(M, N, I1, X1, AllVars).
+get_range([], 0).
+get_range([C|Cs], R) :-
+  print(Cs), nl,
+  get_range(Cs, Rs),
+  R is Rs + C + 1.
 
-nonogram(Xs, Ys, M, N, Columns, Rows) :-
-  BoardSize is N*M,
-  length(Xs, BoardSize),
-  length(Ys, BoardSize),
-  Xs ins 0..1,
-  Ys ins 0..1,
-  rows_equal_columns(Xs, Ys),
-  columns_constraints(M, N, 0, Columns, Xs),
-  rows_constraints(M, N, 0, Rows, Ys),
-  append(Xs, Ys, AllVars),
+% C - blok, X - zmienne, R - zasięg (ile mamy możliwości dla tego bloku),
+% B - początek
+all_options_for_block(_, _, 0, _, []).
+all_options_for_block(C, X, R, B, Expr) :-
+  % sleep(1),
+  % print("--------"), nl,
+  % print("C: "), print(C), nl,
+  % print("R: "), print(R), nl,
+  % print("B: "), print(B), nl,
+  B1 is B + 1,
+  R1 is R - 1,
+  sublist(X, B, C, X1),
+  all_options_for_block(C, X, R1, B1, ExprInn),
+  append([X1], ExprInn, Expr).
+
+% N - długość kolumny, [C|Cs] - lista bloków, X - lista zmiennych w kolumnie,
+% B - początek
+inner_columns_constraints(N, B, [C|Cs], X) :-
+  get_range(Cs, R1),
+  R2 is N - R1,
+  R is R2 - C + 1,
+  all_options_for_block(C, X, R, B, Expr),
+  print(Expr), nl.
+
+columns_constraints(_, _, [], []).
+columns_constraints(N, B, [C|Cs], [X|Xs]) :-
+  inner_columns_constraints(N, B, C, X).
+  % columns_constraints(N, Cs, Xs).
+
+nonogram(M, N, Columns) :-
+  generate_column_vars(M, N, X),
+  generate_row_vars(M, N, Y),
+  transpose(Y, YT),
+  flatten(YT, YTF),
+  flatten(X, XF),
+  rows_equal_columns(XF, YTF),
+  columns_constraints(N, 0, Columns, X),
+  append(XF, YTF, AllVars),
   label(AllVars),
-  print_(M, N, 0, 0, Ys).
+  print(AllVars).
+
+% nonogram(Xs, Ys, M, N, Columns, Rows) :-
+%   BoardSize is N*M,
+%   length(Xs, BoardSize),
+%   length(Ys, BoardSize),
+%   Xs ins 0..1,
+%   Ys ins 0..1,
+%   rows_equal_columns(Xs, Ys),
+%   columns_constraints(M, N, 0, Columns, Xs),
+%   rows_constraints(M, N, 0, Rows, Ys),
+%   append(Xs, Ys, AllVars),
+%   label(AllVars),
+%   print_(M, N, 0, 0, Ys).
