@@ -145,15 +145,26 @@ function testDualPivotQuickSort(m, n)
   VCₙ = ECₙ² - ECₙ^2
   VSₙ = ESₙ² - ESₙ^2
   println("ECₙ = ", ECₙ, ", ESₙ = ", ESₙ)
+<<<<<<< HEAD
   # EC = ((19/10)*(n + 1)*Harmonic(n+1)) - ((711/200)*(n+1)) + (3/2)
   # ES = ((3/5)*(n+1)*Harmonic(n+1)) - ((27/100)*(n+1)) - (7/12)
   # println("EC  = ", EC, ", ES  = ", ES)
+=======
+  EC = ((19/10)*(n + 1)*Harmonic(n+1)) - ((711/200e)*(n+1)) + (3/2)
+  ES = ((3/5)*(n+1)*Harmonic(n+1)) - ((27/100)*(n+1)) - (7/12)
+  println("EC  = ", EC, ", ES  = ", ES)
+>>>>>>> 3c1a97a39a0d3885fa7d773ce0a4dc5cdcb9843d
   println("VCₙ = ", VCₙ, ", VSₙ = ", VSₙ)
   return CₙResults, SₙResults, ECₙ, VCₙ, ESₙ, VSₙ
 end # testQuickSort
 
+<<<<<<< HEAD
 # testQuickSort(1000, 100)
 # testDualPivotQuickSort(1000, 100)
+=======
+testQuickSort(100, 10)
+# testDualPivotQuickSort(100, 10)
+>>>>>>> 3c1a97a39a0d3885fa7d773ce0a4dc5cdcb9843d
 
 # m - liczba eksperymentów, n - długość tablicy
 function plotComparisonsQuickSort(m, n, ax)
@@ -240,6 +251,7 @@ function plotSwapsQuickSort(m, n, ax)
   title("Swaps")
 end #plotDualPivotQuickSort
 
+<<<<<<< HEAD
 # m - liczba eksperymentów, n - długość tablicy
 function plotSwapsDualPivotQuickSort(m, n, ax)
   x = []
@@ -275,3 +287,6 @@ plotComparisonsDualPivotQuickSort(100, 10000, ax)
 fig, ax = PyPlot.subplots()
 plotSwapsQuickSort(100, 10000, ax)
 plotSwapsDualPivotQuickSort(100, 10000, ax)
+=======
+# plotDualPivotQuickSort(10, 100)
+>>>>>>> 3c1a97a39a0d3885fa7d773ce0a4dc5cdcb9843d
