@@ -1,4 +1,5 @@
 :- use_module(library(clpfd)).
+% :- [cartesian].
 
 % Columns = [[2], [2], [1, 4], [4], [1], [4]].
 % Rows = [[2], [2, 1], [4, 1], [4], [1, 1], [1, 1]].
@@ -39,6 +40,19 @@ get_range([C|Cs], R) :-
   get_range(Cs, Rs),
   R is Rs + C + 1.
 
+cartprod([], L, L).
+cartprod([X|Xs], Y, L) :-
+  cartprod(Xs, Y, L1),
+  partial_cartprod([X], Y, L2),
+  append(L1, L2, L).
+
+partial_cartprod([L], [], [L]).
+partial_cartprod(_, [], []).
+partial_cartprod(X, [Y|Ys], L) :-
+  partial_cartprod(X, Ys, L1),
+  append(X, Y, L2),
+  append(L1, [L2], L).
+
 % C - blok, X - zmienne, R - zasięg (ile mamy możliwości dla tego bloku),
 % B - początek
 all_options_for_block(_, _, _, 0, _, []).
@@ -46,11 +60,15 @@ all_options_for_block(N, [C|Cs], X, R, B, Expr) :-
   B1 is B + 1,
   R1 is R - 1,
   sublist(X, B, C, X1),
+  % Wygeneruj wszystkie pozostałe bloki dla X1
   BI is B + C + 1,
-  one_column(N, BI, Cs, X, Expr2),
-  append([X1], Expr2, Expr3),
-  all_options_for_block(N, [C|Cs], X, R1, B1, ExprInn),
-  append(Expr3, ExprInn, Expr).
+  one_column(N, BI, Cs, X, ExprInn),
+  partial_cartprod(X1, ExprInn, CompleteCase),
+  print("X1: "), print(X1), nl,
+  print("ExprInn: "), print(ExprInn), nl,
+  print("Complete: "), print(CompleteCase), nl,
+  all_options_for_block(N, [C|Cs], X, R1, B1, ExprRest),
+  append(CompleteCase, ExprRest, Expr).
 
 % N - długość kolumny, [C|Cs] - lista bloków, X - lista zmiennych w kolumnie,
 % B - początek
