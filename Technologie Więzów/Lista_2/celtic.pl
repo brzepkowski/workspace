@@ -2,56 +2,135 @@
 
 % Tiles = [[0, 0, 0, 1],[1, 0, 0, 0],[0, 1, 0, 0],[0, 0, 1, 0],[0, 1, 0, 1],[1, 0, 1, 0],[1, 0, 0, 1],[1, 1, 0, 0],[0, 1, 1, 0],[0, 0, 1, 1],[1, 0, 1, 1],[1, 1, 0, 1],[1, 1, 1, 0],[0, 1, 1, 1],[1, 1, 1, 1]],
 
+vs_0(V, Num) :-
+  maplist(eq_4(0), V, Bs),
+  sum(Bs, #=, Num).
 
-add_constraints(Tiles, X, Y, Z) :-
-  nth1(1, X, X1), nth1(2, X, X2), nth1(3, X, X3), nth1(4, X, X4), nth1(5, X, X5), nth1(6, X, X6),
-  nth1(7, X, X7), nth1(8, X, X8), nth1(9, X, X9), nth1(10, X, X10), nth1(11, X, X11), nth1(12, X, X12),
-  nth1(13, X, X13), nth1(14, X, X14), nth1(15, X, X15), nth1(16, X, X16), nth1(17, X, X17), nth1(18, X, X18),
-  nth1(19, X, X19), nth1(20, X, X20), nth1(21, X, X21), nth1(22, X, X22), nth1(23, X, X23), nth1(24, X, X24),
-  nth1(25, X, X25), nth1(26, X, X26), nth1(27, X, X27), nth1(28, X, X28), nth1(29, X, X29), nth1(30, X, X30),
-  nth1(1, Y, Y1), nth1(2, Y, Y2), nth1(3, Y, Y3), nth1(4, Y, Y4), nth1(5, Y, Y5), nth1(6, Y, Y6),
-  nth1(7, Y, Y7), nth1(8, Y, Y8), nth1(9, Y, Y9), nth1(10, Y, Y10), nth1(11, Y, Y11), nth1(12, Y, Y12),
-  nth1(13, Y, Y13), nth1(14, Y, Y14), nth1(15, Y, Y15), nth1(16, Y, Y16), nth1(17, Y, Y17), nth1(18, Y, Y18),
-  nth1(19, Y, Y19), nth1(20, Y, Y20), nth1(21, Y, Y21), nth1(22, Y, Y22), nth1(23, Y, Y23), nth1(24, Y, Y24),
-  nth1(25, Y, Y25), nth1(26, Y, Y26), nth1(27, Y, Y27), nth1(28, Y, Y28), nth1(29, Y, Y29), nth1(30, Y, Y30),
-  nth1(1, Z, Z1), nth1(2, Z, Z2), nth1(3, Z, Z3), nth1(4, Z, Z4), nth1(5, Z, Z5),
-  nth1(6, Z, Z6),  nth1(7, Z, Z7), nth1(8, Z, Z8), nth1(9, Z, Z9), nth1(10, Z, Z10),
-  nth1(11, Z, Z11), nth1(12, Z, Z12),  nth1(13, Z, Z13), nth1(14, Z, Z14), nth1(15, Z, Z15),
-  nth1(16, Z, Z16), nth1(17, Z, Z17), nth1(18, Z, Z18),  nth1(19, Z, Z19), nth1(20, Z, Z20),
-  nth1(21, Z, Z21), nth1(22, Z, Z22), nth1(23, Z, Z23), nth1(24, Z, Z24),  nth1(25, Z, Z25),
-  Y1 #= 0, Y6 #= 0, Y7 #= 0, Y12 #= 0, Y13 #= 0, Y18 #= 0, Y19 #= 0, Y24 #= 0, Y25 #= 0, Y30 #= 0,
-  X1 #= 0, X6 #= 0, X7 #= 0, X12 #= 0, X13 #= 0, X18 #= 0, X19 #= 0, X24 #= 0, X25 #= 0, X30 #= 0,
-  nth1(Z1, Tiles, T1), nth1(1, T1, T1_1), T1_1 #= X1, nth1(2, T1, T1_2), T1_2 #= Y1, nth1(3, T1, T1_3), T1_3 #= X2, nth1(4, T1, T1_4), T1_4 #= Y2,
-  nth1(Z2, Tiles, T2), nth1(1, T2, T2_1), T2_1 #= X2, nth1(2, T2, T2_2), T2_2 #= Y7, nth1(3, T2, T2_3), T2_3 #= X3, nth1(4, T2, T2_4), T2_4 #= Y8,
-  nth1(Z3, Tiles, T3), nth1(1, T3, T3_1), T3_1 #= X3, nth1(2, T3, T3_2), T3_2 #= Y13, nth1(3, T3, T3_3), T3_3 #= X4, nth1(4, T3, T3_4), T3_4 #= Y14,
-  nth1(Z4, Tiles, T4), nth1(1, T4, T4_1), T4_1 #= X4, nth1(2, T4, T4_2), T4_2 #= Y19, nth1(3, T4, T4_3), T4_3 #= X5, nth1(4, T4, T4_4), T4_4 #= Y20,
-  nth1(Z5, Tiles, T5), nth1(1, T5, T5_1), T5_1 #= X5, nth1(2, T5, T5_2), T5_2 #= Y25, nth1(3, T5, T5_3), T5_3 #= X6, nth1(4, T5, T5_4), T5_4 #= Y26,
-  nth1(Z6, Tiles, T6), nth1(1, T6, T6_1), T6_1 #= X7, nth1(2, T6, T6_2), T6_2 #= Y2, nth1(3, T6, T6_3), T6_3 #= X8, nth1(4, T6, T6_4), T6_4 #= Y3,
-  nth1(Z7, Tiles, T7), nth1(1, T7, T7_1), T7_1 #= X8, nth1(2, T7, T7_2), T7_2 #= Y8, nth1(3, T7, T7_3), T7_3 #= X9, nth1(4, T7, T7_4), T7_4 #= Y9,
-  nth1(Z8, Tiles, T8), nth1(1, T8, T8_1), T8_1 #= X9, nth1(2, T8, T8_2), T8_2 #= Y14, nth1(3, T8, T8_3), T8_3 #= X10, nth1(4, T8, T8_4), T8_4 #= Y15,
-  nth1(Z9, Tiles, T9), nth1(1, T9, T9_1), T9_1 #= X10, nth1(2, T9, T9_2), T9_2 #= Y20, nth1(3, T9, T9_3), T9_3 #= X11, nth1(4, T9, T9_4), T9_4 #= Y21,
-  nth1(Z10, Tiles, T10), nth1(1, T10, T10_1), T10_1 #= X11, nth1(2, T10, T10_2), T10_2 #= Y26, nth1(3, T10, T10_3), T10_3 #= X12, nth1(4, T10, T10_4), T10_4 #= Y27,
-  nth1(Z11, Tiles, T11), nth1(1, T11, T11_1), T11_1 #= X13, nth1(2, T11, T11_2), T11_2 #= Y3, nth1(3, T11, T11_3), T11_3 #= X14, nth1(4, T11, T11_4), T11_4 #= Y4,
-  nth1(Z12, Tiles, T12), nth1(1, T12, T12_1), T12_1 #= X14, nth1(2, T12, T12_2), T12_2 #= Y9, nth1(3, T12, T12_3), T12_3 #= X15, nth1(4, T12, T12_4), T12_4 #= Y10,
-  nth1(Z13, Tiles, T13), nth1(1, T13, T13_1), T13_1 #= X15, nth1(2, T13, T13_2), T13_2 #= Y15, nth1(3, T13, T13_3), T13_3 #= X16, nth1(4, T13, T13_4), T13_4 #= Y16,
-  nth1(Z14, Tiles, T14), nth1(1, T14, T14_1), T14_1 #= X16, nth1(2, T14, T14_2), T14_2 #= Y21, nth1(3, T14, T14_3), T14_3 #= X17, nth1(4, T14, T14_4), T14_4 #= Y22,
-  nth1(Z15, Tiles, T15), nth1(1, T15, T15_1), T15_1 #= X17, nth1(2, T15, T15_2), T15_2 #= Y27, nth1(3, T15, T15_3), T15_3 #= X18, nth1(4, T15, T15_4), T15_4 #= Y28,
-  nth1(Z16, Tiles, T16), nth1(1, T16, T16_1), T16_1 #= X19, nth1(2, T16, T16_2), T16_2 #= Y4, nth1(3, T16, T16_3), T16_3 #= X20, nth1(4, T16, T16_4), T16_4 #= Y5,
-  nth1(Z17, Tiles, T17), nth1(1, T17, T17_1), T17_1 #= X20, nth1(2, T17, T17_2), T17_2 #= Y10, nth1(3, T17, T17_3), T17_3 #= X21, nth1(4, T17, T17_4), T17_4 #= Y11,
-  nth1(Z18, Tiles, T18), nth1(1, T18, T18_1), T18_1 #= X21, nth1(2, T18, T18_2), T18_2 #= Y16, nth1(3, T18, T18_3), T18_3 #= X22, nth1(4, T18, T18_4), T18_4 #= Y17,
-  nth1(Z19, Tiles, T19), nth1(1, T19, T19_1), T19_1 #= X22, nth1(2, T19, T19_2), T19_2 #= Y22, nth1(3, T19, T19_3), T19_3 #= X23, nth1(4, T19, T19_4), T19_4 #= Y23,
-  nth1(Z20, Tiles, T20), nth1(1, T20, T20_1), T20_1 #= X23, nth1(2, T20, T20_2), T20_2 #= Y28, nth1(3, T20, T20_3), T20_3 #= X24, nth1(4, T20, T20_4), T20_4 #= Y29,
-  nth1(Z21, Tiles, T21), nth1(1, T21, T21_1), T21_1 #= X25, nth1(2, T21, T21_2), T21_2 #= Y5, nth1(3, T21, T21_3), T21_3 #= X26, nth1(4, T21, T21_4), T21_4 #= Y6,
-  nth1(Z22, Tiles, T22), nth1(1, T22, T22_1), T22_1 #= X26, nth1(2, T22, T22_2), T22_2 #= Y11, nth1(3, T22, T22_3), T22_3 #= X27, nth1(4, T22, T22_4), T22_4 #= Y12,
-  nth1(Z23, Tiles, T23), nth1(1, T23, T23_1), T23_1 #= X27, nth1(2, T23, T23_2), T23_2 #= Y17, nth1(3, T23, T23_3), T23_3 #= X28, nth1(4, T23, T23_4), T23_4 #= Y18,
-  nth1(Z24, Tiles, T24), nth1(1, T24, T24_1), T24_1 #= X28, nth1(2, T24, T24_2), T24_2 #= Y23, nth1(3, T24, T24_3), T24_3 #= X29, nth1(4, T24, T24_4), T24_4 #= Y24,
-  nth1(Z25, Tiles, T25), nth1(1, T25, T25_1), T25_1 #= X29, nth1(2, T25, T25_2), T25_2 #= Y29, nth1(3, T25, T25_3), T25_3 #= X30, nth1(4, T25, T25_4), T25_4 #= Y30.
+vs_1(V, Num) :-
+  maplist(eq_4(1), V, Bs),
+  sum(Bs, #=, Num).
 
-celtic(Z, Tiles) :-
-  length(X, 30),
+vs_2(V, Num) :-
+  maplist(eq_2(2), V, Bs),
+  sum(Bs, #=, Num).
+
+vs_3(V, Num) :-
+  maplist(eq_3(3), V, Bs),
+  sum(Bs, #=, Num).
+
+vs_4(V, Num) :-
+  maplist(eq_4(4), V, Bs),
+  sum(Bs, #=, Num).
+
+eq_2(Y, [X1,X2,X3,X4], B) :-
+  (X1 + X3 #= Y #/\ X2 + X4 #= 0) #\/ (X2 + X4 #= Y #/\ X1 + X3 #= 0) #<==> B.
+
+eq_3(Y, [X1,X2,X3,X4], B) :-
+  (X1 + X2 + X3 #= Y #/\ X4 #= 0) #\/ (X2 + X3 + X4 #= Y #/\ X1 #= 0) #\/ (X3 + X4 + X1 #= Y #/\ X2 #= 0) #\/ (X4 + X1 + X2 #= Y #/\ X3 #= 0) #<==> B.
+
+% Poniższy predykat będzie wykorzystywany do 2 rodzajów klocków (z przepływami
+% na każdej ścianie i z przepływem tylko na jednej z nich).
+eq_4(Y, [X1,X2,X3,X4], B) :-
+  X1 + X2 + X3 + X4 #= Y #<==> B.
+
+add_equality_constraints(X) :-
+  nth1(1, X, X1), nth1(2, X, X2), nth1(3, X, X3), nth1(4, X, X4), nth1(5, X, X5),
+  nth1(6, X, X6), nth1(7, X, X7), nth1(8, X, X8), nth1(9, X, X9), nth1(10, X, X10),
+  nth1(11, X, X11), nth1(12, X, X12), nth1(13, X, X13), nth1(14, X, X14), nth1(15, X, X15),
+  nth1(16, X, X16), nth1(17, X, X17), nth1(18, X, X18), nth1(19, X, X19), nth1(20, X, X20),
+  nth1(21, X, X21), nth1(22, X, X22), nth1(23, X, X23), nth1(24, X, X24), nth1(25, X, X25),
+  % Pierwszy wiersz
+  nth1(1, X1, X1_1), nth1(2, X1, X1_2), nth1(3, X1, X1_3), nth1(4, X1, X1_4),
+  nth1(1, X2, X2_1), nth1(2, X2, X2_2), nth1(3, X2, X2_3), nth1(4, X2, X2_4),
+  nth1(1, X3, X3_1), nth1(2, X3, X3_2), nth1(3, X3, X3_3), nth1(4, X3, X3_4),
+  nth1(1, X4, X4_1), nth1(2, X4, X4_2), nth1(3, X4, X4_3), nth1(4, X4, X4_4),
+  nth1(1, X5, X5_1), nth1(2, X5, X5_2), nth1(3, X5, X5_3), nth1(4, X5, X5_4),
+  nth1(1, X6, X6_1), nth1(2, X6, X6_2), nth1(3, X6, X6_3), nth1(4, X6, X6_4),
+  nth1(1, X7, X7_1), nth1(2, X7, X7_2), nth1(3, X7, X7_3), nth1(4, X7, X7_4),
+  nth1(1, X8, X8_1), nth1(2, X8, X8_2), nth1(3, X8, X8_3), nth1(4, X8, X8_4),
+  nth1(1, X9, X9_1), nth1(2, X9, X9_2), nth1(3, X9, X9_3), nth1(4, X9, X9_4),
+  nth1(1, X10, X10_1), nth1(2, X10, X10_2), nth1(3, X10, X10_3), nth1(4, X10, X10_4),
+  nth1(1, X11, X11_1), nth1(2, X11, X11_2), nth1(3, X11, X11_3), nth1(4, X11, X11_4),
+  nth1(1, X12, X12_1), nth1(2, X12, X12_2), nth1(3, X12, X12_3), nth1(4, X12, X12_4),
+  nth1(1, X13, X13_1), nth1(2, X13, X13_2), nth1(3, X13, X13_3), nth1(4, X13, X13_4),
+  nth1(1, X14, X14_1), nth1(2, X14, X14_2), nth1(3, X14, X14_3), nth1(4, X14, X14_4),
+  nth1(1, X15, X15_1), nth1(2, X15, X15_2), nth1(3, X15, X15_3), nth1(4, X15, X15_4),
+  nth1(1, X16, X16_1), nth1(2, X16, X16_2), nth1(3, X16, X16_3), nth1(4, X16, X16_4),
+  nth1(1, X17, X17_1), nth1(2, X17, X17_2), nth1(3, X17, X17_3), nth1(4, X17, X17_4),
+  nth1(1, X18, X18_1), nth1(2, X18, X18_2), nth1(3, X18, X18_3), nth1(4, X18, X18_4),
+  nth1(1, X19, X19_1), nth1(2, X19, X19_2), nth1(3, X19, X19_3), nth1(4, X19, X19_4),
+  nth1(1, X20, X20_1), nth1(2, X20, X20_2), nth1(3, X20, X20_3), nth1(4, X20, X20_4),
+  nth1(1, X21, X21_1), nth1(2, X21, X21_2), nth1(3, X21, X21_3), nth1(4, X21, X21_4),
+  nth1(1, X22, X22_1), nth1(2, X22, X22_2), nth1(3, X22, X22_3), nth1(4, X22, X22_4),
+  nth1(1, X23, X23_1), nth1(2, X23, X23_2), nth1(3, X23, X23_3), nth1(4, X23, X23_4),
+  nth1(1, X24, X24_1), nth1(2, X24, X24_2), nth1(3, X24, X24_3), nth1(4, X24, X24_4),
+  nth1(1, X25, X25_1), nth1(2, X25, X25_2), nth1(3, X25, X25_3), nth1(4, X25, X25_4),
+  % -------------------Ograniczenia brzegowe------------
+  % Pierwszy wiersz
+  X1_1 #= 0, X1_2 #= 0, X2_2 #= 0, X3_2 #= 0, X4_2 #= 0, X5_2 #= 0, X5_3 #= 0,
+  % Drugi wiersz
+  X6_1 #= 0, X10_3 #= 0,
+  % Trzeci wiersz
+  X11_1 #= 0, X15_3 #= 0,
+  % Czwarty wiersz
+  X16_1 #= 0, X20_3 #= 0,
+  % Piąty wiersz
+  X21_1 #= 0, X21_4 #= 0, X22_4 #= 0, X23_4 #= 0, X24_4 #= 0, X25_3 #= 0, X25_4 #= 0,
+  % ----------Równość między krawędziami klocków---------
+  % Pierwszy wiersz
+  X1_3 #= X2_1, X1_4 #= X6_2,
+  X2_3 #= X3_1, X2_4 #= X7_2,
+  X3_3 #= X4_1, X3_4 #= X8_2,
+  X4_3 #= X5_1, X4_4 #= X9_2,
+  X5_4 #= X10_2,
+  % Drugi wiersz
+  X6_3 #= X7_1, X6_4 #= X11_2,
+  X7_3 #= X8_1, X7_4 #= X12_2,
+  X8_3 #= X9_1, X8_4 #= X13_2,
+  X9_3 #= X10_1, X9_4 #= X14_2,
+  X10_4 #= X15_2,
+  % Trzeci wiersz
+  X11_3 #= X12_1, X11_4 #= X16_2,
+  X12_3 #= X13_1, X12_4 #= X17_2,
+  X13_3 #= X14_1, X13_4 #= X18_2,
+  X14_3 #= X15_1, X14_4 #= X19_2,
+  X15_4 #= X20_2,
+  % Czwarty wiersz
+  X16_3 #= X17_1, X16_4 #= X21_2,
+  X17_3 #= X18_1, X17_4 #= X22_2,
+  X18_3 #= X19_1, X18_4 #= X23_2,
+  X19_3 #= X20_1, X19_4 #= X24_2,
+  X20_4 #= X25_2,
+  % Piąty wiersz
+  X21_3 #= X22_1,
+  X22_3 #= X23_1,
+  X23_3 #= X24_1,
+  X24_3 #= X25_1.
+
+limit_number_of_puzzles(X) :-
+  vs_0(X, 0),
+  vs_1(X, 5),
+  vs_2(X, 5),
+  vs_3(X, 5),
+  vs_4(X, 5).
+
+generate_vars(0, []).
+generate_vars(I, Z) :-
+  I1 is I - 1,
+  generate_vars(I1, Y),
+  length(X, 4),
   X ins 0..1,
-  length(Y, 30),
-  Y ins 0..1,
-  length(Z, 25),
-  Z ins 1..15,
-  add_constraints(Tiles, X, Y, Z).
+  append([X], Y, Z).
+
+print_([]).
+print_([V|Vs]) :-
+  print(V), nl,
+  print_(Vs).
+
+celtic(Vars) :-
+  generate_vars(25, Vars),
+  add_equality_constraints(Vars),
+  limit_number_of_puzzles(Vars),
+  flatten(Vars, FlatVars),
+  label(FlatVars),
+  print_(Vars).

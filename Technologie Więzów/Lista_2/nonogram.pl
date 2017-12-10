@@ -51,12 +51,16 @@ cartprod([X|Xs], Y, L) :-
 partial_cartprod(_, [], []).
 partial_cartprod(X, [Y|Ys], L) :-
   partial_cartprod(X, Ys, L1),
-  print("X: "), print(X), nl,
-  print("Y: "), print(Y), nl,
-  print("L1: "), print(L1), nl,
+  % print("X: "), print(X), nl,
+  % print("Y: "), print(Y), nl,
+  % print("L1: "), print(L1), nl,
   append(X, Y, L2),
-  print("L2: "), print(L2), nl,
+  % print("L2: "), print(L2), nl,
   append(L1, [L2], L).
+
+p(_, [], []).
+p(A, [B|C], [[A,B]|D]) :-
+  p(A, C, D).
 
 % C - blok, X - zmienne, R - zasięg (ile mamy możliwości dla tego bloku),
 % B - początek
@@ -68,13 +72,17 @@ all_options_for_block(N, [C|Cs], X, R, B, Expr) :-
   % Wygeneruj wszystkie pozostałe bloki dla X1
   BI is B + C + 1,
   one_column(N, BI, Cs, X, ExprInn),
+  print("X1: "), print(X1), nl,
+  print("ExprInn: "), print(ExprInn), nl,
   list_empty(ExprInn, S),
-  (S -> append(ExprInn, [X1], CompleteCase); partial_cartprod([X1], ExprInn, CompleteCase)),
+  (S -> append(ExprInn, X1, CompleteCase); %partial_cartprod([X1], ExprInn, CompleteCase)),
+            p(X1, ExprInn, CompleteCase)),
+  print("CompleteCase: "), print(CompleteCase), nl,
   % print("X1: "), print(X1), nl,
   % print("ExprInn: "), print(ExprInn), nl,
   % print("Complete: "), print(CompleteCase), nl,
   all_options_for_block(N, [C|Cs], X, R1, B1, ExprRest),
-  append(CompleteCase, ExprRest, Expr).
+  append(ExprRest, CompleteCase, Expr).
 
 % N - długość kolumny, [C|Cs] - lista bloków, X - lista zmiennych w kolumnie,
 % B - początek
