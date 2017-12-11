@@ -122,10 +122,12 @@ generate_vars(I, Z) :-
   X ins 0..1,
   append([X], Y, Z).
 
-print_([]).
-print_([V|Vs]) :-
-  print(V), nl,
-  print_(Vs).
+print_([], _).
+print_([V|Vs], I) :-
+  Change is I mod 5,
+  (Change =:= 0 -> write(V), nl; write(V)),
+  I1 is I + 1,
+  print_(Vs, I1).
 
 celtic(Vars) :-
   generate_vars(25, Vars),
@@ -133,4 +135,4 @@ celtic(Vars) :-
   limit_number_of_puzzles(Vars),
   flatten(Vars, FlatVars),
   label(FlatVars),
-  print_(Vars).
+  print_(Vars, 1).
