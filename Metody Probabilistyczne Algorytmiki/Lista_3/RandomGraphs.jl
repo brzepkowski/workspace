@@ -31,8 +31,24 @@ function f1(n)
 end # f1
 
 function f2(n)
-    return 2 / n
-end # f1
+    return (1/n)-((n^(0.1))/(n^(4/3)))
+end # f2
+
+function f3(n)
+    return (1/n)+((n^(0.1))/(n^(4/3)))
+end # f3
+
+function f4(n)
+    return (1/n)-(2/(n^(4/3)))
+end # f4
+
+function f5(n)
+    return (1/n)+(2/(n^(4/3)))
+end # f5
+
+function f6(n)
+    return 2/n
+end # f6
 
 # n - maksymalna liczba wierzchołków w grafie,
 # m - liczba eksperymentów
@@ -58,7 +74,6 @@ function RunTests(n :: Int, f, m :: Int, ax)
         end
         # Max components
         mcE = sum(tempMaxComponents) / m
-        println("Max: ", mcE)
         mcV = 0
         for v in tempMaxComponents
             mcV += (v - mcE)^2
@@ -66,7 +81,6 @@ function RunTests(n :: Int, f, m :: Int, ax)
         mcV = mcV / m
         # Second to max components
         smcE = sum(tempSecondToMaxComponents) / m
-        println("SecondMax: ", smcE)
         smcV = 0
         for v in tempSecondToMaxComponents
             smcV += (v - smcE)^2
@@ -80,6 +94,9 @@ function RunTests(n :: Int, f, m :: Int, ax)
         push!(secondToMaxComponentExpectedValues, smcE)
         push!(secondToMaxComponentBounds, [smcE + 2*sqrt(smcV), smcE - 2*sqrt(smcV)])
     end
+    println("X: ", x)
+    println("Max: ", maxComponentExpectedValues)
+    println("SecondMax: ", secondToMaxComponentExpectedValues)
     ax[:plot](x, maxComponents, color="red", "o")
     ax[:plot](x, maxComponentExpectedValues, color="red", "-")
     ax[:plot](x, maxComponentBounds, color="red", "--")
@@ -90,10 +107,10 @@ function RunTests(n :: Int, f, m :: Int, ax)
     # ax[:legend](loc="best")
 
     grid("on")
-    xlabel("Liczba wierzchołków w grafie")
+    xlabel("Liczba wierzcholkow w grafie")
     ylabel("Rozmiar komponenty")
     title("Wielkosci najwiekszej i drugej najwiekszej komponenty w grafie losowym G(n p)")
 end # RunTests
 
 fig, ax = PyPlot.subplots()
-RunTests(10000, f1, 100, ax)
+RunTests(10000, f6, 100, ax)
