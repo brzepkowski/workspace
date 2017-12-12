@@ -1,7 +1,7 @@
 :- use_module(library(clpfd)).
 
-% Columns = [[2], [2], [1, 4], [4], [1], [4]].
-% Rows = [[2], [2, 1], [4, 1], [4], [1, 1], [1, 1]].
+% Przykładowe uruchomienie:
+% nonogram(X, 6, 6, [[2],[2,1],[4,1],[4],[1,1],[1,1]], [[2],[2],[1,4],[4],[1],[4]]).
 
 max(X, Y, Z) :-
   X =< Y -> Z is Y; Z is X.
@@ -22,17 +22,6 @@ generate_beginnings([], _, []).
 generate_beginnings([V|Vs], B, [B|Bs]) :-
   B1 is B + V + 1,
   generate_beginnings(Vs, B1, Bs).
-
-% subtract_from_row_length([], _, []).
-% subtract_from_row_length([V|Vs], N, [B|Bs]) :-
-%   B is N - V,
-%   subtract_from_row_length(Vs, N, Bs).
-%
-% generate_endings(Blocks, N, Endings) :-
-%   reverse(Blocks, ReversedBlocks),
-%   generate_beginnings(ReversedBlocks, 0, TempEndings),
-%   subtract_from_row_length(TempEndings, N, TempEndings2),
-%   reverse(TempEndings2, Endings).
 
 % [V|Vs] - tablica z długościami bloków, N - ługość wiersza/kolumny
 generate_lists_for_blocks([], _, []).
@@ -75,12 +64,7 @@ inner_forbid_overlapping([B|Bs], T, [L|Ls], [V|Vs]) :-
   T1 is T - B,
   max(0, T1, Beginning),
   Len1 is T - Beginning,
-  % write("Begin: "), write(Beginning), nl,
-  % write("T: "), write(T), nl,
-  % write("L: "), write(L), nl,
   max(Len1, 1, Length),
-  % Ending is Beginning + Length,
-  % write("Ending: "), write(Ending), nl,
   sublist(L, Beginning, Length, V),
   inner_forbid_overlapping(Bs, T, Ls, Vs).
 
@@ -117,7 +101,6 @@ forbid_overlapping(_, [], _).
 forbid_overlapping(Blocks, [T|Ts], BlocksLists) :-
   inner_forbid_overlapping(Blocks, T, BlocksLists, SelectedVars),
   flatten(SelectedVars, FlatSelectedVars),
-  % write("SelectedVars: "), write(SelectedVars), nl,
   sum(FlatSelectedVars, #=<, 1),
   forbid_overlapping(Blocks, Ts, BlocksLists).
 
@@ -137,45 +120,31 @@ inner_limit_ending([L|Ls], B) :-
   B1 is B - 1,
   inner_limit_ending(Ls, B1).
 
-
 % [B|Bs] - lista z długościami bloków
 % [L|Ls] - lista list zmiennych decyzyjnych przypisanych do bloków
 % I - indeks Z-tej zmiennej decyzyjnej
 % [R|Rs] - zwracana lista list ze zmiennymi do zsumowania
 get_lists_for_sum_constraint([], _, _, []).
 get_lists_for_sum_constraint([B|Bs], [L|Ls], I, [R|Rs]) :-
-  write("B: "), write(B), nl,
-  write("L: "), write(L), nl,
   max(0, I - B, Beginning),
-  write("Beginning: "), write(Beginning), nl,
   Length is I - Beginning,
   sublist(L, Beginning, Length, R),
-  write("Sublist: "), write(R), nl,
   get_lists_for_sum_constraint(Bs, Ls, I, Rs).
 
 % N - długość wiersza/kolumny, z którego będziemy pobierać zmienne decyzyjne (zmienne z planszy)
 constrain_grid_variables(_, 0, _, _).
 constrain_grid_variables(Vars, N, Blocks, BlocksLists) :-
-  write("N: "), write(N), nl,
   nth1(N, Vars, Z),
-  write("Z: "), write(Z), nl,
   get_lists_for_sum_constraint(Blocks, BlocksLists, N, SubLists),
-  write("Wyszlo!!"), nl,
   flatten(SubLists, SubList),
-  write("1"), nl,
   sum(SubList, #=, Z),
-  write("2"), nl,
   N1 is N - 1,
-  write("3"), nl,
   constrain_grid_variables(Vars, N1, Blocks, BlocksLists).
-
 
 % RowBlocks - tablica z długościami bloków
 % RowVars - zmienne decyzyjne z tego wiersza
 % N - długość wiersza
 add_row_constraints(RowBlocks, RowVars, N) :-
-  % write("RowBlocks: "), write(RowBlocks), nl,
-  % write("BlocksLists: "), write(BlocksLists), nl,
   generate_lists_for_blocks(RowBlocks, N, BlocksLists),
   generate_beginnings(RowBlocks, 0, Beginnings),
   generate_time_horizon(N, TimeHorizonReversed),
@@ -187,11 +156,7 @@ add_row_constraints(RowBlocks, RowVars, N) :-
   % ---------------------------
   proper_order(BlocksLists, TimeHorizon),
   limit_endings(RowBlocks, BlocksLists),
-  constrain_grid_variables(RowVars, N, RowBlocks, BlocksLists),
-  % flatten(BlocksLists, FlatBlocksLists),
-  % label(FlatBlocksLists),
-  % write("BlocksLists: "), write(BlocksLists), nl,
-  write("-----------------------------------------------------"), nl.
+  constrain_grid_variables(RowVars, N, RowBlocks, BlocksLists).
 
 % [L|Ls] - lista list przypisana do bloków (zadań)
 % TimeHorizon - horyzont czasowy
@@ -218,11 +183,7 @@ get_rows(Vars, M, N, B, [R|Rs]) :-
 % [R|Rs] - lista odpowiadająca zmiennym decyzyjnym z kolumny
 get_one_column(_, 0, _, _, []).
 get_one_column(Vars, M, N, B, [R|Rs]) :-
-  % write("Weszlo"), nl,
-  % write("N: "), write(N), nl,
-  % write("B: "), write(B), nl,
   nth1(B, Vars, R),
-  % write("Przeszlo"), nl,
   B1 is B + N,
   M1 is M - 1,
   get_one_column(Vars, M1, N, B1, Rs).
@@ -243,10 +204,14 @@ get_columns(Vars, M, N, C, B, [R|Rs]) :-
 % [R|Rs] - lista list ze zmiennymi decyzyjnymi wierszy (R jest całym wierszem (listą))
 add_constraints_to_all_rows([], [], _).
 add_constraints_to_all_rows([B|Bs], [R|Rs], N) :-
-  % write("B: "), write(B), nl,
-  % write("R: "), write(R), nl,
   add_row_constraints(B, R, N),
   add_constraints_to_all_rows(Bs, Rs, N).
+
+print_([], _, _).
+print_([X|Xs], I, N) :-
+  (0 is mod(I,N) -> write(" "), write(X), write(" "), nl; write(" "), write(X), write(" ")),
+  I1 is I + 1,
+  print_(Xs, I1, N).
 
 % M - liczba wierszy, N - liczba kolumn
 nonogram(Vars, M, N, RowsBlocks, ColumnsBlocks) :-
@@ -255,7 +220,7 @@ nonogram(Vars, M, N, RowsBlocks, ColumnsBlocks) :-
   Vars ins 0..1,
   get_rows(Vars, M, N, 0, RowsVars),
   get_columns(Vars, M, N, N, 1, ColumnsVars),
-  % write("ColumnVars: "), write(ColumnsVars), nl,
   add_constraints_to_all_rows(RowsBlocks, RowsVars, N),
   add_constraints_to_all_rows(ColumnsBlocks, ColumnsVars, M),
-  label(Vars).
+  label(Vars),
+  print_(Vars, 1, N).
