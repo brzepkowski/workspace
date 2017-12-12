@@ -169,6 +169,32 @@ get_rows(Vars, M, N, B, [R|Rs]) :-
   M1 is M - 1,
   get_rows(Vars, M1, N, B1, Rs).
 
+% M - liczba wierszy (długość kolumny)
+% N - liczba kolumn
+% [R|Rs] - lista odpowiadająca zmiennym decyzyjnym z kolumny
+get_one_column(_, 0, _, _, []).
+get_one_column(Vars, M, N, B, [R|Rs]) :-
+  % write("Weszlo"), nl,
+  % write("N: "), write(N), nl,
+  % write("B: "), write(B), nl,
+  nth1(B, Vars, R),
+  % write("Przeszlo"), nl,
+  B1 is B + N,
+  M1 is M - 1,
+  get_one_column(Vars, M1, N, B1, Rs).
+
+% M - liczba wierszy
+% N - liczba kolumn
+% C - licznik kolumn (ile zostało do końca)
+% B - początek kolumny (będziemy go zwiększać w trakcie działania funkcji)
+% [R|Rs] - lista list ze zmiennymi w danych kolumnach (R jest listą zmiennych)
+get_columns(_, _, _, 0, _, []).
+get_columns(Vars, M, N, C, B, [R|Rs]) :-
+  get_one_column(Vars, M, N, B, R),
+  B1 is B + 1,
+  C1 is C - 1,
+  get_columns(Vars, M, N, C1, B1, Rs).
+
 % [B|Bs] - lista list długości bloków (B jest listą z długościami bloków dla danego wiersza)
 % [R|Rs] - lista list ze zmiennymi decyzyjnymi wierszy (R jest całym wierszem (listą))
 add_constraints_to_all_rows([], [], _).
@@ -179,10 +205,13 @@ add_constraints_to_all_rows([B|Bs], [R|Rs], N) :-
   add_constraints_to_all_rows(Bs, Rs, N).
 
 % M - liczba wierszy, N - liczba kolumn
-nonogram(Vars, M, N, RowsBlocks) :-
+nonogram(Vars, M, N, RowsBlocks, ColumnsBlocks) :-
   MN is M*N,
   length(Vars, MN),
   Vars ins 0..1,
   get_rows(Vars, M, N, 0, RowsVars),
-  add_constraints_to_all_rows(RowsBlocks, RowsVars, N).
+  get_columns(Vars, M, N, N, 1, ColumnsVars),
+  % write("ColumnVars: "), write(ColumnsVars), nl,
+  add_constraints_to_all_rows(RowsBlocks, RowsVars, N),
+  add_constraints_to_all_rows(ColumnsBlocks, ColumnsVars, M).
   % label(Vars).
