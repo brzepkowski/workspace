@@ -68,8 +68,16 @@ inner_forbid_overlapping([B|Bs], T, [L|Ls], [V|Vs]) :-
   % write("T: "), write(T), nl,
   % write("L: "), write(L), nl,
   max(Len1, 1, Length),
+  Ending is Beginning + Length,
+  % write("Ending: "), write(Ending), nl,
   sublist(L, Beginning, Length, V),
   inner_forbid_overlapping(Bs, T, Ls, Vs).
+
+% Funkcja zwiekszająca każdy element listy o 1
+increase_each_element_by_one([], []).
+increase_each_element_by_one([L|Ls], [R|Rs]) :-
+  R is L + 1,
+  increase_each_element_by_one(Ls, Rs).
 
 % [L|Ls] - lista lsit przypisanych do każdego bloku
 % TimeHorizon - momenty z horyzontu czasowy
@@ -99,7 +107,6 @@ forbid_overlapping(Blocks, [T|Ts], BlocksLists) :-
   inner_forbid_overlapping(Blocks, T, BlocksLists, SelectedVars),
   flatten(SelectedVars, FlatSelectedVars),
   % write("SelectedVars: "), write(SelectedVars), nl,
-  % write("FlatVars: "), write(FlatSelectedVars), nl,
   sum(FlatSelectedVars, #=<, 1),
   forbid_overlapping(Blocks, Ts, BlocksLists).
 
@@ -130,7 +137,10 @@ add_row_constraints(RowBlocks, BlocksLists, N) :-
   % write("TimeHorizon: "), write(TimeHorizon), nl,
   % write("Beginnings: "), write(Beginnings), nl,
   constrain_one_block(BlocksLists, TimeHorizon, Beginnings),
-  forbid_overlapping(RowBlocks, TimeHorizon, BlocksLists),
+  % --------Overlapping--------
+  increase_each_element_by_one(RowBlocks, IncreasedRowBlocks),
+  forbid_overlapping(IncreasedRowBlocks, TimeHorizon, BlocksLists),
+  % ---------------------------
   proper_order(BlocksLists, TimeHorizon),
   limit_endings(RowBlocks, BlocksLists),
   flatten(BlocksLists, FlatBlocksLists),
