@@ -23,6 +23,17 @@ generate_beginnings([V|Vs], B, [B|Bs]) :-
   B1 is B + V + 1,
   generate_beginnings(Vs, B1, Bs).
 
+% subtract_from_row_length([], _, []).
+% subtract_from_row_length([V|Vs], N, [B|Bs]) :-
+%   B is N - V,
+%   subtract_from_row_length(Vs, N, Bs).
+%
+% generate_endings(Blocks, N, Endings) :-
+%   reverse(Blocks, ReversedBlocks),
+%   generate_beginnings(ReversedBlocks, 0, TempEndings),
+%   subtract_from_row_length(TempEndings, N, TempEndings2),
+%   reverse(TempEndings2, Endings).
+
 % [V|Vs] - tablica z długościami bloków, N - ługość wiersza/kolumny
 generate_lists_for_blocks([], _, []).
 generate_lists_for_blocks([_|Vs], N, [L|Ls]) :-
@@ -126,6 +137,39 @@ inner_limit_ending([L|Ls], B) :-
   B1 is B - 1,
   inner_limit_ending(Ls, B1).
 
+
+% [B|Bs] - lista z długościami bloków
+% [L|Ls] - lista list zmiennych decyzyjnych przypisanych do bloków
+% I - indeks Z-tej zmiennej decyzyjnej
+% [R|Rs] - zwracana lista list ze zmiennymi do zsumowania
+get_lists_for_sum_constraint([], _, _, []).
+get_lists_for_sum_constraint([B|Bs], [L|Ls], I, [R|Rs]) :-
+  write("B: "), write(B), nl,
+  write("L: "), write(L), nl,
+  max(0, I - B, Beginning),
+  write("Beginning: "), write(Beginning), nl,
+  Length is I - Beginning,
+  sublist(L, Beginning, Length, R),
+  write("Sublist: "), write(R), nl,
+  get_lists_for_sum_constraint(Bs, Ls, I, Rs).
+
+% N - długość wiersza/kolumny, z którego będziemy pobierać zmienne decyzyjne (zmienne z planszy)
+constrain_grid_variables(_, 0, _, _).
+constrain_grid_variables(Vars, N, Blocks, BlocksLists) :-
+  write("N: "), write(N), nl,
+  nth1(N, Vars, Z),
+  write("Z: "), write(Z), nl,
+  get_lists_for_sum_constraint(Blocks, BlocksLists, N, SubLists),
+  write("Wyszlo!!"), nl,
+  flatten(SubLists, SubList),
+  write("1"), nl,
+  sum(SubList, #=, Z),
+  write("2"), nl,
+  N1 is N - 1,
+  write("3"), nl,
+  constrain_grid_variables(Vars, N1, Blocks, BlocksLists).
+
+
 % RowBlocks - tablica z długościami bloków
 % RowVars - zmienne decyzyjne z tego wiersza
 % N - długość wiersza
@@ -136,8 +180,6 @@ add_row_constraints(RowBlocks, RowVars, N) :-
   generate_beginnings(RowBlocks, 0, Beginnings),
   generate_time_horizon(N, TimeHorizonReversed),
   reverse(TimeHorizonReversed, TimeHorizon),
-  % write("TimeHorizon: "), write(TimeHorizon), nl,
-  % write("Beginnings: "), write(Beginnings), nl,
   constrain_one_block(BlocksLists, TimeHorizon, Beginnings),
   % --------Overlapping--------
   increase_each_element_by_one(RowBlocks, IncreasedRowBlocks),
@@ -145,9 +187,11 @@ add_row_constraints(RowBlocks, RowVars, N) :-
   % ---------------------------
   proper_order(BlocksLists, TimeHorizon),
   limit_endings(RowBlocks, BlocksLists),
-  flatten(BlocksLists, FlatBlocksLists),
-  label(FlatBlocksLists),
-  write("BlocksLists: "), write(BlocksLists), nl.
+  constrain_grid_variables(RowVars, N, RowBlocks, BlocksLists),
+  % flatten(BlocksLists, FlatBlocksLists),
+  % label(FlatBlocksLists),
+  % write("BlocksLists: "), write(BlocksLists), nl,
+  write("-----------------------------------------------------"), nl.
 
 % [L|Ls] - lista list przypisana do bloków (zadań)
 % TimeHorizon - horyzont czasowy
@@ -213,5 +257,5 @@ nonogram(Vars, M, N, RowsBlocks, ColumnsBlocks) :-
   get_columns(Vars, M, N, N, 1, ColumnsVars),
   % write("ColumnVars: "), write(ColumnsVars), nl,
   add_constraints_to_all_rows(RowsBlocks, RowsVars, N),
-  add_constraints_to_all_rows(ColumnsBlocks, ColumnsVars, M).
-  % label(Vars).
+  add_constraints_to_all_rows(ColumnsBlocks, ColumnsVars, M),
+  label(Vars).
