@@ -12,6 +12,10 @@ sublist(List, Offset, Length, Sublist) :-
    length(Sublist, Length),
    append(Sublist, _, Rest).
 
+list_sum([Item], Item).
+list_sum([Item1,Item2 | Tail], Total) :-
+   list_sum([Item1+Item2|Tail], Total).
+
 % V - długośc bloku, S - dotychczasowy najdalszy punkt startowy,
 % [B|Bs] - wygenerowana lista punktów startowych
 generate_beginnings([], _, []).
@@ -57,16 +61,36 @@ proper_beginning(X, T, B) :-
 % [V|Vs] - tablica z wybranymi konkretnymi zmiennymi decyzyjnymi, które będziemy sumować
 inner_forbid_overlapping([], _, [], []).
 inner_forbid_overlapping([B|Bs], T, [L|Ls], [V|Vs]) :-
-  T1 is T - B + 1,
-  max(1, T1, Beginning),
-  Len1 is T - Beginning + 1,
+  T1 is T - B,
+  max(0, T1, Beginning),
+  Len1 is T - Beginning,
+  % write("Begin: "), write(Beginning), nl,
   % write("T: "), write(T), nl,
-  % write("B: "), write(B), nl,
-  % write("Len1: "), write(Len1), nl,
-  max(Len1, 0, Length),
+  % write("L: "), write(L), nl,
+  max(Len1, 1, Length),
   sublist(L, Beginning, Length, V),
-  % write("V: "), write(V), nl,
   inner_forbid_overlapping(Bs, T, Ls, Vs).
+
+% [L|Ls] - lista lsit przypisanych do każdego bloku
+% TimeHorizon - momenty z horyzontu czasowy
+% [S|Ss] - lista list z sumami wartości Xᵢ*Tᵢ
+generate_vars_times_time_lists([], _, []).
+generate_vars_times_time_lists([L|Ls], TimeHorizon, [S|Ss]) :-
+  inner_proper_beginning(L, TimeHorizon, S1),
+  list_sum(S1, S),
+  generate_vars_times_time_lists(Ls, TimeHorizon, Ss).
+
+% Ta funkcja tylko ustala porządek między elementami listy
+inner_proper_order([_]).
+inner_proper_order([Item1,Item2|Tail]) :-
+  Item1 #< Item2,
+  inner_proper_order([Item2|Tail]).
+
+% BlocksLists - lista list ze zmiennymi decyzyjnymi, przypisane do bloków (zadań)
+% B - lista sum elementów postaci Xᵢ*Tᵢ
+proper_order(BlocksLists, TimeHorizon) :-
+  generate_vars_times_time_lists(BlocksLists, TimeHorizon, B),
+  inner_proper_order(B).
 
 % [T|Ts] - lista z momentami z całego horyzontu czasowego
 % BlocksLists - listy przypisane do bloków (zadań)
@@ -74,9 +98,26 @@ forbid_overlapping(_, [], _).
 forbid_overlapping(Blocks, [T|Ts], BlocksLists) :-
   inner_forbid_overlapping(Blocks, T, BlocksLists, SelectedVars),
   flatten(SelectedVars, FlatSelectedVars),
+  % write("SelectedVars: "), write(SelectedVars), nl,
   % write("FlatVars: "), write(FlatSelectedVars), nl,
   sum(FlatSelectedVars, #=<, 1),
   forbid_overlapping(Blocks, Ts, BlocksLists).
+
+% Ta funkcja ustala jako zera ostatnie miejsca w wierszu, w którym nie może znaleźć się blok
+% [B|Bs] - lista z długościami bloków
+% [L|Ls] - lista list zmiennych przypisanych do bloków (zadań)
+limit_endings([], []).
+limit_endings([B|Bs], [L|Ls]) :-
+  reverse(L, LR),
+  B1 is B - 1,
+  inner_limit_ending(LR, B1),
+  limit_endings(Bs, Ls).
+
+inner_limit_ending(_, 0).
+inner_limit_ending([L|Ls], B) :-
+  L #= 0,
+  B1 is B - 1,
+  inner_limit_ending(Ls, B1).
 
 % RowBlocks - tablica z długościami bloków
 % RowVars - zmienne decyzyjne z tego wiersza
@@ -86,26 +127,23 @@ add_row_constraints(RowBlocks, BlocksLists, N) :-
   generate_beginnings(RowBlocks, 0, Beginnings),
   generate_time_horizon(N, TimeHorizonReversed),
   reverse(TimeHorizonReversed, TimeHorizon),
-  write("TimeHorizon: "), write(TimeHorizon), nl,
-  write("Beginnings: "), write(Beginnings), nl,
-  constrain_row_block(BlocksLists, TimeHorizon, Beginnings),
-  % forbid_overlapping(RowBlocks, TimeHorizon, BlocksLists),
+  % write("TimeHorizon: "), write(TimeHorizon), nl,
+  % write("Beginnings: "), write(Beginnings), nl,
+  constrain_one_block(BlocksLists, TimeHorizon, Beginnings),
+  forbid_overlapping(RowBlocks, TimeHorizon, BlocksLists),
+  proper_order(BlocksLists, TimeHorizon),
+  limit_endings(RowBlocks, BlocksLists),
   flatten(BlocksLists, FlatBlocksLists),
   label(FlatBlocksLists).
-  % write("Beginnings: "), write(Beginnings), nl,
-  % write("RowBlocks: "), write(RowBlocks), nl,
-  % write("BlockLists: "), write(BlocksLists), nl.
 
 % [L|Ls] - lista list przypisana do bloków (zadań)
 % TimeHorizon - horyzont czasowy
 % [B|Bs] - lsita momentów gotowości dla każdego bloku (zadania)
-constrain_row_block([], _, []).
-constrain_row_block([L|Ls], TimeHorizon, [B|Bs]) :-
+constrain_one_block([], _, []).
+constrain_one_block([L|Ls], TimeHorizon, [B|Bs]) :-
   only_one_beginning(L),
-  % write("L: "), write(L), nl,
-  % write("B: "), write(B), nl,
   proper_beginning(L, TimeHorizon, B),
-  constrain_row_block(Ls, TimeHorizon, Bs).
+  constrain_one_block(Ls, TimeHorizon, Bs).
 
 % M - liczba wierszy, N - liczba kolumn
 nonogram(Vars, M, N, Row) :-
