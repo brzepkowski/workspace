@@ -68,7 +68,7 @@ inner_forbid_overlapping([B|Bs], T, [L|Ls], [V|Vs]) :-
   % write("T: "), write(T), nl,
   % write("L: "), write(L), nl,
   max(Len1, 1, Length),
-  Ending is Beginning + Length,
+  % Ending is Beginning + Length,
   % write("Ending: "), write(Ending), nl,
   sublist(L, Beginning, Length, V),
   inner_forbid_overlapping(Bs, T, Ls, Vs).
@@ -129,7 +129,9 @@ inner_limit_ending([L|Ls], B) :-
 % RowBlocks - tablica z długościami bloków
 % RowVars - zmienne decyzyjne z tego wiersza
 % N - długość wiersza
-add_row_constraints(RowBlocks, BlocksLists, N) :-
+add_row_constraints(RowBlocks, RowVars, N) :-
+  % write("RowBlocks: "), write(RowBlocks), nl,
+  % write("BlocksLists: "), write(BlocksLists), nl,
   generate_lists_for_blocks(RowBlocks, N, BlocksLists),
   generate_beginnings(RowBlocks, 0, Beginnings),
   generate_time_horizon(N, TimeHorizonReversed),
@@ -144,7 +146,8 @@ add_row_constraints(RowBlocks, BlocksLists, N) :-
   proper_order(BlocksLists, TimeHorizon),
   limit_endings(RowBlocks, BlocksLists),
   flatten(BlocksLists, FlatBlocksLists),
-  label(FlatBlocksLists).
+  label(FlatBlocksLists),
+  write("BlocksLists: "), write(BlocksLists), nl.
 
 % [L|Ls] - lista list przypisana do bloków (zadań)
 % TimeHorizon - horyzont czasowy
@@ -155,10 +158,31 @@ constrain_one_block([L|Ls], TimeHorizon, [B|Bs]) :-
   proper_beginning(L, TimeHorizon, B),
   constrain_one_block(Ls, TimeHorizon, Bs).
 
+% Vars - lista wszystkich zmiennych decyzyjnych na planszy
+% B - indeks początku wiersza
+% M - początkowa liczba wierszy, funkcja kończy działanie gdy M = 0
+% N - długość wiersza (liczba kolumn)
+get_rows(_, 0, _, _, []).
+get_rows(Vars, M, N, B, [R|Rs]) :-
+  sublist(Vars, B, N, R),
+  B1 is B + N,
+  M1 is M - 1,
+  get_rows(Vars, M1, N, B1, Rs).
+
+% [B|Bs] - lista list długości bloków (B jest listą z długościami bloków dla danego wiersza)
+% [R|Rs] - lista list ze zmiennymi decyzyjnymi wierszy (R jest całym wierszem (listą))
+add_constraints_to_all_rows([], [], _).
+add_constraints_to_all_rows([B|Bs], [R|Rs], N) :-
+  % write("B: "), write(B), nl,
+  % write("R: "), write(R), nl,
+  add_row_constraints(B, R, N),
+  add_constraints_to_all_rows(Bs, Rs, N).
+
 % M - liczba wierszy, N - liczba kolumn
-nonogram(Vars, M, N, Row) :-
-  % MN is M*N,
-  % length(Vars, MN),
-  % Vars ins 0..1,
-  add_row_constraints(Row, Vars, N).
+nonogram(Vars, M, N, RowsBlocks) :-
+  MN is M*N,
+  length(Vars, MN),
+  Vars ins 0..1,
+  get_rows(Vars, M, N, 0, RowsVars),
+  add_constraints_to_all_rows(RowsBlocks, RowsVars, N).
   % label(Vars).
