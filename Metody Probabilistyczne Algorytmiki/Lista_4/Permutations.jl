@@ -17,6 +17,7 @@ function PermutationCycles(n)
     permutation = shuffle(1:n)
     cycles = 0
     elementsChecked = 0
+    sizes = []
     while elementsChecked < n
         i = 1
         while permutation[i] == 0
@@ -33,9 +34,10 @@ function PermutationCycles(n)
             next = buffer
             elementsChecked += 1
         end
+        push!(sizes, elementsChecked)
         cycles += 1
     end
-    return cycles
+    return (cycles, sizes)
 end # PermutationCycles
 
 function PermutationRecords(n)
@@ -56,22 +58,180 @@ function TestFixedPoints(m, n)
     fig, ax = PyPlot.subplots()
     x = []
     fixedPoints = []
+    expectedValues = []
+    czebyszewBounds = []
     for i in 1000:1000:n
         push!(x, i)
+        tempFixedPoints = []
+        E = 0 # wartośc oczekiwana
+        V = 0 # wariancja
         for j in 1:m
-            push!(fixedPoints, PermutationFixedPoints(i))
+            fixedPointsAmount = PermutationFixedPoints(i)
+            push!(tempFixedPoints, fixedPointsAmount)
+            E += fixedPointsAmount
         end
+        E = E / m
+        for c in tempFixedPoints
+            V += (c - E)^2
+        end
+        V = V / (m - 1)
+        println("E: ", E)
+        push!(expectedValues, E)
+        println("V: ", V)
+        push!(czebyszewBounds, [E - 2*sqrt(V), E + 2*sqrt(V)])
+        push!(fixedPoints, tempFixedPoints)
+        # ----------------------------------------------------------------------
+        # Dodaj opisy, ile procent wyników przypada na daną wartość (dla danego
+        # punktu, ile było takich wyników spośród wszystkich eksperymentów)
+        fixedPointsAppearance = Dict{Int64, Int64}()
+        for j in 1:m
+            fixedPointsAmount = tempFixedPoints[j]
+            if haskey(fixedPointsAppearance,fixedPointsAmount)
+                fixedPointsAppearance[fixedPointsAmount] = fixedPointsAppearance[fixedPointsAmount] + 1
+            else
+                fixedPointsAppearance[fixedPointsAmount] = 1
+            end
+        end
+        for (index, (key, value)) in enumerate(fixedPointsAppearance)
+            percentage = value / m
+            annotate(string(percentage),
+        	xy=[i + 0.15, key + 0.15],
+        	xytext=[i + 0.15, key + 0.15],
+        	xycoords="data")
+        end
+        # ----------------------------------------------------------------------
     end
-    println(x)
-    println(fixedPoints)
 
-    # ax[:plot](x, fixedPoints, color="red", "o")
+    ax[:plot](x, fixedPoints, color="red", "o")
+    ax[:plot](x, expectedValues, color="red", "-")
+    ax[:plot](x, czebyszewBounds, color="red", "--")
     # ax[:legend](loc="best")
 
-    # grid("on")
-    # xlabel("Długosc tablicy")
-    # ylabel("Liczba punktow stalych")
-    # title("Liczba punnktow stalych w losowej permutacji")
+    grid("on")
+    xlabel("Długosc tablicy")
+    ylabel("Liczba punktow stalych")
+    title("Liczba punktow stalych w losowej permutacji")
 end # TestFixedPoints
 
-TestFixedPoints(10, 1000)
+# m - liczba eksperymentów dla danej tablicy, n - długośc tablicy (wielokrotność 1000)
+function TestCyclesAmounts(m, n)
+    fig, ax = PyPlot.subplots()
+    x = []
+    cyclesList = []
+    expectedValues = []
+    czebyszewBounds = []
+    for i in 1000:1000:n
+        push!(x, i)
+        tempCyclesList = []
+        E = 0 # wartośc oczekiwana
+        V = 0 # wariancja
+        for j in 1:m
+            (cycles, sizes) = PermutationCycles(i)
+            push!(tempCyclesList, cycles)
+            E += cycles
+        end
+        E = E / m
+        for c in tempCyclesList
+            V += (c - E)^2
+        end
+        V = V / (m - 1)
+        println("E: ", E)
+        push!(expectedValues, E)
+        println("V: ", V)
+        push!(czebyszewBounds, [E - 2*sqrt(V), E + 2*sqrt(V)])
+        push!(cyclesList, tempCyclesList)
+        # ----------------------------------------------------------------------
+        # Dodaj opisy, ile procent wyników przypada na daną wartość (dla danego
+        # punktu, ile było takich wyników spośród wszystkich eksperymentów)
+        cyclesAppearance = Dict{Int64, Int64}()
+        for j in 1:m
+            cyclesAmount = tempCyclesList[j]
+            if haskey(cyclesAppearance,cyclesAmount)
+                cyclesAppearance[cyclesAmount] = cyclesAppearance[cyclesAmount] + 1
+            else
+                cyclesAppearance[cyclesAmount] = 1
+            end
+        end
+        for (index, (key, value)) in enumerate(cyclesAppearance)
+            percentage = value / m
+            annotate(string(percentage),
+        	xy=[i + 0.15, key + 0.15],
+        	xytext=[i + 0.15, key + 0.15],
+        	xycoords="data")
+        end
+        # ----------------------------------------------------------------------
+    end
+
+    ax[:plot](x, cyclesList, color="red", "o")
+    ax[:plot](x, expectedValues, color="red", "-")
+    ax[:plot](x, czebyszewBounds, color="red", "--")
+    # ax[:legend](loc="best")
+
+    grid("on")
+    xlabel("Długosc tablicy")
+    ylabel("Liczba cykli")
+    title("Liczba cykli w losowej permutacji")
+end # TestCyclesAmounts
+
+# m - liczba eksperymentów dla danej tablicy, n - długośc tablicy (wielokrotność 1000)
+function TestRecords(m, n)
+    fig, ax = PyPlot.subplots()
+    x = []
+    records = []
+    expectedValues = []
+    czebyszewBounds = []
+    for i in 1000:1000:n
+        push!(x, i)
+        tempRecords = []
+        E = 0 # wartośc oczekiwana
+        V = 0 # wariancja
+        for j in 1:m
+            recordsAmount = PermutationRecords(i)
+            push!(tempRecords, recordsAmount)
+            E += recordsAmount
+        end
+        E = E / m
+        for c in tempRecords
+            V += (c - E)^2
+        end
+        V = V / (m - 1)
+        println("E: ", E)
+        push!(expectedValues, E)
+        println("V: ", V)
+        push!(czebyszewBounds, [E - 2*sqrt(V), E + 2*sqrt(V)])
+        push!(records, tempRecords)
+        # ----------------------------------------------------------------------
+        # Dodaj opisy, ile procent wyników przypada na daną wartość (dla danego
+        # punktu, ile było takich wyników spośród wszystkich eksperymentów)
+        recordsAppearance = Dict{Int64, Int64}()
+        for j in 1:m
+            recordsAmount = tempRecords[j]
+            if haskey(recordsAppearance,recordsAmount)
+                recordsAppearance[recordsAmount] = recordsAppearance[recordsAmount] + 1
+            else
+                recordsAppearance[recordsAmount] = 1
+            end
+        end
+        for (index, (key, value)) in enumerate(recordsAppearance)
+            percentage = value / m
+            annotate(string(percentage),
+        	xy=[i + 0.15, key + 0.15],
+        	xytext=[i + 0.15, key + 0.15],
+        	xycoords="data")
+        end
+        # ----------------------------------------------------------------------
+    end
+
+    ax[:plot](x, records, color="red", "o")
+    ax[:plot](x, expectedValues, color="red", "-")
+    ax[:plot](x, czebyszewBounds, color="red", "--")
+    # ax[:legend](loc="best")
+
+    grid("on")
+    xlabel("Długosc tablicy")
+    ylabel("Liczba punktow stalych")
+    title("Liczba punktow stalych w losowej permutacji")
+end # TestRecords
+
+# TestFixedPoints(100, 3000)
+TestRecords(100, 5000)
