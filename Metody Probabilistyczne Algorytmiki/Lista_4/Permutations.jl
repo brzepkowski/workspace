@@ -58,20 +58,22 @@ function TestFixedPoints(m, n)
     fixedPoints = []
     for i in 1000:1000:n
         push!(x, i)
+        tempFixedPoints = []
         for j in 1:m
-            push!(fixedPoints, PermutationFixedPoints(i))
+            push!(tempFixedPoints, PermutationFixedPoints(i))
         end
+        push!(fixedPoints, tempFixedPoints)
     end
     println(x)
     println(fixedPoints)
 
-    # ax[:plot](x, fixedPoints, color="red", "o")
+    ax[:plot](x, fixedPoints, color="red", "o")
     # ax[:legend](loc="best")
 
-    # grid("on")
-    # xlabel("Długosc tablicy")
-    # ylabel("Liczba punktow stalych")
-    # title("Liczba punnktow stalych w losowej permutacji")
+    grid("on")
+    xlabel("Długosc tablicy")
+    ylabel("Liczba punktow stalych")
+    title("Liczba punktow stalych w losowej permutacji")
 end # TestFixedPoints
 
-TestFixedPoints(10, 1000)
+TestFixedPoints(10, 3000)

@@ -113,4 +113,4 @@ function RunTests(n :: Int, f, m :: Int, ax)
 end # RunTests
 
 fig, ax = PyPlot.subplots()
-RunTests(10000, f6, 100, ax)
+RunTests(1000, f6, 10, ax)
