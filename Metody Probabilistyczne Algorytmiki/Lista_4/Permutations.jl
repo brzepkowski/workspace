@@ -15,17 +15,16 @@ end # PermutationFixedPoints
 
 function PermutationCycles(n)
     permutation = shuffle(1:n)
+    println(permutation)
     cycles = 0
     elementsChecked = 0
-<<<<<<< HEAD
     sizes = []
-=======
->>>>>>> 630beea949b3957336cc8480b788ad9a48697dc9
     while elementsChecked < n
         i = 1
         while permutation[i] == 0
             i += 1
         end
+        currentSize = 0
         beginning = permutation[i]
         next = permutation[beginning]
         permutation[i] = 0
@@ -37,17 +36,13 @@ function PermutationCycles(n)
             next = buffer
             elementsChecked += 1
         end
-<<<<<<< HEAD
         push!(sizes, elementsChecked)
         cycles += 1
     end
     return (cycles, sizes)
-=======
-        cycles += 1
-    end
-    return cycles
->>>>>>> 630beea949b3957336cc8480b788ad9a48697dc9
 end # PermutationCycles
+
+println(PermutationCycles(10))
 
 function PermutationRecords(n)
     permutation = shuffle(1:n)
@@ -67,7 +62,6 @@ function TestFixedPoints(m, n)
     fig, ax = PyPlot.subplots()
     x = []
     fixedPoints = []
-<<<<<<< HEAD
     expectedValues = []
     czebyszewBounds = []
     for i in 1000:1000:n
@@ -115,20 +109,6 @@ function TestFixedPoints(m, n)
     ax[:plot](x, fixedPoints, color="red", "o")
     ax[:plot](x, expectedValues, color="red", "-")
     ax[:plot](x, czebyszewBounds, color="red", "--")
-=======
-    for i in 1000:1000:n
-        push!(x, i)
-        tempFixedPoints = []
-        for j in 1:m
-            push!(tempFixedPoints, PermutationFixedPoints(i))
-        end
-        push!(fixedPoints, tempFixedPoints)
-    end
-    println(x)
-    println(fixedPoints)
-
-    ax[:plot](x, fixedPoints, color="red", "o")
->>>>>>> 630beea949b3957336cc8480b788ad9a48697dc9
     # ax[:legend](loc="best")
 
     grid("on")
@@ -137,7 +117,6 @@ function TestFixedPoints(m, n)
     title("Liczba punktow stalych w losowej permutacji")
 end # TestFixedPoints
 
-<<<<<<< HEAD
 # m - liczba eksperymentów dla danej tablicy, n - długośc tablicy (wielokrotność 1000)
 function TestCyclesAmounts(m, n)
     fig, ax = PyPlot.subplots()
@@ -258,8 +237,6 @@ function TestRecords(m, n)
     title("Liczba punktow stalych w losowej permutacji")
 end # TestRecords
 
-# TestFixedPoints(100, 3000)
-TestRecords(100, 5000)
-=======
-TestFixedPoints(10, 3000)
->>>>>>> 630beea949b3957336cc8480b788ad9a48697dc9
+# TestCyclesAmounts(100, 5000)
+# TestFixedPoints(100, 5000)
+# TestRecords(100, 5000)
