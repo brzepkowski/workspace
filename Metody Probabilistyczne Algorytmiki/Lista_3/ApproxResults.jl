@@ -28,8 +28,28 @@ function ApproxResults(x, results, funct)
     ax[:plot](x, y, color="black", "-")
 end # ApproxResults
 
+function PrintAllMaxes(x, arr1, arr2, arr3, arr4, arr5, arr6)
+    fig, ax = PyPlot.subplots()
+    ax[:plot](x, arr1, color="red", "-")
+    ax[:plot](x, arr2, color="red", "-")
+    ax[:plot](x, arr3, color="red", "-")
+    ax[:plot](x, arr4, color="red", "-")
+    ax[:plot](x, arr5, color="red", "-")
+    ax[:plot](x, arr6, color="red", "-")
+end
+
+function PrintAllSecondMaxes(x, arr1, arr2, arr3, arr4, arr5, arr6)
+    fig, ax = PyPlot.subplots()
+    ax[:plot](x, arr1, color="blue", "-")
+    ax[:plot](x, arr2, color="blue", "-")
+    ax[:plot](x, arr3, color="blue", "-")
+    ax[:plot](x, arr4, color="blue", "-")
+    ax[:plot](x, arr5, color="blue", "-")
+    ax[:plot](x, arr6, color="blue", "-")
+end
+
 function f1(x)
-    return 1.35*log2(x)
+    return 1.37*log2(x)
 end # f1
 
 function f2(x)
@@ -53,11 +73,11 @@ function f6(x)
 end # f6
 
 function f7(x)
-    return 0.65*x^(3/5) # > log2(x)
+    return 0.65*x^(3/5)
 end # f7
 
 function f8(x)
-    return 0.85*x^(3/6) # > log2(x)
+    return 0.85*x^(3/6)
 end # f8
 
 function f9(x)
@@ -76,26 +96,29 @@ function f12(x)
     return 0.79*log2(x)
 end # f12
 
-# 1 / 2n
+# (1) 1 / 2n
 # ApproxResults(x, Max1, f1)
 # ApproxResults(x, SecondMax1, f2)
 
-# 1/n - (n^0.1)/(n^4/3)
+# (2) 1/n - (n^0.1)/(n^4/3)
 # ApproxResults(x, Max2, f3)
 # ApproxResults(x, SecondMax2, f4)
 
-# 1/n + (n^0.1)/(n^4/3)
+# (3) 1/n + (n^0.1)/(n^4/3)
 # ApproxResults(x, Max3, f5)
 # ApproxResults(x, SecondMax3, f6)
 
-# 1/n - 2/(n^4/3)
+# (4) 1/n - 2/(n^4/3)
 # ApproxResults(x, Max4, f7)
 # ApproxResults(x, SecondMax4, f8)
 
-# 1/n + 2/(n^4/3)
+# (5) 1/n + 2/(n^4/3)
 # ApproxResults(x, Max5, f9)
 # ApproxResults(x, SecondMax5, f10)
 
-# 2/n
+# (6) 2/n
 # ApproxResults(x, Max6, f11)
 # ApproxResults(x, SecondMax6, f12)
+
+# PrintAllMaxes(x, Max1, Max2, Max3, Max4, Max5, Max6)
+# PrintAllSecondMaxes(x, SecondMax1, SecondMax2, SecondMax3, SecondMax4, SecondMax5, SecondMax6)
