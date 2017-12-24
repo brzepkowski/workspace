@@ -12,10 +12,8 @@ function PermutationFixedPoints(n)
     return fixedPoints
 end # PermutationFixedPoints
 
-
 function PermutationCycles(n)
     permutation = shuffle(1:n)
-    println(permutation)
     cycles = 0
     elementsChecked = 0
     sizes = []
@@ -26,23 +24,29 @@ function PermutationCycles(n)
         end
         currentSize = 0
         beginning = permutation[i]
-        next = permutation[beginning]
-        permutation[i] = 0
-        permutation[beginning] = 0
-        elementsChecked += 2
-        while next != i
-            buffer = permutation[next]
-            permutation[next] = 0
-            next = buffer
+        if beginning == i # permutation[i] == i
+            push!(sizes, 1)
+            permutation[i] = 0
             elementsChecked += 1
+        else
+            next = permutation[beginning]
+            permutation[i] = 0
+            permutation[beginning] = 0
+            elementsChecked += 2
+            currentSize += 2
+            while next != i
+                buffer = permutation[next]
+                permutation[next] = 0
+                next = buffer
+                elementsChecked += 1
+                currentSize += 1
+            end
+            push!(sizes, currentSize)
         end
-        push!(sizes, elementsChecked)
         cycles += 1
     end
     return (cycles, sizes)
 end # PermutationCycles
-
-println(PermutationCycles(10))
 
 function PermutationRecords(n)
     permutation = shuffle(1:n)
@@ -178,6 +182,56 @@ function TestCyclesAmounts(m, n)
 end # TestCyclesAmounts
 
 # m - liczba eksperymentów dla danej tablicy, n - długośc tablicy (wielokrotność 1000)
+function TestCyclesSizes(m, n)
+    fig, ax = PyPlot.subplots()
+    x = []
+    cyclesList = []
+    expectedValues = []
+    czebyszewBounds = []
+    for i in 1000:1000:n
+        push!(x, i)
+        tempCyclesList = []
+        E = 0 # wartośc oczekiwana
+        V = 0 # wariancja
+        for j in 1:m
+            (cycles, sizes) = PermutationCycles(i)
+            for v in sizes
+                push!(tempCyclesList, v)
+            end
+        end
+        # E = E / m
+        for c in tempCyclesList
+            E += c
+            # V += (c - E)^2
+        end
+        E = E / length(tempCyclesList)
+        for c in tempCyclesList
+            V += (c - E)^2
+        end
+        V = V / (length(tempCyclesList) - 1)
+        # println("E: ", E)
+        push!(expectedValues, E)
+        # println("V: ", V)
+        push!(czebyszewBounds, [E - 2*sqrt(V), E + 2*sqrt(V)])
+        # push!(cyclesList, tempCyclesList)
+        ax[:plot]([i], [tempCyclesList], color="red", "o")
+    end
+
+    println("x: ", x)
+    println("cyclesList: ", cyclesList)
+
+    # ax[:plot](x, cyclesList, color="red", "o")
+    ax[:plot](x, expectedValues, color="red", "-")
+    ax[:plot](x, czebyszewBounds, color="red", "--")
+    # ax[:legend](loc="best")
+
+    grid("on")
+    xlabel("Długosc tablicy")
+    ylabel("Liczba cykli")
+    title("Liczba cykli w losowej permutacji")
+end # TestCyclesSizes
+
+# m - liczba eksperymentów dla danej tablicy, n - długośc tablicy (wielokrotność 1000)
 function TestRecords(m, n)
     fig, ax = PyPlot.subplots()
     x = []
@@ -237,6 +291,7 @@ function TestRecords(m, n)
     title("Liczba punktow stalych w losowej permutacji")
 end # TestRecords
 
-# TestCyclesAmounts(100, 5000)
-# TestFixedPoints(100, 5000)
-# TestRecords(100, 5000)
+# TestCyclesAmounts(400, 10000) # E(X) ~ log(n) + O(1) (?)
+# TestCyclesSizes(100, 5000) # TODO
+# TestFixedPoints(400, 5000) # E(X) ~ 1
+TestRecords(400, 10000)
