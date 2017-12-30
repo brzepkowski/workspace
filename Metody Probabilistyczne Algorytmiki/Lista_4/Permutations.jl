@@ -52,8 +52,7 @@ function PermutationRecords(n)
 end # PermutationRecords
 
 # m - liczba eksperymentów dla danej tablicy, n - długośc tablicy (wielokrotność 1000)
-function TestFixedPoints(m, n)
-    fig, ax = PyPlot.subplots()
+function TestFixedPoints(m, n, ax)
     x = []
     fixedPoints = []
     for i in 1000:1000:n
@@ -76,4 +75,4 @@ function TestFixedPoints(m, n)
     title("Liczba punktow stalych w losowej permutacji")
 end # TestFixedPoints
 
-TestFixedPoints(10, 3000)
+# fig, ax = PyPlot.subplots(); TestFixedPoints(10, 3000, ax)
