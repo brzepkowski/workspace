@@ -291,7 +291,7 @@ function TestRecords(m, n)
     title("Liczba punktow stalych w losowej permutacji")
 end # TestRecords
 
-# TestCyclesAmounts(400, 10000) # E(X) ~ log(n) + O(1) (?)
+# TestCyclesAmounts(400, 10000) # E(X) ~ Hₙ
 # TestCyclesSizes(100, 5000) # TODO
 # TestFixedPoints(400, 5000) # E(X) ~ 1
-TestRecords(400, 10000)
+TestRecords(400, 10000) # E(X) ~ Hₙ

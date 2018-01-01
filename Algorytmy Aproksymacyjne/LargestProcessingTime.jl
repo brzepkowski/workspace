@@ -1,31 +1,28 @@
-using PyPlot
-p = [2,2,2,3,3,5] # czasy wykonania zadań
+# Copyright (c) 2017 Bartosz Rzepkowski, all rights reserved.
+
+p = [2,2,2,3,3,5,2,3,4,5,5,6,5,4,3,3,5,4,5,4,5,3] # czasy wykonania zadań
 
 # times - czasy wykonania zadań, m - liczba maszyn
 function ListAlgorithm(times, m)
     machines = Array{Int64}(m)
+    beginnings = Array{Any}(m)
+    x = []
     for i in 1:m
         machines[i] = 0
+        push!(x, i)
+    end
+    for i in 1:m
+        beginnings[i] = []
     end
     sortedTimes = sort(times, rev=true)
     FindMinIndex(sortedTimes)
     for p in sortedTimes
         index = FindMinIndex(machines)
+        push!(beginnings[index], machines[index])
         machines[index] += p
     end
     println(machines)
-
-    # x = [1:1:50;]
-    # y = 100*rand(50);
-    #
-    # fig = figure("pyplot_barplot",figsize=(10,10))
-    # subplot(211)
-    # b = barh(x,y,color="#0f87bf",align="center",alpha=0.4)
-    # axis("tight")
-    # title("Vertical Bar Plot")
-    # grid("on")
-    # xlabel("X")
-    # ylabel("Y")
+    println(beginnings)
 end # ListAlgorithm
 
 # Znajdź indeks komórki przechowującej najmniejszą wartość
@@ -41,4 +38,4 @@ function FindMinIndex(arr)
     return index
 end # FindMinIndex
 
-ListAlgorithm(p, 3)
+ListAlgorithm(p, 10)
