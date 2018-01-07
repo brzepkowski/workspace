@@ -26,43 +26,57 @@ end # HeadsOrTails2
 
 # m - liczba eksperymentów
 function TestGame1(m)
-    E = 0
-    V = 0
+    E1 = BigInt(0)
+    E2 = BigInt(1)
+    E3 = BigInt(0)
+    V = BigInt(0)
     results = []
     for i in 1:m
         result = HeadsOrTails1()
-        E += result
+        E1 += result
+        E2 *= result
+        E3 += 1/result
         push!(results, result)
     end
-    E = E / m
-    # for r in results
-    #     V += (r - E)^2
-    # end
-    # V = V / (m - 1)
-    println("E: ", E)
-    # println("V: ", V)
+    E1 = E1 / m
+    E2 = E2^(1/m)
+    E3 = m / E3
+    for r in results
+        V += (r - E1)^2
+    end
+    V = V / (m - 1)
+    println("E1: ", E1)
+    println("E2: ", E2)
+    println("E3: ", E3)
+    println("V: ", V)
 end # TestGame1
 
 # m - liczba eksperymentów
 function TestGame2(m)
-    E = 0
+    E1 = BigInt(0)
+    E2 = BigInt(1)
+    E3 = BigInt(0)
     V = 0
     results = []
     for i in 1:m
         result = HeadsOrTails2()
-        E += result
+        E1 += result
+        E2 *= result
+        E3 += 1/result
         push!(results, result)
     end
-    E = E / m
-    # for r in results
-    #     V += (r - E)^2
-    # end
-    # V = V / (m - 1)
-    println("E: ", E)
-    # println("V: ", V)
+    E1 = E1 / m
+    E2 = E2^(1/m)
+    E3 = m / E3
+    for r in results
+        V += (r - E1)^2
+    end
+    V = V / (m - 1)
+    println("E1: ", E1)
+    println("E2: ", E2)
+    println("E3: ", E3)
+    println("V: ", V)
 end # TestGame2
 
-# println("1: ", HeadsOrTails1())
-# println("2: ", HeadsOrTails2())
 TestGame1(10000)
 TestGame2(10000)

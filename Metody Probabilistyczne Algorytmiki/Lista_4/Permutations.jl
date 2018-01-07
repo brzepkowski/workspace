@@ -1,5 +1,21 @@
 using PyPlot
 
+function HarmonicNumber(n)
+    sum = 0
+    for i in 1:n
+        sum += 1/i
+    end
+    return sum
+end
+
+function Sum(n)
+    sum = 0
+    for i in 1:n
+        sum += (1 - (1/(n - i + 1)))^2
+    end
+    return sum
+end
+
 function PermutationFixedPoints(n)
     default = collect(1:n)
     permutation = shuffle(default)
@@ -68,6 +84,7 @@ function TestFixedPoints(m, n)
     fixedPoints = []
     expectedValues = []
     czebyszewBounds = []
+    azumaBounds = []
     for i in 1000:1000:n
         push!(x, i)
         tempFixedPoints = []
@@ -87,6 +104,8 @@ function TestFixedPoints(m, n)
         push!(expectedValues, E)
         println("V: ", V)
         push!(czebyszewBounds, [E - 2*sqrt(V), E + 2*sqrt(V)])
+        λ = sqrt(6*(i - HarmonicNumber(i))*log(2))
+        push!(azumaBounds, [-λ, λ])
         push!(fixedPoints, tempFixedPoints)
         # ----------------------------------------------------------------------
         # Dodaj opisy, ile procent wyników przypada na daną wartość (dla danego
@@ -113,6 +132,7 @@ function TestFixedPoints(m, n)
     ax[:plot](x, fixedPoints, color="red", "o")
     ax[:plot](x, expectedValues, color="red", "-")
     ax[:plot](x, czebyszewBounds, color="red", "--")
+    ax[:plot](x, azumaBounds, color="black", "--")
     # ax[:legend](loc="best")
 
     grid("on")
@@ -128,6 +148,7 @@ function TestCyclesAmounts(m, n)
     cyclesList = []
     expectedValues = []
     czebyszewBounds = []
+    azumaBounds = []
     for i in 1000:1000:n
         push!(x, i)
         tempCyclesList = []
@@ -147,6 +168,8 @@ function TestCyclesAmounts(m, n)
         push!(expectedValues, E)
         println("V: ", V)
         push!(czebyszewBounds, [E - 2*sqrt(V), E + 2*sqrt(V)])
+        λ = sqrt(6*Sum(i)*log(2))
+        push!(azumaBounds, [-λ, λ])
         push!(cyclesList, tempCyclesList)
         # ----------------------------------------------------------------------
         # Dodaj opisy, ile procent wyników przypada na daną wartość (dla danego
@@ -173,6 +196,7 @@ function TestCyclesAmounts(m, n)
     ax[:plot](x, cyclesList, color="red", "o")
     ax[:plot](x, expectedValues, color="red", "-")
     ax[:plot](x, czebyszewBounds, color="red", "--")
+    ax[:plot](x, azumaBounds, color="black", "--")
     # ax[:legend](loc="best")
 
     grid("on")
@@ -287,11 +311,11 @@ function TestRecords(m, n)
 
     grid("on")
     xlabel("Długosc tablicy")
-    ylabel("Liczba punktow stalych")
-    title("Liczba punktow stalych w losowej permutacji")
+    ylabel("Liczba rekordów")
+    title("Liczba rekordów w losowej permutacji")
 end # TestRecords
 
 # TestCyclesAmounts(400, 10000) # E(X) ~ Hₙ
-# TestCyclesSizes(100, 5000) # TODO
-# TestFixedPoints(400, 5000) # E(X) ~ 1
-TestRecords(400, 10000) # E(X) ~ Hₙ
+TestCyclesSizes(100, 5000) # TODO
+# TestFixedPoints(400, 10000) # E(X) ~ 1
+# TestRecords(400, 10000) # E(X) ~ Hₙ
