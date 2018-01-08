@@ -1,3 +1,5 @@
+using PyPlot
+
 function HeadsOrTails1()
     prize = 0
     for i in 1:5
@@ -25,58 +27,118 @@ function HeadsOrTails2()
 end # HeadsOrTails2
 
 # m - liczba eksperymentów
-function TestGame1(m)
-    E1 = BigInt(0)
-    E2 = BigInt(1)
-    E3 = BigInt(0)
-    V = BigInt(0)
+function TestGame1(m, ax)
     results = []
-    for i in 1:m
-        result = HeadsOrTails1()
-        E1 += result
-        E2 *= result
-        E3 += 1/result
-        push!(results, result)
+    x = []
+    ExpectedVars = []
+    Variances = []
+    CzebyszewBounds = []
+    above = 0
+    for i in 1000:1000:m
+        E = 0
+        V = 0
+        push!(x, i)
+        tempResults = []
+        for j in 1:i
+            result = HeadsOrTails1()
+            if result > -247.5
+                above += 1
+            end
+            E += result
+            push!(tempResults, result)
+        end
+        E = E / i
+        for r in tempResults
+            V += (r - E)^2
+        end
+        V = V / (i - 1)
+        println("E: ", E)
+        println("V: ", V)
+        push!(results, tempResults)
+        push!(ExpectedVars, E)
+        push!(Variances, V)
+        push!(CzebyszewBounds, [E - 2*sqrt(V), E + 2*sqrt(V)])
     end
-    E1 = E1 / m
-    E2 = E2^(1/m)
-    E3 = m / E3
-    for r in results
-        V += (r - E1)^2
-    end
-    V = V / (m - 1)
-    println("E1: ", E1)
-    println("E2: ", E2)
-    println("E3: ", E3)
-    println("V: ", V)
+    println("Above 1: ", above)
+    # ax[:plot](x, results, color="red", ".")
+    ax[:plot](x, ExpectedVars, color="black", "-")
+    ax[:plot](x, CzebyszewBounds, color="black", "--")
 end # TestGame1
 
 # m - liczba eksperymentów
-function TestGame2(m)
-    E1 = BigInt(0)
-    E2 = BigInt(1)
-    E3 = BigInt(0)
-    V = 0
+function TestGame2(m, ax)
     results = []
-    for i in 1:m
-        result = HeadsOrTails2()
-        E1 += result
-        E2 *= result
-        E3 += 1/result
-        push!(results, result)
+    x = []
+    ExpectedVars = []
+    Variances = []
+    CzebyszewBounds = []
+    above = 0
+    for i in 1000:1000:m
+        E = 0
+        V = 0
+        push!(x, i)
+        tempResults = []
+        for j in 1:i
+            result = HeadsOrTails2()
+            if result > -247.5
+                above += 1
+            end
+            E += result
+            push!(tempResults, result)
+        end
+        E = E / i
+        for r in tempResults
+            V += (r - E)^2
+        end
+        V = V / (i - 1)
+        println("E: ", E)
+        println("V: ", V)
+        push!(results, tempResults)
+        push!(ExpectedVars, E)
+        push!(Variances, V)
+        push!(CzebyszewBounds, [E - 2*sqrt(V), E + 2*sqrt(V)])
     end
-    E1 = E1 / m
-    E2 = E2^(1/m)
-    E3 = m / E3
-    for r in results
-        V += (r - E1)^2
-    end
-    V = V / (m - 1)
-    println("E1: ", E1)
-    println("E2: ", E2)
-    println("E3: ", E3)
-    println("V: ", V)
+    println("Above 2: ", above)
+    ax[:plot](x, ExpectedVars, color="red", "-")
+    ax[:plot](x, CzebyszewBounds, color="red", "--")
 end # TestGame2
 
-TestGame1(10000)
-TestGame2(10000)
+function TestGame1_2(m)
+    above = 0
+    for i in 1:m
+        result = HeadsOrTails1()
+        if result > -247.5
+            above += 1
+        end
+    end
+    return above/m
+end # TestGame1_2
+
+function TestGame2_2(m)
+    above = 0
+    for i in 1:m
+        result = HeadsOrTails2()
+        if result > -247.5
+            above += 1
+        end
+    end
+    return above/m
+end # TestGame2_2
+
+# fig, ax = PyPlot.subplots()
+# TestGame1(10000, ax)
+# TestGame2(10000, ax)
+
+greater1 = 0
+greater2 = 0
+for i in 1:10
+    result1 = TestGame1_2(10000)
+    result2 = TestGame2_2(10000)
+    if result1 > result2
+        greater1 += 1
+    else
+        greater2 += 1
+    end
+end
+println(greater1)
+println(greater2)
