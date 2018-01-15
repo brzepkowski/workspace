@@ -108,7 +108,7 @@ function PlotMaxLoad(n, m, ax)
     results = []
     expectedValues = []
     czebyszewBounds = []
-    for i in 1000:1000:n
+    for i in 1200:1200:n
         push!(x, i)
         tempResults = []
         E = 0
@@ -146,7 +146,7 @@ function PlotBalancedMaxLoad(n, m, d, ax)
     results = []
     expectedValues = []
     czebyszewBounds = []
-    for i in 1000:1000:n
+    for i in 1200:1200:n
         push!(x, i)
         tempResults = []
         E = 0
@@ -184,7 +184,7 @@ function PlotBalancedMaxLoadDivided(n, m, d, ax)
     results = []
     expectedValues = []
     czebyszewBounds = []
-    for i in 1000:1000:n
+    for i in 1200:1200:n
         push!(x, i)
         tempResults = []
         E = 0
@@ -217,6 +217,6 @@ function PlotBalancedMaxLoadDivided(n, m, d, ax)
 end # PlotBalancedMaxLoadDivided
 
 fig, ax = PyPlot.subplots()
-PlotMaxLoad(10000, 700, ax)
-PlotBalancedMaxLoad(10000, 700, 2, ax)
-PlotBalancedMaxLoadDivided(10000, 700, 2, ax)
+PlotMaxLoad(12000, 1000, ax)
+PlotBalancedMaxLoad(12000, 1000, 4, ax)
+PlotBalancedMaxLoadDivided(12000, 1000, 4, ax)
