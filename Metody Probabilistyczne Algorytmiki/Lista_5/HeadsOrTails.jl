@@ -131,9 +131,11 @@ end # TestGame2_2
 
 greater1 = 0
 greater2 = 0
-for i in 1:10
-    result1 = TestGame1_2(10000)
-    result2 = TestGame2_2(10000)
+for i in 1:500
+    result1 = TestGame1_2(1000)
+    # println("result1: ", result1)
+    result2 = TestGame2_2(1000)
+    # println("result2: ", result2)
     if result1 > result2
         greater1 += 1
     else

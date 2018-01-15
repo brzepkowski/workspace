@@ -1,17 +1,13 @@
 using PyPlot
 
 # m - liczba kul, n - liczba urn
-<<<<<<< HEAD
 function BallsInUrns(m :: Int, n :: Int)
-=======
-function ThrowBallsInUrns(m :: Int64, n :: Int64)
->>>>>>> 3c1a97a39a0d3885fa7d773ce0a4dc5cdcb9843d
     urns = zeros(Int64, n)
     for i in 1:m
         index = rand(1:n)
         urns[index] += 1
     end
-<<<<<<< HEAD
+
     return urns
 end # BallsInUrns
 
@@ -144,33 +140,3 @@ PlotMaxLoad(10000, 10000, 1000, ax)
 # PlotEmptyUrns(2000, 10000, 1000, ax)
 # PlotEmptyUrns(5000, 10000, 1000, ax)
 # PlotEmptyUrns(20000, 10000, 1000, ax)
-=======
-
-    println(urns)
-end # ThrowBallsInUrns
-
-# m - liczba kul, n - liczba urn, a - liczba eksperymentów
-function RunExperiment(m :: Int, n :: Int, a :: Int)
-    x = []
-    EmptyUrnsResults = []
-    push!(x, n)
-    EmptyUrns = []
-    for i in 1:a
-        Result = ThrowBallsInUrns(m, n)
-        MaxBallsAmount = maximum(Result)
-        NumberOfEmptyUrns = 0
-        for k in 1:n
-            if Result[k] == 0
-                NumberOfEmptyUrns += 1
-            end
-        end
-        push!(EmptyUrns, NumberOfEmptyUrns)
-    end
-    push!(EmptyUrnsResults, EmptyUrns)
-    PyPlot.plot(x, EmptyUrnsResults, color="red", "o")
-    # PyPlot.plot(x, ECₙResults, color="blue", linestyle="-")
-    title("Wyniki")
-end # RunExperiment
-
-RunExperiment(10, 10, 100)
->>>>>>> 3c1a97a39a0d3885fa7d773ce0a4dc5cdcb9843d
