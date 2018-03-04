@@ -25,12 +25,15 @@ qc.x(qr[11])
 qc.x(qr[12])
 qc.x(qr[13])
 
+#put barrier before measurement
+qc.barrier(qr)
 # measure
 for j in range(16):
     qc.measure(qr[j], cr[j])
 
 # run and get results
-results = qp.execute(["smiley_writer"], backend='ibmqx5', shots=1024)
+# results = qp.execute(["smiley_writer"], backend='ibmqx5', shots=1024) # Real quantum computer
+results = qp.execute(["smiley_writer"], backend='ibmqx_qasm_simulator', shots=1024) # Simulator
 stats = results.get_counts("smiley_writer")
 
 # Printing using PyPlot
