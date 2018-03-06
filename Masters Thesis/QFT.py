@@ -19,9 +19,9 @@ def inv_qft(circuit, qr, n):
     π = math.pi
     λ = 2 * π / float(2**n)
     for i in reversed(range(n)):
-        circuit.h(qr[i])
+        circuit.h(qr[i]) # Hadamard gate is hermitian
         for j in range(i):
-            circuit.cu1(λ, qr[i], qr[j])
+            circuit.cu1(λ, qr[i], qr[j]) # cu1 gate is not hermitian
 
 n = 13
 qp = QuantumProgram()
@@ -32,8 +32,10 @@ qr = qp.create_quantum_register('qr', n)
 cr = qp.create_classical_register('cr', n)
 qc = qp.create_circuit('fourier_transform', [qr], [cr])
 
+qc.x(qr[1])
+
 qft(qc, qr, n)
-inv_qft(qc, qr, n)
+# inv_qft(qc, qr, n)
 
 #put barrier before measurement
 qc.barrier(qr)
