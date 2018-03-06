@@ -208,55 +208,60 @@ function ExperimentCounters(list, n)
     return (average_cost_uniform, average_cost_harmonic, average_cost_geometric)
 end
 
+
+# Main part of the program
 list = collect(1:100)
-n = 1000
+N = [100, 500, 1000, 5000, 10000, 50000, 100000]
 t = 1000 # Number of experiments
+for n in N
+    println(n, ")")
 
-# No self organisation
-unitary_results = []
-harmonic_results = []
-geometric_results = []
-for i in 1:t
-    (unitary_result, harmonic_result, geometric_result) = Experiment(list, n, AccessNoSelfOrganisation)
-    push!(unitary_results, unitary_result)
-    push!(harmonic_results, harmonic_result)
-    push!(geometric_results, geometric_result)
-end
-println(mean(unitary_results), ", ", mean(harmonic_results), ", ", mean(geometric_results))
-# println(TestMoveToFront(list, n))
+    # No self organisation
+    unitary_results = []
+    harmonic_results = []
+    geometric_results = []
+    for i in 1:t
+        (unitary_result, harmonic_result, geometric_result) = Experiment(list, n, AccessNoSelfOrganisation)
+        push!(unitary_results, unitary_result)
+        push!(harmonic_results, harmonic_result)
+        push!(geometric_results, geometric_result)
+    end
+    println("No self organisation: ", mean(unitary_results), ", ", mean(harmonic_results), ", ", mean(geometric_results))
+    # println(TestMoveToFront(list, n))
 
-# Move to front
-unitary_results = []
-harmonic_results = []
-geometric_results = []
-for i in 1:t
-    (unitary_result, harmonic_result, geometric_result) = Experiment(list, n, AccessMoveToFront)
-    push!(unitary_results, unitary_result)
-    push!(harmonic_results, harmonic_result)
-    push!(geometric_results, geometric_result)
-end
-println(mean(unitary_results), ", ", mean(harmonic_results), ", ", mean(geometric_results))
+    # Move to front
+    unitary_results = []
+    harmonic_results = []
+    geometric_results = []
+    for i in 1:t
+        (unitary_result, harmonic_result, geometric_result) = Experiment(list, n, AccessMoveToFront)
+        push!(unitary_results, unitary_result)
+        push!(harmonic_results, harmonic_result)
+        push!(geometric_results, geometric_result)
+    end
+    println("Move to front: ", mean(unitary_results), ", ", mean(harmonic_results), ", ", mean(geometric_results))
 
-# Transpose
-unitary_results = []
-harmonic_results = []
-geometric_results = []
-for i in 1:t
-    (unitary_result, harmonic_result, geometric_result) = Experiment(list, n, AccessTranspose)
-    push!(unitary_results, unitary_result)
-    push!(harmonic_results, harmonic_result)
-    push!(geometric_results, geometric_result)
-end
-println(mean(unitary_results), ", ", mean(harmonic_results), ", ", mean(geometric_results))
+    # Transpose
+    unitary_results = []
+    harmonic_results = []
+    geometric_results = []
+    for i in 1:t
+        (unitary_result, harmonic_result, geometric_result) = Experiment(list, n, AccessTranspose)
+        push!(unitary_results, unitary_result)
+        push!(harmonic_results, harmonic_result)
+        push!(geometric_results, geometric_result)
+    end
+    println("Transpose: ", mean(unitary_results), ", ", mean(harmonic_results), ", ", mean(geometric_results))
 
-# Counters
-unitary_results = []
-harmonic_results = []
-geometric_results = []
-for i in 1:t
-    (unitary_result, harmonic_result, geometric_result) = ExperimentCounters(list, n)
-    push!(unitary_results, unitary_result)
-    push!(harmonic_results, harmonic_result)
-    push!(geometric_results, geometric_result)
-end
-println(mean(unitary_results), ", ", mean(harmonic_results), ", ", mean(geometric_results))
+    # Counters
+    unitary_results = []
+    harmonic_results = []
+    geometric_results = []
+    for i in 1:t
+        (unitary_result, harmonic_result, geometric_result) = ExperimentCounters(list, n)
+        push!(unitary_results, unitary_result)
+        push!(harmonic_results, harmonic_result)
+        push!(geometric_results, geometric_result)
+    end
+    println("Counters: ", mean(unitary_results), ", ", mean(harmonic_results), ", ", mean(geometric_results))
+end # for
