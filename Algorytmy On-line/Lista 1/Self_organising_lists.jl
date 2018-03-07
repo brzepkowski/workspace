@@ -1,4 +1,5 @@
 using StatsBase
+using PyPlot
 
 function HarmonicNumber(n)
     harmonic_number = 0
@@ -146,7 +147,7 @@ function Experiment(list, n, Access)
     for i in sample_uniform_list
         push!(costs, Access(i, self_organised_list))
     end
-    average_cost_uniform = sum(costs)/length(costs)
+    average_cost_uniform = sum(costs)
     # println(average_cost_uniform)
 
     # Harmonic distribution
@@ -155,7 +156,7 @@ function Experiment(list, n, Access)
     for i in sample_harmonic_list
         push!(costs, Access(i, self_organised_list))
     end
-    average_cost_harmonic = sum(costs)/length(costs)
+    average_cost_harmonic = sum(costs)
     # println(average_cost_harmonic)
 
     # Geometric distribution
@@ -164,7 +165,7 @@ function Experiment(list, n, Access)
     for i in sample_geometric_list
         push!(costs, Access(i, self_organised_list))
     end
-    average_cost_geometric = sum(costs)/length(costs)
+    average_cost_geometric = sum(costs)
     # println(average_cost_geometric)
     return (average_cost_uniform, average_cost_harmonic, average_cost_geometric)
 end
@@ -185,7 +186,7 @@ function ExperimentCounters(list, n)
     for i in sample_uniform_list
         push!(costs, AccessCounters(i, self_organised_list, counters))
     end
-    average_cost_uniform = sum(costs)/length(costs)
+    average_cost_uniform = sum(costs)
     # println(average_cost_uniform)
 
     # Harmonic distribution
@@ -194,7 +195,7 @@ function ExperimentCounters(list, n)
     for i in sample_harmonic_list
         push!(costs, AccessCounters(i, self_organised_list, counters))
     end
-    average_cost_harmonic = sum(costs)/length(costs)
+    average_cost_harmonic = sum(costs)
     # println(average_cost_harmonic)
 
     # Geometric distribution
@@ -203,9 +204,24 @@ function ExperimentCounters(list, n)
     for i in sample_geometric_list
         push!(costs, AccessCounters(i, self_organised_list, counters))
     end
-    average_cost_geometric = sum(costs)/length(costs)
+    average_cost_geometric = sum(costs)
     # println(average_cost_geometric)
     return (average_cost_uniform, average_cost_harmonic, average_cost_geometric)
+end
+
+function PlotResults(x, y₁, y₂, y₃, y₄, title_str)
+    fig, ax = PyPlot.subplots()
+
+    ax[:plot](x, y₁, label="No self organisation", color="blue", "-")
+    ax[:plot](x, y₂, label="Move to front", color="black", "-")
+    ax[:plot](x, y₃, label="Transpose", color="red", "-")
+    ax[:plot](x, y₄, label="Count", color="green", "-")
+    ax[:legend](loc="best")
+
+    grid("on")
+    xlabel("Number of accesses - n")
+    ylabel("Average cost of n accesses")
+    title("$title_str")
 end
 
 
@@ -213,55 +229,100 @@ end
 list = collect(1:100)
 N = [100, 500, 1000, 5000, 10000, 50000, 100000]
 t = 1000 # Number of experiments
+no_self_organisation_uni = []
+no_self_organisation_harm = []
+no_self_organisation_geo = []
+
+move_to_front_uni = []
+move_to_front_harm = []
+move_to_front_geo = []
+
+transpose_uni = []
+transpose_harm = []
+transpose_geo = []
+
+count_uni = []
+count_harm = []
+count_geo = []
+
 for n in N
-    println(n, ")")
+    println("(", n, ")")
 
     # No self organisation
-    unitary_results = []
-    harmonic_results = []
-    geometric_results = []
+    unitary_results₁ = []
+    harmonic_results₁ = []
+    geometric_results₁ = []
     for i in 1:t
         (unitary_result, harmonic_result, geometric_result) = Experiment(list, n, AccessNoSelfOrganisation)
-        push!(unitary_results, unitary_result)
-        push!(harmonic_results, harmonic_result)
-        push!(geometric_results, geometric_result)
+        push!(unitary_results₁, unitary_result)
+        push!(harmonic_results₁, harmonic_result)
+        push!(geometric_results₁, geometric_result)
     end
-    println("No self organisation: ", mean(unitary_results), ", ", mean(harmonic_results), ", ", mean(geometric_results))
-    # println(TestMoveToFront(list, n))
+    push!(no_self_organisation_uni, mean(unitary_results₁))
+    push!(no_self_organisation_harm, mean(harmonic_results₁))
+    push!(no_self_organisation_geo, mean(geometric_results₁))
 
     # Move to front
-    unitary_results = []
-    harmonic_results = []
-    geometric_results = []
+    unitary_results₂ = []
+    harmonic_results₂ = []
+    geometric_results₂ = []
     for i in 1:t
         (unitary_result, harmonic_result, geometric_result) = Experiment(list, n, AccessMoveToFront)
-        push!(unitary_results, unitary_result)
-        push!(harmonic_results, harmonic_result)
-        push!(geometric_results, geometric_result)
+        push!(unitary_results₂, unitary_result)
+        push!(harmonic_results₂, harmonic_result)
+        push!(geometric_results₂, geometric_result)
     end
-    println("Move to front: ", mean(unitary_results), ", ", mean(harmonic_results), ", ", mean(geometric_results))
+    push!(move_to_front_uni, mean(unitary_results₂))
+    push!(move_to_front_harm, mean(harmonic_results₂))
+    push!(move_to_front_geo, mean(geometric_results₂))
 
     # Transpose
-    unitary_results = []
-    harmonic_results = []
-    geometric_results = []
+    unitary_results₃ = []
+    harmonic_results₃ = []
+    geometric_results₃ = []
     for i in 1:t
         (unitary_result, harmonic_result, geometric_result) = Experiment(list, n, AccessTranspose)
-        push!(unitary_results, unitary_result)
-        push!(harmonic_results, harmonic_result)
-        push!(geometric_results, geometric_result)
+        push!(unitary_results₃, unitary_result)
+        push!(harmonic_results₃, harmonic_result)
+        push!(geometric_results₃, geometric_result)
     end
-    println("Transpose: ", mean(unitary_results), ", ", mean(harmonic_results), ", ", mean(geometric_results))
+    push!(transpose_uni, mean(unitary_results₃))
+    push!(transpose_harm, mean(harmonic_results₃))
+    push!(transpose_geo, mean(geometric_results₃))
 
     # Counters
-    unitary_results = []
-    harmonic_results = []
-    geometric_results = []
+    unitary_results₄ = []
+    harmonic_results₄ = []
+    geometric_results₄ = []
     for i in 1:t
         (unitary_result, harmonic_result, geometric_result) = ExperimentCounters(list, n)
-        push!(unitary_results, unitary_result)
-        push!(harmonic_results, harmonic_result)
-        push!(geometric_results, geometric_result)
+        push!(unitary_results₄, unitary_result)
+        push!(harmonic_results₄, harmonic_result)
+        push!(geometric_results₄, geometric_result)
     end
-    println("Counters: ", mean(unitary_results), ", ", mean(harmonic_results), ", ", mean(geometric_results))
+    push!(count_uni, mean(unitary_results₄))
+    push!(count_harm, mean(harmonic_results₄))
+    push!(count_geo, mean(geometric_results₄))
 end # for
+
+println("Uniform:")
+println("No self organisation: ", no_self_organisation_uni)
+println("Move to front: ", move_to_front_uni)
+println("Transpose: ", transpose_uni)
+println("Count: ", count_uni)
+
+println("Harmonic:")
+println("No self organisation: ", no_self_organisation_harm)
+println("Move to front: ", move_to_front_harm)
+println("Transpose: ", transpose_harm)
+println("Count: ", count_harm)
+
+println("Geometric:")
+println("No self organisation: ", no_self_organisation_geo)
+println("Move to front: ", move_to_front_geo)
+println("Transpose: ", transpose_geo)
+println("Count: ", count_geo)
+
+PlotResults(N, no_self_organisation_uni, move_to_front_uni, transpose_uni, count_uni, "Uniform distribution")
+PlotResults(N, no_self_organisation_harm, move_to_front_harm, transpose_harm, count_harm, "Harmonic distribution")
+PlotResults(N, no_self_organisation_geo, move_to_front_geo, transpose_geo, count_geo, "Geometric distribution")
