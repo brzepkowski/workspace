@@ -1,0 +1,40 @@
+|0> - qubit w stanie 0
+|1> - qubit w stanie 1
+|H> - qubit początkowo w stanie 0, na którego podziałała bramka Hadamarda
+|H'> - qubit początkowo w stanie 1, na którego podziałała bramka Hadamarda
+Dla przykładowego stanu |1234> na bramkach w qiskit zapiszemy
+qr[0] = 4
+qr[1] = 3
+qr[2] = 2
+qr[3] = 1
+
+-------------------------------------------------------------------------
+
+"The string corresponding to ;) is
+
+;)  =  '0011101100101001'
+
+To prepare this state we can perform an X on qubits 0, 3, 5, 8, 9, 11, 12, 13. Here we number the bits from 0 to 15, from right to left.
+
+Of course, just writing a bit string in some qubits isn't very quantum. Instead we can prepare a superposition of two different emoticons. We choose ;) and 8), which correspond to the bit strings
+
+8)  =  '0011100000101001'
+;)  =  '0011101100101001'
+
+Note that these strings differ only on bits 8 and 9. It is therefore only these on which the superposition must be prepared. The superposition will be of the '00' of 8), and the '11' of ;) , and so will be a standard Bell state.
+
+# rightmost eight (qu)bits have ')' = 00101001
+qc.x(qr[0])
+qc.x(qr[3])
+qc.x(qr[5])
+
+# second eight (qu)bits have superposition of
+# '8' = 00111000
+# ';' = 00111011
+# these differ only on the rightmost two bits
+qc.h(qr[9]) # create superposition on 9
+qc.cx(qr[9],qr[8]) # spread it to 8 with a cnot
+qc.x(qr[11])
+qc.x(qr[12])
+qc.x(qr[13])"
+

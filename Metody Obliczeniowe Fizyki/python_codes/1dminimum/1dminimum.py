@@ -8,9 +8,6 @@ def simplex1D(f, startingPoint, h, ϵ):
             h = h / 2
     return xₗ
 
-def goldenSectionSearch(f, x₀, x₁, x₂, ϵ):
-    
-
 def polynomial(x):
     return x**2 + 3*x - 4
 
