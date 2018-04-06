@@ -9,21 +9,15 @@ import Grover
 qp = QuantumProgram()
 qp.set_api(Qconfig.APItoken, Qconfig.config["url"]) # set the APIToken and API url
 # -------------------------------------------------------
-n = 3
+n = 6
 
 # set up registers and program
 qr = qp.create_quantum_register('qr', n)
 cr = qp.create_classical_register('cr', n)
 qc = qp.create_circuit('fourier_transform', [qr], [cr])
 
-# grover(qc, qr, 2, 0)
-qc.x(qr[0])
-# qc.h(qr[0])
-# qc.x(qr[1])
-# qc.h(qr[1])
-qc.x(qr[2])
-# qc.h(qr[2])
-QFT.qft(qc, qr, n)
+# QFT.qft(qc, qr, n)
+grover_first(qc, qr)
 
 # -------------put barrier before measurement------------
 qc.barrier(qr)
