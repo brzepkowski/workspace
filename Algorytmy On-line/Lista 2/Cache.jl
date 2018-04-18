@@ -226,12 +226,12 @@ function RandomizedMarkupAlgorithm(elem, list, cache_size)
 end # RandomizedMarkupAlgorithm
 
 # list - set from which we will be getting our samples (ex. {1,2,...,n}), n - size of sample, Access - type of access function
-function Experiment(n, cache_size, CacheHandlingMethod)
+function Experiment(n, cache_size, CacheHandlingMethod, r)
     list = collect(1:n)
-    sample_uniform_list = UniformDistribution(list, n)
-    sample_harmonic_list = HarmonicDistribution(list, n)
-    sample_double_harmonic_list = DoubleHarmonicDistribution(list, n)
-    sample_geometric_list = GeometricDistribution(list, n)
+    sample_uniform_list = UniformDistribution(list, r)
+    sample_harmonic_list = HarmonicDistribution(list, r)
+    sample_double_harmonic_list = DoubleHarmonicDistribution(list, r)
+    sample_geometric_list = GeometricDistribution(list, r)
 
     # Uniform distribution
     cache = Vector{Int64}()
@@ -269,12 +269,12 @@ function Experiment(n, cache_size, CacheHandlingMethod)
 end
 
 # list - set from which we will be getting our samples (ex. {1,2,...,n}), n - size of sample, Access - type of access function
-function Experiment2(n, cache_size, CacheHandlingMethod)
+function Experiment2(n, cache_size, CacheHandlingMethod, r)
     list = collect(1:n)
-    sample_uniform_list = UniformDistribution(list, n)
-    sample_harmonic_list = HarmonicDistribution(list, n)
-    sample_double_harmonic_list = DoubleHarmonicDistribution(list, n)
-    sample_geometric_list = GeometricDistribution(list, n)
+    sample_uniform_list = UniformDistribution(list, r)
+    sample_harmonic_list = HarmonicDistribution(list, r)
+    sample_double_harmonic_list = DoubleHarmonicDistribution(list, r)
+    sample_geometric_list = GeometricDistribution(list, r)
 
     # Uniform distribution
     cache = Vector{Tuple{Int64, Int64}}()
@@ -312,12 +312,12 @@ function Experiment2(n, cache_size, CacheHandlingMethod)
 end
 
 # list - set from which we will be getting our samples (ex. {1,2,...,n}), n - size of sample, Access - type of access function
-function Experiment3(n, cache_size, CacheHandlingMethod)
+function Experiment3(n, cache_size, CacheHandlingMethod, r)
     list = collect(1:n)
-    sample_uniform_list = UniformDistribution(list, n)
-    sample_harmonic_list = HarmonicDistribution(list, n)
-    sample_double_harmonic_list = DoubleHarmonicDistribution(list, n)
-    sample_geometric_list = GeometricDistribution(list, n)
+    sample_uniform_list = UniformDistribution(list, r)
+    sample_harmonic_list = HarmonicDistribution(list, r)
+    sample_double_harmonic_list = DoubleHarmonicDistribution(list, r)
+    sample_geometric_list = GeometricDistribution(list, r)
 
     # Uniform distribution
     cache = Vector{Tuple{Int64, Int64}}()
@@ -360,7 +360,7 @@ function PlotResults(x, y₁, y₂, y₃, y₄, y₅, y₆, title_str)
     ax[:plot](x, y₁, label="FIRST IN FIRST OUT", color="blue", "-")
     ax[:plot](x, y₂, label="FLUSH WHEN FULL", color="black", "-")
     ax[:plot](x, y₃, label="LEAST RECENTLY USED", color="red", "-")
-    ax[:plot](x, y₄, label="LEAST FREQUENTLY USED", color="green", "-")
+    ax[:plot](x, y₄, label="LEAST mi FREQUENTLY USED", color="green", "-")
     ax[:plot](x, y₅, label="RANDOM", color="orange", "-")
     ax[:plot](x, y₆, label="RANDOMIZED MARKUP ALGORITHM", color="purple", "-")
     ax[:legend](loc="best")
@@ -371,6 +371,7 @@ function PlotResults(x, y₁, y₂, y₃, y₄, y₅, y₆, title_str)
     title("$title_str")
 end
 
+R = 1000 # R - number of requests
 M = 1000 # M - number of experiments
 K = [10, 9, 8, 7, 6, 5]
 N = [20, 30, 40, 50, 60, 70, 80, 90, 100]
@@ -408,32 +409,32 @@ for k in K
         print("k: ", k, ", n: ", n)
         cache_size = trunc(Int64, ceil(n/k))
         for m in 1:M
-            (average_cost_uniform, average_cost_harmonic, average_cost_double_harmonic, average_cost_geometric) = Experiment(n, cache_size, FirstInFirstOut)
+            (average_cost_uniform, average_cost_harmonic, average_cost_double_harmonic, average_cost_geometric) = Experiment(n, cache_size, FirstInFirstOut, R)
             # println((average_cost_uniform, average_cost_harmonic, average_cost_double_harmonic, average_cost_geometric))
             FIFO_uni[i] += average_cost_uniform; FIFO_harm[i] += average_cost_harmonic; FIFO_double_harm[i] += average_cost_double_harmonic; FIFO_geo[i] += average_cost_geometric
         end
         for m in 1:M
-            (average_cost_uniform, average_cost_harmonic, average_cost_double_harmonic, average_cost_geometric) = Experiment(n, cache_size, FlushWhenFull)
+            (average_cost_uniform, average_cost_harmonic, average_cost_double_harmonic, average_cost_geometric) = Experiment(n, cache_size, FlushWhenFull, R)
             # println((average_cost_uniform, average_cost_harmonic, average_cost_double_harmonic, average_cost_geometric))
             FWF_uni[i] += average_cost_uniform; FWF_harm[i] += average_cost_harmonic; FWF_double_harm[i] += average_cost_double_harmonic; FWF_geo[i] += average_cost_geometric
         end
         for m in 1:M
-            (average_cost_uniform, average_cost_harmonic, average_cost_double_harmonic, average_cost_geometric) = Experiment(n, cache_size, Random)
+            (average_cost_uniform, average_cost_harmonic, average_cost_double_harmonic, average_cost_geometric) = Experiment(n, cache_size, Random, R)
             # println((average_cost_uniform, average_cost_harmonic, average_cost_double_harmonic, average_cost_geometric))
             RND_uni[i] += average_cost_uniform; RND_harm[i] += average_cost_harmonic; RND_double_harm[i] += average_cost_double_harmonic; RND_geo[i] += average_cost_geometric
         end
         for m in 1:M
-            (average_cost_uniform, average_cost_harmonic, average_cost_double_harmonic, average_cost_geometric) = Experiment2(n, cache_size, LeastRecentlyUsed)
+            (average_cost_uniform, average_cost_harmonic, average_cost_double_harmonic, average_cost_geometric) = Experiment2(n, cache_size, LeastRecentlyUsed, R)
             # println((average_cost_uniform, average_cost_harmonic, average_cost_double_harmonic, average_cost_geometric))
             LRU_uni[i] += average_cost_uniform; LRU_harm[i] += average_cost_harmonic; LRU_double_harm[i] += average_cost_double_harmonic; LRU_geo[i] += average_cost_geometric
         end
         for m in 1:M
-            (average_cost_uniform, average_cost_harmonic, average_cost_double_harmonic, average_cost_geometric) = Experiment3(n, cache_size, LeastFrequentlyUsed)
+            (average_cost_uniform, average_cost_harmonic, average_cost_double_harmonic, average_cost_geometric) = Experiment3(n, cache_size, LeastFrequentlyUsed, R)
             # println((average_cost_uniform, average_cost_harmonic, average_cost_double_harmonic, average_cost_geometric))
             LFU_uni[i] += average_cost_uniform; LFU_harm[i] += average_cost_harmonic; LFU_double_harm[i] += average_cost_double_harmonic; LFU_geo[i] += average_cost_geometric
         end
         for m in 1:M
-            (average_cost_uniform, average_cost_harmonic, average_cost_double_harmonic, average_cost_geometric) = Experiment3(n, cache_size, RandomizedMarkupAlgorithm)
+            (average_cost_uniform, average_cost_harmonic, average_cost_double_harmonic, average_cost_geometric) = Experiment3(n, cache_size, RandomizedMarkupAlgorithm, R)
             # println((average_cost_uniform, average_cost_harmonic, average_cost_double_harmonic, average_cost_geometric))
             RMA_uni[i] += average_cost_uniform; RMA_harm[i] += average_cost_harmonic; RMA_double_harm[i] += average_cost_double_harmonic; RMA_geo[i] += average_cost_geometric
         end
@@ -466,8 +467,8 @@ for k in K
         LFU_geo[i] /= M
         RMA_geo[i] /= M
     end
-    PlotResults(N, FIFO_uni, FWF_uni, RND_uni, LRU_uni, LFU_uni, RMA_uni, "Uniform | k = n/$k")
-    PlotResults(N, FIFO_harm, FWF_harm, RND_harm, LRU_harm, LFU_harm, RMA_harm, "Harmonic | k = n/$k")
-    PlotResults(N, FIFO_double_harm, FWF_double_harm, RND_double_harm, LRU_double_harm, LFU_double_harm, RMA_double_harm, "Double harmonic | k = n/$k")
-    PlotResults(N, FIFO_geo, FWF_geo, RND_geo, LRU_geo, LFU_geo, RMA_geo, "Geometric | k = n/$k")
+    PlotResults(N, FIFO_uni, FWF_uni, RND_uni, LRU_uni, LFU_uni, RMA_uni, "Uniform | k = n/$k, $R zapytań, $M prób")
+    PlotResults(N, FIFO_harm, FWF_harm, RND_harm, LRU_harm, LFU_harm, RMA_harm, "Harmonic | k = n/$k, $R zapytań, $M prób")
+    PlotResults(N, FIFO_double_harm, FWF_double_harm, RND_double_harm, LRU_double_harm, LFU_double_harm, RMA_double_harm, "Double harmonic | k = n/$k, $R zapytań, $M prób")
+    PlotResults(N, FIFO_geo, FWF_geo, RND_geo, LRU_geo, LFU_geo, RMA_geo, "Geometric | k = n/$k, $R zapytań, $M prób")
 end
