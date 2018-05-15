@@ -84,7 +84,7 @@ function FirstInFirstOut(elem, list, cache_size)
         if length(list) < cache_size
             push!(list, elem)
         else
-            deleteat!(list, cache_size)
+            deleteat!(list, 1)
             push!(list, elem)
         end
         return 1
@@ -98,7 +98,7 @@ function FlushWhenFull(elem, list, cache_size)
         if length(list) < cache_size
             push!(list, elem)
         else
-            list = []
+            empty!(list)
             push!(list, elem)
         end
         return 1
@@ -168,15 +168,24 @@ function LeastFrequentlyUsed(elem, list, cache_size)
 end # LeastFrequentlyUsed
 
 function Random(elem, list, cache_size)
+    # println("elem:", elem)
+    # println("cache: ", list)
     if find(list .== elem) != []
+        # println("Weszło 1)")
         return 0
     else
         if length(list) < cache_size
+            # println("Weszło 2)")
             push!(list, elem)
         else
+            # println("Weszło 3)")
             removed_item_index = UniformDistribution(collect(1:cache_size), 1)
+            # println("Do wywalenia: ", removed_item_index)
+            # println("PRZED: ", list)
             deleteat!(list, removed_item_index)
+            # println("PO:  ", list)
             push!(list, elem)
+            # println("PO2: ", list)
         end
         return 1
     end
@@ -197,30 +206,36 @@ function RandomizedMarkupAlgorithm(elem, list, cache_size)
         end
         return 0
     else
-        marked_elements_counter = 0
-        not_marked_elements = Vector{Tuple{Int64, Int64}}()
-        for i in 1:list_len
-            if list[i][2] == 1
-                marked_elements_counter += 1
-            else
-                push!(not_marked_elements, list[i])
-            end
-        end
-        if marked_elements_counter == list_len # All elements are marked
+        if length(list) < cache_size # Jest jeszcze miejsce w cache
+            push!(list, (elem, 1))
+        else
+            marked_elements_counter = 0
+            # not_marked_elements = Vector{Tuple{Int64, Int64}}()
+            not_marked_elements = []
             for i in 1:list_len
-                list[i] = (list[i][1], 0)
-            end
-            not_marked_elements = list
-        end # At this point all unmarked elements are stored in vector not_marked_elements
-        if list_len > 0
-            p = UniformDistribution(not_marked_elements, 1)
-            for i in 1:list_len
-                if list[i] == p
-                    deleteat!(list, i)
+                if list[i][2] == 1
+                    marked_elements_counter += 1
+                else
+                    push!(not_marked_elements, list[i])
                 end
             end
+            if marked_elements_counter == list_len # All elements are marked
+                for i in 1:list_len
+                    list[i] = (list[i][1], 0)
+                end
+                not_marked_elements = copy(list)
+            end # At this point all unmarked elements are stored in vector not_marked_elements
+            if list_len > 0
+                p = UniformDistribution(not_marked_elements, 1)
+                for i in 1:list_len
+                    if list[i] == p[1]
+                        deleteat!(list, i)
+                        break
+                    end
+                end
+            end
+            push!(list, (elem, 1))
         end
-        push!(list, (elem, 1))
         return 1
     end
 end # RandomizedMarkupAlgorithm
@@ -243,7 +258,7 @@ function Experiment(n, cache_size, CacheHandlingMethod, r)
 
     # Harmonic distribution
     cache = Vector{Int64}()
-    costs = []
+    empty!(costs)
     for i in sample_harmonic_list
         push!(costs, CacheHandlingMethod(i, cache, cache_size))
     end
@@ -251,7 +266,7 @@ function Experiment(n, cache_size, CacheHandlingMethod, r)
 
     # Double harmonic distribution
     cache = Vector{Int64}()
-    costs = []
+    empty!(costs)
     for i in sample_double_harmonic_list
         push!(costs, CacheHandlingMethod(i, cache, cache_size))
     end
@@ -259,7 +274,7 @@ function Experiment(n, cache_size, CacheHandlingMethod, r)
 
     # Geometric distribution
     cache = Vector{Int64}()
-    costs = []
+    empty!(costs)
     for i in sample_geometric_list
         push!(costs, CacheHandlingMethod(i, cache, cache_size))
     end
@@ -286,7 +301,7 @@ function Experiment2(n, cache_size, CacheHandlingMethod, r)
 
     # Harmonic distribution
     cache = Vector{Tuple{Int64, Int64}}()
-    costs = []
+    empty!(costs)
     for (index, i) in enumerate(sample_harmonic_list)
         push!(costs, CacheHandlingMethod(i, cache, cache_size, index))
     end
@@ -294,7 +309,7 @@ function Experiment2(n, cache_size, CacheHandlingMethod, r)
 
     # Double harmonic distribution
     cache = Vector{Tuple{Int64, Int64}}()
-    costs = []
+    empty!(costs)
     for (index, i) in enumerate(sample_double_harmonic_list)
         push!(costs, CacheHandlingMethod(i, cache, cache_size, index))
     end
@@ -302,7 +317,7 @@ function Experiment2(n, cache_size, CacheHandlingMethod, r)
 
     # Geometric distribution
     cache = Vector{Tuple{Int64, Int64}}()
-    costs = []
+    empty!(costs)
     for (index, i) in enumerate(sample_geometric_list)
         push!(costs, CacheHandlingMethod(i, cache, cache_size, index))
     end
@@ -329,7 +344,7 @@ function Experiment3(n, cache_size, CacheHandlingMethod, r)
 
     # Harmonic distribution
     cache = Vector{Tuple{Int64, Int64}}()
-    costs = []
+    empty!(costs)
     for (index, i) in enumerate(sample_harmonic_list)
         push!(costs, CacheHandlingMethod(i, cache, cache_size))
     end
@@ -337,7 +352,7 @@ function Experiment3(n, cache_size, CacheHandlingMethod, r)
 
     # Double harmonic distribution
     cache = Vector{Tuple{Int64, Int64}}()
-    costs = []
+    empty!(costs)
     for (index, i) in enumerate(sample_double_harmonic_list)
         push!(costs, CacheHandlingMethod(i, cache, cache_size))
     end
@@ -345,7 +360,7 @@ function Experiment3(n, cache_size, CacheHandlingMethod, r)
 
     # Geometric distribution
     cache = Vector{Tuple{Int64, Int64}}()
-    costs = []
+    empty!(costs)
     for (index, i) in enumerate(sample_geometric_list)
         push!(costs, CacheHandlingMethod(i, cache, cache_size))
     end
@@ -360,19 +375,19 @@ function PlotResults(x, y₁, y₂, y₃, y₄, y₅, y₆, title_str)
     ax[:plot](x, y₁, label="FIRST IN FIRST OUT", color="blue", "-")
     ax[:plot](x, y₂, label="FLUSH WHEN FULL", color="black", "-")
     ax[:plot](x, y₃, label="LEAST RECENTLY USED", color="red", "-")
-    ax[:plot](x, y₄, label="LEAST mi FREQUENTLY USED", color="green", "-")
+    ax[:plot](x, y₄, label="LEAST FREQUENTLY USED", color="green", "-")
     ax[:plot](x, y₅, label="RANDOM", color="orange", "-")
     ax[:plot](x, y₆, label="RANDOMIZED MARKUP ALGORITHM", color="purple", "-")
     ax[:legend](loc="best")
 
     grid("on")
-    xlabel("Number of requesetd pages - n")
-    ylabel("Average cost of n accesses")
+    xlabel("Number of pages n, that can be requested")
+    ylabel("Average cost of accesses")
     title("$title_str")
 end
 
 R = 1000 # R - number of requests
-M = 1000 # M - number of experiments
+M = 300 # M - number of experiments
 K = [10, 9, 8, 7, 6, 5]
 N = [20, 30, 40, 50, 60, 70, 80, 90, 100]
 
@@ -467,8 +482,8 @@ for k in K
         LFU_geo[i] /= M
         RMA_geo[i] /= M
     end
-    PlotResults(N, FIFO_uni, FWF_uni, RND_uni, LRU_uni, LFU_uni, RMA_uni, "Uniform | k = n/$k, $R zapytań, $M prób")
-    PlotResults(N, FIFO_harm, FWF_harm, RND_harm, LRU_harm, LFU_harm, RMA_harm, "Harmonic | k = n/$k, $R zapytań, $M prób")
-    PlotResults(N, FIFO_double_harm, FWF_double_harm, RND_double_harm, LRU_double_harm, LFU_double_harm, RMA_double_harm, "Double harmonic | k = n/$k, $R zapytań, $M prób")
-    PlotResults(N, FIFO_geo, FWF_geo, RND_geo, LRU_geo, LFU_geo, RMA_geo, "Geometric | k = n/$k, $R zapytań, $M prób")
+    PlotResults(N, FIFO_uni, FWF_uni, LRU_uni, LFU_uni, RND_uni, RMA_uni, "Uniform | k = n/$k, $R zapytań, $M prób")
+    PlotResults(N, FIFO_harm, FWF_harm, LRU_harm, LFU_harm, RND_harm, RMA_harm, "Harmonic | k = n/$k, $R zapytań, $M prób")
+    PlotResults(N, FIFO_double_harm, FWF_double_harm, LRU_double_harm, LFU_double_harm, RND_double_harm, RMA_double_harm, "Double harmonic | k = n/$k, $R zapytań, $M prób")
+    PlotResults(N, FIFO_geo, FWF_geo, LRU_geo, LFU_geo, RND_geo, RMA_geo, "Geometric | k = n/$k, $R zapytań, $M prób")
 end
