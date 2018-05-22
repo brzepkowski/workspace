@@ -1,6 +1,8 @@
 from qiskit import QuantumProgram
 import Qconfig
 import matplotlib.pyplot as plt
+plt.rc('font', family='monospace')
+from qiskit import register, available_backends, get_backend
 
 qp = QuantumProgram()
 qp.set_api(Qconfig.APItoken, Qconfig.config["url"]) # set the APIToken and API url
@@ -9,6 +11,18 @@ qp.set_api(Qconfig.APItoken, Qconfig.config["url"]) # set the APIToken and API u
 qr = qp.create_quantum_register('qr', 16)
 cr = qp.create_classical_register('cr', 16)
 qc = qp.create_circuit('smiley_writer', [qr], [cr])
+
+def plot_smiley (stats, shots):
+    for bitString in stats:
+        char = chr(int( bitString[0:8] ,2)) # get string of the leftmost 8 bits and convert to an ASCII character
+        char += chr(int( bitString[8:16] ,2)) # do the same for string of rightmost 8 bits, and add it to the previous character
+        prob = stats[bitString] / shots # fraction of shots for which this result occurred
+        # create plot with all characters on top of each other with alpha given by how often it turned up in the output
+        plt.annotate( char, (0.5,0.5), va="center", ha="center", color = (0,0,0, prob ), size = 300)
+        if (prob>0.05): # list prob and char for the dominant results (occurred for more than 5% of shots)
+            print(str(prob)+"\t"+char)
+    plt.axis('off')
+    plt.show()
 
 # rightmost eight (qu)bits have ')' = 00101001
 qc.x(qr[0])
@@ -31,20 +45,17 @@ qc.barrier(qr)
 for j in range(16):
     qc.measure(qr[j], cr[j])
 
-# run and get results
-# results = qp.execute(["smiley_writer"], backend='ibmqx5', shots=1024) # Real quantum computer
-results = qp.execute(["smiley_writer"], backend='ibmqx_qasm_simulator', shots=1024) # Simulator
-stats = results.get_counts("smiley_writer")
+backends = available_backends()
+backend = get_backend('ibmqx5')
+print('Status of ibmqx5:',backend.status)
 
-# Printing using PyPlot
-plt.rc('font', family='monospace')
-for bitString in stats:
-    char = chr(int( bitString[0:8] ,2)) # get string of the leftmost 8 bits and convert to an ASCII character
-    char += chr(int( bitString[8:16] ,2)) # do the same for string of rightmost 8 bits, and add it to the previous character
-    prob = stats[bitString] / 1024 # fraction of shots for which this result occurred
-    # create plot with all characters on top of each other with alpha given by how often it turned up in the output
-    plt.annotate( char, (0.5,0.5), va="center", ha="center", color = (0,0,0, prob ), size = 300)
-    if (prob>0.05): # list prob and char for the dominant results (occurred for more than 5% of shots)
-        print(str(prob)+"\t"+char)
-plt.axis('off')
-plt.show()
+if backend.status["available"] is True:
+    print("\nThe device is available, so we'll submit the job.")
+    
+    shots_device = 1000
+    job_device = qp.execute(qc, backend, shots=shots_device)
+    stats_device = job_device.result().get_counts()
+else:
+    print("\nThe device is not available. Try again later.")
+
+plot_smiley(stats_device, shots_device)

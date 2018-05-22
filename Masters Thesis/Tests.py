@@ -1,20 +1,42 @@
 from qiskit import QuantumProgram
+from qiskit import register, available_backends, get_backend
 import Qconfig
 import math
-# Import basic plotting tools
 from qiskit.tools.visualization import plot_histogram
+from qiskit.tools.visualization import latex_drawer, plot_circuit # Needed to generate latex code of circuits
 import QFT
 import Grover
 
-qp = QuantumProgram()
-qp.set_api(Qconfig.APItoken, Qconfig.config["url"]) # set the APIToken and API url
-# -------------------------------------------------------
+###############################################################
+# Make a quantum program for the GHZ state.
+###############################################################
 n = 6
+QPS_SPECS = {
+    "circuits": [
+        {
+            "name": "test_circuit",
+            "quantum_registers": [{
+                "name": "qr",
+                "size": n
+            }],
+            "classical_registers": [{
+                "name": "cr",
+                "size": n
+            }]
+        }
+    ]
+}
+
+backends = available_backends()
+print(backends)
+
+qp = QuantumProgram(specs=QPS_SPECS)
+# -------------------------------------------------------
 
 # set up registers and program
-qr = qp.create_quantum_register('qr', n)
-cr = qp.create_classical_register('cr', n)
-qc = qp.create_circuit('fourier_transform', [qr], [cr])
+qr = qp.get_quantum_register('qr')
+cr = qp.get_classical_register('cr')
+qc = qp.get_circuit('test_circuit')
 
 # QFT.qft(qc, qr, n)
 grover_first(qc, qr)
@@ -25,9 +47,11 @@ qc.barrier(qr)
 for j in range(n):
     qc.measure(qr[j], cr[j])
 
-# run and get results
-# results = qp.execute(["smiley_writer"], backend='ibmqx5', shots=1024) # Real quantum computer
-results = qp.execute(["fourier_transform"], backend='ibmqx_qasm_simulator', shots=1024, wait=10, timeout=240) # Simulator
-stats = results.get_counts("fourier_transform")
+# ------------------- get results -----------------------
+
+qiskit.register(Qconfig.APItoken, Qconfig.config["url"]) # set the APIToken and API url
+# latex_string = plot_circuit(qc)
+results = qp.execute(["test_circuit"], backend='local_qasm_simulator', shots=1024, timeout=600)
+stats = results.get_counts("test_circuit")
 print(stats)
 plot_histogram(stats)
