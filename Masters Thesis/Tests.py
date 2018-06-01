@@ -39,7 +39,7 @@ cr = qp.get_classical_register('cr')
 qc = qp.get_circuit('test_circuit')
 
 # QFT.qft(qc, qr, n)
-grover_first(qc, qr)
+# grover_first(qc, qr)
 
 # -------------put barrier before measurement------------
 qc.barrier(qr)
@@ -51,7 +51,7 @@ for j in range(n):
 
 qiskit.register(Qconfig.APItoken, Qconfig.config["url"]) # set the APIToken and API url
 # latex_string = plot_circuit(qc)
-results = qp.execute(["test_circuit"], backend='local_qasm_simulator', shots=1024, timeout=600)
+results = qp.execute(["test_circuit"], backend='ibmq_qasm_simulator', shots=1024, timeout=600)
 stats = results.get_counts("test_circuit")
 print(stats)
 plot_histogram(stats)
