@@ -1,4 +1,13 @@
 # import QFT
+import math
+
+def get_binary(number, n):
+    number_bin = bin(number)[2:]
+    l = len(number_bin)
+    while l < n:
+        number_bin = '0' + number_bin
+        l += 1
+    return number_bin
 
 # def gcd(a, b):
 #     if b == 0:
@@ -104,6 +113,7 @@ def incrementer(circuit, qr, n):
     for i in range(1, n - 2, 2):
         CNOT_gate(circuit, qr, n, 0, i)
 
+# TODO: STARTING POINT!!!
 def controlled_incrementer(circuit, qr, m, n, external_control):
     # Initial gates (CNOTs and NOTs) before first subtraction widget
     for i in range(1, n - 2, 2):
@@ -130,19 +140,39 @@ def controlled_incrementer(circuit, qr, m, n, external_control):
     for i in range(1, n - 2, 2):
         extended_CNOT_gate(circuit, qr, m, 0, i, external_control)
 
+def interleave_registers(circuit, qr, n_target, n_ancilla):
+    target_qubits_pointer = 1
+    for i in range(n_ancilla - 1):
+        circuit.swap(qr[n_target + i], qr[target_qubits_pointer])
+        for j in range(i + 1, n_target - 2):
+            circuit.swap(qr[n_target + i], qr[target_qubits_pointer + j])
+        target_qubits_pointer += 2
+
+# qr passed to this function does not have form with interleaved target and ancilla qubits,
+# so initially we have to swap these properly
+# n - size of the register (it will contain floor of n/2 target qubits and ceiling of n/2 ancilla qubits)
+# In fact for n target qubits we are using n - 1 ancilla qubits
+# a - number, which will be added
+# TODO: STARTING POINT!!!
+# def carry_gate(circuit, qr, m, n, a):
+#     n_target = math.ceil(n/2)
+#     n_ancilla = math.floor(n/2)
+#     interleave_registers(circuit, qr, n_target, n_ancilla)
+#     print(get_binary(a, n_target))
+
+
 # n - number of qubits in register, which will be incremented
 # m - total number of quibts used in the circuit
-def shor(circuit, qr, cr, n, m):
-    NOT_gate(circuit, qr, m, m - 1)
+def shor(circuit, qr, cr, n, m, a):
     # incrementer(circuit, qr, n)
-    controlled_incrementer(circuit, qr, m, n, m - 1)
-    controlled_incrementer(circuit, qr, m, n, m - 1)
-    controlled_incrementer(circuit, qr, m, n, m - 1)
-    controlled_incrementer(circuit, qr, m, n, m - 1)
-    controlled_incrementer(circuit, qr, m, n, m - 1)
-    controlled_incrementer(circuit, qr, m, n, m - 1)
-    controlled_incrementer(circuit, qr, m, n, m - 1)
-    controlled_incrementer(circuit, qr, m, n, m - 1)
+    # NOT_gate(circuit, qr, m, m - 1)
+    # controlled_incrementer(circuit, qr, m, n, m - 1)
+    # carry_gate(circuit, qr, m, n, a)
+    NOT_gate(circuit, qr, m, 0)
+    NOT_gate(circuit, qr, m, 1)
+    NOT_gate(circuit, qr, m, 2)
+    NOT_gate(circuit, qr, m, 3)
+    interleave_registers(circuit, qr, 4, 4)
     # -------------Barrier before measurement------------
     circuit.barrier(qr)
     # measure

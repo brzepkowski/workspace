@@ -41,7 +41,8 @@ cr = qp.get_classical_register('cr')
 qc = qp.get_circuit('test_circuit')
 
 # grover(qc, qr, cr, n - 1, 10, 0)
-shor(qc, qr, cr, n - 1, n)
+print(qr[2])
+shor(qc, qr, cr, n - 1, n, 11)
 
 # plot_circuit(qc)
 # ------------------- get results -----------------------
