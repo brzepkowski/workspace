@@ -154,6 +154,17 @@ def interleave_registers(circuit, qr, m, n_target, n_ancilla):
             SWAP_gate(circuit, qr, m, n_target + i, target_qubits_pointer + j)
         target_qubits_pointer += 2
 
+def undo_registers_interleaving(circuit, qr, m, n_target, n_ancilla):
+    target_qubits_pointer = 1
+    ancilla_qubits_pointer = 1
+    for i in range(n_ancilla - 1): # We are not moving the last ancilla qubit
+        SWAP_gate(circuit, qr, m, target_qubits_pointer, target_qubits_pointer + ancilla_qubits_pointer)
+        for j in range(1, ancilla_qubits_pointer):
+            SWAP_gate(circuit, qr, m, target_qubits_pointer + j, target_qubits_pointer + ancilla_qubits_pointer)
+        target_qubits_pointer += 1
+        ancilla_qubits_pointer += 1
+
+
 # qr passed to this function does not have form with interleaved target and ancilla qubits,
 # so initially we have to swap these properly
 # n - size of the register (it will contain floor of n/2 target qubits and ceiling of n/2 ancilla qubits)
@@ -192,6 +203,7 @@ def carry_gate(circuit, qr, m, n, a):
             if bit == '1':
                 NOT_gate(circuit, qr, m, n - 2 - (2*(n_target - i - 1)))
                 CNOT_gate(circuit, qr, m, n - 2 - (2*(n_target - i - 1)), n - 1 - (2*(n_target - i - 1)))
+    undo_registers_interleaving(circuit, qr, m, n_target, n_ancilla)
 
 # n - number of qubits in register, which will be incremented
 # m - total number of quibts used in the circuit
@@ -203,7 +215,11 @@ def shor(circuit, qr, cr, n, m, a):
     NOT_gate(circuit, qr, m, 1)
     NOT_gate(circuit, qr, m, 2)
     NOT_gate(circuit, qr, m, 3)
-    # carry_gate(circuit, qr, m, n, a)
+    # n_target = math.ceil(n/2)
+    # n_ancilla = math.floor(n/2)
+    # interleave_registers(circuit, qr, m, n_target, n_ancilla)
+    # undo_registers_interleaving(circuit, qr, m, n_target, n_ancilla)
+    carry_gate(circuit, qr, m, n, a)
     # -------------Barrier before measurement------------
     circuit.barrier(qr)
     # measure
