@@ -51,8 +51,10 @@ def add_controlled_Z_gate(circuit, qr, n):
                 ancilla += 2
 
 # n - number of qubits, m - how many times Uf and Us operators have to be applied
-# Note: user has to have in fact one ancilla qubit, so the actual number of qubits used is equal to n + 1
+# Note: user needs to provide one ancilla qubit, so the actual number of qubits used in quantum circuit is equal to n + 1
 def grover(circuit, qr, cr, n, m, searched_number):
+    print("n: ", n)
+    print("m: ", m)
     # ----Hadamard gates for uniform superposition----
     for i in range(1, n + 1): # The 0-th qubit is borrowed qubit
         circuit.h(qr[i])
@@ -76,7 +78,7 @@ def grover(circuit, qr, cr, n, m, searched_number):
             circuit.x(qr[i])
         for i in range(1, n + 1): # The 0-th qubit is borrowed qubit
             circuit.h(qr[i])
-    # -------------Put barrier before measurement------------
+    # -------------Barrier before measurement------------
     circuit.barrier(qr)
     # measure
     for j in range(1, n + 1):

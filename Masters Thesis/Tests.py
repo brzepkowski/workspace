@@ -5,13 +5,14 @@ import math
 from qiskit.tools.visualization import plot_histogram
 from qiskit.tools.visualization import latex_drawer, plot_circuit # Needed to generate latex code of circuits
 from qiskit.tools.visualization import circuit_drawer
-import QFT
-import Grover
+# import QFT
+# import Grover
+import Shor
 
 ###############################################################
 # Make a quantum program for the GHZ state.
 ###############################################################
-n = 4
+n = 6
 QPS_SPECS = {
     "circuits": [
         {
@@ -39,21 +40,15 @@ qr = qp.get_quantum_register('qr')
 cr = qp.get_classical_register('cr')
 qc = qp.get_circuit('test_circuit')
 
-# QFT.qft(qc, qr, n)
-grover(qc, qr, cr, n - 1, 1, 0)
-
-# -------------put barrier before measurement------------
-# qc.barrier(qr)
-# # measure
-# for j in range(1, n):
-#     qc.measure(qr[j], cr[j])
+# grover(qc, qr, cr, n - 1, 10, 0)
+shor(qc, qr, cr, n)
 
 plot_circuit(qc)
 # ------------------- get results -----------------------
 
 qiskit.register(Qconfig.APItoken, Qconfig.config["url"]) # set the APIToken and API url
 # latex_string = plot_circuit(qc)
-results = qp.execute(["test_circuit"], backend='local_qasm_simulator', shots=10, timeout=600)
+results = qp.execute(["test_circuit"], backend='local_qasm_simulator', shots=1, timeout=600)
 stats = results.get_counts("test_circuit")
 print(stats)
-plot_histogram(stats)
+# plot_histogram(stats)
