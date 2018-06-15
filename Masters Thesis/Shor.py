@@ -33,6 +33,12 @@ def NOT_gate(circuit, qr, n, target):
         if k != target:
             circuit.iden(qr[k])
 
+def SWAP_gate(circuit, qr, n, target1, target2):
+    circuit.swap(qr[target1], qr[target2])
+    for k in range(n):
+        if k != target1 and k != target2:
+            circuit.iden(qr[k])
+
 # In fact, we will implement MAJ in reverse order, because we want to subtract instead of add
 def MAJ_gate(circuit, qr, n, top_qubit, middle_qubit, bottom_qubit):
     Toffoli_gate(circuit, qr, n, top_qubit, middle_qubit, bottom_qubit)
@@ -140,12 +146,12 @@ def controlled_incrementer(circuit, qr, m, n, external_control):
     for i in range(1, n - 2, 2):
         extended_CNOT_gate(circuit, qr, m, 0, i, external_control)
 
-def interleave_registers(circuit, qr, n_target, n_ancilla):
+def interleave_registers(circuit, qr, m, n_target, n_ancilla):
     target_qubits_pointer = 1
     for i in range(n_ancilla - 1):
-        circuit.swap(qr[n_target + i], qr[target_qubits_pointer])
+        SWAP_gate(circuit, qr, m, n_target + i, target_qubits_pointer)
         for j in range(i + 1, n_target - 2):
-            circuit.swap(qr[n_target + i], qr[target_qubits_pointer + j])
+            SWAP_gate(circuit, qr, m, n_target + i, target_qubits_pointer + j)
         target_qubits_pointer += 2
 
 # qr passed to this function does not have form with interleaved target and ancilla qubits,
@@ -154,12 +160,38 @@ def interleave_registers(circuit, qr, n_target, n_ancilla):
 # In fact for n target qubits we are using n - 1 ancilla qubits
 # a - number, which will be added
 # TODO: STARTING POINT!!!
-# def carry_gate(circuit, qr, m, n, a):
-#     n_target = math.ceil(n/2)
-#     n_ancilla = math.floor(n/2)
-#     interleave_registers(circuit, qr, n_target, n_ancilla)
-#     print(get_binary(a, n_target))
-
+# WARNING: We are not going to optimize the circuit on the highest (in the circuit)
+# qubits, because of which we will be using n ancilla qubits instead of n - 1. Moreover,
+# we need additional qubit to store the carry of the whole procedure, so in fact we will be using n + 1
+# ancilla qubits. THE FINAL QUBIT, WHICH WILL STORE THE CARRY, HAS INDEX n! Also n_targe must be equal to n_ancilla
+def carry_gate(circuit, qr, m, n, a):
+    n_target = math.ceil(n/2)
+    n_ancilla = math.floor(n/2)
+    interleave_registers(circuit, qr, m, n_target, n_ancilla) # We are not interleaving the final qubit, where we will store carry
+    a_binary = get_binary(a, n_target)
+    # First ascending gates
+    CNOT_gate(circuit, qr, m, n - 1, n)
+    for (i, bit) in enumerate(reversed(a_binary)):
+        if i != (n_target - 1):
+            if bit == '1':
+                CNOT_gate(circuit, qr, m, n - 2 - (2*i), n - 1 - (2*i))
+                NOT_gate(circuit, qr, m, n - 2 - (2*i))
+            Toffoli_gate(circuit, qr, m, n - 3 - (2*i), n - 2 - (2*i), n - 1 - (2*i))
+        else:
+            CNOT_gate(circuit, qr, m, n - 2 - (2*i), n - 1 - (2*i))
+    for i in reversed(range(n_target - 1)):
+        Toffoli_gate(circuit, qr, m, n - 3 - (2*i), n - 2 - (2*i), n - 1 - (2*i))
+    CNOT_gate(circuit, qr, m, n - 1, n)
+    for i in range(n_target - 1):
+        Toffoli_gate(circuit, qr, m, n - 3 - (2*i), n - 2 - (2*i), n - 1 - (2*i))
+    for (i, bit) in enumerate(a_binary):
+        if i == 0:
+            CNOT_gate(circuit, qr, m, 0, 1)
+        else:
+            Toffoli_gate(circuit, qr, m, n - 3 - (2 * (n_target - i - 1)), n - 2 - (2*(n_target - i - 1)), n - 1 - (2*(n_target - i - 1)))
+            if bit == '1':
+                NOT_gate(circuit, qr, m, n - 2 - (2*(n_target - i - 1)))
+                CNOT_gate(circuit, qr, m, n - 2 - (2*(n_target - i - 1)), n - 1 - (2*(n_target - i - 1)))
 
 # n - number of qubits in register, which will be incremented
 # m - total number of quibts used in the circuit
@@ -167,12 +199,11 @@ def shor(circuit, qr, cr, n, m, a):
     # incrementer(circuit, qr, n)
     # NOT_gate(circuit, qr, m, m - 1)
     # controlled_incrementer(circuit, qr, m, n, m - 1)
-    # carry_gate(circuit, qr, m, n, a)
     NOT_gate(circuit, qr, m, 0)
     NOT_gate(circuit, qr, m, 1)
     NOT_gate(circuit, qr, m, 2)
     NOT_gate(circuit, qr, m, 3)
-    interleave_registers(circuit, qr, 4, 4)
+    # carry_gate(circuit, qr, m, n, a)
     # -------------Barrier before measurement------------
     circuit.barrier(qr)
     # measure
