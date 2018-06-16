@@ -146,80 +146,127 @@ def controlled_incrementer(circuit, qr, m, n, external_control):
     for i in range(1, n - 2, 2):
         extended_CNOT_gate(circuit, qr, m, 0, i, external_control)
 
-def interleave_registers(circuit, qr, m, n_target, n_ancilla):
-    target_qubits_pointer = 1
-    for i in range(n_ancilla - 1):
-        SWAP_gate(circuit, qr, m, n_target + i, target_qubits_pointer)
-        for j in range(i + 1, n_target - 2):
-            SWAP_gate(circuit, qr, m, n_target + i, target_qubits_pointer + j)
-        target_qubits_pointer += 2
+# def interleave_registers(circuit, qr, m, n_target, n_ancilla):
+#     target_qubits_pointer = 1
+#     for i in range(n_ancilla - 1):
+#         SWAP_gate(circuit, qr, m, n_target + i, target_qubits_pointer)
+#         for j in range(i + 1, n_target - 2):
+#             SWAP_gate(circuit, qr, m, n_target + i, target_qubits_pointer + j)
+#         target_qubits_pointer += 2
 
-def undo_registers_interleaving(circuit, qr, m, n_target, n_ancilla):
-    target_qubits_pointer = 1
-    ancilla_qubits_pointer = 1
-    for i in range(n_ancilla - 1): # We are not moving the last ancilla qubit
-        SWAP_gate(circuit, qr, m, target_qubits_pointer, target_qubits_pointer + ancilla_qubits_pointer)
-        for j in range(1, ancilla_qubits_pointer):
-            SWAP_gate(circuit, qr, m, target_qubits_pointer + j, target_qubits_pointer + ancilla_qubits_pointer)
-        target_qubits_pointer += 1
-        ancilla_qubits_pointer += 1
+# def undo_registers_interleaving(circuit, qr, m, n_target, n_ancilla):
+#     target_qubits_pointer = 1
+#     ancilla_qubits_pointer = 1
+#     for i in range(n_ancilla - 1): # We are not moving the last ancilla qubit
+#         SWAP_gate(circuit, qr, m, target_qubits_pointer, target_qubits_pointer + ancilla_qubits_pointer)
+#         for j in range(1, ancilla_qubits_pointer):
+#             SWAP_gate(circuit, qr, m, target_qubits_pointer + j, target_qubits_pointer + ancilla_qubits_pointer)
+#         target_qubits_pointer += 1
+#         ancilla_qubits_pointer += 1
 
 
 # qr passed to this function does not have form with interleaved target and ancilla qubits,
-# so initially we have to swap these properly
-# n - size of the register (it will contain floor of n/2 target qubits and ceiling of n/2 ancilla qubits)
-# In fact for n target qubits we are using n - 1 ancilla qubits
+# so we have to use mapping
+# n - size of the register (it will contain n/2 target qubits and n/2 ancilla qubits)
 # a - number, which will be added
 # TODO: STARTING POINT!!!
 # WARNING: We are not going to optimize the circuit on the highest (in the circuit)
 # qubits, because of which we will be using n ancilla qubits instead of n - 1. Moreover,
 # we need additional qubit to store the carry of the whole procedure, so in fact we will be using n + 1
-# ancilla qubits. THE FINAL QUBIT, WHICH WILL STORE THE CARRY, HAS INDEX n! Also n_targe must be equal to n_ancilla
+# ancilla qubits. THE FINAL QUBIT, WHICH WILL STORE THE CARRY, HAS INDEX n!
+# WARNING: n ALWAYS has to be even
+# def carry_gate(circuit, qr, m, n, a):
+#     n_target = math.ceil(n/2)
+#     n_ancilla = math.floor(n/2)
+#     k = n_target # We have to remember about the qubit, which will be carrying final carry
+#     qubit_map = {i: 2*i if i < k else 2*(i-k)+1 for i in range(n)}
+#     print(qubit_map)
+#     interleave_registers(circuit, qr, m, n_target, n_ancilla) # We are not interleaving the final qubit, where we will store carry
+#     a_binary = get_binary(a, n_target)
+#     # First ascending gates
+#     CNOT_gate(circuit, qr, m, n - 1, n)
+#     for (i, bit) in enumerate(a_binary):
+#         if i != (n_target - 1):
+#             if bit == '1':
+#                 CNOT_gate(circuit, qr, m, n - 2 - (2*i), n - 1 - (2*i))
+#                 NOT_gate(circuit, qr, m, n - 2 - (2*i))
+#             Toffoli_gate(circuit, qr, m, n - 3 - (2*i), n - 2 - (2*i), n - 1 - (2*i))
+#         else:
+#             if bit == '1':
+#                 CNOT_gate(circuit, qr, m, n - 2 - (2*i), n - 1 - (2*i))
+#     for i in reversed(range(n_target - 1)):
+#         Toffoli_gate(circuit, qr, m, n - 3 - (2*i), n - 2 - (2*i), n - 1 - (2*i))
+#     CNOT_gate(circuit, qr, m, n - 1, n)
+#     for i in range(n_target - 1):
+#         Toffoli_gate(circuit, qr, m, n - 3 - (2*i), n - 2 - (2*i), n - 1 - (2*i))
+#     for (i, bit) in enumerate(reversed(a_binary)):
+#         if i == 0:
+#             if bit == '1':
+#                 CNOT_gate(circuit, qr, m, 0, 1)
+#         else:
+#             Toffoli_gate(circuit, qr, m, n - 3 - (2 * (n_target - i - 1)), n - 2 - (2*(n_target - i - 1)), n - 1 - (2*(n_target - i - 1)))
+#             if bit == '1':
+#                 NOT_gate(circuit, qr, m, n - 2 - (2*(n_target - i - 1)))
+#                 CNOT_gate(circuit, qr, m, n - 2 - (2*(n_target - i - 1)), n - 1 - (2*(n_target - i - 1)))
+#     # SWAP_gate(circuit, qr, m, qubit_map[n], n) # We have to swap these qubits
+#     # so that result is actually in qubit with index n (because we are numerating from 0 n-th index is odd)
+#     undo_registers_interleaving(circuit, qr, m, n_target, n_ancilla)
+
+
 def carry_gate(circuit, qr, m, n, a):
     n_target = math.ceil(n/2)
     n_ancilla = math.floor(n/2)
-    interleave_registers(circuit, qr, m, n_target, n_ancilla) # We are not interleaving the final qubit, where we will store carry
+    k = n_target # We have to remember about the qubit, which will be carrying final carry
+    qubit_map = {i: 2*i if i < k else 2*(i-k)+1 for i in range(n)}
+    qubit_map[n] = n
+    print(qubit_map)
+    # interleave_registers(circuit, qr, m, n_target, n_ancilla) # We are not interleaving the final qubit, where we will store carry
     a_binary = get_binary(a, n_target)
     # First ascending gates
-    CNOT_gate(circuit, qr, m, n - 1, n)
-    for (i, bit) in enumerate(reversed(a_binary)):
+    CNOT_gate(circuit, qr, m, qubit_map[n - 1], qubit_map[n])
+    for (i, bit) in enumerate(a_binary):
         if i != (n_target - 1):
             if bit == '1':
-                CNOT_gate(circuit, qr, m, n - 2 - (2*i), n - 1 - (2*i))
-                NOT_gate(circuit, qr, m, n - 2 - (2*i))
-            Toffoli_gate(circuit, qr, m, n - 3 - (2*i), n - 2 - (2*i), n - 1 - (2*i))
+                CNOT_gate(circuit, qr, m, qubit_map[n - 2 - (2*i)], qubit_map[n - 1 - (2*i)])
+                NOT_gate(circuit, qr, m, qubit_map[n - 2 - (2*i)])
+            Toffoli_gate(circuit, qr, m, qubit_map[n - 3 - (2*i)], qubit_map[n - 2 - (2*i)], qubit_map[n - 1 - (2*i)])
         else:
-            CNOT_gate(circuit, qr, m, n - 2 - (2*i), n - 1 - (2*i))
-    for i in reversed(range(n_target - 1)):
-        Toffoli_gate(circuit, qr, m, n - 3 - (2*i), n - 2 - (2*i), n - 1 - (2*i))
-    CNOT_gate(circuit, qr, m, n - 1, n)
-    for i in range(n_target - 1):
-        Toffoli_gate(circuit, qr, m, n - 3 - (2*i), n - 2 - (2*i), n - 1 - (2*i))
-    for (i, bit) in enumerate(a_binary):
-        if i == 0:
-            CNOT_gate(circuit, qr, m, 0, 1)
-        else:
-            Toffoli_gate(circuit, qr, m, n - 3 - (2 * (n_target - i - 1)), n - 2 - (2*(n_target - i - 1)), n - 1 - (2*(n_target - i - 1)))
             if bit == '1':
-                NOT_gate(circuit, qr, m, n - 2 - (2*(n_target - i - 1)))
-                CNOT_gate(circuit, qr, m, n - 2 - (2*(n_target - i - 1)), n - 1 - (2*(n_target - i - 1)))
-    undo_registers_interleaving(circuit, qr, m, n_target, n_ancilla)
+                CNOT_gate(circuit, qr, m, qubit_map[n - 2 - (2*i)], qubit_map[n - 1 - (2*i)])
+    for i in reversed(range(n_target - 1)):
+        Toffoli_gate(circuit, qr, m, qubit_map[n - 3 - (2*i)], qubit_map[n - 2 - (2*i)], qubit_map[n - 1 - (2*i)])
+    CNOT_gate(circuit, qr, m, qubit_map[n - 1], qubit_map[n])
+    for i in range(n_target - 1):
+        Toffoli_gate(circuit, qr, m, qubit_map[n - 3 - (2*i)], qubit_map[n - 2 - (2*i)], qubit_map[n - 1 - (2*i)])
+    for (i, bit) in enumerate(reversed(a_binary)):
+        if i == 0:
+            if bit == '1':
+                CNOT_gate(circuit, qr, m, qubit_map[0], qubit_map[1])
+        else:
+            Toffoli_gate(circuit, qr, m, qubit_map[n - 3 - (2 * (n_target - i - 1))], qubit_map[n - 2 - (2*(n_target - i - 1))], qubit_map[n - 1 - (2*(n_target - i - 1))])
+            if bit == '1':
+                NOT_gate(circuit, qr, m, qubit_map[n - 2 - (2*(n_target - i - 1))])
+                CNOT_gate(circuit, qr, m, qubit_map[n - 2 - (2*(n_target - i - 1))], qubit_map[n - 1 - (2*(n_target - i - 1))])
+    # SWAP_gate(circuit, qr, m, qubit_map[n], n) # We have to swap these qubits
+    # so that result is actually in qubit with index n (because we are numerating from 0 n-th index is odd)
+    # undo_registers_interleaving(circuit, qr, m, n_target, n_ancilla)
 
 # n - number of qubits in register, which will be incremented
 # m - total number of quibts used in the circuit
-def shor(circuit, qr, cr, n, m, a):
+def shor(circuit, qr, cr, m, n, a):
+    a = 2
     # incrementer(circuit, qr, n)
     # NOT_gate(circuit, qr, m, m - 1)
     # controlled_incrementer(circuit, qr, m, n, m - 1)
-    NOT_gate(circuit, qr, m, 0)
+    # NOT_gate(circuit, qr, m, 0)
     NOT_gate(circuit, qr, m, 1)
-    NOT_gate(circuit, qr, m, 2)
-    NOT_gate(circuit, qr, m, 3)
+    # NOT_gate(circuit, qr, m, 2)
+    # NOT_gate(circuit, qr, m, 3)
     # n_target = math.ceil(n/2)
     # n_ancilla = math.floor(n/2)
     # interleave_registers(circuit, qr, m, n_target, n_ancilla)
     # undo_registers_interleaving(circuit, qr, m, n_target, n_ancilla)
-    carry_gate(circuit, qr, m, n, a)
+    carry_gate(circuit, qr, m, 4, a)
     # -------------Barrier before measurement------------
     circuit.barrier(qr)
     # measure
