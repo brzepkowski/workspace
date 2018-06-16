@@ -120,31 +120,36 @@ def incrementer(circuit, qr, n):
         CNOT_gate(circuit, qr, n, 0, i)
 
 # TODO: STARTING POINT!!!
+# external_control will be an exact index of control qubit, from which action of the whole gate will
 def controlled_incrementer(circuit, qr, m, n, external_control):
+    k = math.ceil(n / 2)
+    qubit_map_inverse = {i: 2*i if i < k else 2*(i-k)+1 for i in range(n)}
+    qubit_map = {v: k for k, v in qubit_map_inverse.items()}
+    print(qubit_map)
     # Initial gates (CNOTs and NOTs) before first subtraction widget
     for i in range(1, n - 2, 2):
-        extended_CNOT_gate(circuit, qr, m, 0, i, external_control)
+        extended_CNOT_gate(circuit, qr, m, qubit_map[0], qubit_map[i], external_control)
     for i in range(2, n - 1, 2):
-        extended_NOT_gate(circuit, qr, m, i, external_control)
-    extended_NOT_gate(circuit, qr, m, n - 1, external_control)
+        extended_NOT_gate(circuit, qr, m, qubit_map[i], external_control)
+    extended_NOT_gate(circuit, qr, m, qubit_map[n - 1], external_control)
     # First Subtraction Widget
     for i in range(0, n - 3, 2):
-        extended_UMA_gate(circuit, qr, m, n, i, i + 1, i + 2, external_control)
-    extended_CNOT_gate(circuit, qr, m, n - 2, n - 1, external_control)
+        extended_UMA_gate(circuit, qr, m, n, qubit_map[i], qubit_map[i + 1], qubit_map[i + 2], external_control)
+    extended_CNOT_gate(circuit, qr, m, qubit_map[n - 2], qubit_map[n - 1], external_control)
     for i in reversed(range(0, n - 3, 2)):
-        extended_MAJ_gate(circuit, qr, m, n, i, i + 1, i + 2, external_control)
+        extended_MAJ_gate(circuit, qr, m, n, qubit_map[i], qubit_map[i + 1], qubit_map[i + 2], external_control)
     # Binary negation of one of the number, which we are subtracting (written on all ancilla qubits except the 0-th one)
     for i in range(2, n - 1, 2):
-        extended_NOT_gate(circuit, qr, m, i, external_control)
+        extended_NOT_gate(circuit, qr, m, qubit_map[i], external_control)
     # Second Subtraction Widget
     for i in range(0, n - 3, 2):
-        extended_UMA_gate(circuit, qr, m, n, i, i + 1, i + 2, external_control)
-    extended_CNOT_gate(circuit, qr, m, n - 2, n - 1, external_control)
+        extended_UMA_gate(circuit, qr, m, n, qubit_map[i], qubit_map[i + 1], qubit_map[i + 2], external_control)
+    extended_CNOT_gate(circuit, qr, m, qubit_map[n - 2], qubit_map[n - 1], external_control)
     for i in reversed(range(0, n - 3, 2)):
-        extended_MAJ_gate(circuit, qr, m, n, i, i + 1, i + 2, external_control)
+        extended_MAJ_gate(circuit, qr, m, n, qubit_map[i], qubit_map[i + 1], qubit_map[i + 2], external_control)
     # Last CNOT gates controlled on the 0-th qubit
     for i in range(1, n - 2, 2):
-        extended_CNOT_gate(circuit, qr, m, 0, i, external_control)
+        extended_CNOT_gate(circuit, qr, m, 0, qubit_map[i], external_control)
 
 # qr passed to this function does not have form with interleaved target and ancilla qubits,
 # so we have to use mapping
@@ -198,12 +203,15 @@ def carry_gate(circuit, qr, m, n, a):
 def shor(circuit, qr, cr, m, n, a):
     a = 4
     # incrementer(circuit, qr, n)
-    # NOT_gate(circuit, qr, m, m - 1)
-    # controlled_incrementer(circuit, qr, m, n, m - 1)
+    NOT_gate(circuit, qr, m, 4)
+    controlled_incrementer(circuit, qr, m, 4, 4)
+    controlled_incrementer(circuit, qr, m, 4, 4)
+    controlled_incrementer(circuit, qr, m, 4, 4)
+    controlled_incrementer(circuit, qr, m, 4, 4)
     # NOT_gate(circuit, qr, m, 0)
     # NOT_gate(circuit, qr, m, 1)
-    NOT_gate(circuit, qr, m, 2)
-    carry_gate(circuit, qr, m, 6, a)
+    # NOT_gate(circuit, qr, m, 2)
+    # carry_gate(circuit, qr, m, 6, a)
     # -------------Barrier before measurement------------
     circuit.barrier(qr)
     # measure
