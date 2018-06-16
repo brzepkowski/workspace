@@ -161,8 +161,10 @@ def controlled_incrementer(circuit, qr, m, n, starting_index, external_control):
 # we need additional qubit to store the carry of the whole procedure, so in fact we will be using n + 1
 # ancilla qubits. THE FINAL QUBIT, WHICH WILL STORE THE CARRY, HAS INDEX n!
 # WARNING: n ALWAYS has to be even
-def CARRY_gate(circuit, qr, m, n, a):
+def CARRY_gate(circuit, qr, m, n, starting_index, a):
     n_target = math.ceil(n/2)
+    if a > (2**n_target - 1):
+        raise Exception("Constant which is supposed to be added in CARRY gate cannot be written using so few bits")
     n_ancilla = math.ceil(n/2)
     k = n_target # We have to remember about the qubit, which will be carrying final carry
     qubit_map_inverse = {i: 2*i if i < k else 2*(i-k)+1 for i in range(n)}
@@ -171,46 +173,46 @@ def CARRY_gate(circuit, qr, m, n, a):
     print(qubit_map)
     a_binary = get_binary(a, n_target)
     # First ascending gates
-    CNOT_gate(circuit, qr, m, qubit_map[n - 1], qubit_map[n])
+    CNOT_gate(circuit, qr, m, starting_index + qubit_map[n - 1], starting_index + qubit_map[n])
     for (i, bit) in enumerate(a_binary):
         if i != (n_target - 1):
             if bit == '1':
-                CNOT_gate(circuit, qr, m, qubit_map[n - 2 - (2*i)], qubit_map[n - 1 - (2*i)])
-                NOT_gate(circuit, qr, m, qubit_map[n - 2 - (2*i)])
-            Toffoli_gate(circuit, qr, m, qubit_map[n - 3 - (2*i)], qubit_map[n - 2 - (2*i)], qubit_map[n - 1 - (2*i)])
+                CNOT_gate(circuit, qr, m, starting_index + qubit_map[n - 2 - (2*i)], starting_index + qubit_map[n - 1 - (2*i)])
+                NOT_gate(circuit, qr, m, starting_index + qubit_map[n - 2 - (2*i)])
+            Toffoli_gate(circuit, qr, m, starting_index + qubit_map[n - 3 - (2*i)], starting_index + qubit_map[n - 2 - (2*i)], starting_index + qubit_map[n - 1 - (2*i)])
         else:
             if bit == '1':
-                CNOT_gate(circuit, qr, m, qubit_map[n - 2 - (2*i)], qubit_map[n - 1 - (2*i)])
+                CNOT_gate(circuit, qr, m, starting_index + qubit_map[n - 2 - (2*i)], starting_index + qubit_map[n - 1 - (2*i)])
     for i in reversed(range(n_target - 1)):
-        Toffoli_gate(circuit, qr, m, qubit_map[n - 3 - (2*i)], qubit_map[n - 2 - (2*i)], qubit_map[n - 1 - (2*i)])
-    CNOT_gate(circuit, qr, m, qubit_map[n - 1], qubit_map[n])
+        Toffoli_gate(circuit, qr, m, starting_index + qubit_map[n - 3 - (2*i)], starting_index + qubit_map[n - 2 - (2*i)], starting_index + qubit_map[n - 1 - (2*i)])
+    CNOT_gate(circuit, qr, m, starting_index + qubit_map[n - 1], starting_index + qubit_map[n])
     for i in range(n_target - 1):
-        Toffoli_gate(circuit, qr, m, qubit_map[n - 3 - (2*i)], qubit_map[n - 2 - (2*i)], qubit_map[n - 1 - (2*i)])
+        Toffoli_gate(circuit, qr, m, starting_index + qubit_map[n - 3 - (2*i)], starting_index + qubit_map[n - 2 - (2*i)], starting_index + qubit_map[n - 1 - (2*i)])
     for (i, bit) in enumerate(reversed(a_binary)):
         if i == 0:
             if bit == '1':
-                CNOT_gate(circuit, qr, m, qubit_map[0], qubit_map[1])
+                CNOT_gate(circuit, qr, m, starting_index + qubit_map[0], starting_index + qubit_map[1])
         else:
-            Toffoli_gate(circuit, qr, m, qubit_map[n - 3 - (2 * (n_target - i - 1))], qubit_map[n - 2 - (2*(n_target - i - 1))], qubit_map[n - 1 - (2*(n_target - i - 1))])
+            Toffoli_gate(circuit, qr, m, starting_index + qubit_map[n - 3 - (2 * (n_target - i - 1))], starting_index + qubit_map[n - 2 - (2*(n_target - i - 1))], starting_index + qubit_map[n - 1 - (2*(n_target - i - 1))])
             if bit == '1':
-                NOT_gate(circuit, qr, m, qubit_map[n - 2 - (2*(n_target - i - 1))])
-                CNOT_gate(circuit, qr, m, qubit_map[n - 2 - (2*(n_target - i - 1))], qubit_map[n - 1 - (2*(n_target - i - 1))])
+                NOT_gate(circuit, qr, m, starting_index + qubit_map[n - 2 - (2*(n_target - i - 1))])
+                CNOT_gate(circuit, qr, m, starting_index + qubit_map[n - 2 - (2*(n_target - i - 1))], starting_index + qubit_map[n - 1 - (2*(n_target - i - 1))])
 
 # n - number of qubits in register, which will be incremented
 # m - total number of quibts used in the circuit
 def shor(circuit, qr, cr, m, n, a):
-    a = 4
+    a = 2
     # incrementer(circuit, qr, n)
-    NOT_gate(circuit, qr, m, 5)
-    controlled_incrementer(circuit, qr, m, 4, 1, 5)
-    controlled_incrementer(circuit, qr, m, 4, 1, 5)
-    controlled_incrementer(circuit, qr, m, 4, 1, 5)
-    controlled_incrementer(circuit, qr, m, 4, 1, 5)
+    # NOT_gate(circuit, qr, m, 5)
+    # controlled_incrementer(circuit, qr, m, 4, 1, 5)
+    # controlled_incrementer(circuit, qr, m, 4, 1, 5)
+    # controlled_incrementer(circuit, qr, m, 4, 1, 5)
+    # controlled_incrementer(circuit, qr, m, 4, 1, 5)
     # controlled_incrementer(circuit, qr, m, 4, 0, 4)
     # NOT_gate(circuit, qr, m, 0)
-    # NOT_gate(circuit, qr, m, 1)
+    NOT_gate(circuit, qr, m, 1)
     # NOT_gate(circuit, qr, m, 2)
-    # CARRY_gate(circuit, qr, m, 6, a)
+    CARRY_gate(circuit, qr, m, 4, 0, a)
     # -------------Barrier before measurement------------
     circuit.barrier(qr)
     # measure
