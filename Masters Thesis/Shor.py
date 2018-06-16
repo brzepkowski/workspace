@@ -182,6 +182,7 @@ def controlled_incrementer(circuit, qr, m, n, starting_index, external_control):
 # WARNING: n ALWAYS has to be even
 def CARRY_gate(circuit, qr, m, n, starting_index, a):
     n_target = math.ceil(n/2)
+    print("CARRY, n = ", n, ", a: ", a, ", MAX: ", 2**n_target - 1)
     if a > (2**n_target - 1):
         raise Exception("Constant which is supposed to be added in CARRY gate cannot be written using so few bits")
     n_ancilla = math.ceil(n/2)
@@ -224,14 +225,14 @@ def CARRY_gate(circuit, qr, m, n, starting_index, a):
 def ADD_gate(circuit, qr, m, n, starting_index, a):
     print("n: ", n, ", starting_index: ", starting_index)
     if n == 1:
-        # Trzeba będzie dodać tylko bramkę NOT, jesli ci = 1
         if a == 1:
             NOT_gate(circuit, qr, m, starting_index)
         print("Koniec rekurencji")
     else:
-        a_binary = get_reversed_binary(a, n)
-        low_bits_length = math.ceil(n/2)
-        high_bits_length = math.floor(n/2)
+        a_length = math.ceil(n/2)
+        a_binary = get_reversed_binary(a, a_length)
+        low_bits_length = math.ceil(a_length/2)
+        high_bits_length = math.floor(a_length/2)
         a_low_bits = a_binary[0:low_bits_length] # Numbers stored here and below are in reverse order (binarly)
         a_high_bits = a_binary[low_bits_length:n]
         a_low_int = reversed_binary_to_int(a_low_bits)
@@ -264,7 +265,7 @@ def ADD_gate(circuit, qr, m, n, starting_index, a):
 # n - number of qubits in register, which will be incremented
 # m - total number of quibts used in the circuit
 def shor(circuit, qr, cr, m, n, a):
-    a = 1
+    a = 3
     # incrementer(circuit, qr, n)
     # NOT_gate(circuit, qr, m, 5)
     # NOT_gate(circuit, qr, m, 0)
