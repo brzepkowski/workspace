@@ -92,7 +92,7 @@ def extended_UMA_gate(circuit, qr, m, n, starting_index, top_qubit, middle_qubit
 def C_n_controlled_NOT_gate(circuit, qr, m, controls, target): # NOT gate with n controls
     print("controls: ", controls, ", target: ", target)
     n = len(controls)
-    if n > math.floor((m-1)/2):
+    if n - 1 > math.floor((m-1)/2):
         raise Exception("Too many controls in C^n NOT gate for such circuit")
     all_initial_indices = list(controls) # We are making copy of control qubits
     all_initial_indices.append(target)
@@ -100,20 +100,9 @@ def C_n_controlled_NOT_gate(circuit, qr, m, controls, target): # NOT gate with n
     temp_target = target
     used_indices = []
     for (i, control) in enumerate(controls):
-        if i == n - 1:
-            if (n % 2) == 0:
-                while temp_control in all_initial_indices:
-                    if temp_control + 1 == m:
-                        temp_control = 0
-                    else:
-                        temp_control += 1
-                Toffoli_gate(circuit, qr, m, temp_control, control, temp_target)
-                temp_target = temp_control
-                used_indices.append(temp_control)
-                temp_control += 1
-            else:
-                CNOT_gate(circuit, qr, m, control, temp_target)
-        else:
+        if i == n - 2:
+            Toffoli_gate(circuit, qr, m, control, controls[n - 1], temp_target)
+        elif i < n - 2:
             while temp_control in all_initial_indices:
                 if temp_control + 1 == m:
                     temp_control = 0
@@ -124,74 +113,23 @@ def C_n_controlled_NOT_gate(circuit, qr, m, controls, target): # NOT gate with n
             used_indices.append(temp_control)
             temp_control += 1
     k = len(used_indices)
-    for i in range(2, n):
+    for i in range(2, n - 1):
         if i == 2:
-            if (n % 2) == 0:
-                 Toffoli_gate(circuit, qr, m, controls[n - i], used_indices[k - i], used_indices[k - i - 1])
-            else:
-                Toffoli_gate(circuit, qr, m, controls[n - 2], used_indices[k - 1], used_indices[k - 2])
+            Toffoli_gate(circuit, qr, m, controls[n - 3], used_indices[k - 1], used_indices[k - 2])
         else:
-            Toffoli_gate(circuit, qr, m, controls[n - i], used_indices[k - i], used_indices[k - i - 1])
-    for i in range(n):
+            Toffoli_gate(circuit, qr, m, controls[n - i - 1], used_indices[k - i + 1], used_indices[k - i])
+    for i in range(n-1):
         if i == 0:
             Toffoli_gate(circuit, qr, m, controls[0], used_indices[0], target)
-        elif i != n - 1:
+        elif i < n - 2:
             Toffoli_gate(circuit, qr, m, controls[i], used_indices[i], used_indices[i - 1])
         else:
-            if (n % 2) == 0:
-                Toffoli_gate(circuit, qr, m, controls[i], used_indices[i], used_indices[i - 1])
-            else:
-                CNOT_gate(circuit, qr, m, controls[n - 1], used_indices[k - 1])
-    for i in range(2, n):
+            Toffoli_gate(circuit, qr, m, controls[n - 2], controls[n - 1], used_indices[k - 1])
+    for i in range(2, n - 1):
         if i == 2:
-            if (n % 2) == 0:
-                 Toffoli_gate(circuit, qr, m, controls[n - i], used_indices[k - i], used_indices[k - i - 1])
-            else:
-                Toffoli_gate(circuit, qr, m, controls[n - 2], used_indices[k - 1], used_indices[k - 2])
+            Toffoli_gate(circuit, qr, m, controls[n - 3], used_indices[k - 1], used_indices[k - 2])
         else:
-            Toffoli_gate(circuit, qr, m, controls[n - i], used_indices[k - i], used_indices[k - i - 1])
-
-def C_n_controlled_NOT_gate(circuit, qr, m, controls, target): # NOT gate with n controls
-    print("controls: ", controls, ", target: ", target)
-    n = len(controls)
-    if n > math.floor((m-1)/2):
-        raise Exception("Too many controls in C^n NOT gate for such circuit")
-    all_initial_indices = list(controls) # We are making copy of control qubits
-    all_initial_indices.append(target)
-    temp_control = target + 1
-    temp_target = target
-    used_indices = []
-    for (i, control) in enumerate(controls):
-        if i == n - 1:
-            CNOT_gate(circuit, qr, m, control, temp_target)
-        else:
-            while temp_control in all_initial_indices:
-                if temp_control + 1 == m:
-                    temp_control = 0
-                else:
-                    temp_control += 1
-            Toffoli_gate(circuit, qr, m, temp_control, control, temp_target)
-            temp_target = temp_control
-            used_indices.append(temp_control)
-            temp_control += 1
-    k = len(used_indices)
-    for i in range(2, n):
-        if i == 2:
-            Toffoli_gate(circuit, qr, m, controls[n - 2], used_indices[k - 1], used_indices[k - 2])
-        else:
-            Toffoli_gate(circuit, qr, m, controls[n - i], used_indices[k - i + 1], used_indices[k - i])
-    for i in range(n):
-        if i == 0:
-            Toffoli_gate(circuit, qr, m, controls[0], used_indices[0], target)
-        elif i != n - 1:
-            Toffoli_gate(circuit, qr, m, controls[i], used_indices[i], used_indices[i - 1])
-        else:
-            CNOT_gate(circuit, qr, m, controls[n - 1], used_indices[k - 1])
-    for i in range(2, n):
-        if i == 2:
-            Toffoli_gate(circuit, qr, m, controls[n - 2], used_indices[k - 1], used_indices[k - 2])
-        else:
-            Toffoli_gate(circuit, qr, m, controls[n - i], used_indices[k - i + 1], used_indices[k - i])
+            Toffoli_gate(circuit, qr, m, controls[n - i - 1], used_indices[k - i + 1], used_indices[k - i])
 
 
 
@@ -484,8 +422,7 @@ def shor(circuit, qr, cr, m, n, a):
     # NOT_gate(circuit, qr, m, 0)
     NOT_gate(circuit, qr, m, 1) # <-----
     NOT_gate(circuit, qr, m, 2)
-    # NOT_gate(circuit, qr, m, 3)
-    # NOT_gate(circuit, qr, m, 4)
+    NOT_gate(circuit, qr, m, 3)
     # CARRY_gate(circuit, qr, m, 4, 0, a)
     # ADD_gate(circuit, qr, m, m - 1, 0, a)
     # ADD_MOD_gate(circuit, qr, m, m - 1, 0, a, N) # <------
