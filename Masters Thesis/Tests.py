@@ -12,7 +12,7 @@ import Shor
 ###############################################################
 # Make a quantum program for the GHZ state.
 ###############################################################
-n = 4
+n = 9
 QPS_SPECS = {
     "circuits": [
         {
@@ -43,7 +43,7 @@ qc = qp.get_circuit('test_circuit')
 # grover(qc, qr, cr, n - 1, 10, 0)
 shor(qc, qr, cr, n, n - 1, 0)
 
-# plot_circuit(qc)
+plot_circuit(qc)
 # ------------------- get results -----------------------
 
 qiskit.register(Qconfig.APItoken, Qconfig.config["url"]) # set the APIToken and API url
