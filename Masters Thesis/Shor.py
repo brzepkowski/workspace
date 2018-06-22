@@ -1,4 +1,6 @@
 import math
+from math import trunc
+from fractions import Fraction
 
 def get_binary(number, n):
     number_bin = bin(number)[2:]
@@ -61,6 +63,29 @@ def SWAP_gate(circuit, qr, n, target1, target2):
     for k in range(n):
         if k != target1 and k != target2:
             circuit.iden(qr[k])
+
+def Hadamard_gate(circuit, qr, n, target):
+    circuit.h(qr[target])
+    for k in range(n):
+        if k != target:
+            circuit.iden(qr[k])
+
+def CU1_INV_gate(circuit, qr, n, theta, control, target):
+    circuit.cu1(theta, qr[control], qr[target]).inverse()
+    for k in range(n):
+        if k != control and k != target:
+            circuit.iden(qr[k])
+
+# def C_n_controlled_SWAP_gate(circuit, qr, m, controls, target1, target2):
+#     inner_controls = list(controls)
+#     inner_controls.append(target1)
+#     C_n_controlled_NOT_gate(circuit, qr, m, inner_controls, target2)
+#     inner_controls = list(controls)
+#     inner_controls.append(target2)
+#     C_n_controlled_NOT_gate(circuit, qr, m, inner_controls, target1)
+#     inner_controls = list(controls)
+#     inner_controls.append(target1)
+#     C_n_controlled_NOT_gate(circuit, qr, m, inner_controls, target2)
 
 # indices of control_qubits and terget_qubit have to be precise (not mapped or with additional starting point)
 # n = length of controls array can be arbitrary (for n = 0 we add NOT gate, n = 1, CNOT, n = 2 Toffoli and so on)
@@ -139,6 +164,15 @@ def multiply_controlled_UMA_gate(circuit, qr, m, top_qubit, middle_qubit, bottom
     C_n_controlled_NOT_gate(circuit, qr, m, first_controls, middle_qubit)
     C_n_controlled_NOT_gate(circuit, qr, m, second_controls, top_qubit)
     C_n_controlled_NOT_gate(circuit, qr, m, third_controls, bottom_qubit)
+
+# Inverse Quantum Fourier Transform
+def inv_qft(circuit, qr, m, n, starting_index):
+    π = math.pi
+    theta = 2 * π / float(2**n)
+    for i in reversed(range(n)):
+        Hadamard_gate(circuit, qr, m, starting_index + i)
+        for j in range(i):
+            CU1_INV_gate(circuit, qr, m, theta, starting_index + i, starting_index + j)
 
 # WARNING: n always has to be even, because we are passing in it length of combined ancilla and target qubits
 # (n/2 target and n/2 ancilla qubits). The only exception is, when n = 1, because this case does not need
@@ -454,17 +488,13 @@ def CMP_2_gate(circuit, qr, m, n, starting_index, a, controls):
     C_n_controlled_NOT_gate(circuit, qr, m, inner_controls, starting_index + 2*sub_register_length)
     # -------------------------------
 
-
-
-
-
 # # n - size of the whole register (it consists of n qubits for number 'b', n borrowed qubits,
 # # 1 borrowed qubit (necessary for the ADD gates) and one more zeroed qubit, which
 # # will be control qubit for controlled ADD gates)
 # WARNING: n always has to be EVEN and be exactly equal to 2n + 2, where n is the number of bits, on which a
 # twos complement representation of a number can be written
 # This function uses one zeroed qubit instead of borrowed one.
-# Moreover, it will useone qubit outside the register to compute the second CMP operation
+# Moreover, it will use one qubit outside the register to compute the second CMP operation
 def multiply_controlled_ADD_MOD_gate(circuit, qr, m, n, starting_index, a, N, controls):
     print("ADD_MOD) n: ", n, ", a: ", a, ", N: ", N)
     if (n % 2) != 0:
@@ -487,44 +517,119 @@ def multiply_controlled_ADD_MOD_gate(circuit, qr, m, n, starting_index, a, N, co
     CMP_2_gate(circuit, qr, m, n + math.ceil(n/2), starting_index, -a, controls)
 
 # x - array containing qubits of number x (it will be exponent in a^x mod N)
-def MULT_MOD(circuit, qr, m, n, starting_index, a, N, x):
+def MULT_MOD(circuit, qr, m, n, starting_index, a, N, x, controls):
     print("x: ", x)
-    for i in range(len(x)):
-        multiply_controlled_ADD_MOD_gate(circuit, qr, m, n, starting_index, (a*(2**i)) % N, N, [x[i]])
+    x_len = len(x)
+    for i in range(x_len):
+        inner_controls = list(controls)
+        inner_controls.append(x[i])
+        multiply_controlled_ADD_MOD_gate(circuit, qr, m, n, starting_index, (a*(2**i)) % N, N, inner_controls)
+    for i in range(x_len):
+        SWAP_gate(circuit, qr, m, starting_index + i, x[i])
+    a_inverse = 1
+    while a_inverse < N and (a_inverse*a) % N != 1:
+        a_inverse += 1
+    a_inverse_neg = N - a_inverse
+    print("a^-1: ", a_inverse)
+    print("a^-1 neg: ", a_inverse_neg)
+    for i in range(x_len):
+        inner_controls = list(controls)
+        inner_controls.append(x[i])
+        multiply_controlled_ADD_MOD_gate(circuit, qr, m, n, starting_index, (a_inverse_neg*(2**i)) % N, N, inner_controls)
 
+# x_1 and x_2 are arrays storing locations of x (it is stored in two registers)
+def EXP_MOD(circuit, qr, m, n, starting_index, a, N, x_1, x_2):
+    for i in range(len(x_2)):
+        MULT_MOD(circuit, qr, m, n, starting_index, a**(2**i), N, x_1, [x_2[i]])
 
+def continued_fractions(binary_result):
+    m = len(binary_result)
+    phi_approx = 0.0
+    for (i, bit) in enumerate(reversed(binary_result)):
+        if bit == '1':
+            phi_approx += 2**i
+    divider = 1
+    if phi_approx > 0:
+        while phi_approx > 1:
+            phi_approx = phi_approx / 10 # We are multiplying by 10, because we don't want to loose places in vector for unnecessary zeros
+            divider += 1
+    phi_approx *= 10
+    components = []
+    for i in range(m):
+        if i < m - 1:
+            integer, fractional = divmod(phi_approx, 1)
+            if integer > 0:
+                components.append(int(integer))
+                phi_approx -= integer
+                if (trunc(phi_approx*(10**m))/(10**m))  > 0:
+                    phi_approx = 1 / phi_approx
+                else:
+                    break
+            else:
+                phi_approx = int(phi_approx)
+                components.append(phi_approx)
+                break
+        else:
+            phi_approx = int(phi_approx)
+            components.append(phi_approx)
+    print(components)
+    last_index = len(components) - 1
+    while components[last_index] == 0 and last_index >= 0:
+        last_index -= 1
+    if last_index >= 0:
+        buffer = Fraction(1, components[last_index])
+        for (i, component) in enumerate(reversed(components[:last_index])):
+            buffer = Fraction(component, 1) + buffer
+            buffer = Fraction(1, 1) / buffer
+        # buffer = Fraction(buffer.numerator * divider, buffer.denominator)
+        buffer = Fraction(buffer.numerator * 10**(n - divider - 1), buffer.denominator)
+        result = buffer.numerator
+    else:
+        result = 0
+    return result
 
 # n - number of qubits in register, which will be incremented
 # m - total number of quibts used in the circuit
 # WARNING: this function can be applied only to EVEN n and also n/2 must be even (it is caused by the contruction
 # of the CARRY gate, which needs EVEN number of ancilla and target qubits)
-def shor(circuit, qr, cr, m, n, a):
-    a = 2
-    N = 3
+def shor_quantum_subroutine(circuit, qr, cr, m, a, N):
+    n = len(bin(N)[2:])
+    print("n: ", n)
+    first_x_register_starting_index = (n + 2) * 3
+    second_x_register_starting_index = ((n + 2) * 3) + n
+    for i in range(n):
+        Hadamard_gate(circuit, qr, m, first_x_register_starting_index + i)
+    for i in range(n):
+        Hadamard_gate(circuit, qr, m, second_x_register_starting_index + i)
+    first_controls = []
+    for i in range(n):
+        first_controls.append(first_x_register_starting_index + i)
+    second_controls = []
+    for i in range(n):
+        second_controls.append(second_x_register_starting_index + i)
+    EXP_MOD(circuit, qr, m, (n + 2)*2, 0, a, N, first_controls, second_controls)
+    inv_qft(circuit, qr, m, n, second_x_register_starting_index)
+
+
+    # a = 2
+    # N = 3
+    # Hadamard_gate(circuit, qr, m, 0)
+    # Hadamard_gate(circuit, qr, m, 1)
+    # Hadamard_gate(circuit, qr, m, 2)
     # NOT_gate(circuit, qr, m, 0)
     # NOT_gate(circuit, qr, m, 1)
     # NOT_gate(circuit, qr, m, 2)
     # NOT_gate(circuit, qr, m, 3)
-    # CMP_2_gate(circuit, qr, m, 12, 0, -1, [])
     # NOT_gate(circuit, qr, m, 4)
-    # NOT_gate(circuit, qr, m, 5)
-    # NOT_gate(circuit, qr, m, 6)
-    # NOT_gate(circuit, qr, m, 7)
-    # NOT_gate(circuit, qr, m, 8)
-    # NOT_gate(circuit, qr, m, 9)
-    # NOT_gate(circuit, qr, m, 12)
-    NOT_gate(circuit, qr, m, 13)
-    # CARRY_gate(circuit, qr, m, 4, 0, a)
-    # ADD_gate(circuit, qr, m, m - 1, 0, a)
-    # ADD_MOD_gate(circuit, qr, m, m - 1, 0, a, N) # <------
-    # multiply_controlled_incrementer(circuit, qr, m, 4, 0, [4,5,6])
-    # multiply_controlled_incrementer(circuit, qr, m, 4, 0, [4,5,6])
-    # multiply_controlled_incrementer(circuit, qr, m, 4, 0, [4,5,6])
-    # multiply_controlled_incrementer(circuit, qr, m, 4, 0, [4,5,6])
-    # multiply_controlled_CARRY_gate(circuit, qr, m, 4, 0, 3, [5,6,7])
-    # multiply_controlled_ADD_gate_2(circuit, qr, m, 4, 0, -2, [])
-    # multiply_controlled_ADD_MOD_gate(circuit, qr, m, 8, 0, a, N, []) # <--
-    MULT_MOD(circuit, qr, m, 8, 0, a, N, [12, 13])
+    #---------------------------
+    # # NOT_gate(circuit, qr, m, 12)
+    # NOT_gate(circuit, qr, m, 13)
+    # # MULT_MOD(circuit, qr, m, 8, 0, a, N, [12, 13], [])
+    # # NOT_gate(circuit, qr, m, 14)
+    # NOT_gate(circuit, qr, m, 15)
+    # EXP_MOD(circuit, qr, m, 8, 0, a, N, [12, 13], [14, 15])
+    # inv_qft(circuit, qr, m, 4, 0)
+
     # -------------Barrier before measurement------------
     circuit.barrier(qr)
     # measure

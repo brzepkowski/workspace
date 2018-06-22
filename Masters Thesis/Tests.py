@@ -1,3 +1,4 @@
+import qiskit
 from qiskit import QuantumProgram
 from qiskit import register, available_backends, get_backend
 import Qconfig
@@ -12,7 +13,8 @@ import Shor
 ###############################################################
 # Make a quantum program for the GHZ state.
 ###############################################################
-n = 14
+n = 16
+# n = 5
 QPS_SPECS = {
     "circuits": [
         {
@@ -41,14 +43,17 @@ cr = qp.get_classical_register('cr')
 qc = qp.get_circuit('test_circuit')
 
 # grover(qc, qr, cr, n - 1, 10, 0)
-shor(qc, qr, cr, n, n - 1, 0)
+shor_quantum_subroutine(qc, qr, cr, n, 2, 3)
 
 # plot_circuit(qc)
 # ------------------- get results -----------------------
 
 qiskit.register(Qconfig.APItoken, Qconfig.config["url"]) # set the APIToken and API url
 # latex_string = plot_circuit(qc)
-results = qp.execute(["test_circuit"], backend='local_qasm_simulator', shots=1, timeout=600)
+results = qp.execute(["test_circuit"], backend='local_qasm_simulator', shots=1, timeout=3600)
 stats = results.get_counts("test_circuit")
 print(stats)
+print(next(iter(stats.keys())))
+# print(continued_fractions(next(iter(stats.keys()))[:5]))
+
 # plot_histogram(stats)
