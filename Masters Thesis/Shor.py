@@ -469,6 +469,7 @@ def multiply_controlled_ADD_MOD_gate(circuit, qr, m, n, starting_index, a, N, co
     print("ADD_MOD) n: ", n, ", a: ", a, ", N: ", N)
     if (n % 2) != 0:
         raise Exception("Size of the register n cannot be ODD")
+    # -------First CMP gate------
     multiply_controlled_CARRY_gate(circuit, qr, m, n - 2, starting_index, -(N - a), controls)
     SWAP_gate(circuit, qr, m, starting_index + (n - 2), starting_index + (n - 1))
     inner_controls = list(controls)
@@ -481,9 +482,16 @@ def multiply_controlled_ADD_MOD_gate(circuit, qr, m, n, starting_index, a, N, co
     twos_complement_bin_length = len(bin(a)[2:]) + 2
     multiply_controlled_ADD_gate_2(circuit, qr, m, twos_complement_bin_length, starting_index, a, inner_controls)
     NOT_gate(circuit, qr, m, starting_index + (n - 1))
-    # Second CMP(a) gate
+    # ------Second CMP(a) gate-------
     SWAP_gate(circuit, qr, m, starting_index + (n - 1), starting_index + math.ceil(n/2) - 1)
     CMP_2_gate(circuit, qr, m, n + math.ceil(n/2), starting_index, -a, controls)
+
+# x - array containing qubits of number x (it will be exponent in a^x mod N)
+def MULT_MOD(circuit, qr, m, n, starting_index, a, N, x):
+    print("x: ", x)
+    for i in range(len(x)):
+        multiply_controlled_ADD_MOD_gate(circuit, qr, m, n, starting_index, (a*(2**i)) % N, N, [x[i]])
+
 
 
 # n - number of qubits in register, which will be incremented
@@ -491,7 +499,7 @@ def multiply_controlled_ADD_MOD_gate(circuit, qr, m, n, starting_index, a, N, co
 # WARNING: this function can be applied only to EVEN n and also n/2 must be even (it is caused by the contruction
 # of the CARRY gate, which needs EVEN number of ancilla and target qubits)
 def shor(circuit, qr, cr, m, n, a):
-    a = 0
+    a = 2
     N = 3
     # NOT_gate(circuit, qr, m, 0)
     # NOT_gate(circuit, qr, m, 1)
@@ -504,6 +512,8 @@ def shor(circuit, qr, cr, m, n, a):
     # NOT_gate(circuit, qr, m, 7)
     # NOT_gate(circuit, qr, m, 8)
     # NOT_gate(circuit, qr, m, 9)
+    # NOT_gate(circuit, qr, m, 12)
+    NOT_gate(circuit, qr, m, 13)
     # CARRY_gate(circuit, qr, m, 4, 0, a)
     # ADD_gate(circuit, qr, m, m - 1, 0, a)
     # ADD_MOD_gate(circuit, qr, m, m - 1, 0, a, N) # <------
@@ -513,9 +523,8 @@ def shor(circuit, qr, cr, m, n, a):
     # multiply_controlled_incrementer(circuit, qr, m, 4, 0, [4,5,6])
     # multiply_controlled_CARRY_gate(circuit, qr, m, 4, 0, 3, [5,6,7])
     # multiply_controlled_ADD_gate_2(circuit, qr, m, 4, 0, -2, [])
-    multiply_controlled_ADD_MOD_gate(circuit, qr, m, 8, 0, a, N, []) # <--
-    # MOD_MULT_gate(circuit, qr, m, 10, a, N, [8,9])
-    # multiply_controlled_ADD_gate_highest_qubit(circuit, qr, m, 2, 0, 1, []) # <--
+    # multiply_controlled_ADD_MOD_gate(circuit, qr, m, 8, 0, a, N, []) # <--
+    MULT_MOD(circuit, qr, m, 8, 0, a, N, [12, 13])
     # -------------Barrier before measurement------------
     circuit.barrier(qr)
     # measure
