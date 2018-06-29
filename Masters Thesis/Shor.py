@@ -246,36 +246,36 @@ def multiply_controlled_CARRY_gate(circuit, qr, m, n, starting_index, a, control
     # First ascending gates
     inner_controls = list(controls)
     inner_controls.append(starting_index + qubit_map[n - 1])
-    C_n_controlled_NOT_gate(circuit, qr, m, inner_controls, starting_index + qubit_map[n]) # <--
+    C_n_controlled_NOT_gate(circuit, qr, m, inner_controls, starting_index + qubit_map[n])
     for (i, bit) in enumerate(a_binary):
         if i != (n_target - 1):
             if bit == '1':
                 inner_controls = list(controls)
                 inner_controls.append(starting_index + qubit_map[n - 2 - (2*i)])
-                C_n_controlled_NOT_gate(circuit, qr, m, inner_controls, starting_index + qubit_map[n - 1 - (2*i)]) #<-
-                C_n_controlled_NOT_gate(circuit, qr, m, controls, starting_index + qubit_map[n - 2 - (2*i)]) #<-
+                C_n_controlled_NOT_gate(circuit, qr, m, inner_controls, starting_index + qubit_map[n - 1 - (2*i)])
+                C_n_controlled_NOT_gate(circuit, qr, m, controls, starting_index + qubit_map[n - 2 - (2*i)])
             inner_controls = list(controls)
             inner_controls.append(starting_index + qubit_map[n - 3 - (2*i)])
             inner_controls.append(starting_index + qubit_map[n - 2 - (2*i)])
-            C_n_controlled_NOT_gate(circuit, qr, m, inner_controls, starting_index + qubit_map[n - 1 - (2*i)]) #<-
+            C_n_controlled_NOT_gate(circuit, qr, m, inner_controls, starting_index + qubit_map[n - 1 - (2*i)])
         else:
             if bit == '1':
                 inner_controls = list(controls)
                 inner_controls.append(starting_index + qubit_map[0])
-                C_n_controlled_NOT_gate(circuit, qr, m, inner_controls, starting_index + qubit_map[1]) #<-
+                C_n_controlled_NOT_gate(circuit, qr, m, inner_controls, starting_index + qubit_map[1])
     for i in reversed(range(n_target - 1)):
         inner_controls = list(controls)
         inner_controls.append(starting_index + qubit_map[n - 3 - (2*i)])
         inner_controls.append(starting_index + qubit_map[n - 2 - (2*i)])
-        C_n_controlled_NOT_gate(circuit, qr, m, inner_controls, starting_index + qubit_map[n - 1 - (2*i)]) #<-
+        C_n_controlled_NOT_gate(circuit, qr, m, inner_controls, starting_index + qubit_map[n - 1 - (2*i)])
     inner_controls = list(controls)
     inner_controls.append(starting_index + qubit_map[n - 1])
-    C_n_controlled_NOT_gate(circuit, qr, m, inner_controls, starting_index + qubit_map[n]) #<-
+    C_n_controlled_NOT_gate(circuit, qr, m, inner_controls, starting_index + qubit_map[n])
     for i in range(n_target - 1):
         inner_controls = list(controls)
         inner_controls.append(starting_index + qubit_map[n - 3 - (2*i)])
         inner_controls.append(starting_index + qubit_map[n - 2 - (2*i)])
-        C_n_controlled_NOT_gate(circuit, qr, m, inner_controls, starting_index + qubit_map[n - 1 - (2*i)]) #<-
+        C_n_controlled_NOT_gate(circuit, qr, m, inner_controls, starting_index + qubit_map[n - 1 - (2*i)])
     for (i, bit) in enumerate(reversed(a_binary)):
         if i == 0:
             if bit == '1':
@@ -286,9 +286,9 @@ def multiply_controlled_CARRY_gate(circuit, qr, m, n, starting_index, a, control
             inner_controls = list(controls)
             inner_controls.append(starting_index + qubit_map[n - 3 - (2 * (n_target - i - 1))])
             inner_controls.append(starting_index + qubit_map[n - 2 - (2*(n_target - i - 1))])
-            C_n_controlled_NOT_gate(circuit, qr, m, inner_controls, starting_index + qubit_map[n - 1 - (2*(n_target - i - 1))]) #<-
+            C_n_controlled_NOT_gate(circuit, qr, m, inner_controls, starting_index + qubit_map[n - 1 - (2*(n_target - i - 1))])
             if bit == '1':
-                C_n_controlled_NOT_gate(circuit, qr, m, controls, starting_index + qubit_map[n - 2 - (2*(n_target - i - 1))]) #,-
+                C_n_controlled_NOT_gate(circuit, qr, m, controls, starting_index + qubit_map[n - 2 - (2*(n_target - i - 1))])
                 inner_controls = list(controls)
                 inner_controls.append(starting_index + qubit_map[n - 2 - (2*(n_target - i - 1))])
                 C_n_controlled_NOT_gate(circuit, qr, m, inner_controls, starting_index + qubit_map[n - 1 - (2*(n_target - i - 1))])
@@ -299,8 +299,6 @@ def multiply_controlled_CARRY_gate(circuit, qr, m, n, starting_index, a, control
 # (it is the last qubit going into CARRY gate and control qubit for controlled increment gate further in the ADD_MOD fuction),
 # so in fact we are using n+1 qubits in total
 def multiply_controlled_ADD_gate(circuit, qr, m, n, starting_index, a, controls):
-    # print("ADD controls: ", controls)
-    # print("ADD - n: ", n, ", a: ", a)
     if a > ((2**n) - 1):
         raise Exception("Constant which is supposed to be ADDed cannot be written using so few bits")
     if n == 1:
@@ -311,18 +309,12 @@ def multiply_controlled_ADD_gate(circuit, qr, m, n, starting_index, a, controls)
             a_binary = get_binary(a, n)
         else:
             a_binary = get_twos_complement_binary(-a, n)
-        # print("a_binary: ", a_binary)
         low_bits_length = math.ceil(n/2)
         high_bits_length = math.floor(n/2)
         a_low_bits = a_binary[high_bits_length:n] # Numbers stored here and below are in reverse order (binarly)
         a_high_bits = a_binary[0:high_bits_length]
-        # print("Zakres: ", starting_index, " - ", starting_index + n - 1)
-        # print("a_low_bits: ", a_low_bits)
-        # print("a_high_bits: ", a_high_bits)
         a_low_int = int(a_low_bits, 2)
         a_high_int = int(a_high_bits, 2)
-        # print("a_low_int: ", a_low_int)
-        # print("a_high_int: ", a_high_int)
         inner_controls = list(controls)
         inner_controls.append(starting_index + n)
         multiply_controlled_incrementer(circuit, qr, m, high_bits_length, starting_index + low_bits_length, inner_controls)
@@ -330,36 +322,33 @@ def multiply_controlled_ADD_gate(circuit, qr, m, n, starting_index, a, controls)
         for i in range(high_bits_length):
             inner_controls = list(controls)
             inner_controls.append(starting_index + n)
-            C_n_controlled_NOT_gate(circuit, qr, m, inner_controls, starting_index + low_bits_length + i) #<-
+            C_n_controlled_NOT_gate(circuit, qr, m, inner_controls, starting_index + low_bits_length + i)
         # CARRY-GATE
-        multiply_controlled_CARRY_gate(circuit, qr, m, n, starting_index, a_low_int, controls)#<-
+        multiply_controlled_CARRY_gate(circuit, qr, m, n, starting_index, a_low_int, controls)
         # CONTROLLED-INCREMENT-GATE
         inner_controls = list(controls)
         inner_controls.append(starting_index + n)
-        multiply_controlled_incrementer(circuit, qr, m, high_bits_length, starting_index + low_bits_length, inner_controls) #<-
+        multiply_controlled_incrementer(circuit, qr, m, high_bits_length, starting_index + low_bits_length, inner_controls)
         # CARRY-GATE
         multiply_controlled_CARRY_gate(circuit, qr, m, n, starting_index, a_low_int, controls)
         # MULTIPLE-CNOT-GATE
         for i in range(high_bits_length):
             inner_controls = list(controls)
             inner_controls.append(starting_index + n)
-            C_n_controlled_NOT_gate(circuit, qr, m, inner_controls, starting_index + low_bits_length + i)#<-
+            C_n_controlled_NOT_gate(circuit, qr, m, inner_controls, starting_index + low_bits_length + i)
         multiply_controlled_ADD_gate(circuit, qr, m, low_bits_length, starting_index, a_low_int, controls)
-        multiply_controlled_ADD_gate(circuit, qr, m, high_bits_length, starting_index + low_bits_length, a_high_int, controls) #<-
+        multiply_controlled_ADD_gate(circuit, qr, m, high_bits_length, starting_index + low_bits_length, a_high_int, controls)
 
 # This function is going to be launched only once (on the top level of the recursion)
 def multiply_controlled_ADD_gate_2(circuit, qr, m, n, starting_index, a, controls):
-    # print("ADD - n: ", n, ", a: ", a)
     if a > ((2**n) - 1):
         raise Exception("Constant which is supposed to be ADDed cannot be written using so few bits")
     if a >= 0:
         a_binary = get_binary(a, n)
     else:
         a_binary = get_twos_complement_binary(-a, n)
-    # print("a_binary: ", a_binary)
     if n == 3:
         a_2 =  int(a_binary[1:], 2)
-        # print("a2: ", a_2)
         multiply_controlled_ADD_gate(circuit, qr, m, 2, starting_index, a_2, controls)
     else:
         low_bits_length = math.ceil(n/2)
@@ -367,13 +356,8 @@ def multiply_controlled_ADD_gate_2(circuit, qr, m, n, starting_index, a, control
         a_low_bits = a_binary[high_bits_length:n] # Numbers stored here and below are in reverse order (binarly)
         a_high_bits = a_binary[1:high_bits_length]
         high_bits_length -= 1
-        # print("Zakres: ", starting_index, " - ", starting_index + n - 1)
-        # print("a_low_bits: ", a_low_bits)
-        # print("a_high_bits: ", a_high_bits)
         a_low_int = int(a_low_bits, 2)
         a_high_int = int(a_high_bits, 2)
-        # print("a_low_int: ", a_low_int)
-        # print("a_high_int: ", a_high_int)
         inner_controls = list(controls)
         inner_controls.append(starting_index + n)
         multiply_controlled_incrementer(circuit, qr, m, high_bits_length, starting_index + low_bits_length, inner_controls)
@@ -381,39 +365,36 @@ def multiply_controlled_ADD_gate_2(circuit, qr, m, n, starting_index, a, control
         for i in range(high_bits_length):
             inner_controls = list(controls)
             inner_controls.append(starting_index + n)
-            C_n_controlled_NOT_gate(circuit, qr, m, inner_controls, starting_index + low_bits_length + i) #<-
+            C_n_controlled_NOT_gate(circuit, qr, m, inner_controls, starting_index + low_bits_length + i)
         # CARRY-GATE
-        multiply_controlled_CARRY_gate(circuit, qr, m, n, starting_index, a_low_int, controls)#<-
+        multiply_controlled_CARRY_gate(circuit, qr, m, n, starting_index, a_low_int, controls)
         # CONTROLLED-INCREMENT-GATE
         inner_controls = list(controls)
         inner_controls.append(starting_index + n)
-        multiply_controlled_incrementer(circuit, qr, m, high_bits_length, starting_index + low_bits_length, inner_controls) #<-
+        multiply_controlled_incrementer(circuit, qr, m, high_bits_length, starting_index + low_bits_length, inner_controls)
         # CARRY-GATE
         multiply_controlled_CARRY_gate(circuit, qr, m, n, starting_index, a_low_int, controls)
         # MULTIPLE-CNOT-GATE
         for i in range(high_bits_length):
             inner_controls = list(controls)
             inner_controls.append(starting_index + n)
-            C_n_controlled_NOT_gate(circuit, qr, m, inner_controls, starting_index + low_bits_length + i)#<-
+            C_n_controlled_NOT_gate(circuit, qr, m, inner_controls, starting_index + low_bits_length + i)
         multiply_controlled_ADD_gate(circuit, qr, m, low_bits_length, starting_index, a_low_int, controls)
-        multiply_controlled_ADD_gate(circuit, qr, m, high_bits_length, starting_index + low_bits_length, a_high_int, controls) #<-
+        multiply_controlled_ADD_gate(circuit, qr, m, high_bits_length, starting_index + low_bits_length, a_high_int, controls)
 
 # n - size of the whole register (ancilla and target qubits), has to be even. Target qubits are above the ancilla ones
 def CMP_2_gate(circuit, qr, m, n, starting_index, a, controls):
-    print("CMP2) n: ", n, ", a: ", a)
     sub_register_length = math.ceil(n/3)
     if a >= 0:
         a_binary = get_binary(a, sub_register_length)
     else:
         a_binary = get_twos_complement_binary(-a, sub_register_length)
-    print(a_binary)
     target = sub_register_length - 1
-    print("target: ", target)
     # Initial NOT gates
     for (i, bit) in enumerate(reversed(a_binary)):
         if bit == '1':
             NOT_gate(circuit, qr, m, starting_index + sub_register_length + i)
-    inner_controls = list(controls) # <- Ta felerna bramka
+    inner_controls = list(controls)
     inner_controls.append(starting_index + 2*sub_register_length - 1)
     C_n_controlled_NOT_gate(circuit, qr, m, inner_controls, starting_index + target)
     # -----Toffoli and C^3 NOT gates-----
@@ -452,7 +433,7 @@ def CMP_2_gate(circuit, qr, m, n, starting_index, a, controls):
     for (i, bit) in enumerate(reversed(a_binary)):
         if bit == '1':
             NOT_gate(circuit, qr, m, starting_index + sub_register_length + i)
-    inner_controls = list(controls) # <- Ta felerna bramka
+    inner_controls = list(controls)
     inner_controls.append(starting_index + 2*sub_register_length - 1)
     C_n_controlled_NOT_gate(circuit, qr, m, inner_controls, starting_index + target)
     # -----Toffoli and C^3 NOT gates-----
@@ -496,7 +477,6 @@ def CMP_2_gate(circuit, qr, m, n, starting_index, a, controls):
 # This function uses one zeroed qubit instead of borrowed one.
 # Moreover, it will use one qubit outside the register to compute the second CMP operation
 def multiply_controlled_ADD_MOD_gate(circuit, qr, m, n, starting_index, a, N, controls):
-    print("ADD_MOD) n: ", n, ", a: ", a, ", N: ", N)
     if (n % 2) != 0:
         raise Exception("Size of the register n cannot be ODD")
     # -------First CMP gate------
@@ -504,7 +484,7 @@ def multiply_controlled_ADD_MOD_gate(circuit, qr, m, n, starting_index, a, N, co
     SWAP_gate(circuit, qr, m, starting_index + (n - 2), starting_index + (n - 1))
     inner_controls = list(controls)
     inner_controls.append(starting_index + (n - 1))
-    twos_complement_bin_length = len(bin(-(a-N))[2:]) + 2 #<------------------!!!!!!!!!!
+    twos_complement_bin_length = len(bin(-(a-N))[2:]) + 2 
     multiply_controlled_ADD_gate_2(circuit, qr, m, twos_complement_bin_length, starting_index, a-N, inner_controls)
     NOT_gate(circuit, qr, m, starting_index + (n - 1))
     inner_controls = list(controls)
@@ -518,7 +498,6 @@ def multiply_controlled_ADD_MOD_gate(circuit, qr, m, n, starting_index, a, N, co
 
 # x - array containing qubits of number x (it will be exponent in a^x mod N)
 def MULT_MOD(circuit, qr, m, n, starting_index, a, N, x, controls):
-    print("x: ", x)
     x_len = len(x)
     for i in range(x_len):
         inner_controls = list(controls)
@@ -530,8 +509,6 @@ def MULT_MOD(circuit, qr, m, n, starting_index, a, N, x, controls):
     while a_inverse < N and (a_inverse*a) % N != 1:
         a_inverse += 1
     a_inverse_neg = N - a_inverse
-    print("a^-1: ", a_inverse)
-    print("a^-1 neg: ", a_inverse_neg)
     for i in range(x_len):
         inner_controls = list(controls)
         inner_controls.append(x[i])
@@ -593,26 +570,26 @@ def continued_fractions(binary_result):
 # WARNING: this function can be applied only to EVEN n and also n/2 must be even (it is caused by the contruction
 # of the CARRY gate, which needs EVEN number of ancilla and target qubits)
 def shor_quantum_subroutine(circuit, qr, cr, m, a, N):
-    n = len(bin(N)[2:])
-    print("n: ", n)
-    first_x_register_starting_index = (n + 2) * 3
-    second_x_register_starting_index = ((n + 2) * 3) + n
-    for i in range(n):
-        Hadamard_gate(circuit, qr, m, first_x_register_starting_index + i)
-    for i in range(n):
-        Hadamard_gate(circuit, qr, m, second_x_register_starting_index + i)
-    first_controls = []
-    for i in range(n):
-        first_controls.append(first_x_register_starting_index + i)
-    second_controls = []
-    for i in range(n):
-        second_controls.append(second_x_register_starting_index + i)
-    EXP_MOD(circuit, qr, m, (n + 2)*2, 0, a, N, first_controls, second_controls)
-    inv_qft(circuit, qr, m, n, second_x_register_starting_index)
+    # n = len(bin(N)[2:])
+    # print("n: ", n)
+    # first_x_register_starting_index = (n + 2) * 3
+    # second_x_register_starting_index = ((n + 2) * 3) + n
+    # for i in range(n):
+    #     Hadamard_gate(circuit, qr, m, first_x_register_starting_index + i)
+    # for i in range(n):
+    #     Hadamard_gate(circuit, qr, m, second_x_register_starting_index + i)
+    # first_controls = []
+    # for i in range(n):
+    #     first_controls.append(first_x_register_starting_index + i)
+    # second_controls = []
+    # for i in range(n):
+    #     second_controls.append(second_x_register_starting_index + i)
+    # EXP_MOD(circuit, qr, m, (n + 2)*2, 0, a, N, first_controls, second_controls)
+    # inv_qft(circuit, qr, m, n, second_x_register_starting_index)
 
 
-    # a = 2
-    # N = 3
+    a = 2
+    N = 3
     # Hadamard_gate(circuit, qr, m, 0)
     # Hadamard_gate(circuit, qr, m, 1)
     # Hadamard_gate(circuit, qr, m, 2)
@@ -622,12 +599,12 @@ def shor_quantum_subroutine(circuit, qr, cr, m, a, N):
     # NOT_gate(circuit, qr, m, 3)
     # NOT_gate(circuit, qr, m, 4)
     #---------------------------
-    # # NOT_gate(circuit, qr, m, 12)
-    # NOT_gate(circuit, qr, m, 13)
-    # # MULT_MOD(circuit, qr, m, 8, 0, a, N, [12, 13], [])
-    # # NOT_gate(circuit, qr, m, 14)
-    # NOT_gate(circuit, qr, m, 15)
-    # EXP_MOD(circuit, qr, m, 8, 0, a, N, [12, 13], [14, 15])
+    # NOT_gate(circuit, qr, m, 12)
+    NOT_gate(circuit, qr, m, 13)
+    # MULT_MOD(circuit, qr, m, 8, 0, a, N, [12, 13], [])
+    # NOT_gate(circuit, qr, m, 14)
+    NOT_gate(circuit, qr, m, 15)
+    EXP_MOD(circuit, qr, m, 8, 0, a, N, [12, 13], [14, 15])
     # inv_qft(circuit, qr, m, 4, 0)
 
     # -------------Barrier before measurement------------
