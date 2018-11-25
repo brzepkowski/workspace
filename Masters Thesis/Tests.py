@@ -13,7 +13,7 @@ import Shor
 ###############################################################
 # Make a quantum program for the GHZ state.
 ###############################################################
-n = 16
+n = 21
 # n = 5
 QPS_SPECS = {
     "circuits": [
@@ -43,14 +43,14 @@ cr = qp.get_classical_register('cr')
 qc = qp.get_circuit('test_circuit')
 
 # grover(qc, qr, cr, n - 1, 10, 0)
-shor_quantum_subroutine(qc, qr, cr, n, 2, 3)
+shor_quantum_subroutine(qc, qr, cr, n, 2, 5)
 
 # plot_circuit(qc)
 # ------------------- get results -----------------------
 
 qiskit.register(Qconfig.APItoken, Qconfig.config["url"]) # set the APIToken and API url
 # latex_string = plot_circuit(qc)
-results = qp.execute(["test_circuit"], backend='local_qasm_simulator', shots=1, timeout=3600)
+results = qp.execute(["test_circuit"], backend='local_qasm_simulator', shots=1, timeout=90000)
 stats = results.get_counts("test_circuit")
 print(stats)
 print(next(iter(stats.keys())))
