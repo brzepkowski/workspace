@@ -1,0 +1,104 @@
+>>> exec(open("Shor.py").read())
+>>> exec(open("Tests.py").read())
+['ibmqx4', 'ibmqx5', 'local_qasm_simulator', 'ibmq_qasm_simulator', 'local_statevector_simulator', 'local_unitary_simulator', 'ibmqx2']
+n:  2
+x:  [12, 13]
+ADD_MOD) n:  8 , a:  2 , N:  3
+CARRY, n:  6 , a:  -1 , MAX:  7
+CARRY, n:  2 , a:  1 , MAX:  1
+CARRY, n:  2 , a:  1 , MAX:  1
+CARRY, n:  4 , a:  2 , MAX:  3
+CARRY, n:  4 , a:  2 , MAX:  3
+CARRY, n:  2 , a:  0 , MAX:  1
+CARRY, n:  2 , a:  0 , MAX:  1
+CMP2) n:  12 , a:  -2
+1110
+target:  3
+ADD_MOD) n:  8 , a:  1 , N:  3
+CARRY, n:  6 , a:  -2 , MAX:  7
+CARRY, n:  4 , a:  2 , MAX:  3
+CARRY, n:  4 , a:  2 , MAX:  3
+CARRY, n:  2 , a:  0 , MAX:  1
+CARRY, n:  2 , a:  0 , MAX:  1
+CARRY, n:  2 , a:  1 , MAX:  1
+CARRY, n:  2 , a:  1 , MAX:  1
+CMP2) n:  12 , a:  -1
+1111
+target:  3
+a^-1:  2
+a^-1 neg:  1
+ADD_MOD) n:  8 , a:  1 , N:  3
+CARRY, n:  6 , a:  -2 , MAX:  7
+CARRY, n:  4 , a:  2 , MAX:  3
+CARRY, n:  4 , a:  2 , MAX:  3
+CARRY, n:  2 , a:  0 , MAX:  1
+CARRY, n:  2 , a:  0 , MAX:  1
+CARRY, n:  2 , a:  1 , MAX:  1
+CARRY, n:  2 , a:  1 , MAX:  1
+CMP2) n:  12 , a:  -1
+1111
+target:  3
+ADD_MOD) n:  8 , a:  2 , N:  3
+CARRY, n:  6 , a:  -1 , MAX:  7
+CARRY, n:  2 , a:  1 , MAX:  1
+CARRY, n:  2 , a:  1 , MAX:  1
+CARRY, n:  4 , a:  2 , MAX:  3
+CARRY, n:  4 , a:  2 , MAX:  3
+CARRY, n:  2 , a:  0 , MAX:  1
+CARRY, n:  2 , a:  0 , MAX:  1
+CMP2) n:  12 , a:  -2
+1110
+target:  3
+x:  [12, 13]
+ADD_MOD) n:  8 , a:  1 , N:  3
+CARRY, n:  6 , a:  -2 , MAX:  7
+CARRY, n:  4 , a:  2 , MAX:  3
+CARRY, n:  4 , a:  2 , MAX:  3
+CARRY, n:  2 , a:  0 , MAX:  1
+CARRY, n:  2 , a:  0 , MAX:  1
+CARRY, n:  2 , a:  1 , MAX:  1
+CARRY, n:  2 , a:  1 , MAX:  1
+CMP2) n:  12 , a:  -1
+1111
+target:  3
+ADD_MOD) n:  8 , a:  2 , N:  3
+CARRY, n:  6 , a:  -1 , MAX:  7
+CARRY, n:  2 , a:  1 , MAX:  1
+CARRY, n:  2 , a:  1 , MAX:  1
+CARRY, n:  4 , a:  2 , MAX:  3
+CARRY, n:  4 , a:  2 , MAX:  3
+CARRY, n:  2 , a:  0 , MAX:  1
+CARRY, n:  2 , a:  0 , MAX:  1
+CMP2) n:  12 , a:  -2
+1110
+target:  3
+a^-1:  1
+a^-1 neg:  2
+ADD_MOD) n:  8 , a:  2 , N:  3
+CARRY, n:  6 , a:  -1 , MAX:  7
+CARRY, n:  2 , a:  1 , MAX:  1
+CARRY, n:  2 , a:  1 , MAX:  1
+CARRY, n:  4 , a:  2 , MAX:  3
+CARRY, n:  4 , a:  2 , MAX:  3
+CARRY, n:  2 , a:  0 , MAX:  1
+CARRY, n:  2 , a:  0 , MAX:  1
+CMP2) n:  12 , a:  -2
+1110
+target:  3
+ADD_MOD) n:  8 , a:  1 , N:  3
+CARRY, n:  6 , a:  -2 , MAX:  7
+CARRY, n:  4 , a:  2 , MAX:  3
+CARRY, n:  4 , a:  2 , MAX:  3
+CARRY, n:  2 , a:  0 , MAX:  1
+CARRY, n:  2 , a:  0 , MAX:  1
+CARRY, n:  2 , a:  1 , MAX:  1
+CARRY, n:  2 , a:  1 , MAX:  1
+CMP2) n:  12 , a:  -1
+1111
+target:  3
+/usr/local/lib/python3.5/dist-packages/qiskit/backends/local/qasm_simulator_py.py:425: DeprecationWarning: The behavior of getting statevector from simulators by setting shots=1 is deprecated and will be removed. Use the local_statevector_simulator instead, or place explicit snapshot instructions.
+  DeprecationWarning)
+
+{'0000000000000010': 1}
+0000000000000010
+
