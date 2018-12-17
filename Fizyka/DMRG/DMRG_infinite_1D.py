@@ -5,8 +5,8 @@ import math
 import cmath
 
 spin = 0
-m = 4 # Threshold of the basis of subsystem A (if the Hilbert space expands it we are renormalizing the basis)
-number_of_iterations = 1
+m = 16 # Threshold of the basis of subsystem A (if the Hilbert space expands it we are renormalizing the basis)
+number_of_iterations = 4
 im = complex(0, 1)
 # I = np.mat(np.identity(2))
 # Matrices for spin = 1/2
@@ -69,10 +69,10 @@ for i in range(0, number_of_iterations):
 
         # Diagonalize the superblock hamiltonian
         eigenvalues, eigenvectors = scipy.linalg.eig(superblock_H)
-        print("Eigenvalues: ", np.sort(eigenvalues))
+        # print("Eigenvalues: ", np.sort(eigenvalues))
         min_eigenval_index = np.argmin(eigenvalues)
         psi = eigenvectors[min_eigenval_index]
-        print("Psi: ", psi)
+        # print("Psi: ", psi)
 
         # Create the density matrix of the subsystem A (we are using the optimal
         # calculation method, without the need to compute the density matrix of the whole system (subsystems A and B))
@@ -85,7 +85,7 @@ for i in range(0, number_of_iterations):
                     value += psi[l*d + i]*np.conjugate(psi[(((d*i + k) % d) * d) + math.floor(((d*i) + k)/d)])
                     # print(k, ", ", l, " -> ", value)
                     rho_A[k, l] = value
-        print(rho_A)
+        # print(rho_A)
 
         # Diagonalize the reduced density matrix of the subsystem A
         # WARNING: We won't create or diagonalize the reduced density matrix of the subsystem B in this version of the algorithm
@@ -93,7 +93,14 @@ for i in range(0, number_of_iterations):
         rho_A_eigenvalues, rho_A_eigenvectors = scipy.linalg.eig(rho_A)
 
         # Take first m eigenvectors of the ρₐ density matrix and construct the truncation operator
-        truncation_operator = np.mat(np.zeros((d, m), dtype = complex))
-        # for i in range(0, d):
-        #     for j in range(0, m):
-        #         truncation_operator[i, j] = rho_A_eigenvectors[]
+        # Notation: sequence[m:n]  #the mth item until the nth item (exclusive)
+        truncation_operator = np.mat(rho_A_eigenvectors[:, 0:m])
+        # print(truncation_operator)
+
+        # Truncate all operators
+        subsystem_A_H = truncation_operator.H * subsystem_A_H * truncation_operator
+        subsystem_A_I = truncation_operator.H * subsystem_A_I * truncation_operator
+
+
+eigenvalues, eigenvectors = scipy.linalg.eig(subsystem_A_H)
+print("Eigenvalues: ", eigenvalues)
