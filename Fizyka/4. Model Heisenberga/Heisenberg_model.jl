@@ -1,5 +1,6 @@
 # This program assumes, that we are considering only physical systems with one type of spin
 using LightGraphs, SimpleWeightedGraphs
+using GraphLayout
 
 # Tensor product of two square matrices - A and B
 function tensorProduct(A, B)
@@ -177,9 +178,14 @@ for i in 1:n
     end
 end
 
-function main(args)
-    @show args
-    println("Spin: ", spin)
-    println("Całka przeskoku: ", exchange_interaction)
-end # main
+# function main(args)
+#     @show args
+#     println("Spin: ", spin)
+#     println("Całka przeskoku: ", exchange_interaction)
+# end # main
 # main(ARGS)
+
+# g = WheelGraph(10);
+am = Matrix(adjacency_matrix(graph))
+loc_x, loc_y = layout_spring_adj(am)
+draw_layout_adj(am, loc_x, loc_y, filename="graph.svg", arrowlengthfrac=0.0)
