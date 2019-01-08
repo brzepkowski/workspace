@@ -107,7 +107,7 @@ def single_dmrg_step(sys, env, m):
     assert is_valid_enlarged_block(sys_enl)
     assert is_valid_enlarged_block(env_enl)
 
-    print("System: ", sys_enl.operator_dict["H"])
+    # print("System: ", sys_enl.operator_dict["H"])
 
     # Construct the full superblock Hamiltonian.
     m_sys_enl = sys_enl.basis_size
@@ -117,14 +117,14 @@ def single_dmrg_step(sys, env, m):
     superblock_hamiltonian = kron(sys_enl_op["H"], identity(m_env_enl)) + kron(identity(m_sys_enl), env_enl_op["H"]) + \
                              H2(sys_enl_op["conn_Sz"], sys_enl_op["conn_Sp"], env_enl_op["conn_Sz"], env_enl_op["conn_Sp"])
 
-    # print("Superblock Hamiltonian: ", superblock_hamiltonian)
+    print("Superblock Hamiltonian: ", superblock_hamiltonian)
 
     # Call ARPACK to find the superblock ground state.  ("SA" means find the
     # "smallest in amplitude" eigenvalue.)
     (energy,), psi0 = eigsh(superblock_hamiltonian, k=1, which="SA")
 
-    print("Energy: ", energy)
-    print("Psi: ", psi0)
+    # print("Energy: ", energy)
+    # print("Psi: ", psi0)
 
     # Construct the reduced density matrix of the system by tracing out the
     # environment
@@ -136,12 +136,12 @@ def single_dmrg_step(sys, env, m):
     psi0 = psi0.reshape([sys_enl.basis_size, -1], order="C")
     rho = np.dot(psi0, psi0.conjugate().transpose())
 
-    print("Rho: ", rho)
+    # print("Rho: ", rho)
 
     # Diagonalize the reduced density matrix and sort the eigenvectors by
     # eigenvalue.
     evals, evecs = np.linalg.eigh(rho)
-    print("RHO EVALS: ", evals)
+    # print("RHO EVALS: ", evals)
     possible_eigenstates = []
     for eval, evec in zip(evals, evecs.transpose()):
         possible_eigenstates.append((eval, evec))
@@ -157,14 +157,14 @@ def single_dmrg_step(sys, env, m):
     truncation_error = 1 - sum([x[0] for x in possible_eigenstates[:my_m]])
     print("truncation error:", truncation_error)
 
-    print("Truncation operator: ", transformation_matrix)
+    # print("Truncation operator: ", transformation_matrix)
 
     # Rotate and truncate each operator.
     new_operator_dict = {}
     for name, op in sys_enl.operator_dict.items():
         new_operator_dict[name] = rotate_and_truncate(op, transformation_matrix)
 
-    print("Hamiltonian po obcięciu: ", new_operator_dict["H"])
+    # print("Hamiltonian po obcięciu: ", new_operator_dict["H"])
 
     newblock = Block(length=sys_enl.length,
                      basis_size=my_m,
