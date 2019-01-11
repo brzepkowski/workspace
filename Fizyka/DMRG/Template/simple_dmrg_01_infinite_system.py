@@ -74,11 +74,24 @@ def enlarge_block(block):
     # `kron` uses the tensor product convention making blocks of the second
     # array scaled by the first.  As such, we adopt this convention for
     # Kronecker products throughout the code.
+
+    # print("Sz: ", o["conn_Sz"])
+    # print("Sp: ", o["conn_Sp"])
+    # print("Sm: ", o["conn_Sp"].conjugate().transpose())
+
+    new_H = kron(o["H"], identity(model_d))
+    # print("1) ", new_H)
+    new_H += kron(identity(mblock), H1)
+    # print("2) ", new_H)
+    new_H += H2(o["conn_Sz"], o["conn_Sp"], Sz1, Sp1)
+    # print("3) ", new_H)
+
     enlarged_operator_dict = {
-        "H": kron(o["H"], identity(model_d)) + kron(identity(mblock), H1) + H2(o["conn_Sz"], o["conn_Sp"], Sz1, Sp1),
+        "H": new_H,
         "conn_Sz": kron(identity(mblock), Sz1),
         "conn_Sp": kron(identity(mblock), Sp1),
     }
+    # print("H: ", enlarged_operator_dict["H"])
 
     return EnlargedBlock(length=(block.length + 1),
                          basis_size=(block.basis_size * model_d),
@@ -104,6 +117,8 @@ def single_dmrg_step(sys, env, m):
     else:
         env_enl = enlarge_block(env)
 
+    # print("conn_Sz: ", sys_enl.operator_dict["conn_Sz"])
+
     assert is_valid_enlarged_block(sys_enl)
     assert is_valid_enlarged_block(env_enl)
 
@@ -114,10 +129,16 @@ def single_dmrg_step(sys, env, m):
     m_env_enl = env_enl.basis_size
     sys_enl_op = sys_enl.operator_dict
     env_enl_op = env_enl.operator_dict
-    superblock_hamiltonian = kron(sys_enl_op["H"], identity(m_env_enl)) + kron(identity(m_sys_enl), env_enl_op["H"]) + \
-                             H2(sys_enl_op["conn_Sz"], sys_enl_op["conn_Sp"], env_enl_op["conn_Sz"], env_enl_op["conn_Sp"])
+    # print("H: ", sys_enl_op["H"])
+    super_H = kron(sys_enl_op["H"], identity(m_env_enl))
+    # print("1) ", super_H)
+    super_H += kron(identity(m_sys_enl), env_enl_op["H"])
+    # print("2) ", super_H)
+    super_H += H2(sys_enl_op["conn_Sz"], sys_enl_op["conn_Sp"], env_enl_op["conn_Sz"], env_enl_op["conn_Sp"])
+    # print("3) ", super_H)
+    superblock_hamiltonian =  super_H
 
-    print("Superblock Hamiltonian: ", superblock_hamiltonian)
+    # print("Superblock Hamiltonian: ", superblock_hamiltonian)
 
     # Call ARPACK to find the superblock ground state.  ("SA" means find the
     # "smallest in amplitude" eigenvalue.)
@@ -127,8 +148,7 @@ def single_dmrg_step(sys, env, m):
     # print("Psi: ", psi0)
 
     # Construct the reduced density matrix of the system by tracing out the
-    # environment
-    #
+    # environment.
     # We want to make the (sys, env) indices correspond to (row, column) of a
     # matrix, respectively.  Since the environment (column) index updates most
     # quickly in our Kronecker product structure, psi0 is thus row-major ("C
@@ -157,7 +177,7 @@ def single_dmrg_step(sys, env, m):
     truncation_error = 1 - sum([x[0] for x in possible_eigenstates[:my_m]])
     print("truncation error:", truncation_error)
 
-    # print("Truncation operator: ", transformation_matrix)
+    # print("Trunc: ", transformation_matrix)
 
     # Rotate and truncate each operator.
     new_operator_dict = {}
