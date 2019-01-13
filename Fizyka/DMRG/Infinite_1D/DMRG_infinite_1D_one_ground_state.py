@@ -84,7 +84,6 @@ def main():
         subsystem_A_H += (1/2)*kron(last_site_Sp, I)*new_site_Sm
         subsystem_A_H += (1/2)*kron(last_site_Sm, I)*new_site_Sp
 
-        subsystem_A_I = kron(subsystem_A_I, I)
         last_site_Sz = new_site_Sz
         last_site_Sp = new_site_Sp
         last_site_Sm = new_site_Sm
