@@ -28,7 +28,8 @@ H = []
 # This function creates Hamiltonian for the initial benzene structure (hexagon).
 # H - empty matrix (its size depends from the type of spin), Sz - spin Z matrix, Sp - spin S₊ matrix
 def initialize_block(H, Sz, Sp):
-    I = identity(np.shape(H)[0])
+    d = np.shape(H)[0] # d - number of dimensions of hilbert space for single spin (e.g. for spoin 0.5 d is equal to 2).
+    I = identity(d)
     last_site_Sz = Sz
     last_site_Sp = Sp
     for i in range(0, 5):
@@ -40,16 +41,26 @@ def initialize_block(H, Sz, Sp):
         last_site_Sm = last_site_Sp.transpose().conjugate()
         H = kron(H, I)
         H += (last_site_Sz*new_site_Sz) + (1/2)*(last_site_Sp*new_site_Sm + last_site_Sm*new_site_Sp)
-    I_whole = identity(np.shape(H)[0]) # Here I will be the size of 5-site chain (or hexagon without the energy beween the last and first sites).
-    last_site_Sz = kron(Sz, I_whole)
-    last_site_Sp = kron(Sp, I_whole)
+    # We have to add interaction between the first and the last site, to close the hexagon.
+    I_five_sites = identity(d**5)
+    # Spin matrices of the first site.
+    first_site_Sz = kron(Sz, I_five_sites)
+    first_site_Sp = kron(Sp, I_five_sites)
+    first_site_Sm = first_site_Sp.transpose().conjugate()
+
+    # Spin matrices of the last site.
+    last_site_Sz = kron(I_five_sites, Sz)
+    last_site_Sp = kron(I_five_sites, Sp)
     last_site_Sm = last_site_Sp.transpose().conjugate()
-    new_site_Sz = kron(I_whole, Sz)
-    new_site_Sp = kron(I_whole, Sp)
-    new_site_Sm = new_site_Sp.transpose().conjugate()
-    H = kron(H, I)
-    H += (last_site_Sz*new_site_Sz) + (1/2)*(last_site_Sp*new_site_Sm + last_site_Sm*new_site_Sp)
-    return H
+
+    # We are adding last interaction between spins to the Hamiltonian.
+    H += (first_site_Sz*last_site_Sz) + (1/2)*(first_site_Sp*last_site_Sm + first_site_Sm*last_site_Sp)
+
+    spin_operators = {} # We will hold here 3 spin operators, that will interact with the 1D chain added in the first step of iteration.
+    spin_operators[1] = (kron(I, kron(I, kron(Sz, kron(I, kron(I, I))))), kron(I, kron(I, kron(Sp, kron(I, kron(I, I))))))
+    spin_operators[2] = (kron(I, kron(I, kron(I, kron(Sz, kron(I, I))))), kron(I, kron(I, kron(I, kron(Sp, kron(I, I))))))
+    spin_operators[3] = (kron(I, kron(I, kron(I, kron(I, kron(Sz, I))))), kron(I, kron(I, kron(I, kron(I, kron(Sp, I))))))
+    return (H, spin_operators)
 
 def compute_cell_of_rho_matrix(rho, psi, d, k, l):
     value = 0
@@ -57,27 +68,18 @@ def compute_cell_of_rho_matrix(rho, psi, d, k, l):
         value += psi[l*d + i]*np.conjugate(psi[(((d*i + k) % d) * d) + math.floor(((d*i) + k)/d)])
     rho[k, l] = value
 
-# number_of_sites - number of sites in the 1D spin chain,
-# spin - type of spin, H - initial zeroed Hamiltonian, Sz - spin z operator,
-# Sp - spin + operator, I - identity matrix of size corresponding to the spin type.
-# TODO: Replace this version with the finite size DMRG.
-def generate_1d_spin_chain(number_of_sites, spin, H, Sz, Sp, I, m):
+# H - initial zeroed Hamiltonian, Sz - spin z operator (Pauli matrix) of the size corresponding to the spin type,
+# Sp - spin + operator of the size corresponding to the spin type, I - identity matrix of the size corresponding to the spin type.
+def enlarge_1d_spin_chain(H, spin_operators, Sz, Sp, I, m, current_number_of_sites, number_of_added_sites):
+    subsystem_A_H = H
     Sm = Sp.transpose().conjugate()
-    subsystem_A_H = H # H that was passed to this function is just zeroed matrix of appropriate size.
-    last_site_Sz = Sz # Sz is spin z matrix appropriate for given spin type.
-    last_site_Sp = Sp # Sz is spin S₊ matrix appropriate for given spin type.
 
-    spin_operators = {} # This dictionary will hold spin operators for all sites.
-                        # This dictionar will be indexed with numbers (corresponding to the number of site).
-                        # Each entry will hold pair of operators (for Sz and Sp operators).
-                        # We need to hold operators for all sites, because some of them
-                        # will be needed in the process of adding this 1D chain to the previous structure
-                        # and alter some other will become the edge spin operators needed in the next step of the iteration.
-    spin_operators[1] = (Sz, Sp)
+    (last_site_Sz, last_site_Sp) = spin_operators[sorted(spin_operators.keys())[-1]]
 
     # Although the initial Hamiltonian is empty it represents system with one site
     # (in the Heisenberg model only interactions BETWEEN spins are added to the initial Hamiltonian).
-    for i in range(2, number_of_sites + 1): # TODO: <---- sprawdzić zakres!!! | Here we are just saying, that we began with one site and we are adding the second one and so on).
+    length_of_chain = current_number_of_sites + number_of_added_sites
+    for i in range(current_number_of_sites + 1, length_of_chain + 1): # Here we are just saying, that we began with one site and we are adding the second one and so on).
         print("Step: ", i)
 
         # Identity operator of the same size as the subsystem A.
@@ -145,10 +147,6 @@ def generate_1d_spin_chain(number_of_sites, spin, H, Sz, Sp, I, m):
             truncation_operator = np.array(rho_A_eigenvectors[:, -m:], dtype='d')
 
             # Truncate hamiltonian and spin operators of the A block.
-            # print("truncation_operator: ", np.shape(truncation_operator))
-            # print("subsystem_A_H: ", np.shape(subsystem_A_H))
-            # print("last_site_Sz: ", np.shape(last_site_Sz))
-            # print("last_site_Sp: ", np.shape(last_site_Sp))
             subsystem_A_H = truncation_operator.conjugate().transpose().dot(subsystem_A_H.dot(truncation_operator))
             last_site_Sz = truncation_operator.conjugate().transpose().dot(last_site_Sz.dot(truncation_operator))
             last_site_Sp = truncation_operator.conjugate().transpose().dot(last_site_Sp.dot(truncation_operator))
@@ -161,10 +159,28 @@ def generate_1d_spin_chain(number_of_sites, spin, H, Sz, Sp, I, m):
         # Add spin operators of the last site to the dictionary (note, that the new operator is already truncated,
         # so we do not need to truncate it as in the above loop).
         spin_operators[i] = (last_site_Sz, last_site_Sp)
+        (eigenvalue_A,), psi_A = eigsh(subsystem_A_H, k=1, which="SA")
+        print("E/L: ", eigenvalue_A / i)
 
-    return (subsystem_A_H, spin_operators)
+
+    return (subsystem_A_H, spin_operators, length_of_chain)
+
+# H - initial zeroed Hamiltonian, Sz - spin z operator (Pauli matrix) of the size corresponding to the spin type,
+# Sp - spin + operator of the size corresponding to the spin type, I - identity matrix of the size corresponding to the spin type.
+# TODO: Replace this version with the finite size DMRG.
+def initialize_1d_spin_chain(H, Sz, Sp, I, m):
+    subsystem_A_H = H # H that was passed to this function is just zeroed matrix of appropriate size.
+
+    spin_operators = {} # This dictionary will hold spin operators for all sites.
+                        # This dictionar will be indexed with numbers (corresponding to the number of site).
+                        # Each entry will hold pair of operators (for Sz and Sp operators).
+                        # We need to hold operators for all sites, because some of them
+                        # will be needed in the process of adding this 1D chain to the previous structure
+                        # and alter some other will become the edge spin operators needed in the next step of the iteration.
+    spin_operators[1] = (Sz, Sp)
+    (subsystem_A_H, spin_operators, length_of_chain) = enlarge_1d_spin_chain(H, spin_operators, Sz, Sp, I, m, 1, 6) # It will return chain of length equal to 7.
+    return (subsystem_A_H, spin_operators, length_of_chain)
 #-------------------------------------------------------------------------------
-
 
 def main():
     start_time = time.time()
@@ -195,18 +211,12 @@ def main():
         sys.exit()
 
     # Initialization of the block's Hamiltonian (empty, without any sites).
-    subsystem_A_H = initialize_block(H, Sz, Sp)
-    # print("H: ", subsystem_A_H)
+    (subsystem_A_H, initial_spin_operators) = initialize_block(H, Sz, Sp)
 
-    (new_chain, new_chain_spin_operators) = generate_1d_spin_chain(7, spin, H, Sz, Sp, I, m)
-    # (new_chain, new_chain_spin_operators) = generate_1d_spin_chain(100, spin, H, Sz, Sp, I, m)
-    # print("new_chain_H: ", new_chain)
-    print("Operators: ", new_chain_spin_operators.keys())
-
-
-
-    # last_site_Sz = Sz
-    # last_site_Sp = Sp
+    # Initialize the 1D spin chain, that will be consequently enlarged in the following iterations.
+    # This chain is added to the initial structure.
+    (new_chain_H, new_chain_spin_operators, length_of_chain) = initialize_1d_spin_chain(H, Sz, Sp, I, m)
+    # (new_chain_H, new_chain_spin_operators, length_of_chain) = enlarge_1d_spin_chain(new_chain_H, new_chain_spin_operators, Sz, Sp, I, m, length_of_chain, 2)
 
     # for i in range(0, number_of_iterations):
     #     print("Step: ", i)

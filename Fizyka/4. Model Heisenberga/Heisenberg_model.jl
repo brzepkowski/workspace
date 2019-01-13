@@ -32,14 +32,14 @@ function printHamiltonian(H)
 end # printHamiltonian
 
 # Two spins
-sources = [1]
-destinations = [2]
-weights = [1]
+# sources = [1]
+# destinations = [2]
+# weights = [1]
 
 # Benzene
-# sources = [1,2,3,4,5,6]
-# destinations = [2,3,4,5,6,1]
-# weights = [1,1,1,1,1,1] # TODO we can make three graphs of the same structure,
+sources = [1,2,3,4,5,6]
+destinations = [2,3,4,5,6,1]
+weights = [1,1,1,1,1,1] # TODO we can make three graphs of the same structure,
 # but with different weights (for different exchange interaction values - Iˣ, Iʸ, Iᶻ)
 graph = SimpleWeightedGraph(sources, destinations, weights)
 graph_vertices = vertices(graph)
@@ -167,15 +167,16 @@ for edge in edges(graph)
 end
 
 n = size(H)[1]
-printHamiltonian(H)
+# printHamiltonian(H)
 eigenvalues, eigenvectors = eig(H)
 
+println("Number of eigenvalues: ", length(eigenvalues))
 println("Results:")
 for i in 1:n
     println("E: ", eigenvalues[i])
-    for j in 1:n
-        println(eigenvectors[j,i]^2)
-    end
+    # for j in 1:n
+    #     println(eigenvectors[j,i]^2)
+    # end
 end
 
 # function main(args)
