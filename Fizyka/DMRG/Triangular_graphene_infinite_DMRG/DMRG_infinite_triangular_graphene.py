@@ -57,9 +57,12 @@ def initialize_block(H, Sz, Sp):
     H += (first_site_Sz*last_site_Sz) + (1/2)*(first_site_Sp*last_site_Sm + first_site_Sm*last_site_Sp)
 
     spin_operators = {} # We will hold here 3 spin operators, that will interact with the 1D chain added in the first step of iteration.
-    spin_operators[1] = (kron(I, kron(I, kron(Sz, kron(I, kron(I, I))))), kron(I, kron(I, kron(Sp, kron(I, kron(I, I))))))
-    spin_operators[2] = (kron(I, kron(I, kron(I, kron(Sz, kron(I, I))))), kron(I, kron(I, kron(I, kron(Sp, kron(I, I))))))
-    spin_operators[3] = (kron(I, kron(I, kron(I, kron(I, kron(Sz, I))))), kron(I, kron(I, kron(I, kron(I, kron(Sp, I))))))
+    spin_operators[1] = ([], []) # We are adding dummy operators (they will not be used), to make further iterations easier
+                                 # (e.g. first site of new chain will join with the second one of the previous chain).
+    spin_operators[2] = (kron(I, kron(I, kron(Sz, kron(I, kron(I, I))))), kron(I, kron(I, kron(Sp, kron(I, kron(I, I))))))
+    spin_operators[3] = (kron(I, kron(I, kron(I, kron(Sz, kron(I, I))))), kron(I, kron(I, kron(I, kron(Sp, kron(I, I))))))
+    spin_operators[4] = (kron(I, kron(I, kron(I, kron(I, kron(Sz, I))))), kron(I, kron(I, kron(I, kron(I, kron(Sp, I))))))
+    spin_operators[5] = ([], []) # Dummy operator (same as in spin_operators[1]).
     return (H, spin_operators)
 
 def compute_cell_of_rho_matrix(rho, psi, d, k, l):
@@ -180,6 +183,25 @@ def initialize_1d_spin_chain(H, Sz, Sp, I, m):
     spin_operators[1] = (Sz, Sp)
     (subsystem_A_H, spin_operators, length_of_chain) = enlarge_1d_spin_chain(H, spin_operators, Sz, Sp, I, m, 1, 6) # It will return chain of length equal to 7.
     return (subsystem_A_H, spin_operators, length_of_chain)
+
+# Generates indices of spin matrices FROM CHAIN needed, while adding chain to the current system (e.g. for chain of length 7 it will return {1, 4, 7}).
+def generate_operators_pointers(number_of_operators):
+    operators_pointers = range(1, number_of_operators + 1)
+    operators_pointers = list(filter(lambda x: (x == 1) or (x == number_of_operators) or \
+                    (x > 2 and x < number_of_operators - 1 and x % 2 == 0), operators_pointers))
+    return operators_pointers
+
+# Generates indices of spin matrices FROM CURRENT SYSTEM needed, while adding chain to the current system (e.g. for dummy chain of length 5 it will return {2, 3, 4}).
+def generate_alternative_operators_pointers(number_of_operators):
+    operators_pointers = generate_operators_pointers(number_of_operators)
+    operators_pointers = set(range(1, number_of_operators + 1)).difference(operators_pointers)
+    return list(operators_pointers)
+
+# Generates indices of spin matrices needed, while connecting extended block to the environment.
+def generate_environment_operators_pointers(number_of_operators):
+    operators_pointers = range(1, number_of_operators + 1)
+    operators_pointers = list(filter(lambda x: x > 2 and x < number_of_operators - 1 and x % 2 == 1, operators_pointers))
+    return operators_pointers
 #-------------------------------------------------------------------------------
 
 def main():
@@ -215,80 +237,97 @@ def main():
 
     # Initialize the 1D spin chain, that will be consequently enlarged in the following iterations.
     # This chain is added to the initial structure.
-    (new_chain_H, new_chain_spin_operators, length_of_chain) = initialize_1d_spin_chain(H, Sz, Sp, I, m)
+    (new_chain_H, new_chain_spin_operators, new_chain_length) = initialize_1d_spin_chain(H, Sz, Sp, I, m)
     # (new_chain_H, new_chain_spin_operators, length_of_chain) = enlarge_1d_spin_chain(new_chain_H, new_chain_spin_operators, Sz, Sp, I, m, length_of_chain, 2)
 
-    # for i in range(0, number_of_iterations):
-    #     print("Step: ", i)
-    #
-    #     # Identity operator of the same size as the subsystem A.
-    #     subsystem_A_I = identity(np.shape(subsystem_A_H)[0])
-    #
-    #     # Operator S₋ is just hermitian conjugate of the S₊ operator.
-    #     last_site_Sm = last_site_Sp.transpose().conjugate()
-    #
-    #     # Calculating hamiltonian of subsystem A with one site added.
-    #     subsystem_A_H = kron(subsystem_A_H, I)
-    #
-    #     new_site_Sz = kron(subsystem_A_I, Sz)
-    #     new_site_Sp = kron(subsystem_A_I, Sp)
-    #     new_site_Sm = kron(subsystem_A_I, Sm)
-    #
-    #     subsystem_A_H += kron(last_site_Sz, I)*new_site_Sz
-    #     subsystem_A_H += (1/2)*kron(last_site_Sp, I)*new_site_Sm
-    #     subsystem_A_H += (1/2)*kron(last_site_Sm, I)*new_site_Sp
-    #
-    #     subsystem_A_I = kron(subsystem_A_I, I)
-    #     last_site_Sz = new_site_Sz
-    #     last_site_Sp = new_site_Sp
-    #     last_site_Sm = new_site_Sm
-    #
-    #     # If the size of the subsystem A exceeds the threshold, begin renormalization.
-    #     if np.shape(subsystem_A_H)[0] >= m:
-    #         #------------------------
-    #         # Computing the superblock hamiltonian (hamiltonian of subsystem A and symmetrical subsystem B).
-    #         # WARNING: In this algorithm we are using the same hamiltonian for subsystem B as for the subsystem A (in more
-    #         # advanced versions of DMRG these subsystems don't have to be symmetrical).
-    #         subsystem_B_H = subsystem_A_H
-    #         # Hamiltonian of the superblock consisting of subsystems A and B.
-    #         subsystem_A_I = identity(np.shape(subsystem_A_H)[0])
-    #         superblock_H = kron(subsystem_A_H, subsystem_A_I)
-    #         superblock_H += kron(subsystem_A_I, subsystem_B_H)
-    #         superblock_H += kron(last_site_Sz, subsystem_A_I)*kron(subsystem_A_I, last_site_Sz)
-    #         superblock_H += (1/2)*kron(last_site_Sp, subsystem_A_I)*kron(subsystem_A_I, last_site_Sm)
-    #         superblock_H += (1/2)*kron(last_site_Sm, subsystem_A_I)*kron(subsystem_A_I, last_site_Sp)
-    #
-    #         # Diagonalize the superblock hamiltonian.
-    #         (eigenvalue,), psi = eigsh(superblock_H, k=1, which="SA")
-    #
-    #         # Create the density matrix of the subsystem A (we are using the optimal
-    #         # calculation method, without the need to compute the density matrix of the whole system (subsystems A and B)).
-    #         d = np.shape(subsystem_A_H)[0] # d - size of the basis of subsystem A (or length of its state vecotrs).
-    #         rho_A = np.mat(np.zeros((d, d), dtype='d'))
-    #         for k in range(0, d):
-    #             for l in range(0, d):
-    #                 compute_cell_of_rho_matrix(rho_A, psi, d, k, l)
-    #
-    #         # Diagonalize the reduced density matrix of the subsystem A.
-    #         # WARNING: We won't create or diagonalize the reduced density matrix of the subsystem B in this version of the algorithm.
-    #         rho_A_eigenvalues, rho_A_eigenvectors = np.linalg.eigh(rho_A)
-    #
-    #         # Take m most significant eigenvectors of the ρₐ density matrix and construct the truncation operator
-    #         # (last m vectors, because results of the "eigh" function are sorted in the ascending order).
-    #         # Notation: sequence[m:n]  -> from the mth item (inclusive) until the nth item (exclusive).
-    #         truncation_operator = np.array(rho_A_eigenvectors[:, -m:], dtype='d')
-    #
-    #         # Truncate hamiltonian and spin operators of the A block.
-    #         subsystem_A_H = truncation_operator.conjugate().transpose().dot(subsystem_A_H.dot(truncation_operator))
-    #         last_site_Sz = truncation_operator.conjugate().transpose().dot(last_site_Sz.dot(truncation_operator))
-    #         last_site_Sp = truncation_operator.conjugate().transpose().dot(last_site_Sp.dot(truncation_operator))
-    #         #-----------------------------------
-    #
-    # (eigenvalue,), psi = eigsh(subsystem_A_H, k=1, which="SA")
-    # print("Min eigenvalue: ", eigenvalue)
-    # print("Min energy per site: ", eigenvalue / (number_of_iterations+1))
-    #
-    # print("--- %s seconds ---" % (time.time() - start_time))
+    current_system_spin_operators = initial_spin_operators
+    current_chain_length = 5 # Five sites of the initial hexagon create dummy chain (operators for sites 1 and 5 are ampty).
+
+    for i in range(0, number_of_iterations):
+        print("--->STEP: ", i)
+
+        #---------------- ADD CHAIN TO THE CURRENT SYSTEM-----------------------
+        # Identity operator of the same size as the subsystem A.
+        subsystem_A_I = identity(np.shape(subsystem_A_H)[0])
+        # Identity operator of the same size as the 1D spin chain added.
+        new_chain_I = identity(np.shape(new_chain_H)[0])
+
+        # Calculating hamiltonian of subsystem A with 1D spin chain added.
+        # Extend Hamiltonians of the current system and the 1D chain.
+        subsystem_A_H = kron(subsystem_A_H, new_chain_I)
+        new_chain_H = kron(subsystem_A_I, new_chain_H)
+        subsystem_A_H += new_chain_H # We are adding two Hamiltonians and later
+                                     # we will also need to include interactions between them (in the place of joining).
+
+        # Generate pointers of operators of sites, that interact in the junction of current system and new chain.
+        current_system_edge_operators_pointers = generate_alternative_operators_pointers(current_chain_length)
+        new_chain_operators_pointers = generate_operators_pointers(new_chain_length)
+
+        # Add interactions between sites in the junction to the Hamiltonian of extended system (current system + new chain).
+        for x in range(0, len(current_system_edge_operators_pointers)):
+            (current_system_operator_Sz, current_system_operator_Sp) = current_system_spin_operators[current_system_edge_operators_pointers[x]]
+            current_system_operator_Sm = current_system_operator_Sp.transpose().conjugate()
+            (new_chain_operator_Sz, new_chain_operator_Sp) = new_chain_spin_operators[new_chain_operators_pointers[x]]
+            new_chain_operator_Sm = new_chain_operator_Sp.transpose().conjugate()
+            subsystem_A_H += kron(current_system_operator_Sz, new_chain_I)*kron(subsystem_A_I, new_chain_operator_Sz)
+            subsystem_A_H += (1/2)*kron(current_system_operator_Sp, new_chain_I)*kron(subsystem_A_I, new_chain_operator_Sm)
+            subsystem_A_H += (1/2)*kron(current_system_operator_Sm, new_chain_I)*kron(subsystem_A_I, new_chain_operator_Sp)
+
+        #-----------------------------------------------------------------------
+
+        # If the size of the extended system exceeds the threshold, begin renormalization.
+        if np.shape(subsystem_A_H)[0] >= m:
+            #------------------------
+            # Computing the superblock hamiltonian (hamiltonian of subsystem A and symmetrical subsystem B).
+            # WARNING: In this algorithm we are using the same hamiltonian for subsystem B as for the subsystem A (in more
+            # advanced versions of DMRG these subsystems don't have to be symmetrical).
+            subsystem_B_H = subsystem_A_H
+
+            # Hamiltonian of the superblock consisting of subsystems A and B.
+            subsystem_A_I = identity(np.shape(subsystem_A_H)[0])
+            superblock_H = kron(subsystem_A_H, subsystem_A_I)
+            superblock_H += kron(subsystem_A_I, subsystem_B_H)
+
+            environment_junction_operators_pointers = generate_environment_operators_pointers(new_chain_length)
+            print("environment_junction_operators_pointers: ", environment_junction_operators_pointers)
+
+            sys.exit(0)
+
+            # superblock_H += kron(last_site_Sz, subsystem_A_I)*kron(subsystem_A_I, last_site_Sz)
+            # superblock_H += (1/2)*kron(last_site_Sp, subsystem_A_I)*kron(subsystem_A_I, last_site_Sm)
+            # superblock_H += (1/2)*kron(last_site_Sm, subsystem_A_I)*kron(subsystem_A_I, last_site_Sp)
+
+            # Diagonalize the superblock hamiltonian.
+            (eigenvalue,), psi = eigsh(superblock_H, k=1, which="SA")
+
+            # Create the density matrix of the subsystem A (we are using the optimal
+            # calculation method, without the need to compute the density matrix of the whole system (subsystems A and B)).
+            d = np.shape(subsystem_A_H)[0] # d - size of the basis of subsystem A (or length of its state vecotrs).
+            rho_A = np.mat(np.zeros((d, d), dtype='d'))
+            for k in range(0, d):
+                for l in range(0, d):
+                    compute_cell_of_rho_matrix(rho_A, psi, d, k, l)
+
+            # Diagonalize the reduced density matrix of the subsystem A.
+            # WARNING: We won't create or diagonalize the reduced density matrix of the subsystem B in this version of the algorithm.
+            rho_A_eigenvalues, rho_A_eigenvectors = np.linalg.eigh(rho_A)
+
+            # Take m most significant eigenvectors of the ρₐ density matrix and construct the truncation operator
+            # (last m vectors, because results of the "eigh" function are sorted in the ascending order).
+            # Notation: sequence[m:n]  -> from the mth item (inclusive) until the nth item (exclusive).
+            truncation_operator = np.array(rho_A_eigenvectors[:, -m:], dtype='d')
+
+            # Truncate hamiltonian and spin operators of the A block.
+            subsystem_A_H = truncation_operator.conjugate().transpose().dot(subsystem_A_H.dot(truncation_operator))
+            last_site_Sz = truncation_operator.conjugate().transpose().dot(last_site_Sz.dot(truncation_operator))
+            last_site_Sp = truncation_operator.conjugate().transpose().dot(last_site_Sp.dot(truncation_operator))
+            #-----------------------------------
+
+    (eigenvalue,), psi = eigsh(subsystem_A_H, k=1, which="SA")
+    print("Min eigenvalue: ", eigenvalue)
+    print("Min energy per site: ", eigenvalue / (number_of_iterations+1))
+
+    print("--- %s seconds ---" % (time.time() - start_time))
 
 if __name__== "__main__":
   main()
