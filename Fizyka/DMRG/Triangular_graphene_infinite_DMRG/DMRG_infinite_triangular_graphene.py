@@ -27,7 +27,7 @@ H = []
 
 # This function creates Hamiltonian for the initial benzene structure (hexagon).
 # H - empty matrix (its size depends from the type of spin), Sz - spin Z matrix, Sp - spin S₊ matrix
-def initialize_block(H, Sz, Sp, d):
+def initialize_block(H, Sz, Sp, d, threshold):
     I = identity(d)
     #---------------------ADDING 6 SITES OF THE HEXAGON-------------------------
     last_site_Sz = Sz
@@ -71,7 +71,6 @@ def initialize_block(H, Sz, Sp, d):
     third_added_site_Sp = kron(identity(d**4), kron(Sp, identity(d**3)))
     third_added_site_Sm = third_added_site_Sp.transpose().conjugate()
 
-
     left_site_Sz = kron(identity(d**6), kron(Sz, I))
     left_site_Sp = kron(identity(d**6), kron(Sp, I))
     left_site_Sm = left_site_Sp.transpose().conjugate()
@@ -91,36 +90,53 @@ def initialize_block(H, Sz, Sp, d):
     spin_operators.append((third_added_site_Sz, third_added_site_Sp))
     spin_operators.append((right_site_Sz, right_site_Sp))
 
+    # We have to renormalize even such a small system, because in the second step of the algorithm we are adding 5 sites at once.
+    if (np.shape(H)[0] >= threshold):
+        size_of_the_subsystem = np.shape(H)[0]
+        environment_H = H
+        superblock_H = kron(H, identity(size_of_the_subsystem))
+        environment_H = kron(identity(size_of_the_subsystem), environment_H)
+
+        (subsystem_left_Sz, subsystem_left_Sp) = spin_operators[0]
+        subsystem_left_Sz = kron(subsystem_left_Sz, identity(size_of_the_subsystem))
+        subsystem_left_Sp = kron(subsystem_left_Sp, identity(size_of_the_subsystem))
+        subsystem_left_Sm = subsystem_left_Sp.transpose().conjugate()
+
+        (subsystem_middle_Sz, subsystem_middle_Sp) = spin_operators[2]
+        subsystem_middle_Sz = kron(subsystem_middle_Sz, identity(size_of_the_subsystem))
+        subsystem_middle_Sp = kron(subsystem_middle_Sp, identity(size_of_the_subsystem))
+        subsystem_middle_Sm = subsystem_middle_Sp.transpose().conjugate()
+
+        (subsystem_right_Sz, subsystem_right_Sp) = spin_operators[4]
+        subsystem_right_Sz = kron(subsystem_right_Sz, identity(size_of_the_subsystem))
+        subsystem_right_Sp = kron(subsystem_right_Sp, identity(size_of_the_subsystem))
+        subsystem_right_Sm = subsystem_right_Sp.transpose().conjugate()
+
+
+        (environment_left_Sz, environment_left_Sp) = spin_operators[0]
+        environment_left_Sz = kron(environment_left_Sz, identity(size_of_the_subsystem))
+        environment_left_Sp = kron(environment_left_Sp, identity(size_of_the_subsystem))
+        environment_left_Sm = environment_left_Sp.transpose().conjugate()
+
+        (environment_middle_Sz, environment_middle_Sp) = spin_operators[2]
+        environment_middle_Sz = kron(environment_middle_Sz, identity(size_of_the_subsystem))
+        environment_middle_Sp = kron(environment_middle_Sp, identity(size_of_the_subsystem))
+        environment_middle_Sm = environment_middle_Sp.transpose().conjugate()
+
+        (environment_right_Sz, environment_right_Sp) = spin_operators[4]
+        environment_right_Sz = kron(environment_right_Sz, identity(size_of_the_subsystem))
+        environment_right_Sp = kron(environment_right_Sp, identity(size_of_the_subsystem))
+        environment_right_Sm = environment_right_Sp.transpose().conjugate()
+
+        superblock_H += environment_H
+        superblock_H += subsystem_left_Sz*environment_left_Sz + (1/2)*(subsystem_left_Sp*environment_left_Sm + subsystem_left_Sm*environment_left_Sp)
+        superblock_H += subsystem_middle_Sz*environment_middle_Sz + (1/2)*(subsystem_middle_Sp*environment_middle_Sm + subsystem_middle_Sm*environment_middle_Sp)
+        superblock_H += subsystem_right_Sz*environment_right_Sz + (1/2)*(subsystem_right_Sp*environment_right_Sm + subsystem_right_Sm*environment_right_Sp)
+
+        (H, spin_operators) = renormalize_system(H, superblock_H, spin_operators)
+
     return (H, spin_operators, 8) # 8 stands for the total number of sites in the whole system (in initialization we are creating 6-sited hexagon
                                     # plus we are adding two sites on the edges).
-
-# def initialize_block(H, Sz, Sp):
-#     d = np.shape(H)[0] # d - number of dimensions of hilbert space for single spin (e.g. for spoin 0.5 d is equal to 2).
-#     I = identity(d)
-#     H = kron(H, kron(I, I))
-#
-#     first_site_Sz = kron(Sz, kron(I, I))
-#     first_site_Sp = kron(Sp, kron(I, I))
-#     first_site_Sm = first_site_Sp.transpose().conjugate()
-#
-#     second_site_Sz = kron(I, kron(Sz, I))
-#     second_site_Sp = kron(I, kron(Sp, I))
-#     second_site_Sm = second_site_Sp.transpose().conjugate()
-#
-#     third_site_Sz = kron(I, kron(I, Sz))
-#     third_site_Sp = kron(I, kron(I, Sp))
-#     third_site_Sm = third_site_Sp.transpose().conjugate()
-#
-#     # We are adding interactions between spins to the Hamiltonian.
-#     H += first_site_Sz*second_site_Sz + (1/2)*(first_site_Sp*second_site_Sm + first_site_Sm*second_site_Sp)
-#     H += second_site_Sz*third_site_Sz + (1/2)*(second_site_Sp*third_site_Sm + second_site_Sm*third_site_Sp)
-#
-#     spin_operators = [] # We will hold here 3 spin operators (for thie initial hexagon system).
-#     spin_operators.append((first_site_Sz, first_site_Sp))
-#     spin_operators.append((second_site_Sz, second_site_Sp))
-#     spin_operators.append((third_site_Sz, third_site_Sp))
-#
-#     return (H, spin_operators, 3) # 3 stands for the total number of sites in the whole system (in initialization we are creating 3 sites).
 
 # subsystem_A_H - Hamiltonian representing the system before the enlargement procedure,
 # spin_operators - list of spin operators needed in the process of enlargement (we will consequently replace its elements with the new ones
@@ -169,6 +185,97 @@ def odd_step(subsystem_A_H, spin_operators, total_number_of_sites, d, Sz, Sp, i)
 
     return (subsystem_A_H, spin_operators, total_number_of_sites + 3)
 
+
+def even_step(subsystem_A_H, spin_operators, total_number_of_sites, d, Sz, Sp, threshold, i):
+    I = identity(d)
+    middle_index = math.ceil(len(spin_operators)/2) - 1 # We have to subtract 1, because list is indexed starting from 0.
+
+    #--------------------------ADDING INNER 5 SITES-----------------------------
+
+    current_first_site_Sz = kron(spin_operators[middle_index - 2][0], identity(d**5))
+    current_first_site_Sp = kron(spin_operators[middle_index - 2][1], identity(d**5))
+    current_first_site_Sm = current_first_site_Sp.transpose().conjugate()
+
+    # current_second_site_Sz = kron(spin_operators[middle_index - 1][0], identity(d**5))
+    # current_second_site_Sp = kron(spin_operators[middle_index - 1][1], identity(d**5))
+    # current_second_site_Sm = current_second_site_Sp.transpose().conjugate()
+
+    # We are naming the next variable "current_third_site", so that it represents the index in the list.
+    current_third_site_Sz = kron(spin_operators[middle_index][0], identity(d**5))
+    current_third_site_Sp = kron(spin_operators[middle_index][1], identity(d**5))
+    current_third_site_Sm = current_third_site_Sp.transpose().conjugate()
+
+    # current_fourth_site_Sz = kron(spin_operators[middle_index + 1][0], identity(d**5))
+    # current_fourth_site_Sp = kron(spin_operators[middle_index + 1][1], identity(d**5))
+    # current_fourth_site_Sm = current_fourth_site_Sp.transpose().conjugate()
+
+    # Same naming logic as in the above variable.
+    current_fifth_site_Sz = kron(spin_operators[middle_index + 2][0], identity(d**5))
+    current_fifth_site_Sp = kron(spin_operators[middle_index + 2][1], identity(d**5))
+    current_fifth_site_Sm = current_fifth_site_Sp.transpose().conjugate()
+
+    first_site_Sz = kron(identity(np.shape(subsystem_A_H)[0]), kron(Sz, identity(d**4)))
+    first_site_Sp = kron(identity(np.shape(subsystem_A_H)[0]), kron(Sp, identity(d**4)))
+    first_site_Sm = first_site_Sp.transpose().conjugate()
+
+    second_site_Sz = kron(identity(np.shape(subsystem_A_H)[0]), kron(I, kron(Sz, identity(d**3))))
+    second_site_Sp = kron(identity(np.shape(subsystem_A_H)[0]), kron(I, kron(Sp, identity(d**3))))
+    second_site_Sm = second_site_Sp.transpose().conjugate()
+
+    third_site_Sz = kron(identity(np.shape(subsystem_A_H)[0]), kron(identity(d**2), kron(Sz, identity(d**2))))
+    third_site_Sp = kron(identity(np.shape(subsystem_A_H)[0]), kron(identity(d**2), kron(Sp, identity(d**2))))
+    third_site_Sm = third_site_Sp.transpose().conjugate()
+
+    fourth_site_Sz = kron(identity(np.shape(subsystem_A_H)[0]), kron(identity(d**3), kron(Sz, I)))
+    fourth_site_Sp = kron(identity(np.shape(subsystem_A_H)[0]), kron(identity(d**3), kron(Sp, I)))
+    fourth_site_Sm = fourth_site_Sp.transpose().conjugate()
+
+    fifth_site_Sz = kron(identity(np.shape(subsystem_A_H)[0]), kron(identity(d**4), Sz))
+    fifth_site_Sp = kron(identity(np.shape(subsystem_A_H)[0]), kron(identity(d**4), Sp))
+    fifth_site_Sm = fifth_site_Sp.transpose().conjugate()
+
+    # We are adding values comming from 7 interactions between sites (we are adding 3 new sites).
+    subsystem_A_H = kron(subsystem_A_H, identity(d**5))
+    subsystem_A_H += current_first_site_Sz*first_site_Sz + (1/2)*(current_first_site_Sp*first_site_Sm + current_first_site_Sm*first_site_Sp)
+    subsystem_A_H += first_site_Sz*second_site_Sz + (1/2)*(first_site_Sp*second_site_Sm + first_site_Sm*second_site_Sp)
+    subsystem_A_H += second_site_Sz*third_site_Sz + (1/2)*(second_site_Sp*third_site_Sm + second_site_Sm*third_site_Sp)
+    subsystem_A_H += third_site_Sz*current_third_site_Sz + (1/2)*(third_site_Sp*current_third_site_Sm + third_site_Sm*current_third_site_Sp)
+    subsystem_A_H += third_site_Sz*fourth_site_Sz + (1/2)*(third_site_Sp*fourth_site_Sm + third_site_Sm*fourth_site_Sp)
+    subsystem_A_H += fourth_site_Sz*fifth_site_Sz + (1/2)*(fourth_site_Sp*fifth_site_Sm + fourth_site_Sm*fifth_site_Sp)
+    subsystem_A_H += fifth_site_Sz*current_fifth_site_Sz + (1/2)*(fifth_site_Sp*current_fifth_site_Sm + fifth_site_Sm*current_fifth_site_Sp)
+
+    # Update the spin operators
+    spin_operators[middle_index - 2] = (first_site_Sz, first_site_Sp)
+    spin_operators[middle_index - 1] = (second_site_Sz, second_site_Sp)
+    spin_operators[middle_index] = (third_site_Sz, third_site_Sp)
+    spin_operators[middle_index + 1] = (fourth_site_Sz, fourth_site_Sp)
+    spin_operators[middle_index + 2] = (fifth_site_Sz, fifth_site_Sp)
+
+    total_number_of_sites += 5
+
+    if (np.shape(subsystem_A_H)[0] >= threshold):
+        size_of_the_subsystem = np.shape(subsystem_A_H)[0]
+        environment_H = subsystem_A_H
+        subsystem_A_H = kron(subsystem_A_H, identity(size_of_the_subsystem))
+        environment_H = kron(identity(size_of_the_subsystem), environment_H)
+
+        (subsystem_second_site_Sz, subsystem_second_site_Sp) = spin_operators[middle_index - 1]
+        subsystem_second_site_Sm = subsystem_second_site_Sp.transpose().conjugate()
+        subsystem_second_site_Sz = kron(subsystem_second_site_Sz, identity(size_of_the_subsystem))
+
+        print("subsystem_second_site_Sz: ", subsystem_second_site_Sz)
+        print("spin_operators[...]: ", spin_operators[middle_index - 1][0])
+
+        # (subsystem_fourth_site_Sz, subsystem_fourth_site_Sp) = spin_operators[middle_index + 1]
+        # subsystem_fourth_site_Sm = subsystem_fourth_site_Sp.transpose().conjugate()
+
+
+
+
+    #------------------ADDING REST OF THE SITES (IN PAIRS)----------------------
+
+    return (subsystem_A_H, spin_operators, total_number_of_sites)
+
 def compute_cell_of_rho_matrix(rho, psi, d, k, l):
     value = 0
     for i in range(0, d):
@@ -176,7 +283,11 @@ def compute_cell_of_rho_matrix(rho, psi, d, k, l):
     rho[k, l] = value
 
 # For a given structure (Hamiltonian of the superblock) it will carry out the procedure of renormalization.
-def renormalize_system(subsystem_A_H, superblock_H, spin_operators, edge_length, m):
+def renormalize_system(subsystem_A_H, superblock_H, spin_operators):
+    # print("Blok A na wejściu: ", np.shape(subsystem_A_H))
+    # print("Superblok na wejściu: ", np.shape(superblock_H))
+    #WARNING: Potrzebne inteligentne wyliczanie m na podstawie otrzymywanego błędu (dopiuszczalny błąd powinien być parametrem tej funkcji).
+    m = 20
     # Diagonalize the superblock Hamiltonian.
     (eigenvalue,), psi = eigsh(superblock_H, k=1, which="SA")
 
@@ -195,7 +306,7 @@ def renormalize_system(subsystem_A_H, superblock_H, spin_operators, edge_length,
     # Take m most significant eigenvectors of the ρₐ density matrix and construct the truncation operator
     # (last m vectors, because results of the "eigh" function are sorted in the ascending order).
     # Notation: sequence[m:n]  -> from the mth item (inclusive) until the nth item (exclusive).
-    # TODO: Find the best size of basis, for which the received error is lower than the desired one
+    # WARNING: Find the best size of basis, for which the received error is lower than the desired one
     # (probably it will be necesarry to replace argument "m" of the function with error and number_of_iteration).
     truncation_operator = np.array(rho_A_eigenvectors[:, -m:], dtype='d')
 
@@ -203,9 +314,9 @@ def renormalize_system(subsystem_A_H, superblock_H, spin_operators, edge_length,
     subsystem_A_H = truncation_operator.conjugate().transpose().dot(subsystem_A_H.dot(truncation_operator))
 
     # We need to truncate all spin operators in the dictionary.
-    for key in spin_operators.keys(): # Reaching the keys of dictionary.
-        (Sz_op, Sp_op) = spin_operators[key] # Reaching every element in the tuple.
-        spin_operators[key] = (truncation_operator.conjugate().transpose().dot(Sz_op.dot(truncation_operator)), truncation_operator.conjugate().transpose().dot(Sp_op.dot(truncation_operator)))
+    for x in range(0, len(spin_operators)):
+        (Sz_op, Sp_op) = spin_operators[x]
+        spin_operators[x] = (truncation_operator.conjugate().transpose().dot(Sz_op.dot(truncation_operator)), truncation_operator.conjugate().transpose().dot(Sp_op.dot(truncation_operator)))
 
     return (subsystem_A_H, spin_operators)
 
@@ -228,6 +339,7 @@ def main():
         Sz = S0z
         Sp = S0p
         Sm = S0m
+        threshold = 20 # Threshold after which we will begin renormalization.
         # I = identity(2)
         H = np.array([[0, 0], [0, 0]], dtype='d')
     elif spin == 1:
@@ -235,6 +347,7 @@ def main():
         Sz = S1z
         Sp = S1p
         Sm = S1m
+        threshold = 20 # Threshold after which we will begin renormalization.
         # I = identity(3)
         H = np.array([[0, 0, 0], [0, 0, 0], [0, 0, 0]], dtype='d')
     else:
@@ -242,7 +355,7 @@ def main():
         sys.exit()
 
     # Initialization of the block's Hamiltonian (first hexagon).
-    (subsystem_A_H, spin_operators, total_number_of_sites) = initialize_block(H, Sz, Sp, d)
+    (subsystem_A_H, spin_operators, total_number_of_sites) = initialize_block(H, Sz, Sp, d, threshold)
 
     (eigenvalue_0,), psi_0 = eigsh(subsystem_A_H, k=1, which="SA")
     print("Min eigenvalue for hexagon (precise): ", eigenvalue_0)
@@ -254,12 +367,12 @@ def main():
     for i in range(2, number_of_iterations + 1):
         print("--->STEP: ", i)
         # if i % 2 == 1:
-        #     (subsystem_A_H, spin_operators, total_number_of_sites) = odd_step(subsystem_A_H, spin_operators, total_number_of_sites, d, Sz, Sp, i)
-        #     (eigenvalue_0,), psi_0 = eigsh(subsystem_A_H, k=1, which="SA")
-        #     print("Min eigenvalue for hexagon (precise): ", eigenvalue_0)
-        #     print("Min energy per site (for hexagon): ", eigenvalue_0 / total_number_of_sites)
+        #     (subsystem_A_H, spin_operators, total_number_of_sites) = odd_step(subsystem_A_H, spin_operators, total_number_of_sites, d, Sz, Sp, threshold, i)
+        #     # (eigenvalue_0,), psi_0 = eigsh(subsystem_A_H, k=1, which="SA")
+        #     # print("Min eigenvalue for hexagon (precise): ", eigenvalue_0)
+        #     # print("Min energy per site (for hexagon): ", eigenvalue_0 / total_number_of_sites)
         # else:
-        #     (subsystem_A_H, spin_operators, total_number_of_sites) = even_step(subsystem_A_H, spin_operators, total_number_of_sites, d, Sz, Sp, i)
+        #     (subsystem_A_H, spin_operators, total_number_of_sites) = even_step(subsystem_A_H, spin_operators, total_number_of_sites, d, Sz, Sp, threshold, i)
 
 
     (eigenvalue,), psi = eigsh(subsystem_A_H, k=1, which="SA")
