@@ -100,97 +100,155 @@ def odd_step(subsystem_A_H, spin_operators, total_number_of_sites, d, Sz, Sp, i)
     middle_index = math.ceil(len(spin_operators)/2) - 1 # We have to subtract 1, because list is indexed starting from 0.
 
     #--------------------------ADDING INNER 3 SITES-----------------------------
-    first_site_Sz = kron(identity(np.shape(subsystem_A_H)[0]), kron(Sz, kron(I, I)))
-    first_site_Sp = kron(identity(np.shape(subsystem_A_H)[0]), kron(Sp, kron(I, I)))
+
+    # Enlarge all spin operators (so that they will include the 5 new sites).
+    for x in range(0, len(spin_operators)):
+        (Sz_op, Sp_op) = spin_operators[x]
+        spin_operators[x] = (kron(Sz_op, identity(d**3)), kron(Sp_op, identity(d**3)))
+
+    # Spin operators of the upper left site, with which we will connect added sites.
+    (current_left_site_Sz, current_left_site_Sp) = spin_operators[middle_index - 1]
+    current_left_site_Sm = current_left_site_Sp.transpose().conjugate()
+
+    # Spin operators of the upper right site, with which we will connect added sites.
+    (current_right_site_Sz, current_right_site_Sp) = spin_operators[middle_index + 1]
+    current_right_site_Sm = current_right_site_Sp.transpose().conjugate()
+
+    size_of_the_subsystem = np.shape(subsystem_A_H)[0]
+    # Spin operators for the sites that we are adding.
+    first_site_Sz = kron(identity(size_of_the_subsystem), kron(Sz, identity(d**2)))
+    first_site_Sp = kron(identity(size_of_the_subsystem), kron(Sp, identity(d**2)))
     first_site_Sm = first_site_Sp.transpose().conjugate()
 
-    second_site_Sz = kron(identity(np.shape(subsystem_A_H)[0]), kron(I, kron(Sz, I)))
-    second_site_Sp = kron(identity(np.shape(subsystem_A_H)[0]), kron(I, kron(Sp, I)))
+    second_site_Sz = kron(identity(size_of_the_subsystem), kron(I, kron(Sz, identity(d))))
+    second_site_Sp = kron(identity(size_of_the_subsystem), kron(I, kron(Sp, identity(d))))
     second_site_Sm = second_site_Sp.transpose().conjugate()
 
-    third_site_Sz = kron(identity(np.shape(subsystem_A_H)[0]), kron(I, kron(I, Sz)))
-    third_site_Sp = kron(identity(np.shape(subsystem_A_H)[0]), kron(I, kron(I, Sp)))
+    third_site_Sz = kron(identity(size_of_the_subsystem), kron(identity(d**2), Sz))
+    third_site_Sp = kron(identity(size_of_the_subsystem), kron(identity(d**2), Sp))
     third_site_Sm = third_site_Sp.transpose().conjugate()
-
-    middle_left_site_Sz = kron(spin_operators[middle_index - 1][0], identity(d**3))
-    middle_left_site_Sp = kron(spin_operators[middle_index - 1][1], identity(d**3))
-    middle_left_site_Sm = middle_left_site_Sp.transpose().conjugate()
-
-    middle_right_site_Sz = kron(spin_operators[middle_index + 1][0], identity(d**3))
-    middle_right_site_Sp = kron(spin_operators[middle_index + 1][1], identity(d**3))
-    middle_right_site_Sm = middle_right_site_Sp.transpose().conjugate()
 
     # We are adding values comming from 4 interactions between sites (we are adding 3 new sites).
     subsystem_A_H = kron(subsystem_A_H, identity(d**3))
-    subsystem_A_H += middle_left_site_Sz*first_site_Sz + \
-        (1/2)*(middle_left_site_Sp*first_site_Sm + middle_left_site_Sm*first_site_Sp)
+    # print("subsystem_A_H: ", np.shape(subsystem_A_H))
+    subsystem_A_H += current_left_site_Sz*first_site_Sz + (1/2)*(current_left_site_Sp*first_site_Sm + current_left_site_Sm*first_site_Sp)
     subsystem_A_H += first_site_Sz*second_site_Sz + (1/2)*(first_site_Sp*second_site_Sm + first_site_Sm*second_site_Sp)
     subsystem_A_H += second_site_Sz*third_site_Sz + (1/2)*(second_site_Sp*third_site_Sm + second_site_Sm*third_site_Sp)
-    subsystem_A_H += third_site_Sz*middle_right_site_Sz + \
-        (1/2)*(third_site_Sp*middle_right_site_Sm + third_site_Sm*middle_right_site_Sp)
+    subsystem_A_H += third_site_Sz*current_right_site_Sz + (1/2)*(third_site_Sp*current_right_site_Sm + third_site_Sm*current_right_site_Sp)
 
+    # Update the spin operators
     spin_operators[middle_index - 1] = (first_site_Sz, first_site_Sp)
     spin_operators[middle_index] = (second_site_Sz, second_site_Sp)
     spin_operators[middle_index + 1] = (third_site_Sz, third_site_Sp)
 
+    total_number_of_sites += 3
+
+    # Renormalize
+    # Initiate list of indices, that will interact with the environment.
+    joining_indices = [middle_index]
+    (subsystem_A_H, superblock_H, spin_operators) = join_with_environment(subsystem_A_H, spin_operators, joining_indices)
+    (subsystem_A_H, spin_operators) = renormalize_system(subsystem_A_H, superblock_H, spin_operators)
+
     #------------------ADDING REST OF THE SITES (IN PAIRS)----------------------
 
-    return (subsystem_A_H, spin_operators, total_number_of_sites + 3)
+    left_index = middle_index - 3
+    right_index = middle_index + 3
+    # print("(0) left_index: ", left_index)
+    # print("(0) right_index: ", right_index)
+    while left_index >= 0:
+        # print("(1) left_index: ", left_index)
+        # print("(1) right_index: ", right_index)
+        # Add first symmetrical sites.
+        (subsystem_A_H, spin_operators) = add_first_symmetrical_sites(subsystem_A_H, spin_operators, Sz, Sp, d, left_index, right_index)
+        total_number_of_sites += 2
+        # print("joining_indices (1): ", joining_indices)
+        (subsystem_A_H, superblock_H, spin_operators) = join_with_environment(subsystem_A_H, spin_operators, joining_indices)
+        (subsystem_A_H, spin_operators) = renormalize_system(subsystem_A_H, superblock_H, spin_operators)
 
+        # Add second symmetrical sites (these will start to interact with the environment).
+        (subsystem_A_H, spin_operators) = add_second_symmetrical_sites(subsystem_A_H, spin_operators, Sz, Sp, d, left_index + 1, right_index - 1)
+        total_number_of_sites += 2
+        joining_indices.insert(0, left_index + 1)
+        joining_indices.append(right_index - 1)
+        # print("joining_indices (2): ", joining_indices)
+        (subsystem_A_H, superblock_H, spin_operators) = join_with_environment(subsystem_A_H, spin_operators, joining_indices)
+        (subsystem_A_H, spin_operators) = renormalize_system(subsystem_A_H, superblock_H, spin_operators)
+
+        # Update left and right indices, so that we can go to the new "layer".
+        left_index -= 2
+        right_index += 2
+
+    #------------------------Add two edge sites-----------------------------
+    (subsystem_A_H, spin_operators) = add_two_edge_sites(subsystem_A_H, spin_operators, Sz, Sp, d)
+    total_number_of_sites += 2
+    # print("joining_indices (3 - przed): ", joining_indices)
+    for x in range(0, len(joining_indices)):
+        joining_indices[x] += 1
+    joining_indices.insert(0, 0)
+    joining_indices.append(len(spin_operators) - 1)
+    # print("joining_indices (3 - po): ", joining_indices)
+    #------------------------------Renormalize------------------------------
+    (subsystem_A_H, superblock_H, spin_operators) = join_with_environment(subsystem_A_H, spin_operators, joining_indices)
+    (subsystem_A_H, spin_operators) = renormalize_system(subsystem_A_H, superblock_H, spin_operators)
+
+    return (subsystem_A_H, spin_operators, total_number_of_sites)
 
 def even_step(subsystem_A_H, spin_operators, total_number_of_sites, d, Sz, Sp, i):
-    print("EVEN STEP.")
+    # print("EVEN STEP.")
     I = identity(d)
     middle_index = math.ceil(len(spin_operators)/2) - 1 # We have to subtract 1, because list is indexed starting from 0.
 
     #--------------------------ADDING INNER 5 SITES-----------------------------
 
-    # We are naming the next variable "current_third_site", so that it represents the index in the list (counting from 1, not from 0).
-    current_first_site_Sz = kron(spin_operators[middle_index - 2][0], identity(d**5))
-    current_first_site_Sp = kron(spin_operators[middle_index - 2][1], identity(d**5))
-    current_first_site_Sm = current_first_site_Sp.transpose().conjugate()
+    # Enlarge all spin operators (so that they will include the 5 new sites).
+    for x in range(0, len(spin_operators)):
+        (Sz_op, Sp_op) = spin_operators[x]
+        spin_operators[x] = (kron(Sz_op, identity(d**5)), kron(Sp_op, identity(d**5)))
 
-    # Same naming logic as in the above variable.
-    current_third_site_Sz = kron(spin_operators[middle_index][0], identity(d**5))
-    current_third_site_Sp = kron(spin_operators[middle_index][1], identity(d**5))
-    current_third_site_Sm = current_third_site_Sp.transpose().conjugate()
+    # Spin operators of the upper left site, with which we will connect added sites.
+    (current_left_site_Sz, current_left_site_Sp) = spin_operators[middle_index - 2]
+    current_left_site_Sm = current_left_site_Sp.transpose().conjugate()
 
-    # Same naming logic as in the above variable.
-    current_fifth_site_Sz = kron(spin_operators[middle_index + 2][0], identity(d**5))
-    current_fifth_site_Sp = kron(spin_operators[middle_index + 2][1], identity(d**5))
-    current_fifth_site_Sm = current_fifth_site_Sp.transpose().conjugate()
+    # Spin operators of the upper middle site, with which we will connect added sites.
+    (current_middle_site_Sz, current_middle_site_Sp) = spin_operators[middle_index]
+    current_middle_site_Sm = current_middle_site_Sp.transpose().conjugate()
 
+    # Spin operators of the upper right site, with which we will connect added sites.
+    (current_right_site_Sz, current_right_site_Sp) = spin_operators[middle_index + 2]
+    current_right_site_Sm = current_right_site_Sp.transpose().conjugate()
+
+    size_of_the_subsystem = np.shape(subsystem_A_H)[0]
     # Spin operators for the sites that we are adding.
-    first_site_Sz = kron(identity(np.shape(subsystem_A_H)[0]), kron(Sz, identity(d**4)))
-    first_site_Sp = kron(identity(np.shape(subsystem_A_H)[0]), kron(Sp, identity(d**4)))
+    first_site_Sz = kron(identity(size_of_the_subsystem), kron(Sz, identity(d**4)))
+    first_site_Sp = kron(identity(size_of_the_subsystem), kron(Sp, identity(d**4)))
     first_site_Sm = first_site_Sp.transpose().conjugate()
 
-    second_site_Sz = kron(identity(np.shape(subsystem_A_H)[0]), kron(I, kron(Sz, identity(d**3))))
-    second_site_Sp = kron(identity(np.shape(subsystem_A_H)[0]), kron(I, kron(Sp, identity(d**3))))
+    second_site_Sz = kron(identity(size_of_the_subsystem), kron(I, kron(Sz, identity(d**3))))
+    second_site_Sp = kron(identity(size_of_the_subsystem), kron(I, kron(Sp, identity(d**3))))
     second_site_Sm = second_site_Sp.transpose().conjugate()
 
-    third_site_Sz = kron(identity(np.shape(subsystem_A_H)[0]), kron(identity(d**2), kron(Sz, identity(d**2))))
-    third_site_Sp = kron(identity(np.shape(subsystem_A_H)[0]), kron(identity(d**2), kron(Sp, identity(d**2))))
+    third_site_Sz = kron(identity(size_of_the_subsystem), kron(identity(d**2), kron(Sz, identity(d**2))))
+    third_site_Sp = kron(identity(size_of_the_subsystem), kron(identity(d**2), kron(Sp, identity(d**2))))
     third_site_Sm = third_site_Sp.transpose().conjugate()
 
-    fourth_site_Sz = kron(identity(np.shape(subsystem_A_H)[0]), kron(identity(d**3), kron(Sz, I)))
-    fourth_site_Sp = kron(identity(np.shape(subsystem_A_H)[0]), kron(identity(d**3), kron(Sp, I)))
+    fourth_site_Sz = kron(identity(size_of_the_subsystem), kron(identity(d**3), kron(Sz, I)))
+    fourth_site_Sp = kron(identity(size_of_the_subsystem), kron(identity(d**3), kron(Sp, I)))
     fourth_site_Sm = fourth_site_Sp.transpose().conjugate()
 
-    fifth_site_Sz = kron(identity(np.shape(subsystem_A_H)[0]), kron(identity(d**4), Sz))
-    fifth_site_Sp = kron(identity(np.shape(subsystem_A_H)[0]), kron(identity(d**4), Sp))
+    fifth_site_Sz = kron(identity(size_of_the_subsystem), kron(identity(d**4), Sz))
+    fifth_site_Sp = kron(identity(size_of_the_subsystem), kron(identity(d**4), Sp))
     fifth_site_Sm = fifth_site_Sp.transpose().conjugate()
 
-    # We are adding values comming from 7 interactions between sites (we are adding 3 new sites).
+    # We are adding values comming from 7 interactions between sites (we are adding 5 new sites).
     subsystem_A_H = kron(subsystem_A_H, identity(d**5))
     # print("subsystem_A_H: ", np.shape(subsystem_A_H))
-    subsystem_A_H += current_first_site_Sz*first_site_Sz + (1/2)*(current_first_site_Sp*first_site_Sm + current_first_site_Sm*first_site_Sp)
+    subsystem_A_H += current_left_site_Sz*first_site_Sz + (1/2)*(current_left_site_Sp*first_site_Sm + current_left_site_Sm*first_site_Sp)
     subsystem_A_H += first_site_Sz*second_site_Sz + (1/2)*(first_site_Sp*second_site_Sm + first_site_Sm*second_site_Sp)
     subsystem_A_H += second_site_Sz*third_site_Sz + (1/2)*(second_site_Sp*third_site_Sm + second_site_Sm*third_site_Sp)
-    subsystem_A_H += third_site_Sz*current_third_site_Sz + (1/2)*(third_site_Sp*current_third_site_Sm + third_site_Sm*current_third_site_Sp)
+    subsystem_A_H += third_site_Sz*current_middle_site_Sz + (1/2)*(third_site_Sp*current_middle_site_Sm + third_site_Sm*current_middle_site_Sp)
     subsystem_A_H += third_site_Sz*fourth_site_Sz + (1/2)*(third_site_Sp*fourth_site_Sm + third_site_Sm*fourth_site_Sp)
     subsystem_A_H += fourth_site_Sz*fifth_site_Sz + (1/2)*(fourth_site_Sp*fifth_site_Sm + fourth_site_Sm*fifth_site_Sp)
-    subsystem_A_H += fifth_site_Sz*current_fifth_site_Sz + (1/2)*(fifth_site_Sp*current_fifth_site_Sm + fifth_site_Sm*current_fifth_site_Sp)
+    subsystem_A_H += fifth_site_Sz*current_right_site_Sz + (1/2)*(fifth_site_Sp*current_right_site_Sm + fifth_site_Sm*current_right_site_Sp)
 
     # Update the spin operators
     spin_operators[middle_index - 2] = (first_site_Sz, first_site_Sp)
@@ -218,9 +276,47 @@ def even_step(subsystem_A_H, spin_operators, total_number_of_sites, d, Sz, Sp, i
         #------------------------------Renormalize------------------------------
         (subsystem_A_H, superblock_H, spin_operators) = join_with_environment(subsystem_A_H, spin_operators, [0, 2, 4, 6])
         (subsystem_A_H, spin_operators) = renormalize_system(subsystem_A_H, superblock_H, spin_operators)
+    else:
+        joining_indices = [middle_index - 1, middle_index + 1]
+        left_index = middle_index - 4
+        right_index = middle_index + 4
+        # print("(0) left_index: ", left_index)
+        # print("(0) right_index: ", right_index)
+        while left_index >= 0:
+            # print("(1) left_index: ", left_index)
+            # print("(1) right_index: ", right_index)
+            # Add first symmetrical sites.
+            (subsystem_A_H, spin_operators) = add_first_symmetrical_sites(subsystem_A_H, spin_operators, Sz, Sp, d, left_index, right_index)
+            total_number_of_sites += 2
+            # print("joining_indices (1): ", joining_indices)
+            (subsystem_A_H, superblock_H, spin_operators) = join_with_environment(subsystem_A_H, spin_operators, joining_indices)
+            (subsystem_A_H, spin_operators) = renormalize_system(subsystem_A_H, superblock_H, spin_operators)
 
+            # Add second symmetrical sites (these will start to interact with the environment).
+            (subsystem_A_H, spin_operators) = add_second_symmetrical_sites(subsystem_A_H, spin_operators, Sz, Sp, d, left_index + 1, right_index - 1)
+            total_number_of_sites += 2
+            joining_indices.insert(0, left_index + 1)
+            joining_indices.append(right_index - 1)
+            # print("joining_indices (2): ", joining_indices)
+            (subsystem_A_H, superblock_H, spin_operators) = join_with_environment(subsystem_A_H, spin_operators, joining_indices)
+            (subsystem_A_H, spin_operators) = renormalize_system(subsystem_A_H, superblock_H, spin_operators)
 
+            # Update left and right indices, so that we can go to the new "layer".
+            left_index -= 2
+            right_index += 2
 
+        #------------------------Add two edge sites-----------------------------
+        (subsystem_A_H, spin_operators) = add_two_edge_sites(subsystem_A_H, spin_operators, Sz, Sp, d)
+        total_number_of_sites += 2
+        # print("joining_indices (3 - przed): ", joining_indices)
+        for x in range(0, len(joining_indices)):
+            joining_indices[x] += 1
+        joining_indices.insert(0, 0)
+        joining_indices.append(len(spin_operators) - 1)
+        # print("joining_indices (3 - po): ", joining_indices)
+        #------------------------------Renormalize------------------------------
+        (subsystem_A_H, superblock_H, spin_operators) = join_with_environment(subsystem_A_H, spin_operators, joining_indices)
+        (subsystem_A_H, spin_operators) = renormalize_system(subsystem_A_H, superblock_H, spin_operators)
 
     return (subsystem_A_H, spin_operators, total_number_of_sites)
 
@@ -274,7 +370,7 @@ def add_two_edge_sites(subsystem_A_H, spin_operators, Sz, Sp, d):
     (current_last_site_Sz, current_last_site_Sp) = spin_operators[len(spin_operators) - 1]
     current_last_site_Sm = current_last_site_Sp.transpose().conjugate()
 
-    # Create spin operators for the two new sites, that w are adding on the edges.
+    # Create spin operators for the two new sites, that we are adding on the edges.
     size_of_the_subsystem = np.shape(subsystem_A_H)[0]
     # print("size_of_the_subsystem: ", size_of_the_subsystem)
     left_site_Sz = kron(identity(size_of_the_subsystem), kron(Sz, I))
@@ -292,9 +388,102 @@ def add_two_edge_sites(subsystem_A_H, spin_operators, Sz, Sp, d):
     subsystem_A_H += left_site_Sz*current_first_site_Sz + (1/2)*(left_site_Sp*current_first_site_Sm + left_site_Sm*current_first_site_Sp)
     subsystem_A_H += current_last_site_Sz*right_site_Sz + (1/2)*(current_last_site_Sp*right_site_Sm + current_last_site_Sm*right_site_Sp)
 
+    # print("DODAWANIE WEZLOW KRAWEDZIOWYCH")
+    # print("PRZED len(spin_operators): ", len(spin_operators))
     # Add new spin operators to the list.
     spin_operators.insert(0, (left_site_Sz, left_site_Sp))
     spin_operators.append((right_site_Sz, right_site_Sp))
+    # print("PO len(spin_operators): ", len(spin_operators))
+
+    return (subsystem_A_H, spin_operators)
+
+# This function adds two sites on both sites of new hexagon added in the middle of the row.
+# First sites are connected with only the ones above them and will replace them in the
+# list of spin operators.
+# left_index - index of the spin operator, with which the left site (on the left site ofthe inner hexagon)
+# will connect and later replace it in the spin operators list
+# right index - similarly like left_index, but for the site on the right site of the inner hexagon.
+def add_first_symmetrical_sites(subsystem_A_H, spin_operators, Sz, Sp, d, left_index, right_index):
+    I = identity(d)
+
+    # Enlarge all spin operators (so that they will include the 2 new sites).
+    for x in range(0, len(spin_operators)):
+        (Sz_op, Sp_op) = spin_operators[x]
+        spin_operators[x] = (kron(Sz_op, identity(d**2)), kron(Sp_op, identity(d**2)))
+
+    # Take the left-site spin operator from the list.
+    (current_left_site_Sz, current_left_site_Sp) = spin_operators[left_index]
+    current_left_site_Sm = current_left_site_Sp.transpose().conjugate()
+
+    # Take the right-site spin operator from the list.
+    (current_right_site_Sz, current_right_site_Sp) = spin_operators[right_index]
+    current_right_site_Sm = current_right_site_Sp.transpose().conjugate()
+
+    # Create spin operators for the two new sites, that we are adding on the left and right site of the hexagon.
+    size_of_the_subsystem = np.shape(subsystem_A_H)[0]
+    # print("size_of_the_subsystem: ", size_of_the_subsystem)
+    left_site_Sz = kron(identity(size_of_the_subsystem), kron(Sz, I))
+    left_site_Sp = kron(identity(size_of_the_subsystem), kron(Sp, I))
+    left_site_Sm = left_site_Sp.transpose().conjugate()
+
+    right_site_Sz = kron(identity(size_of_the_subsystem), kron(I, Sz))
+    right_site_Sp = kron(identity(size_of_the_subsystem), kron(I, Sp))
+    right_site_Sm = right_site_Sp.transpose().conjugate()
+
+    subsystem_A_H = kron(subsystem_A_H, identity(d**2))
+    subsystem_A_H += left_site_Sz*current_left_site_Sz + (1/2)*(left_site_Sp*current_left_site_Sm + left_site_Sm*current_left_site_Sp)
+    subsystem_A_H += current_right_site_Sz*right_site_Sz + (1/2)*(current_right_site_Sp*right_site_Sm + current_right_site_Sm*right_site_Sp)
+
+    # Replace appropriate spin operators with the new ones.
+    spin_operators[left_index] = (left_site_Sz, left_site_Sp)
+    spin_operators[right_index] = (right_site_Sz, right_site_Sp)
+
+    return (subsystem_A_H, spin_operators)
+
+# This function adds two sites on both sites of new hexagon added in the middle of the row.
+# left_index - index of the spin operator, which will be replaced by a nwe site (the new site will connect with
+# sites indexed as left_index - 1 and left_index + 1)
+# right index - similarly like left_index, but for the site on the right site of the inner hexagon.
+def add_second_symmetrical_sites(subsystem_A_H, spin_operators, Sz, Sp, d, left_index, right_index):
+    I = identity(d)
+
+    # Enlarge all spin operators (so that they will include the 2 new sites).
+    for x in range(0, len(spin_operators)):
+        (Sz_op, Sp_op) = spin_operators[x]
+        spin_operators[x] = (kron(Sz_op, identity(d**2)), kron(Sp_op, identity(d**2)))
+
+    # Take spin operators, with which the new left-site will connect.
+    (current_left_left_site_Sz, current_left_left_site_Sp) = spin_operators[left_index - 1]
+    current_left_left_site_Sm = current_left_left_site_Sp.transpose().conjugate()
+    (current_left_right_site_Sz, current_left_right_site_Sp) = spin_operators[left_index + 1]
+    current_left_right_site_Sm = current_left_right_site_Sp.transpose().conjugate()
+
+    # Take spin operators, with which the new right-site will connect.
+    (current_right_left_site_Sz, current_right_left_site_Sp) = spin_operators[right_index - 1]
+    current_right_left_site_Sm = current_right_left_site_Sp.transpose().conjugate()
+    (current_right_right_site_Sz, current_right_right_site_Sp) = spin_operators[right_index + 1]
+    current_right_right_site_Sm = current_right_right_site_Sp.transpose().conjugate()
+
+    # Create spin operators for the two new sites, that we are adding on the left and right site of the hexagon.
+    size_of_the_subsystem = np.shape(subsystem_A_H)[0]
+    # print("size_of_the_subsystem: ", size_of_the_subsystem)
+    left_site_Sz = kron(identity(size_of_the_subsystem), kron(Sz, I))
+    left_site_Sp = kron(identity(size_of_the_subsystem), kron(Sp, I))
+    left_site_Sm = left_site_Sp.transpose().conjugate()
+
+    right_site_Sz = kron(identity(size_of_the_subsystem), kron(I, Sz))
+    right_site_Sp = kron(identity(size_of_the_subsystem), kron(I, Sp))
+    right_site_Sm = right_site_Sp.transpose().conjugate()
+
+    subsystem_A_H = kron(subsystem_A_H, identity(d**2))
+    subsystem_A_H += current_left_left_site_Sz*left_site_Sz + (1/2)*(current_left_left_site_Sp*left_site_Sm + current_left_left_site_Sm*left_site_Sp)
+    subsystem_A_H += left_site_Sz*current_left_right_site_Sz + (1/2)*(left_site_Sp*current_left_right_site_Sm + left_site_Sm*current_left_right_site_Sp)
+    subsystem_A_H += current_right_left_site_Sz*right_site_Sz + (1/2)*(current_right_left_site_Sp*right_site_Sm + current_right_left_site_Sm*right_site_Sp)
+    subsystem_A_H += right_site_Sz*current_right_right_site_Sz + (1/2)*(right_site_Sp*current_right_right_site_Sm + right_site_Sm*current_right_right_site_Sp)
+
+    # Replace appropriate spin operators with the new ones.
+    spin_operators[left_index] = (left_site_Sz, left_site_Sp)
+    spin_operators[right_index] = (right_site_Sz, right_site_Sp)
 
     return (subsystem_A_H, spin_operators)
 
@@ -347,11 +536,11 @@ def renormalize_system(subsystem_A_H, superblock_H, spin_operators):
 def main():
     start_time = time.time()
     if len(sys.argv) != 4:
-        print("Incorrect number of arguments. They should be passed in format 'SPIN_TYPE TRUNCATION_THRESHOLD NUMBER_OF_ITERATIONS'")
+        print("Incorrect number of arguments. They should be passed in the format 'SPIN_TYPE DESIRED_PRECISION NUMBER_OF_ITERATIONS'")
         sys.exit(0)
     else:
-        spin = float(sys.argv[1])
-        m = int(sys.argv[2])
+        spin = float(sys.argv[1]) # Type of spin.
+        e = int(sys.argv[2]) # Desired precision.
         number_of_iterations = int(sys.argv[3])
 
     print('Spin: ' + str(spin))
@@ -361,14 +550,12 @@ def main():
         Sz = S0z
         Sp = S0p
         Sm = S0m
-        # I = identity(2)
         H = np.array([[0, 0], [0, 0]], dtype='d')
     elif spin == 1:
         d = 3 # d stands for the size of the basis for the given type of spin.
         Sz = S1z
         Sp = S1p
         Sm = S1m
-        # I = identity(3)
         H = np.array([[0, 0, 0], [0, 0, 0], [0, 0, 0]], dtype='d')
     else:
         print("Given value of spin is incorrect (or not supported).")
@@ -377,29 +564,28 @@ def main():
     # Initialization of the block's Hamiltonian (first hexagon).
     (subsystem_A_H, spin_operators, total_number_of_sites) = initialize_block(H, Sz, Sp, d)
 
-    (eigenvalue_0,), psi_0 = eigsh(subsystem_A_H, k=1, which="SA")
-    print("Min eigenvalue for hexagon (precise): ", eigenvalue_0)
-    print("Min energy per site (for hexagon): ", eigenvalue_0 / total_number_of_sites)
+    # (eigenvalue_0,), psi_0 = eigsh(subsystem_A_H, k=1, which="SA")
+    # print("Min eigenvalue for hexagon (precise): ", eigenvalue_0)
+    # print("Min energy per site (for hexagon): ", eigenvalue_0 / total_number_of_sites)
 
     # Number of iteration tells us about the number of row, we are adding and also how many hexagons are in this row.
     # Each iteration ends with i-hexagons at the bottom of the structure + 2 additional sites at the edges (only such structure
     # makes with the symmetrical environment the full diamond).
     for i in range(2, number_of_iterations + 1):
-        print("--->STEP: ", i)
+        print("STEP: ", i)
         if i % 2 == 1:
             (subsystem_A_H, spin_operators, total_number_of_sites) = odd_step(subsystem_A_H, spin_operators, total_number_of_sites, d, Sz, Sp, i)
-            # (eigenvalue_0,), psi_0 = eigsh(subsystem_A_H, k=1, which="SA")
-            # print("Min eigenvalue for hexagon (precise): ", eigenvalue_0)
-            # print("Min energy per site (for hexagon): ", eigenvalue_0 / total_number_of_sites)
         else:
             (subsystem_A_H, spin_operators, total_number_of_sites) = even_step(subsystem_A_H, spin_operators, total_number_of_sites, d, Sz, Sp, i)
-        print("Po wykonaniu kroku - subsystem_A_H: ", np.shape(subsystem_A_H))
+        # print("Po wykonaniu kroku - subsystem_A_H: ", np.shape(subsystem_A_H))
+        # print("Długość spin operators: ", len(spin_operators))
+        print("Całkowita liczba węzłów po tym kroku: ", total_number_of_sites)
 
-
-    (eigenvalue,), psi = eigsh(subsystem_A_H, k=1, which="SA")
-    print("Min eigenvalue: ", eigenvalue)
-    print("Min energy per site: ", eigenvalue / total_number_of_sites)
-    # print("--- %s seconds ---" % (time.time() - start_time))
+        # Calculate mean energy per site.
+        (eigenvalue,), psi = eigsh(subsystem_A_H, k=1, which="SA")
+        print("Min eigenvalue: ", eigenvalue)
+        print("Min energy per site: ", eigenvalue / total_number_of_sites)
+        # print("--- %s seconds ---" % (time.time() - start_time))
 
 if __name__== "__main__":
   main()
