@@ -1,3 +1,4 @@
+# Copyright 2019 Bartosz Rzepkowski, all rights reserved.
 import numpy as np
 import math
 import time
